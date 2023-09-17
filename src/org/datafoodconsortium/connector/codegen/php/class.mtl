@@ -1,0 +1,78 @@
+[comment encoding = UTF-8 /]
+[module class('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::datafoodconsortium::connector::codegen::queries /]
+[import org::datafoodconsortium::connector::codegen::php::operation /]
+[import org::datafoodconsortium::connector::codegen::php::common /]
+
+[template public generateClass(model: Model, aClass : Class)]
+[file (getOutputFolderSrc() + aClass.name.concat('.php'), false, 'UTF-8')]
+<?php
+
+[generateLicence()/]
+
+namespace DataFoodConsortium\Connector;
+
+use \VirtualAssembly\Semantizer\SemanticObject[if (aClass.isBlankNode())]Anonymous[/if];
+use \VirtualAssembly\Semantizer\Semanticable;
+
+[if (aClass.isAbstract)]abstract [/if]class [aClass.name.toUpperFirst()/] [generateGeneralization(aClass)/][generateInterfaceRealizationHeader(aClass)/]{
+	[if (aClass.generalization->isEmpty())]['\n'/]	protected IConnector $connector;[/if]
+
+	[for (operation: Operation | aClass.ownedOperation) separator('\n')]
+	[if (operation.isAbstract)][generateOperationSignature(aClass, operation)/][else][generateOperationImplementation(aClass, operation)/][/if]
+	[/for]
+
+	[if not (aClass.interfaceRealization->isEmpty())]
+	[for (interface: Interface | aClass.getAllImplementedInterfaces()->select(i: Interface | aClass.generalization->asSequence()->at(1).general.allRealizedInterfaces()->excludes(i)))]
+		[for (operation: Operation | interface.getOperations()->select(o: Operation | aClass.ownedOperation->excludesAll(aClass.ownedOperation->select(op: Operation | op.isAbstract and o.name = op.name)))) separator ('\n')]
+	[generateOperationImplementation(aClass, operation)/]
+		[/for]
+	[/for]
+	[/if]
+
+}
+[/file]
+[/template]
+
+[template public generateGeneralization(classifier: Classifier)]
+extends [for (generalization: Generalization | classifier.generalization) separator(', ')][generalization.general.name/][/for][if (classifier.generalization->isEmpty())][if (classifier.isSemantic())]SemanticObject[if (classifier.isBlankNode())]Anonymous[/if][/if][/if] 
+[/template]
+
+[template public generateInterfaceRealizationHeader(aClass: Class)]
+[if not (aClass.interfaceRealization->isEmpty())]implements [for (interface: InterfaceRealization | aClass.interfaceRealization) separator(', ')][interface.contract.name/][/for] [/if]
+[/template]
+
+
+[template public generateFactory(model: Model)]
+[file (getOutputFolderSrc() + 'ConnectorFactory.php', false, 'UTF-8')]
+<?php
+
+[generateLicence()/]
+
+namespace DataFoodConsortium\Connector;
+
+use \VirtualAssembly\Semantizer\IFactory;
+use \VirtualAssembly\Semantizer\Semanticable;
+
+class ConnectorFactory implements IFactory {
+
+    private Connector $connector;
+
+    public function __construct(Connector $connector) {
+        $this->connector = $connector;
+    }
+
+    public function getConnector(): Connector {
+        return $this->connector;
+    }
+
+    public function makeFromResource($resource): Semanticable {
+        $type = $resource->type();
+		[for (c: Class | model.getConcreateSemanticClasses()) separator('\n\t\t')]if ($type === "[c.getMapping()/]") return new [c.name/](connector: $this->getConnector(), resource: $resource);[/for]
+        throw new \TypeError("Unrecognized type: " . $type, 505);
+    }
+
+}
+[/file]
+[/template]

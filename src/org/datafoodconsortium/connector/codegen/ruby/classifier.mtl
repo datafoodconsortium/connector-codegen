@@ -1,0 +1,11 @@
+[comment encoding = UTF-8 /]
+[module classifier('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::datafoodconsortium::connector::codegen::ruby::common /]
+
+[template public generateImports(classifier: Classifier)]
+[for (ei: ElementImport | classifier.elementImport) separator('\n')][if (ei.importedElement.oclIsTypeOf(Class))][generateImport(ei)/][/if][/for]
+[if (classifier.oclIsTypeOf(Class))]require "virtual_assembly/semantizer"[/if]
+[/template]
+
+[template public generateImport(ei: ElementImport)]require "datafoodconsortium/connector/[generateFileName(ei.importedElement.name) /]"[/template]

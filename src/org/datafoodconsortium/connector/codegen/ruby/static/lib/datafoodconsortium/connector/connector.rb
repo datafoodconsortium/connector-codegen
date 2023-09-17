@@ -1,0 +1,83 @@
+# MIT License
+# 
+# Copyright (c) 2023 Maxime Lecoq <maxime@lecoqlibre.fr>
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+require 'singleton'
+require 'datafoodconsortium/connector/json_ld_serializer'
+
+class DataFoodConsortium::Connector::Connector
+
+    include Singleton
+
+    attr_accessor :context
+
+    attr_reader :FACETS
+    attr_reader :MEASURES
+    attr_reader :PRODUCT_TYPES
+
+    def export(subject, *subjects)
+        return @exporter.process(subject, *subjects)
+    end
+
+    def loadFacets(data)
+        @FACETS = loadThesaurus(data)
+    end
+
+    def loadMeasures(data)
+        @MEASURES = loadThesaurus(data)
+    end
+
+    def loadProductTypes(data)
+        @PRODUCT_TYPES = loadThesaurus(data)
+    end
+
+    private
+
+    def initialize()
+        super()
+
+        # used to prefix properties
+        # so the DFC's context can be used.
+        # See https://github.com/datafoodconsortium/connector-ruby/issues/11.
+        inputContext = {
+            "dfc-b" => "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#",
+            "dfc-p" => "http://static.datafoodconsortium.org/ontologies/DFC_ProductOntology.owl#",
+            "dfc-t" => "http://static.datafoodconsortium.org/ontologies/DFC_TechnicalOntology.owl#",
+            "dfc-m" => "http://static.datafoodconsortium.org/data/measures.rdf#",
+		    "dfc-pt" => "http://static.datafoodconsortium.org/data/productTypes.rdf#",
+		    "dfc-f" => "http://static.datafoodconsortium.org/data/facets.rdf#"
+        }
+
+        @context = "http://static.datafoodconsortium.org/ontologies/context.json"
+
+        @exporter = DataFoodConsortium::Connector::JsonLdSerializer.new(@context, inputContext)
+        @parser = DataFoodConsortium::Connector::SKOSParser.new
+
+        @FACETS = []
+        @MEASURES = []
+        @PRODUCT_TYPES = []
+    end
+    
+    def loadThesaurus(data)
+        return @parser.parse(data[0]["@graph"])
+    end
+    
+end

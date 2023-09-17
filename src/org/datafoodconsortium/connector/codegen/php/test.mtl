@@ -1,0 +1,104 @@
+[comment encoding = UTF-8 /]
+[module test('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::datafoodconsortium::connector::codegen::queries /]
+[import org::datafoodconsortium::connector::codegen::php::operation /]
+[import org::datafoodconsortium::connector::codegen::php::common /]
+
+[comment TODO: check assert primitive array /]
+[template public generateClassTest(model: Model, aClass : Class)]
+[file (getOutputFolderTest() + aClass.name.concat('Test.php'), false, 'UTF-8')]
+<?php declare(strict_types=1);
+
+namespace DataFoodConsortium\Connector;
+use PHPUnit\Framework\TestCase;
+
+require_once("./vendor/autoload.php");
+
+final class [aClass.name.toUpperFirst()/]Test extends TestCase {
+
+	[if (aClass.hasConstructor() and aClass.getDefaultConstructor().hasInputParameter())]
+	[let parameters: OrderedSet(Parameter) = aClass.getDefaultConstructorParameters()]
+	[let testValues: Sequence(String) = getTestValues(parameters->asSequence())] 
+	public function testConstructor(): void {
+        $connector = new Connector();
+
+		[for (p: Parameter | parameters) separator('\n\t\t')][p.generateNewParameter(testValues->at(i), model)/][/for]
+
+        [aClass.generateCompleteNew(parameters, testValues)/]
+
+        [if (not aClass.isBlankNode())]$this->assertSame("http://example.org/obj", $obj->getSemanticId());[/if]
+		[for (p: Parameter | parameters) separator('\n\t\t')][if (p.isBlankNode())]$this->assertSame(true, [if (p.isCollection())]TestUtils::testBlankNodeArray($obj->[p.getGetter().name/](), $[testValues->at(i)/])[else]$obj->[p.getGetter().name/]()->equals($[testValues->at(i)/])[/if]);[else]$this->assertSame([if (not p.isPrimitive())]$[/if][testValues->at(i)/], $obj->[p.getGetter().name/]());[/if][/for]
+    }[/let][/let][/if]
+
+
+	[if (aClass.hasOwnedOperations())]
+	public function testGetSet(): void {
+        $connector = new Connector();
+
+        $obj = new [aClass.name.toUpperFirst()/](
+            connector: $connector[if (not aClass.isBlankNode())], ['\n\t\t\t'/]semanticId: "http://example.org/obj"[/if]
+        );
+
+		[for (property: Property | aClass.getAllAttributes())]
+		[if (not property.isPropertyMultiple())][property.generateSetterTest(model)/][/if]
+		[if (property.isPropertyMultiple())][property.generateAdderTest(model)/][/if]
+		[/for]
+    }[/if]
+
+
+	[let parameters: OrderedSet(Parameter) = aClass.getDefaultConstructorParameters()]
+	[let testValues: Sequence(String) = getTestValues(parameters->asSequence())] 
+	/*public function testImportExport(): void {
+		$connector = new Connector();
+
+		[aClass.generateCompleteNew(parameters, testValues)/]
+
+		$export = $connector->export(['['/]$obj[']'/]);
+		$import = $connector->import($export);
+		$this->assertSame(true, $import['['/]0[']'/]->equals($obj));
+	}*/
+	[/let][/let]
+}
+[/file]
+[/template]
+
+[template private generateCompleteNew(aClass: Class, parameters: OrderedSet(Parameter), testValues: Sequence(String))]
+$obj = new [aClass.name.toUpperFirst()/](
+    connector: $connector,
+	[if (not aClass.isBlankNode())]semanticId: "http://example.org/obj",[/if]
+	[for (p: Parameter | parameters) separator(',\n\t')][p.name/]: [if (not p.isPrimitive())]$[/if][testValues->at(i)/][/for]
+);
+[/template]
+
+[template public generateSetterTest(aProperty: Property, aModel: Model)]
+[let setter: Operation = aProperty.getSetter()]
+[if (setter <> null)]
+[let getter: Operation = aProperty.getGetter()]
+[let p: Parameter = setter.getInputParameter()]
+[let testValue: String = aProperty.generateValue()]
+[p.generateNewParameter(testValue, aModel)/]
+$obj->[setter.name/]([if (not aProperty.isPrimitive())]$[/if][testValue/]);
+[if (p.isBlankNode())]$this->assertSame(true, [if (p.isCollection())]TestUtils::testBlankNodeArray($obj->[getter.name/](), $[testValue/])[else]$obj->[getter.name/]()->equals($[testValue/])[/if]);[else]$this->assertSame([if (not p.isPrimitive())]$[/if][testValue/], $obj->[getter.name/]());[/if]
+[/let][/let][/let][/if][/let]
+[/template]
+
+[template public generateAdderTest(aProperty: Property, aModel: Model)]
+[let adder: Operation = aProperty.getAdder()]
+[if (adder <> null)]
+[let p: Parameter = adder.getInputParameter()]
+[let testValue: String = aProperty.generateValue()]
+[p.generateNewParameter(testValue, aModel)/]
+$obj->[adder.name/]([if (not aProperty.isPrimitive())]$[/if][testValue/]);
+[if (p.isBlankNode())]$this->assertSame(true, [if (aProperty.isCollection())]TestUtils::testBlankNodeArray($obj->[aProperty.getGetter().name/](), ['['/]$[testValue/][']'/])[else]$obj->[aProperty.getGetter().name/]()->equals($[testValue/])[/if]);[else]$this->assertSame([if (aProperty.isCollection())]['['/][/if][if (not aProperty.isPrimitive())]$[/if][testValue/][if (aProperty.isCollection())][']'/][/if], $obj->[aProperty.getGetter().name/]());[/if]
+[/let][/let][/if][/let]
+[/template]
+
+
+[template public generateAssert(aProperty: Property, parameter: Parameter, aTestValue: String)][if (parameter.isBlankNode())]$this->assertSame(true, [if (aProperty.isCollection())]TestUtils::testBlankNodeArray($obj->[aProperty.getGetter().name/](), $[aTestValue/])[else]$obj->[aProperty.getGetter().name/]()->equals($[aTestValue/])[/if]);[else]$this->assertSame([if (aProperty.isCollection())]['['/][/if][if (not aProperty.isPrimitive())]$[/if][aTestValue/][if (aProperty.isCollection())][']'/][/if], $obj->[aProperty.getGetter().name/]());[/if][/template]
+
+[template public generateNewParameter(aParameter: Parameter, aTestValue: String, aModel: Model)][if (not aParameter.isPrimitive())]$[aTestValue/] = [if (aParameter.isCollection())]array([/if]new [aParameter.getImplementation(aModel).name/](connector: $connector[if (not aParameter.isBlankNode())], semanticId: "[aParameter.generateSemanticId()/]"[/if])[if (aParameter.isCollection())])[/if];[/if][/template]
+
+[template public generateNewParameter(aParameter: Parameter, aProperty: Property, aTestValue: String, aModel: Model)][if (not aParameter.isPrimitive())]$[aTestValue/] = [if (aProperty.isCollection())]array([/if]new [aParameter.getImplementation(aModel).name/](connector: $connector[if (not aParameter.isBlankNode())], semanticId: "[aParameter.generateSemanticId()/]"[/if])[if (aProperty.isCollection())])[/if];[/if][/template]
+
+[template public generateSemanticId(anElement: Element)]http://base.com/[anElement.generateString(10)/][/template]

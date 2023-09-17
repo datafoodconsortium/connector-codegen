@@ -1,0 +1,24 @@
+{
+    "name": "datafoodconsortium/connector",
+    "type": "library",
+    "description": "The connector makes things simplier when integrating with the DFC.",
+    "keywords": ["data food consortium", "short supply chain", "farming", "semantic web","rdf","object model"],
+    "homepage": "https://github.com/datafoodconsortium/connector-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Maxime Lecoq",
+            "email": "maxime@lecoqlibre.fr"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "virtual-assembly/semantizer": "^1.0.0-beta1",
+        "ml/json-ld": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "DataFoodConsortium\\Connector\\": "src"
+        }
+    }
+}

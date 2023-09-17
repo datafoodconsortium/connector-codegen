@@ -1,0 +1,35 @@
+[comment encoding = UTF-8 /]
+[module interface('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::datafoodconsortium::connector::codegen::queries /]
+[import org::datafoodconsortium::connector::codegen::php::operation /]
+[import org::datafoodconsortium::connector::codegen::php::common /]
+
+[template public generateInterface(anInterface : Interface)]
+[file (getOutputFolderSrc() + anInterface.name.concat('.php'), false, 'UTF-8')]
+<?php
+
+[generateLicence()/]
+
+namespace DataFoodConsortium\Connector;
+
+use \VirtualAssembly\Semantizer\Semanticable;
+
+interface [anInterface.name.toUpperFirst() /] [generateGeneralization(anInterface)/]{
+
+	[for (operation: Operation | anInterface.ownedOperation)]
+	[for (c: Comment | operation.ownedComment)]
+	/* [c._body/] */
+	[/for]
+	public function [generateOperationSignature(operation)/];
+	[/for] 
+
+}
+[/file]
+[/template]
+
+[template public generateGeneralization(interface: Interface)]
+[if (not (interface.generalization->isEmpty()) or interface.isSemantic())]extends [if (interface.isSemantic())]Semanticable[if (not (interface.generalization->isEmpty()))], [/if][/if][for (generalization: Generalization | interface.generalization) separator(', ')][generalization.general.name/][/for][/if]
+[/template]
+
+[template public generateOperationSignature(operation: Operation)][operation.name/]([genOperationParameters(operation)/])[if not (operation.isConstructor())]: [generateOperationReturn(operation)/][/if][/template]

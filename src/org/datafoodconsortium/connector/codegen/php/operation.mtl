@@ -1,0 +1,99 @@
+[comment encoding = UTF-8 /]
+[module operation('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::datafoodconsortium::connector::codegen::queries /]
+
+[template public generateOperationSignature(aClass: Class, operation: Operation)][if (operation.isConstructor())]__construct[else][if (operation.isAbstract)]abstract function [/if][operation.name/][/if]([genOperationParameters(operation)/])[if not (operation.isConstructor())]: [generateOperationReturn(operation)/][/if][if (operation.isAbstract)];[/if][/template]
+
+[template public generateOperationImplementation(aClass: Class, operation: Operation)]
+[if (operation.isConstructor())][genConstructorSignatureImplementation(aClass, operation)/][else]public function [generateOperationSignature(aClass, operation) /] {
+[if (isGetter(operation))]
+	[generateGetterBody(aClass, operation)/]
+[elseif (isSetter(operation))]
+	[generateSetterBody(aClass, operation)/]
+[elseif (isAdder(operation))]
+	[generateAdderBody(aClass, operation)/]
+[elseif (isRemover(operation))]
+	[generateRemoverBody(aClass, operation)/]
+[/if]
+}
+[/if]
+[/template]
+
+[template public genConstructorSignatureWithSemanticId(aClass: Class, operation: Operation)][if (aClass.isAbstract)]protected[else]public[/if] function __construct(IConnector $connector[if (aClass.isSemantic())], semanticId[if (aClass.isBlankNode())]?[/if]: string[if (aClass.isBlankNode() or aClass.isAbstract)], semanticType?: string[/if][/if][if (operation.hasInputParameter())], [/if][genConstructorParameters(aClass, operation)/][if (not (aClass.isBlankNode()))], bool doNotStore = false[/if]);[/template]
+[template public genConstructorSignatureCopy(aClass: Class, operation: Operation)][if (aClass.isAbstract)]protected[else]public[/if] function __construct(IConnector $connector[if (aClass.isSemantic())], semanticId: string, other: Semanticable[/if][if (not (aClass.isBlankNode()))], bool doNotStore = false[/if]);[/template]
+[template public genConstructorSignatureImplementation(aClass: Class, operation: Operation)][if (aClass.isAbstract)]protected[else]public[/if] function __construct(IConnector $connector[if ((aClass.isSemantic() or aClass.isAbstract) and not aClass.isBlankNode())], string $semanticId = null[/if], \EasyRdf\Resource $resource = null, string $semanticType = null, Semanticable $other = null[if ((aClass.isSemantic() or aClass.isAbstract) and operation.hasInputParameter())], [/if][genConstructorParameters(aClass, operation)/][if (not (aClass.isBlankNode()))], bool $doNotStore = false[/if]) {
+	[generateConstructorBody(aClass, operation)/]
+}[/template]
+
+[template public generateConstructorBody(aClass: Class, operation: Operation)]
+[if (aClass.isAbstract)]if ($other) { parent::__construct([if (not aClass.hasGeneralization())]semantizer: $connector->getSemantizer(), [/if][if (not (aClass.isBlankNode()))]semanticId: $semanticId, [/if]resource: $resource, other: $other[if (not (aClass.isBlankNode()))], doNotStore: $doNotStore[/if]); }['\n'/][else]$type = [if (aClass.isAbstract or aClass.isBlankNode())]$semanticType? $semanticType: [/if]"[aClass.getMapping()/]";
+
+if ($other) {
+	parent::__construct([if (not aClass.hasGeneralization())]semantizer: $connector->getSemantizer(), [else]connector: $connector, [/if][if (not (aClass.isBlankNode()))]semanticId: $semanticId, [/if]resource: $resource, other: $other[if (not (aClass.isBlankNode()))], doNotStore: $doNotStore[/if]);
+	if (!$other->isSemanticTypeOf($type))
+		throw new Error("Can't create the semantic object of type " . $type . " from a copy: the copy is of type " . $other->getSemanticType() . ".");
+}
+[/if]else { parent::__construct([if (not aClass.hasGeneralization())]semantizer: $connector->getSemantizer(), [else]connector: $connector, [/if][if (not (aClass.isBlankNode()))]semanticId: $semanticId, [/if]resource: $resource, semanticType: [if (aClass.isAbstract)]$semanticType[else]$type[/if][generateConstructorSuper(operation, aClass)/][if (not (aClass.isBlankNode()))], doNotStore: $doNotStore[/if]); }
+
+[if (not aClass.hasGeneralization())]$this->connector = $connector;[/if]
+
+[for (p: Parameter | operation.getUninitializedParentParameters()) separator('\n')]if ($[p.name/][if (p.type.name = 'Integer' or p.type.name = 'Real')] || $[p.name/] === 0[/if]) { [if (p.upper = 1)]$this->[getSetter(p).name /]($[p.name /]);[else]foreach ($[p.name /] as $e) { $this->[getAdder(p).name /]($e); }[/if] }[/for]
+[/template]
+
+[comment handle initializer / initializer parent /]
+[template public generateConstructorSuper(constructor: Operation, aClass: Class)]
+[if (constructor.hasInitializedParentParameters())], [/if][for (parameter: Parameter | constructor.getInitializedParentParameters()) separator(', ')][parameter.name/]: $[parameter.name/][/for]
+[/template]
+
+[template public genConstructorParameters(aClass: Class, operation: Operation)]
+[for (parameter: Parameter | operation.getInputParameters()) separator(', ')][generateType(parameter.type.name, parameter.upper) /] $[parameter.name/] = null[/for]
+[/template]
+
+[template public getInitializationValueForType(type: String, upper: Integer)]
+[if upper = -1]['[]'/][elseif type = 'String']""[elseif type = 'Boolean']false[elseif type = 'Integer']0[elseif type = 'Real']0.0[else]nil[/if]
+[/template]
+
+[template public generateAdderBody(aClass: Class, operation: Operation)]
+[comment throws getObject is null/]
+[let parameter: Parameter = operation.getInputParameter()]
+[let property: Property = operation.getProperty(aClass)]
+[let map: String = property.getMapping()]
+[if (parameter.type.isPrimitive())]this.addSemanticPropertyLiteral("[map/]", [parameter.name/]);[else]$this->addSemanticPropertyReference("[map/]", $[parameter.name/]);[/if][/let][/let][/let]
+[/template]
+
+[template public generateGetterBody(aClass: Class, operation: Operation)]
+[let property: Property = operation.getProperty(aClass)]
+[let map: String = property.getMapping()]
+[if (property.isPropertyMultiple())]return $this->getSemanticPropertyAll("[map/]");[else]return $this->getSemanticProperty("[map/]");[/if]
+[/let][/let]
+[/template]
+
+[template public generateSetterBody(aClass: Class, operation: Operation)]
+[comment throws getObject is null/]
+[let parameter: Parameter = operation.getInputParameter()][let property: Property = operation.getProperty(aClass)][let map: String = property.getMapping()]
+$this->setSemanticProperty("[map/]", $[parameter.name/]);[/let][/let][/let]
+[/template]
+
+[template public generateRemoverBody(aClass: Class, operation: Operation)]
+throw new Error("Not yet implemented.");
+[/template]
+
+[template public generateOperationReturn(operation: Operation)]
+[if (operation.hasReturnParameter())]
+[let parameter: Parameter = operation.getReturnParameter()]
+[if (operation.isGetter() and not parameter.type.isPrimitive())][if (parameter.upper = -1)]Array[else][parameter.type.name/][/if][else][parameter.genOperationParameter()/][/if]
+[/let]
+[else]void[/if]
+[/template]
+
+[template public genOperationParameters(operation: Operation)][operation.getInputParameters().genOperationParameter()->sep(', ')/][/template]
+
+[template public genOperationParameter(parameter: Parameter)][generateType(parameter)/] [if (parameter.direction = ParameterDirectionKind::_in)]$[parameter.name/][/if][/template]
+
+[template public generateType(p: Parameter)][if (p.upper = -1)]Array[else][p.type.generateTypeName()/][/if][/template]
+
+[template public generateType(name: String, upper: Integer)][if (name = 'String')]string[elseif (name = 'Real')]float[elseif (name = 'Integer' )]int[elseif (name = 'Boolean')]bool[elseif (upper = -1)]Array[else][name/][/if][/template]
+
+[template public generateTypeName(t: Type)][if (t.name = 'String')]string[elseif (name = 'Real')]float[elseif (name = 'Integer')]int[elseif (name = 'Boolean')]bool[else][t.name/][/if][/template]
+

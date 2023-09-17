@@ -1,0 +1,445 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "5aae659c22edcd1fbdfc370be63d2d51",
+    "packages": [
+        {
+            "name": "ml/iri",
+            "version": "1.1.4",
+            "target-dir": "ML/IRI",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lanthaler/IRI.git",
+                "reference": "cbd44fa913e00ea624241b38cefaa99da8d71341"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lanthaler/IRI/zipball/cbd44fa913e00ea624241b38cefaa99da8d71341",
+                "reference": "cbd44fa913e00ea624241b38cefaa99da8d71341",
+                "shasum": ""
+            },
+            "require": {
+                "lib-pcre": ">=4.0",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "ML\\IRI": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Markus Lanthaler",
+                    "email": "mail@markus-lanthaler.com",
+                    "homepage": "http://www.markus-lanthaler.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "IRI handling for PHP",
+            "homepage": "http://www.markus-lanthaler.com",
+            "keywords": [
+                "URN",
+                "iri",
+                "uri",
+                "url"
+            ],
+            "support": {
+                "issues": "https://github.com/lanthaler/IRI/issues",
+                "source": "https://github.com/lanthaler/IRI/tree/master"
+            },
+            "time": "2014-01-21T13:43:39+00:00"
+        },
+        {
+            "name": "ml/json-ld",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lanthaler/JsonLD.git",
+                "reference": "537e68e87a6bce23e57c575cd5dcac1f67ce25d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lanthaler/JsonLD/zipball/537e68e87a6bce23e57c575cd5dcac1f67ce25d8",
+                "reference": "537e68e87a6bce23e57c575cd5dcac1f67ce25d8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ml/iri": "^1.1.1",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "json-ld/tests": "1.0",
+                "phpunit/phpunit": "^4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ML\\JsonLD\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Markus Lanthaler",
+                    "email": "mail@markus-lanthaler.com",
+                    "homepage": "http://www.markus-lanthaler.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "JSON-LD Processor for PHP",
+            "homepage": "http://www.markus-lanthaler.com",
+            "keywords": [
+                "JSON-LD",
+                "jsonld"
+            ],
+            "support": {
+                "issues": "https://github.com/lanthaler/JsonLD/issues",
+                "source": "https://github.com/lanthaler/JsonLD/tree/1.2.1"
+            },
+            "time": "2022-09-29T08:45:17+00:00"
+        },
+        {
+            "name": "psr/http-message",
+            "version": "2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/402d35bcb92c70c026d1a6a9883f06b2ead23d71",
+                "reference": "402d35bcb92c70c026d1a6a9883f06b2ead23d71",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2 || ^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP messages",
+            "homepage": "https://github.com/php-fig/http-message",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/http-message/tree/2.0"
+            },
+            "time": "2023-04-04T09:54:51+00:00"
+        },
+        {
+            "name": "sweetrdf/easyrdf",
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sweetrdf/easyrdf.git",
+                "reference": "feaeb6f602d989c6bc6e482d27426a212e76289a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sweetrdf/easyrdf/zipball/feaeb6f602d989c6bc6e482d27426a212e76289a",
+                "reference": "feaeb6f602d989c6bc6e482d27426a212e76289a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-mbstring": "*",
+                "ext-pcre": "*",
+                "ext-xmlreader": "*",
+                "lib-libxml": "*",
+                "php": "^8.0",
+                "sweetrdf/rdf-helpers": "^1.0"
+            },
+            "replace": {
+                "easyrdf/easyrdf": "1.1.*"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "laminas/laminas-http": "^2",
+                "ml/json-ld": "^1.0",
+                "phpstan/phpstan": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.5.0|^10.0.0",
+                "semsol/arc2": "^2.4",
+                "zendframework/zend-http": "^2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EasyRdf\\": "lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Nicholas Humfrey",
+                    "email": "njh@aelius.com",
+                    "homepage": "http://www.aelius.com/njh/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Alexey Zakhlestin",
+                    "email": "indeyets@gmail.com",
+                    "homepage": "http://indeyets.ru/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Konrad Abicht",
+                    "email": "hi@inspirito.de",
+                    "homepage": "http://inspirito.de/",
+                    "role": "Maintainer, Developer"
+                }
+            ],
+            "description": "EasyRdf is a PHP library designed to make it easy to consume and produce RDF.",
+            "keywords": [
+                "Linked Data",
+                "RDF",
+                "Semantic Web",
+                "Turtle",
+                "rdfa",
+                "sparql"
+            ],
+            "support": {
+                "issues": "https://github.com/sweetrdf/easyrdf/issues",
+                "source": "https://github.com/sweetrdf/easyrdf/tree/1.9.0"
+            },
+            "time": "2023-06-20T15:05:17+00:00"
+        },
+        {
+            "name": "sweetrdf/rdf-helpers",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sweetrdf/rdfHelpers.git",
+                "reference": "b1d1b6084a10815bfdbc7afecaa6d5c2d0f0b4f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sweetrdf/rdfHelpers/zipball/b1d1b6084a10815bfdbc7afecaa6d5c2d0f0b4f7",
+                "reference": "b1d1b6084a10815bfdbc7afecaa6d5c2d0f0b4f7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0",
+                "sweetrdf/rdf-interface": "^1 | ^2.0.0-RC1",
+                "zozlak/rdf-constants": "^1.1"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "*",
+                "phpunit/php-code-coverage": "^9.2",
+                "phpunit/phpunit": "^9.5",
+                "squizlabs/php_codesniffer": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "rdfHelpers\\": "src/rdfHelpers"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mateusz Żółtak",
+                    "email": "zozlak@zozlak.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Set of low level helpers for implementing rdfInterface",
+            "homepage": "https://github.com/sweetrdf/rdfHelpers",
+            "support": {
+                "issues": "https://github.com/sweetrdf/rdfHelpers/issues",
+                "source": "https://github.com/sweetrdf/rdfHelpers/tree/1.0.2"
+            },
+            "time": "2023-07-26T13:41:01+00:00"
+        },
+        {
+            "name": "sweetrdf/rdf-interface",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sweetrdf/rdfInterface.git",
+                "reference": "b0c930b7bd7a80e63f77510d0dcb261aead4f0a3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sweetrdf/rdfInterface/zipball/b0c930b7bd7a80e63f77510d0dcb261aead4f0a3",
+                "reference": "b0c930b7bd7a80e63f77510d0dcb261aead4f0a3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0",
+                "psr/http-message": "^1.0 || ^2.0",
+                "zozlak/rdf-constants": "*"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "*",
+                "squizlabs/php_codesniffer": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "rdfInterface\\": "src/rdfInterface"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mateusz Żółtak",
+                    "email": "zozlak@zozlak.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A common RDF interface for PHP RDF libraries.",
+            "homepage": "https://github.com/sweetrdf/rdfInterface",
+            "support": {
+                "issues": "https://github.com/sweetrdf/rdfInterface/issues",
+                "source": "https://github.com/sweetrdf/rdfInterface/tree/1.0.1"
+            },
+            "time": "2023-07-21T08:26:06+00:00"
+        },
+        {
+            "name": "virtual-assembly/semantizer",
+            "version": "v1.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/assemblee-virtuelle/semantizer-php.git",
+                "reference": "a2756dcc13b8ddbaaf5cbabc8abd166a1bff709f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/assemblee-virtuelle/semantizer-php/zipball/a2756dcc13b8ddbaaf5cbabc8abd166a1bff709f",
+                "reference": "a2756dcc13b8ddbaaf5cbabc8abd166a1bff709f",
+                "shasum": ""
+            },
+            "require": {
+                "ml/json-ld": "^1.2",
+                "php": ">=8.1",
+                "sweetrdf/easyrdf": "^1.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "VirtualAssembly\\Semantizer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxime Lecoq",
+                    "email": "maxime@lecoqlibre.fr"
+                }
+            ],
+            "description": "A library to enhance your object model with semantic data.",
+            "homepage": "https://github.com/assemblee-virtuelle/semantizer-php",
+            "keywords": [
+                "RDF",
+                "Semantic Web",
+                "object model"
+            ],
+            "support": {
+                "issues": "https://github.com/assemblee-virtuelle/semantizer-php/issues",
+                "source": "https://github.com/assemblee-virtuelle/semantizer-php/tree/v1.0.0-beta1"
+            },
+            "time": "2023-08-15T17:13:38+00:00"
+        },
+        {
+            "name": "zozlak/rdf-constants",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zozlak/RdfConstants.git",
+                "reference": "a8de0b50d23b213a68784ec2cec22b4ad838012b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zozlak/RdfConstants/zipball/a8de0b50d23b213a68784ec2cec22b4ad838012b",
+                "reference": "a8de0b50d23b213a68784ec2cec22b4ad838012b",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "zozlak\\": "src/zozlak"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mateusz Żółtak",
+                    "email": "zozlak@zozlak.org"
+                }
+            ],
+            "description": "A set of commonly used RDF and XSD constants",
+            "homepage": "https://github.com/zozlak/RdfConstants",
+            "support": {
+                "issues": "https://github.com/zozlak/RdfConstants/issues",
+                "source": "https://github.com/zozlak/RdfConstants/tree/1.2.1"
+            },
+            "time": "2022-08-05T12:50:50+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "virtual-assembly/semantizer": 10
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=8.1"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}

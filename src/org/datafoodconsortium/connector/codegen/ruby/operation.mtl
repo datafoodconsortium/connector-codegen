@@ -1,0 +1,67 @@
+[comment encoding = UTF-8 /]
+[module operation('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::datafoodconsortium::connector::codegen::queries /]
+[import org::datafoodconsortium::connector::codegen::ruby::common /]
+
+[template public generateOperationImplementation(aClass: Class, operation: Operation)]
+[if (isAdder(operation) or isRemover(operation) or isConstructor(operation))]
+[if (operation.isConstructor())][if (aClass.isSemantic() and not aClass.isBlankNode())]# @param semanticId ['['/]String[']'/]['\n'/][/if][for (a: Property | aClass.allAttributes()) separator('\n')]# @param [a.name/] ['['/][a.type.name/][']'/][/for][/if]
+def [generateOperationSignature(operation, aClass) /]
+[if (isAdder(operation))]
+	[generateAdderBody(aClass, operation)/]
+[elseif (isRemover(operation))]
+	[generateRemoverBody(aClass, operation)/]
+[elseif (isConstructor(operation))]
+	[generateConstructorBody(aClass, operation)/]
+[/if]
+end
+[/if]
+[/template]
+
+[template public generateConstructorBody(class: Class, operation: Operation)]
+[if not (class.generalization->isEmpty()) or class.isSemantic()]super([generateConstructorSuper(operation, class)/])[/if]
+[for (p: Property | class.ownedAttribute) separator('\n')]@[p.name /] = [p.name /][/for]
+[if (class.isSemantic())][generateSetSemanticType(class)/][/if]
+[for (property: Property | class.ownedAttribute->select(p: Property | p.isSemantic())) separator('\n')][generateSemanticProperty(property)/][/for]
+[/template]
+
+[template public generateSetSemanticType(class: Class)]
+self.semanticType = "[class.getValue(class.getAppliedStereotype('datafoodconsortium_connector::semantic'), 'map')/]"
+[/template]
+
+[template public generateSemanticProperty(property: Property)]
+registerSemanticProperty("[property.getValue(property.getAppliedStereotype('datafoodconsortium_connector::semantic'), 'map')/]") { self.[property.name/] }
+[/template]
+
+[template public generateConstructorSuper(constructor: Operation, aClass: Class)]
+[if (aClass.isSemantic() and not aClass.isBlankNode())]semanticId[/if][if (aClass.isSemantic() and not aClass.isBlankNode() and not aClass.allAttributes()->select(a: Property | not aClass.ownedAttribute->includes(a))->isEmpty())], [/if][for (attribute: Property | aClass.allAttributes()->select(a: Property | not aClass.ownedAttribute->includes(a))) separator(', ')][attribute.name/]: [attribute.name/][/for]
+[/template]
+
+[template public getInitializationValueForType(type: String, upper: Integer)]
+[if upper = -1]['[]'/][elseif type = 'String']""[elseif type = 'Boolean']false[elseif type = 'Integer']0[elseif type = 'Real']0.0[else]nil[/if]
+[/template]
+
+[template public generateAdderBody(aClass: Class, operation: Operation)]
+self.[getAdder(aClass, operation)/].push([operation.ownedParameter->select(p: Parameter | (p.direction = ParameterDirectionKind::_in)).name/])
+[/template]
+
+[template public generateRemoverBody(aClass: Class, operation: Operation)]
+raise "Not yet implemented."
+[/template]
+
+[template public generateOperationSignature(operation: Operation, aClass: Class)]
+[if (operation.isConstructor())]initialize[else][if (operation.isAbstract)]abstract [/if][operation.name/][/if]([genOperationParameters(operation, aClass)/])
+[/template]
+
+[template public genOperationParameters(anOperation: Operation, aClass: Class)]
+[if (anOperation.isConstructor())][genConstructorParameters(aClass)/][else][anOperation.ownedParameter->select(param : Parameter | (param.direction = ParameterDirectionKind::_in)).genOperationParameter()->sep(', ')/][/if]
+[/template]
+
+[template public genConstructorParameters(aClass: Class)]
+[if (aClass.isSemantic() and not aClass.isBlankNode())]semanticId[/if][if (aClass.isSemantic() and not aClass.isBlankNode() and not aClass.allAttributes()->isEmpty())], [/if][for (attribute: Property | aClass.allAttributes()) separator(', ')][attribute.name/]: [getInitializationValueForType(attribute.type.name, attribute.upper)/][/for]
+[/template]
+
+[template public genOperationParameter(parameter: Parameter)]
+[if (parameter.direction = ParameterDirectionKind::_in)][parameter.name/][/if]
+[/template]

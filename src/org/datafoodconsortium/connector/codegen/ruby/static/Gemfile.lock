@@ -1,0 +1,38 @@
+PATH
+  remote: .
+  specs:
+    datafoodconsortium-connector (1.0.0.pre.alpha.4)
+      virtual_assembly-semantizer (~> 1.0, >= 1.0.2)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    htmlentities (4.3.4)
+    json-canonicalization (0.3.1)
+    json-ld (3.2.3)
+      htmlentities (~> 4.3)
+      json-canonicalization (~> 0.3)
+      link_header (~> 0.0, >= 0.0.8)
+      multi_json (~> 1.15)
+      rack (~> 2.2)
+      rdf (~> 3.2, >= 3.2.9)
+    link_header (0.0.8)
+    minitest (5.17.0)
+    multi_json (1.15.0)
+    rack (2.2.6.2)
+    rake (13.0.6)
+    rdf (3.2.9)
+      link_header (~> 0.0, >= 0.0.8)
+    virtual_assembly-semantizer (1.0.2)
+      json-ld (~> 3.2, >= 3.2.3)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  datafoodconsortium-connector!
+  minitest
+  rake
+
+BUNDLED WITH
+   2.3.17
