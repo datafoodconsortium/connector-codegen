@@ -7,7 +7,7 @@
 
 [comment TODO: check assert primitive array /]
 [template public generateClassTest(model: Model, aClass : Class)]
-[file (getOutputFolderTest() + aClass.name.concat('Test.php'), false, 'UTF-8')]
+[file (getProperty('php_outputFolder_test') + aClass.name.concat('Test.php'), false, 'UTF-8')]
 <?php declare(strict_types=1);
 
 namespace DataFoodConsortium\Connector;

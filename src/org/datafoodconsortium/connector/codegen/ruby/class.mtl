@@ -25,9 +25,9 @@ class DataFoodConsortium::Connector::[aClass.name.toUpperFirst()/][generateGener
 	[generateOperationImplementation(aClass, operation)/]
 	[/for]
 
-	[for (operation: Operation | aClass.getUnimplementedOperations()->select(o: Operation | not o.isGetter() and not o.isSetter()))]
-	[generateOperationImplementation(aClass, operation)/]
-	[/for]
+	[comment [for (operation: Operation | aClass.getUnimplementedOperations()->select(o: Operation | not o.isGetter() and not o.isSetter())) /]
+	[comment generateOperationImplementation(aClass, operation)/]
+	[comment /for /]
 
 end
 [/file]

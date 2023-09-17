@@ -6,7 +6,7 @@
 [import org::datafoodconsortium::connector::codegen::php::common /]
 
 [template public generateClass(model: Model, aClass : Class)]
-[file (getOutputFolderSrc() + aClass.name.concat('.php'), false, 'UTF-8')]
+[file (getProperty('php_outputFolder_src') + aClass.name.concat('.php'), false, 'UTF-8')]
 <?php
 
 [generateLicence()/]
@@ -45,7 +45,7 @@ extends [for (generalization: Generalization | classifier.generalization) separa
 
 
 [template public generateFactory(model: Model)]
-[file (getOutputFolderSrc() + 'ConnectorFactory.php', false, 'UTF-8')]
+[file (getProperty('php_outputFolder_src') + 'ConnectorFactory.php', false, 'UTF-8')]
 <?php
 
 [generateLicence()/]

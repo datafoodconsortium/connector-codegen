@@ -6,7 +6,7 @@
 [import org::datafoodconsortium::connector::codegen::php::common /]
 
 [template public generateInterface(anInterface : Interface)]
-[file (getOutputFolderSrc() + anInterface.name.concat('.php'), false, 'UTF-8')]
+[file (getProperty('php_outputFolder_src') + anInterface.name.concat('.php'), false, 'UTF-8')]
 <?php
 
 [generateLicence()/]

@@ -124,7 +124,7 @@ public class Generate extends AbstractAcceleoGenerator {
      * 
      * @param args
      *            Arguments of the generation.
-     * @generated
+     * @generated NOT
      */
     public static void main(String[] args) {
         try {
@@ -166,6 +166,9 @@ public class Generate extends AbstractAcceleoGenerator {
                 }
                 
                 generator.doGenerate(new BasicMonitor());
+                
+                // Copy static files to gen/ folder
+                generator.copyStaticFiles();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -426,20 +429,24 @@ public class Generate extends AbstractAcceleoGenerator {
      * @generated NOT 
      */
     public void copyStaticFiles() throws IOException {
-    	String base = "src/org/datafoodconsortium/connector/codegen/" + "php";
-    	Path staticPath = Paths.get(base + "/static").toAbsolutePath();
-        File staticDirectory = staticPath.toFile();
-        Path genPath = Paths.get("gen" + "/php").toAbsolutePath();
-        File genDirectory = Paths.get("gen" + "/php").toAbsolutePath().toFile();
-
-        if (staticDirectory.exists()) {
-        	if (!genDirectory.exists()) {
-        		System.err.println("A gen directory has not been found so no static files will be copied");
-        		return;
-        	}
-            
-            this.copyFolder(staticPath, genPath, StandardCopyOption.REPLACE_EXISTING);
-        }
+    	String[] languages = new String[] { "php", "ruby" };
+    	
+    	for (String language : languages) {			
+	    	String base = "src/org/datafoodconsortium/connector/codegen/" + language;
+	    	Path staticPath = Paths.get(base + "/static").toAbsolutePath();
+	        File staticDirectory = staticPath.toFile();
+	        Path genPath = Paths.get("gen/" + language).toAbsolutePath();
+	        File genDirectory = Paths.get("gen/" + language).toAbsolutePath().toFile();
+	
+	        if (staticDirectory.exists()) {
+	        	if (!genDirectory.exists()) {
+	        		System.err.println("A gen directory has not been found so no static files will be copied");
+	        		return;
+	        	}
+	            
+	            this.copyFolder(staticPath, genPath, StandardCopyOption.REPLACE_EXISTING);
+	        }
+    	}
     }
     
     /**

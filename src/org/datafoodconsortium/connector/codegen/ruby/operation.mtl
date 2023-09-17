@@ -2,7 +2,6 @@
 [module operation('http://www.eclipse.org/uml2/5.0.0/UML')]
 
 [import org::datafoodconsortium::connector::codegen::queries /]
-[import org::datafoodconsortium::connector::codegen::ruby::common /]
 
 [template public generateOperationImplementation(aClass: Class, operation: Operation)]
 [if (isAdder(operation) or isRemover(operation) or isConstructor(operation))]
@@ -43,7 +42,8 @@ registerSemanticProperty("[property.getValue(property.getAppliedStereotype('data
 [/template]
 
 [template public generateAdderBody(aClass: Class, operation: Operation)]
-self.[getAdder(aClass, operation)/].push([operation.ownedParameter->select(p: Parameter | (p.direction = ParameterDirectionKind::_in)).name/])
+[let parameter: Parameter = operation.getInputParameter()]
+self.[parameter.getAdder()/].push([parameter.name/])[/let]
 [/template]
 
 [template public generateRemoverBody(aClass: Class, operation: Operation)]

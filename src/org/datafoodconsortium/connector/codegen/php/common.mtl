@@ -26,8 +26,3 @@
  * SOFTWARE.
 */
 [/template]
-
-[query public getOutputFolder(traceabilityContext : OclAny): String = getProperty('php_outputFolder') /]
-[query public getOutputFolderSrc(traceabilityContext : OclAny): String = getOutputFolder() + getProperty('php_outputFolder_src') /]
-[query public getOutputFolderTest(traceabilityContext : OclAny): String = getOutputFolder() + getProperty('php_outputFolder_test') /]
-
