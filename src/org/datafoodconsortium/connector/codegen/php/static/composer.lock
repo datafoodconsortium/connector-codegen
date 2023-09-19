@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5aae659c22edcd1fbdfc370be63d2d51",
+    "content-hash": "0f8895711e76d345e55f10f835846d73",
     "packages": [
         {
             "name": "ml/iri",
@@ -165,16 +165,16 @@
         },
         {
             "name": "sweetrdf/easyrdf",
-            "version": "1.9.0",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sweetrdf/easyrdf.git",
-                "reference": "feaeb6f602d989c6bc6e482d27426a212e76289a"
+                "reference": "da4d8bfe6d6eb54564869d34826a4c6f4d0a67c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sweetrdf/easyrdf/zipball/feaeb6f602d989c6bc6e482d27426a212e76289a",
-                "reference": "feaeb6f602d989c6bc6e482d27426a212e76289a",
+                "url": "https://api.github.com/repos/sweetrdf/easyrdf/zipball/da4d8bfe6d6eb54564869d34826a4c6f4d0a67c5",
+                "reference": "da4d8bfe6d6eb54564869d34826a4c6f4d0a67c5",
                 "shasum": ""
             },
             "require": {
@@ -240,27 +240,27 @@
             ],
             "support": {
                 "issues": "https://github.com/sweetrdf/easyrdf/issues",
-                "source": "https://github.com/sweetrdf/easyrdf/tree/1.9.0"
+                "source": "https://github.com/sweetrdf/easyrdf/tree/1.10.0"
             },
-            "time": "2023-06-20T15:05:17+00:00"
+            "time": "2023-09-13T07:00:57+00:00"
         },
         {
             "name": "sweetrdf/rdf-helpers",
-            "version": "1.0.2",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sweetrdf/rdfHelpers.git",
-                "reference": "b1d1b6084a10815bfdbc7afecaa6d5c2d0f0b4f7"
+                "reference": "29db501d91ffe0056b8c3db1fe42d7cd13f9193f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sweetrdf/rdfHelpers/zipball/b1d1b6084a10815bfdbc7afecaa6d5c2d0f0b4f7",
-                "reference": "b1d1b6084a10815bfdbc7afecaa6d5c2d0f0b4f7",
+                "url": "https://api.github.com/repos/sweetrdf/rdfHelpers/zipball/29db501d91ffe0056b8c3db1fe42d7cd13f9193f",
+                "reference": "29db501d91ffe0056b8c3db1fe42d7cd13f9193f",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.0",
-                "sweetrdf/rdf-interface": "^1 | ^2.0.0-RC1",
+                "sweetrdf/rdf-interface": "^1 | ^2.0.0-RC3",
                 "zozlak/rdf-constants": "^1.1"
             },
             "require-dev": {
@@ -290,9 +290,9 @@
             "homepage": "https://github.com/sweetrdf/rdfHelpers",
             "support": {
                 "issues": "https://github.com/sweetrdf/rdfHelpers/issues",
-                "source": "https://github.com/sweetrdf/rdfHelpers/tree/1.0.2"
+                "source": "https://github.com/sweetrdf/rdfHelpers/tree/1.2.0"
             },
-            "time": "2023-07-26T13:41:01+00:00"
+            "time": "2023-08-31T12:13:56+00:00"
         },
         {
             "name": "sweetrdf/rdf-interface",
@@ -344,22 +344,22 @@
         },
         {
             "name": "virtual-assembly/semantizer",
-            "version": "v1.0.0-beta1",
+            "version": "v1.0.0-beta2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/assemblee-virtuelle/semantizer-php.git",
-                "reference": "a2756dcc13b8ddbaaf5cbabc8abd166a1bff709f"
+                "reference": "6e470d70fe3a7c7e1baf4966e27e25b5e8645695"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/assemblee-virtuelle/semantizer-php/zipball/a2756dcc13b8ddbaaf5cbabc8abd166a1bff709f",
-                "reference": "a2756dcc13b8ddbaaf5cbabc8abd166a1bff709f",
+                "url": "https://api.github.com/repos/assemblee-virtuelle/semantizer-php/zipball/6e470d70fe3a7c7e1baf4966e27e25b5e8645695",
+                "reference": "6e470d70fe3a7c7e1baf4966e27e25b5e8645695",
                 "shasum": ""
             },
             "require": {
                 "ml/json-ld": "^1.2",
                 "php": ">=8.1",
-                "sweetrdf/easyrdf": "^1.9"
+                "sweetrdf/easyrdf": "^1.10"
             },
             "type": "library",
             "autoload": {
@@ -386,9 +386,9 @@
             ],
             "support": {
                 "issues": "https://github.com/assemblee-virtuelle/semantizer-php/issues",
-                "source": "https://github.com/assemblee-virtuelle/semantizer-php/tree/v1.0.0-beta1"
+                "source": "https://github.com/assemblee-virtuelle/semantizer-php/tree/v1.0.0-beta2"
             },
-            "time": "2023-08-15T17:13:38+00:00"
+            "time": "2023-09-18T17:28:12+00:00"
         },
         {
             "name": "zozlak/rdf-constants",

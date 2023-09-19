@@ -10,6 +10,8 @@ The [Data Food Consortium](https://datafoodconsortium.org) project (DFC) aims to
 
 ## Get started
 
+The API reference is available [here](http://docs.datafoodconsortium.org/connector-php/).
+
 ### Install
 
 You can install the connector with composer:

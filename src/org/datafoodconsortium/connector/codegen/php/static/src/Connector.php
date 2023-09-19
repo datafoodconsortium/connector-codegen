@@ -14,12 +14,7 @@ class Connector implements IConnector {
     public function __construct() {
         $this->semantizer = new Semantizer();
         $this->setFactory(new ConnectorFactory($this));
-        //$this->semantizer->setFactory(new ConnectorFactory($this));
-        // HACK: dfc should be renamed in dfc-b to comply with the UML term.
-        // EasyRdf does not allow to use hyphen in prefix but it should.
-        // A work in progress is here: https://github.com/sweetrdf/easyrdf/issues/32.
-        $this->setPrefix("dfc", "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#");
-
+        $this->setPrefix("dfc-b", "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#");
         $this->context = ["https://www.datafoodconsortium.org"];
     }
 
