@@ -1,2 +1,4 @@
-gen/
-bin/
+/gen
+/bin
+/data-model-uml
+/tasks/generate.xml
