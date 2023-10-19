@@ -58,15 +58,15 @@ class DataFoodConsortium::Connector::Connector
         # so the DFC's context can be used.
         # See https://github.com/datafoodconsortium/connector-ruby/issues/11.
         inputContext = {
-            "dfc-b" => "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#",
-            "dfc-p" => "http://static.datafoodconsortium.org/ontologies/DFC_ProductOntology.owl#",
-            "dfc-t" => "http://static.datafoodconsortium.org/ontologies/DFC_TechnicalOntology.owl#",
-            "dfc-m" => "http://static.datafoodconsortium.org/data/measures.rdf#",
-		    "dfc-pt" => "http://static.datafoodconsortium.org/data/productTypes.rdf#",
-		    "dfc-f" => "http://static.datafoodconsortium.org/data/facets.rdf#"
+            "dfc-b" => "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#",
+            "dfc-p" => "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_ProductGlossary.owl#",
+            "dfc-t" => "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_TechnicalOntology.owl#",
+            "dfc-m" => "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/measures.rdf#",
+		    "dfc-pt" => "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/productTypes.rdf#",
+		    "dfc-f" => "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/facets.rdf#"
         }
 
-        @context = "http://static.datafoodconsortium.org/ontologies/context.json"
+        @context = "https://www.datafoodconsortium.org"
 
         @exporter = DataFoodConsortium::Connector::JsonLdSerializer.new(@context, inputContext)
         @parser = DataFoodConsortium::Connector::SKOSParser.new

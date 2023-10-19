@@ -7,7 +7,7 @@ class CatalogItemTest < Minitest::Test
   def test_export_empty
     ci = DataFoodConsortium::Connector::CatalogItem.new("https://myplatform.com/ci")
     actual = connector.export(ci)
-    expected = '{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"https://myplatform.com/ci","@type":"dfc-b:CatalogItem","dfc-b:sku":"","dfc-b:stockLimitation":0.0}'
+    expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/ci","@type":"dfc-b:CatalogItem","dfc-b:sku":"","dfc-b:stockLimitation":0.0}'
     assert_equal expected, actual
   end
 
@@ -22,7 +22,7 @@ class CatalogItemTest < Minitest::Test
         offers: [offer]
     )
     actual = connector.export(ci)
-    expected = '{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"https://myplatform.com/ci","@type":"dfc-b:CatalogItem","dfc-b:references":"https://myplatform.com/sp","dfc-b:sku":"sku","dfc-b:stockLimitation":10,"dfc-b:offeredThrough":"https://myplatform.com/o"}'
+    expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/ci","@type":"dfc-b:CatalogItem","dfc-b:references":"https://myplatform.com/sp","dfc-b:sku":"sku","dfc-b:stockLimitation":10,"dfc-b:offeredThrough":"https://myplatform.com/o"}'
     assert_equal expected, actual
   end
 

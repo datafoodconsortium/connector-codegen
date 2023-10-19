@@ -7,7 +7,7 @@ class AddressTest < Minitest::Test
   def test_export_empty
     a = DataFoodConsortium::Connector::Address.new("https://myplatform.com/a")
     actual = connector.export(a)
-    expected = '{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"https://myplatform.com/a","@type":"dfc-b:Address","dfc-b:hasStreet":"","dfc-b:hasPostalCode":"","dfc-b:hasCity":"","dfc-b:hasCountry":""}'
+    expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/a","@type":"dfc-b:Address","dfc-b:hasStreet":"","dfc-b:hasPostalCode":"","dfc-b:hasCity":"","dfc-b:hasCountry":""}'
     assert_equal expected, actual
   end
 
@@ -20,7 +20,7 @@ class AddressTest < Minitest::Test
         country: "country"
     )
     actual = connector.export(a)
-    expected = '{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"https://myplatform.com/a","@type":"dfc-b:Address","dfc-b:hasStreet":"street","dfc-b:hasPostalCode":"postalCode","dfc-b:hasCity":"city","dfc-b:hasCountry":"country"}'
+    expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/a","@type":"dfc-b:Address","dfc-b:hasStreet":"street","dfc-b:hasPostalCode":"postalCode","dfc-b:hasCity":"city","dfc-b:hasCountry":"country"}'
     assert_equal expected, actual
   end
 

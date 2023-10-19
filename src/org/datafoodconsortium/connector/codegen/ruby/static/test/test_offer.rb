@@ -7,7 +7,7 @@ class OfferTest < Minitest::Test
   def test_export_empty
     o = DataFoodConsortium::Connector::Offer.new("https://myplatform.com/o")
     actual = connector.export(o)
-    expected = '{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"https://myplatform.com/o","@type":"dfc-b:Offer","dfc-b:stockLimitation":0.0}'
+    expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/o","@type":"dfc-b:Offer","dfc-b:stockLimitation":0.0}'
     assert_equal expected, actual
   end
 
@@ -26,7 +26,7 @@ class OfferTest < Minitest::Test
         offeredTo: cc
     )
     actual = connector.export(o)
-    expected = '{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"https://myplatform.com/o","@type":"dfc-b:Offer","dfc-b:price":{"@type":"dfc-b:Price","dfc-b:value":12.78,"dfc-b:VATrate":5.22,"dfc-b:hasUnit":"dfc-m:Euro"},"dfc-b:stockLimitation":52,"dfc-b:offeredItem":"https://myplatform.com/ci","dfc-b:offeredTo":"https://myplatform.com/cc"}'
+    expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/o","@type":"dfc-b:Offer","dfc-b:hasPrice":{"@type":"dfc-b:Price","dfc-b:value":12.78,"dfc-b:VATrate":5.22,"dfc-b:hasUnit":"dfc-m:Euro"},"dfc-b:stockLimitation":52,"dfc-b:offeredItem":"https://myplatform.com/ci","dfc-b:offeredTo":"https://myplatform.com/cc"}'
     assert_equal expected, actual
   end
 
