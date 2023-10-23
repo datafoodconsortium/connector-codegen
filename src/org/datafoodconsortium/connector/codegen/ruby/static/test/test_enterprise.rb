@@ -7,7 +7,7 @@ class EnterpriseTest < Minitest::Test
   def test_export_empty
     e = DataFoodConsortium::Connector::Enterprise.new("https://myplatform.com/e")
     actual = connector.export(e)
-    expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/e","@type":"dfc-b:Enterprise","dfc-b:hasName":"","dfc-b:hasDescription":"","dfc-b:VATnumber":""}'
+    expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/e","@type":"dfc-b:Enterprise","dfc-b:name":"","dfc-b:hasDescription":"","dfc-b:VATnumber":""}'
     assert_equal expected, actual
   end
 
@@ -29,7 +29,7 @@ class EnterpriseTest < Minitest::Test
         localizations: []
     )
     actual = connector.export(e)
-    expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/e","@type":"dfc-b:Enterprise","dfc-b:hasName":"name","dfc-b:hasDescription":"description","dfc-b:VATnumber":"vatNumber","dfc-b:defines":"https://myplatform.com/cc","dfc-b:supplies":"https://myplatform.com/sp","dfc-b:manages":"https://myplatform.com/ci"}'
+    expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/e","@type":"dfc-b:Enterprise","dfc-b:name":"name","dfc-b:hasDescription":"description","dfc-b:VATnumber":"vatNumber","dfc-b:defines":"https://myplatform.com/cc","dfc-b:manages":"https://myplatform.com/ci,"dfc-b:supplies":"https://myplatform.com/sp"}'
     assert_equal expected, actual
   end
 
@@ -54,7 +54,7 @@ class EnterpriseTest < Minitest::Test
         localizations: []
     )
     actual = connector.export(e)
-    expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/e","@type":"dfc-b:Enterprise","dfc-b:hasName":"name","dfc-b:hasDescription":"description","dfc-b:VATnumber":"vatNumber","dfc-b:defines":["https://myplatform.com/cc","https://myplatform.com/cc2"],"dfc-b:supplies":["https://myplatform.com/sp","https://myplatform.com/sp2"],"dfc-b:manages":["https://myplatform.com/ci","https://myplatform.com/ci2"]}'
+    expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/e","@type":"dfc-b:Enterprise","dfc-b:name":"name","dfc-b:hasDescription":"description","dfc-b:VATnumber":"vatNumber","dfc-b:defines":["https://myplatform.com/cc","https://myplatform.com/cc2"],"dfc-b:supplies":["https://myplatform.com/sp","https://myplatform.com/sp2"],"dfc-b:manages":["https://myplatform.com/ci","https://myplatform.com/ci2"]}'
     assert_equal expected, actual
   end
 
