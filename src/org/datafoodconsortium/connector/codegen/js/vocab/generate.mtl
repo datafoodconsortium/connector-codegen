@@ -1,0 +1,26 @@
+[comment encoding = UTF-8 /]
+[module generate('http://www.eclipse.org/uml2/5.0.0/UML')/]
+
+[import org::datafoodconsortium::connector::codegen::queries /]
+
+[template public generateJsVocab(model: Model)]
+[file (getProperty('jsVocab_outputFolder_src') + 'index.js', false, 'UTF-8')]
+const context = {
+	"dfc-b": "[getProperty('context_dfcB')/]",
+}
+
+function unprefix(prefixed) {
+	const prefix = prefixed.split(':')['[0]'/];
+	return prefixed.replace(':', '').replace(prefix, context['[prefix]'/]);
+}
+
+const DFC = {
+	NAMESPACE: context['["dfc-b"]'/],
+[for (map: String | model.getSemanticVocabulary()->select(s: String | s.startsWith('dfc-b')))]
+	[map.substring(7)/]: unprefix("[map/]"),
+[/for]
+}
+
+module.exports = { default: DFC }
+[/file]
+[/template]
