@@ -9,6 +9,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 None.
 
+## [1.0.0-alpha.9] - 2023-11-06
+
+This version has been generated using the [code generator](https://github.com/datafoodconsortium/connector-codegen) [version 1.0.1](https://github.com/datafoodconsortium/connector-codegen/releases/tag/v1.0.1). See its release for more info.
+
+### Fixed
+
+- Loading concepts was failing because the parser tried to create a concept without giving it its mandatory semantic id.
+
+## [1.0.0-alpha.8] - 2023-07-11
+
+### Fixed
+
+- The dfc-b prefix points to the business ontology, not the full model.
+
+## [1.0.0-alpha.7] - 2023-07-10
+
+### Changed
+
+- Update the DFC semantic resources (instead of static.datafoodconsortium.org):
+  - https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl;
+  - https://github.com/datafoodconsortium/taxonomies/releases/latest/download/productTypes.rdf;
+  - https://github.com/datafoodconsortium/taxonomies/releases/latest/download/measures.rdf;
+  - https://github.com/datafoodconsortium/taxonomies/releases/latest/download/facets.rdf;
+  - Use the https://www.datafoodconsortium.org context.
+
 ## [1.0.0-alpha.6] - 2023-04-06
 
 ### Fixed
@@ -61,6 +86,9 @@ None.
 - Initial version of this library.
 
 [unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0...HEAD
+[1.0.0-alpha.9]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.8...v1.0.0-alpha.9
+[1.0.0-alpha.8]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.7...v1.0.0-alpha.8
+[1.0.0-alpha.7]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.6...v1.0.0-alpha.7
 [1.0.0-alpha.6]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.5...v1.0.0-alpha.6
 [1.0.0-alpha.5]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.4...v1.0.0-alpha.5
 [1.0.0-alpha.4]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.3...v1.0.0-alpha.4

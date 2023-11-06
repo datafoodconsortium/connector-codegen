@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2023-11-06
+
+### Fixed
+
+Ruby:
+  - Update gemspec and lockfile.
+  - Release alpha.9 and update changelog.
+
 ## [1.0.0] - 2023-11-06
 
 This release requires [data-model-uml version 2.1.0](https://github.com/datafoodconsortium/data-model-uml/releases/tag/v2.1.0).
@@ -24,4 +32,5 @@ This release requires [data-model-uml version 2.1.0](https://github.com/datafood
   - Change dfc-b:hasName to dfc-b:name in tests.
 
 [unreleased]: https://github.com/datafoodconsortium/connector-codegen/compare/v1.0.0...HEAD
+[1.0.1]: https://github.com/datafoodconsortium/connector-codegen/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/datafoodconsortium/connector-codegen/releases/tag/v1.0.0
