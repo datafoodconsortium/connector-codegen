@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+src="https://github.com/datafoodconsortium/taxonomies/releases/latest/download"
+dst="`dirname $0`"
+mkdir -p "$dst"
+
+curl --location "$src/facets.json" > "$dst/facets.json"
+curl --location "$src/measures.json" > "$dst/measures.json"
+curl --location "$src/productTypes.json" > "$dst/productTypes.json"

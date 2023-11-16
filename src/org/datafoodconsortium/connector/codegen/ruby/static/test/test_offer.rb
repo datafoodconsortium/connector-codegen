@@ -19,7 +19,7 @@ class OfferTest < Minitest::Test
         price: DataFoodConsortium::Connector::Price.new(
             value: 12.78,
             vatRate: 5.22,
-            unit: connector.MEASURES.UNIT.CURRENCYUNIT.EURO
+            unit: connector.MEASURES.EURO
         ),
         stockLimitation: 52, 
         offeredItem: ci, 

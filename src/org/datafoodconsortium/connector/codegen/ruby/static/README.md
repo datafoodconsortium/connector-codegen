@@ -116,7 +116,7 @@ suppliedProduct = DataFoodConsortium::Connector::SuppliedProduct.new(
     description: "description", 
     productType: connector.PRODUCT_TYPES.VEGETABLE.ARTICHOKE,
     quantity: DataFoodConsortium::Connector::QuantitativeValue.new(
-        unit: connector.MEASURES.UNIT.QUANTITYUNIT.KILOGRAM,
+        unit: connector.MEASURES.KILOGRAM,
         value: 1.2
     ),
     totalTheoreticalStock: 123,
@@ -134,15 +134,15 @@ suppliedProduct = DataFoodConsortium::Connector::SuppliedProduct.new(
     ], 
     nutrientCharacteristics: [
       DataFoodConsortium::Connector::NutrientCharacteristic.new(
-        nutrientDimension: connector.MEASURES.DIMENSION.NUTRIENTDIMENSION.CALCIUM,
-        unit: connector.MEASURES.UNIT.QUANTITYUNIT.GRAM,
+        nutrientDimension: connector.MEASURES.CALCIUM,
+        unit: connector.MEASURES.GRAM,
         value: 8.47
       )
     ], 
     physicalCharacteristics: [
       DataFoodConsortium::Connector::PhysicalCharacteristic.new(
-        physicalDimension: connector.MEASURES.DIMENSION.PHYSICALDIMENSION.WEIGHT,
-        unit: connector.MEASURES.UNIT.QUANTITYUNIT.KILOGRAM,
+        physicalDimension: connector.MEASURES.WEIGHT,
+        unit: connector.MEASURES.KILOGRAM,
         value: 3.25
       )
     ],
@@ -157,7 +157,7 @@ offer = DataFoodConsortium::Connector::Offer.new(
     price: DataFoodConsortium::Connector::Price.new(
         value: 12.78,
         vatRate: 5.22,
-        unit: connector.MEASURES.UNIT.CURRENCYUNIT.EURO
+        unit: connector.MEASURES.EURO
     ),
     stockLimitation: 52,  
     offeredTo: customerCategory
