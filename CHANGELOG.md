@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+Ruby:
+- Fix random code changes of the generated code by sorting elements (e36a923).
+- Fix some tests so they can pass by changing the expected JSON (e36a923).
+- Enable loading of measures v1.0.2 (6ef17f7).
+
+### Changed
+
+Ruby:
+- Preload context to avoid remote loading (4741acb).
+
 ## [1.0.1] - 2023-11-06
 
 ### Fixed
