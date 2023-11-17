@@ -15,8 +15,8 @@ module DataFoodConsortium
 		require 'datafoodconsortium/connector/json_ld_serializer'
 		require 'datafoodconsortium/connector/skos_parser_element'
 		require 'datafoodconsortium/connector/skos_parser'
-	[for (ip: PackageImport | model.packageImport->select(pi: PackageImport | pi.importedPackage.name <> 'org.datafoodconsortium.semantizer'))]
-		[for (member: NamedElement | ip.importedPackage.ownedMember->addAll(model.ownedMember)->select(ne: NamedElement | ne.oclIsTypeOf(Class)))]
+	[for (ip: PackageImport | model.packageImport->select(pi: PackageImport | pi.importedPackage.name <> 'org.datafoodconsortium.semantizer')->sortedBy(i: PackageImport | i.importedPackage.name))]
+		[for (member: NamedElement | ip.importedPackage.ownedMember->addAll(model.ownedMember)->select(ne: NamedElement | ne.oclIsTypeOf(Class))->sortedBy(m: NamedElement | m.name))]
 		require 'datafoodconsortium/connector/[generateFileName(member.name) /].rb'
 		[/for]
 	[/for]

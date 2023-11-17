@@ -21,6 +21,7 @@
 # SOFTWARE.
 
 require 'singleton'
+require 'datafoodconsortium/connector/context'
 require 'datafoodconsortium/connector/json_ld_serializer'
 
 class DataFoodConsortium::Connector::Connector
