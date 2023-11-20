@@ -33,15 +33,12 @@ class DataFoodConsortium::Connector::JsonLdSerializer
     def process(*subjects)
         return "" if subjects.empty?
 
-        inputs = []
-        
         # Insert an input context on each subject so the properties could be prefixed. This way,
         # the DFC's context can be used.
         # See https://github.com/datafoodconsortium/connector-ruby/issues/11.
-        subjects.each do |subject|
-            input = { "@context" => @outputContext }
-            input.merge!(subject.serialize(@hashSerializer))
-            inputs.push(input)
+        inputs = subjects.map do |subject|
+          # JSON::LD needs a context on every input using prefixes.
+          subject.serialize(@hashSerializer).merge("@context" => @outputContext)
         end
 
         jsonLd = JSON::LD::API.compact(inputs, @outputContext)
