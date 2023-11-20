@@ -43,7 +43,7 @@ class DataFoodConsortium::Connector::JsonLdSerializer
         # the DFC's context can be used.
         # See https://github.com/datafoodconsortium/connector-ruby/issues/11.
         subjects.each do |subject|
-            input = { "@context" => "https://www.datafoodconsortium.org" }
+            input = { "@context" => @outputContext }
             input.merge!(subject.serialize(@hashSerializer))
             inputs.push(input)
         end
