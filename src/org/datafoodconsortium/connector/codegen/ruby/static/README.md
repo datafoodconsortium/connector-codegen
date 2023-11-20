@@ -225,9 +225,9 @@ To produce the documentation just type `yard doc`. Then open the `index.html` fi
 
 ## Tests
 
-Some unit tests are in the `/test` folder.
+Some unit tests are in the `/spec` folder.
 
-To run them, just type `rake`.
+To run them, just type `rspec`.
 
 ## Contributing
 
