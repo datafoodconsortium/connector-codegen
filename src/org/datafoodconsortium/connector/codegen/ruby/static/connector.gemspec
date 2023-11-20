@@ -11,6 +11,4 @@ Gem::Specification.new do |s|
   s.license       = "MIT"
 
   s.add_runtime_dependency "virtual_assembly-semantizer", "~> 1.0", ">= 1.0.5"
-  s.add_development_dependency "minitest"
-  s.add_development_dependency "rake"
 end

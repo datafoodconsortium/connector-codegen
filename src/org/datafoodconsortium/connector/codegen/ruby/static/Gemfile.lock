@@ -19,10 +19,8 @@ GEM
       rack (>= 2.2, < 4)
       rdf (~> 3.3)
     link_header (0.0.8)
-    minitest (5.20.0)
     multi_json (1.15.0)
     rack (3.0.8)
-    rake (13.1.0)
     rdf (3.3.1)
       bcp47_spec (~> 0.2)
       link_header (~> 0.0, >= 0.0.8)
@@ -47,8 +45,6 @@ PLATFORMS
 
 DEPENDENCIES
   datafoodconsortium-connector!
-  minitest
-  rake
   rspec
 
 BUNDLED WITH
