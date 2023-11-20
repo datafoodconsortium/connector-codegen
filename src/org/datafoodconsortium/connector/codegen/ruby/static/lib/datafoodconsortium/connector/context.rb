@@ -62,6 +62,11 @@ module DataFoodConsortium
         "http://static.datafoodconsortium.org/ontologies/context.json",
         "http://www.datafoodconsortium.org/"
       )
+
+      # The hash serializer expects only string values in the context.
+      def self.inputContext
+        @inputContext = VERSION_1_8.select { |key, value| value.is_a? String }
+      end
     end
   end
 end
