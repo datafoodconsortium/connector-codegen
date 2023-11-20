@@ -43,7 +43,7 @@ class DataFoodConsortium::Connector::JsonLdSerializer
 
         jsonLd = JSON::LD::API.compact(inputs, @outputContext)
 
-        return JSON.generate(jsonLd)
+        JSON.generate(jsonLd)
     end
 
 end
