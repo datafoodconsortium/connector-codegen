@@ -1,17 +1,12 @@
-require 'connector'
-require "minitest/autorun"
-require 'datafoodconsortium/connector'
-
-class PersonTest < Minitest::Test
-
-  def test_export_empty
+describe DataFoodConsortium::Connector::Person do
+  it "can be empty when exported" do
     p = DataFoodConsortium::Connector::Person.new("https://myplatform.com/p")
     actual = connector.export(p)
     expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/p","@type":"dfc-b:Person","dfc-b:firstName":"","dfc-b:familyName":""}'
-    assert_equal expected, actual
+    expect(actual).to eq expected
   end
 
-  def test_export_complete
+  it "contains all fields when exported" do
     p = DataFoodConsortium::Connector::Person.new(
       "https://myplatform.com/p",
       firstName: "firstName", 
@@ -25,7 +20,6 @@ class PersonTest < Minitest::Test
     )
     actual = connector.export(p)
     expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/p","@type":"dfc-b:Person","dfc-b:hasAddress":"https://myplatform.com/a","dfc-b:firstName":"firstName","dfc-b:familyName":"lastName","dfc-b:affiliates":"https://myplatform.com/e"}'
-    assert_equal expected, actual
+    expect(actual).to eq expected
   end
-
 end
