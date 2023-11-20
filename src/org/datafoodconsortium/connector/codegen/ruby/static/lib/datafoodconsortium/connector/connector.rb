@@ -58,14 +58,7 @@ class DataFoodConsortium::Connector::Connector
         # used to prefix properties
         # so the DFC's context can be used.
         # See https://github.com/datafoodconsortium/connector-ruby/issues/11.
-        inputContext = {
-            "dfc-b" => "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#",
-            "dfc-p" => "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_ProductGlossary.owl#",
-            "dfc-t" => "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_TechnicalOntology.owl#",
-            "dfc-m" => "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/measures.rdf#",
-		    "dfc-pt" => "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/productTypes.rdf#",
-		    "dfc-f" => "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/facets.rdf#"
-        }
+        inputContext = DataFoodConsortium::Connector::Context.inputContext
 
         @context = "https://www.datafoodconsortium.org"
 
