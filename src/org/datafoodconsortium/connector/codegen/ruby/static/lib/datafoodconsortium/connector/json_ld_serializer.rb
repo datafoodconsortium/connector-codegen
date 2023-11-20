@@ -30,12 +30,8 @@ class DataFoodConsortium::Connector::JsonLdSerializer
         @hashSerializer = VirtualAssembly::Semantizer::HashSerializer.new(inputContext)
     end
 
-    def process(subject, *subjects)
-        subjects.insert(0, subject)
-
-        if (subjects.empty?)
-            return ""
-        end
+    def process(*subjects)
+        return "" if subjects.empty?
 
         inputs = []
         
