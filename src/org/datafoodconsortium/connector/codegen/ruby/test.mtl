@@ -1,0 +1,96 @@
+[comment encoding = UTF-8 /]
+[module test('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::datafoodconsortium::connector::codegen::queries /]
+[import org::datafoodconsortium::connector::codegen::ruby::operation /]
+[import org::datafoodconsortium::connector::codegen::ruby::common /]
+
+[template public generateClassTest(model: Model, aClass : Class)]
+[file (getProperty('ruby_outputFolder_test') + 'test_' + aClass.name.concat('.rb'), false, 'UTF-8')]
+require 'connector'
+require "minitest/autorun"
+require 'datafoodconsortium/connector'
+
+class AddressTest < Minitest::Test
+	[if (aClass.hasConstructor() and aClass.getDefaultConstructor().hasInputParameter())]
+	[let parameters: OrderedSet(Parameter) = aClass.getDefaultConstructorParameters()]
+	[let testValues: Sequence(String) = getTestValues(parameters->asSequence())] 
+    def test_constructor
+		[for (p: Parameter | parameters) separator('\n\t\t')][p.generateNewParameter(testValues->at(i), model)/][/for]
+
+        [aClass.generateCompleteNew(parameters, testValues)/]
+
+        [if (not aClass.isBlankNode())]assert_equal "http://example.org/obj", obj.semanticId;[/if]
+		[for (p: Parameter | parameters) separator('\n\t\t')][if (p.isBlankNode())]assert_equal true, [if (p.isCollection())]Array.new(obj.[p.getGetter().name/], [testValues->at(i)/])[else]obj.[p.getGetter().name/].equals([testValues->at(i)/])[/if];[else]assert_equal [testValues->at(i)/], obj.[p.getGetter().name/];[/if][/for]
+    end[/let][/let][/if]
+
+
+[comment]	[if (aClass.hasOwnedOperations())]
+	public function testGetSet(): void {
+        $connector = new Connector();
+
+        $obj = new [aClass.name.toUpperFirst()/](
+            connector: $connector[if (not aClass.isBlankNode())], ['\n\t\t\t'/]"http://example.org/obj"[/if]
+        );
+
+		[for (property: Property | aClass.getAllAttributes())]
+		[if (not property.isPropertyMultiple())][property.generateSetterTest(model)/][/if]
+		[if (property.isPropertyMultiple())][property.generateAdderTest(model)/][/if]
+		[/for]
+    }[/if]
+
+
+	[let parameters: OrderedSet(Parameter) = aClass.getDefaultConstructorParameters()]
+	[let testValues: Sequence(String) = getTestValues(parameters->asSequence())] 
+	/*public function testImportExport(): void {
+		$connector = new Connector();
+
+		[aClass.generateCompleteNew(parameters, testValues)/]
+
+		$export = $connector->export(['['/]$obj[']'/]);
+		$import = $connector->import($export);
+		$this->assertSame(true, $import['['/]0[']'/]->equals($obj));
+	}*/
+	[/let][/let][/comment]
+end
+[/file]
+[/template]
+
+[template private generateCompleteNew(aClass: Class, parameters: OrderedSet(Parameter), testValues: Sequence(String))]
+obj = DataFoodConsortium::Connector::[aClass.name.toUpperFirst()/].new(
+	[if (not aClass.isBlankNode())]"http://example.org/obj",[/if]
+	[for (p: Parameter | parameters) separator(',\n\t')][p.name/]: [testValues->at(i)/][/for]
+);
+[/template]
+
+[template public generateSetterTest(aProperty: Property, aModel: Model)]
+[let setter: Operation = aProperty.getSetter()]
+[if (setter <> null)]
+[let getter: Operation = aProperty.getGetter()]
+[let p: Parameter = setter.getInputParameter()]
+[let testValue: String = aProperty.generateValue()]
+[p.generateNewParameter(testValue, aModel)/]
+obj.[setter.name/]([testValue/]);
+[if (p.isBlankNode())]assert_equal true, [if (p.isCollection())]Array.new(obj.[getter.name/], [testValue/])[else]obj.[getter.name/].equals([testValue/])[/if]);[else]assert_equal [testValue/], obj.[getter.name/]);[/if]
+[/let][/let][/let][/if][/let]
+[/template]
+
+[template public generateAdderTest(aProperty: Property, aModel: Model)]
+[let adder: Operation = aProperty.getAdder()]
+[if (adder <> null)]
+[let p: Parameter = adder.getInputParameter()]
+[let testValue: String = aProperty.generateValue()]
+[p.generateNewParameter(testValue, aModel)/]
+obj.[adder.name/]([testValue/]);
+[if (p.isBlankNode())]assert_equal true, [if (aProperty.isCollection())]Array.new(obj.[aProperty.getGetter().name/], ['['/][testValue/][']'/])[else]obj.[aProperty.getGetter().name/].equals([testValue/])[/if]);[else]assert_equal [if (aProperty.isCollection())]['['/][/if][testValue/][if (aProperty.isCollection())][']'/][/if], obj.[aProperty.name/]);[/if]
+[/let][/let][/if][/let]
+[/template]
+
+
+[template public generateAssert(aProperty: Property, parameter: Parameter, aTestValue: String)][if (parameter.isBlankNode())]assert_equal true, [if (aProperty.isCollection())]obj.[aProperty.getGetter().name/].is_array?, [aTestValue/])[else]obj.[aProperty.getGetter().name/].equals([aTestValue/])[/if]);[else]assert_equal([if (aProperty.isCollection())]['['/][/if][if (not aProperty.isPrimitive())][/if][aTestValue/][if (aProperty.isCollection())][']'/][/if], obj.[aProperty.getGetter().name/]);[/if][/template]
+
+[template public generateNewParameter(aParameter: Parameter, aTestValue: String, aModel: Model)][if (not aParameter.isPrimitive())][aTestValue/] = [if (aParameter.isCollection())]Array.new[/if][aParameter.getImplementation(aModel).name/].new([if (not aParameter.isBlankNode())]"[aParameter.generateSemanticId()/]"[/if][if (aParameter.isCollection())][/if];[/if][/template]
+
+[template public generateNewParameter(aParameter: Parameter, aProperty: Property, aTestValue: String, aModel: Model)][if (not aParameter.isPrimitive())][aTestValue/] = [if (aProperty.isCollection())]Array.new([/if]new [aParameter.getImplementation(aModel).name/]([if (not aParameter.isBlankNode())]"[aParameter.generateSemanticId()/]"[/if][if (aProperty.isCollection())])[/if];[/if][/template]
+
+[template public generateSemanticId(anElement: Element)]http://base.com/[anElement.generateString(10)/][/template]

@@ -4,6 +4,7 @@
 [import org::datafoodconsortium::connector::codegen::queries /]
 [import org::datafoodconsortium::connector::codegen::ruby::common /]
 [import org::datafoodconsortium::connector::codegen::ruby::class /]
+[import org::datafoodconsortium::connector::codegen::ruby::test /]
 
 [template public generateRuby(model: Model)]
 [for (aClass: Class | model.getClasses())][generateClass(model, aClass)/][/for]
@@ -23,4 +24,6 @@ module DataFoodConsortium
 	end
 end
 [/file]
+
+[for (aClass: Class | model.getClasses())][generateClassTest(model, aClass)/][/for]
 [/template]
