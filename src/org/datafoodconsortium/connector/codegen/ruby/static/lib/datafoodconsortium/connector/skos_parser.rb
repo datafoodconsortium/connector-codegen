@@ -120,7 +120,11 @@ class DataFoodConsortium::Connector::SKOSParser
     name = getValueWithoutPrefix(id)
 
     if !parent.hasAttribute(name)
-      parent.addAttribute(name, DataFoodConsortium::Connector::SKOSInstance.new)
+      if !@skosConcepts[id].nil?
+        parent.addAttribute(name, @skosConcepts[id])
+      else
+        parent.addAttribute(name, DataFoodConsortium::Connector::SKOSInstance.new)
+      end
     end
 
     # Leaf concepts, stop the process
