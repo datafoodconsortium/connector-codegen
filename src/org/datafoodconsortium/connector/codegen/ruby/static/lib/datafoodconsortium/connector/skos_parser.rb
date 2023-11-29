@@ -29,6 +29,10 @@ require 'datafoodconsortium/connector/skos_parser_element'
 class DataFoodConsortium::Connector::SKOSInstance
   include DataFoodConsortium::Connector::SKOSHelper
 
+  # Return a list of singelton methods, ie the list of Concept available
+  def topConcepts
+    self.methods(false).sort
+  end
 end
 
 class DataFoodConsortium::Connector::SKOSParser
