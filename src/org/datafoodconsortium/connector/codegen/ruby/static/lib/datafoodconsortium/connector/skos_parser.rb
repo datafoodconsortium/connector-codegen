@@ -36,11 +36,16 @@ class DataFoodConsortium::Connector::SKOSInstance
 end
 
 class DataFoodConsortium::Connector::SKOSParser
+  CONCEPT_SCHEMES = ["Facet", "productTypes"].freeze
+
   def initialize
     @results = DataFoodConsortium::Connector::SKOSInstance.new
     @skosConcepts = {}
     @rootElements = []
     @broaders = {}
+    # Flag used to tell the parser to use SkosConcept object when parsing data from Concept Scheme
+    # defined in CONCEPT_SCHEMES
+    @useSkosConcept = false
   end
 
   def parse(data)
@@ -48,6 +53,8 @@ class DataFoodConsortium::Connector::SKOSParser
 
     data.each do |element|
       current = DataFoodConsortium::Connector::SKOSParserElement.new(element)
+
+      setSkosConceptFlag(current)
 
       if current.isConcept? || current.isCollection?
         if !@skosConcepts.has_key?(current.id)
@@ -114,13 +121,14 @@ class DataFoodConsortium::Connector::SKOSParser
     @skosConcepts = {}
     @rootElements = []
     @broaders = {}
+    @useSkosConcept = false
   end
 
   def setResults(parent, id)
     name = getValueWithoutPrefix(id)
 
     if !parent.hasAttribute(name)
-      if !@skosConcepts[id].nil?
+      if @useSkosConcept && !@skosConcepts[id].nil?
         parent.addAttribute(name, @skosConcepts[id])
       else
         parent.addAttribute(name, DataFoodConsortium::Connector::SKOSInstance.new)
@@ -138,5 +146,15 @@ class DataFoodConsortium::Connector::SKOSParser
 
       setResults(parentSkosInstance, narrower) # recursive call
     end
+  end
+
+  def setSkosConceptFlag(current)
+    @useSkosConcept = true if current.isConceptScheme? && matchingConceptSchemes(current)
+  end
+
+  def matchingConceptSchemes(current)
+    regex = /#{CONCEPT_SCHEMES.join("|")}/
+
+    current.id =~ regex
   end
 end
