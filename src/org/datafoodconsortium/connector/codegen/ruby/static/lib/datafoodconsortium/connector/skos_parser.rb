@@ -80,7 +80,9 @@ class DataFoodConsortium::Connector::SKOSParser
   protected
 
   def createSKOSConcept(element)
-    skosConcept = DataFoodConsortium::Connector::SKOSConcept.new(element.id)
+    skosConcept = DataFoodConsortium::Connector::SKOSConcept.new(
+      element.id, broaders: element.broader, narrowers: element.narrower
+    )
     skosConcept.semanticType = element.type
 
     skosConcept
