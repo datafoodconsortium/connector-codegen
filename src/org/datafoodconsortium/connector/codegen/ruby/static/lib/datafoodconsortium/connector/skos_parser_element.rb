@@ -73,6 +73,10 @@ class DataFoodConsortium::Connector::SKOSParserElement
     @type == "http://www.w3.org/2004/02/skos/core#Collection" || @type == "skos:Collection"
   end
 
+  def isConceptScheme?
+    @type == "http://www.w3.org/2004/02/skos/core#ConceptScheme"
+  end
+
   private
 
   def extractId(data)
