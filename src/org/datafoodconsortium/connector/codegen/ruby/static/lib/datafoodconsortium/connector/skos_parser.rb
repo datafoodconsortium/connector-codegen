@@ -22,20 +22,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+require 'datafoodconsortium/connector/skos_helper'
 require 'datafoodconsortium/connector/skos_concept'
 require 'datafoodconsortium/connector/skos_parser_element'
 
 class DataFoodConsortium::Connector::SKOSInstance
-  def addAttribute(name, value)
-    self.instance_variable_set("@#{name}", value)
-    self.define_singleton_method(name) do
-      instance_variable_get("@#{name}")
-    end
-  end
+  include DataFoodConsortium::Connector::SKOSHelper
 
-  def hasAttribute(name)
-    self.methods.include?(:"#{name}")
-  end
 end
 
 class DataFoodConsortium::Connector::SKOSParser
