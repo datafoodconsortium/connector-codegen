@@ -154,6 +154,10 @@
 [query public isPrimitive(t: Type): Boolean = if (t.name = 'String' or t.name = 'Boolean' or t.name = 'Real' or t.name = 'Integer') then true else false endif /]
 [query public isPrimitive(anElement: TypedElement): Boolean = anElement.type.isPrimitive() /]
 
+[comment This specific to the ruby codegen /]
+[query public isSKOSConceptClass(c: Class): Boolean = (c.name = 'SKOSConcept') /]
+[query public isSKOSConceptClass(c: Classifier): Boolean = (c.name = 'SKOSConcept') /]
+
 [comment query public getAttributeForStereotypedOperation(c: Class, s: String, o: String): String 
 	= invoke('org.datafoodconsortium.connector.codegen.common.Common', 'getAttributeForStereotypedOperation(org.eclipse.uml2.uml.Class, java.lang.String, java.lang.String)', Sequence{c, s, o})
 /]
