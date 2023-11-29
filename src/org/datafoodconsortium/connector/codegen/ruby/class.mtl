@@ -15,7 +15,8 @@
 class DataFoodConsortium::Connector::[aClass.name.toUpperFirst()/][generateGeneralization(aClass)/]
 
 	[if (aClass.isSemantic() and aClass.generalization->isEmpty())]include VirtualAssembly::Semantizer::SemanticObject[/if]
-
+	[if (isSKOSConceptClass(aClass))]include DataFoodConsortium::Connector::SKOSHelper[/if]
+	
 	[for (property: Property | aClass.ownedAttribute) separator('\n')]
 	# @return ['['/][property.type.name /][']'/]
 	attr_accessor :[property.name /]
