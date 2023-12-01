@@ -157,6 +157,7 @@
 [comment This specific to the ruby codegen /]
 [query public isSKOSConceptClass(c: Class): Boolean = (c.name = 'SKOSConcept') /]
 [query public isSKOSConceptClass(c: Classifier): Boolean = (c.name = 'SKOSConcept') /]
+[query public isPrefLabelsProperty(p: Property): Boolean = (p.name = 'prefLabels') /]
 
 [comment query public getAttributeForStereotypedOperation(c: Class, s: String, o: String): String 
 	= invoke('org.datafoodconsortium.connector.codegen.common.Common', 'getAttributeForStereotypedOperation(org.eclipse.uml2.uml.Class, java.lang.String, java.lang.String)', Sequence{c, s, o})
