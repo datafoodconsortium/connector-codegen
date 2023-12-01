@@ -20,6 +20,13 @@ describe "parse with skos concept" do
       end
     end
 
+    describe "prefLabels" do
+      it "populates SKOS Concept prefLabels" do
+        drink_type = connector.PRODUCT_TYPES.DRINK
+        expect(drink_type.prefLabels).to eq({en: "drink", fr: "boisson" })
+      end
+    end
+
     it "parses the first level" do
       drink_type = connector.PRODUCT_TYPES.DRINK
 
