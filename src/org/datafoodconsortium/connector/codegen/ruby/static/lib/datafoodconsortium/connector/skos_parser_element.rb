@@ -28,10 +28,12 @@ class DataFoodConsortium::Connector::SKOSParserElement
   attr_reader :type
   attr_reader :broader
   attr_reader :narrower
+  attr_reader :label
 
   def initialize(element)
     @broader = []
     @narrower = []
+    @label = {}
 
     if element
       @id = element["@id"]
@@ -53,6 +55,12 @@ class DataFoodConsortium::Connector::SKOSParserElement
       if element["http://www.w3.org/2004/02/skos/core#narrower"]
         element["http://www.w3.org/2004/02/skos/core#narrower"].each do |narrower|
           @narrower.push(narrower["@id"])
+        end
+      end
+
+      if element["http://www.w3.org/2004/02/skos/core#prefLabel"]
+        element["http://www.w3.org/2004/02/skos/core#prefLabel"].each do |label|
+          @label[label["@language"].to_sym] = label["@value"]
         end
       end
     else
