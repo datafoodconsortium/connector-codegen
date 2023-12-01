@@ -128,7 +128,7 @@ class DataFoodConsortium::Connector::SKOSParser
     name = getValueWithoutPrefix(id)
 
     if !parent.hasAttribute(name)
-      if @useSkosConcept && !@skosConcepts[id].nil?
+      if @useSkosConcept && @skosConcepts[id]
         parent.addAttribute(name, @skosConcepts[id])
       else
         parent.addAttribute(name, DataFoodConsortium::Connector::SKOSInstance.new)
