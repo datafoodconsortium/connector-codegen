@@ -31,12 +31,7 @@ module DataFoodConsortium
       end
 
       def self.register_type(clazz)
-        # Methods with variable arguments have a negative arity of -n-1
-        # where n is the number of required arguments.
-        number_of_required_args = -1 * (clazz.instance_method(:initialize).arity + 1)
-        args = Array.new(number_of_required_args)
-        type_uri = clazz.new(*args).semanticType
-        type_map[type_uri] = clazz
+        type_map[clazz::SEMANTIC_TYPE] = clazz
       end
 
       def self.prefixed_name(uri)
