@@ -2,29 +2,15 @@
 
 require_relative "skos_parser"
 
-require_relative "enterprise.rb"
-require_relative "person.rb"
-require_relative "quantitative_value.rb"
-require_relative "supplied_product.rb"
-require_relative "catalog_item.rb"
-require_relative "offer.rb"
-
 module DataFoodConsortium
   module Connector
     class Importer
-      TYPES = [
-        DataFoodConsortium::Connector::CatalogItem,
-        DataFoodConsortium::Connector::Enterprise,
-        DataFoodConsortium::Connector::Offer,
-        DataFoodConsortium::Connector::Person,
-        DataFoodConsortium::Connector::QuantitativeValue,
-        DataFoodConsortium::Connector::SuppliedProduct,
-      ].freeze
-
       def self.type_map
         unless @type_map
           @type_map = {}
-          TYPES.each(&method(:register_type))
+          DataFoodConsortium::Connector.semantic_types.each do |type|
+            register_type(type)
+          end
         end
 
         @type_map
