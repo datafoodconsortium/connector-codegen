@@ -20,7 +20,7 @@ end
 
 [template public generateConstructorBody(class: Class, operation: Operation)]
 [if not (class.generalization->isEmpty()) or class.isSemantic()]super([generateConstructorSuper(operation, class)/])[/if]
-[for (p: Property | class.ownedAttribute) separator('\n')][if (isPrefLabelsProperty(p))]# Sort locale alphabetically
+[for (p: Property | class.ownedAttribute) separator('\n')][if (p.isSKOSConceptPrefLabel())]# Sort locale alphabetically
 @[p.name /] = [p.name /].sort.to_h[else]@[p.name /] = [p.name /][/if][/for]
 
 [if (class.isSemantic())][generateSetSemanticType(class)/][/if]

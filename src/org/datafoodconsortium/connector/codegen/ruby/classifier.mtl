@@ -7,7 +7,7 @@
 [template public generateImports(classifier: Classifier)]
 [for (ei: ElementImport | classifier.elementImport->sortedBy(i: ElementImport | i.importedElement.name)) separator('\n')][if (ei.importedElement.oclIsTypeOf(Class))][generateImport(ei)/][/if][/for]
 [if (classifier.oclIsTypeOf(Class))]require "virtual_assembly/semantizer"[/if]
-[if (isSKOSConceptClass(classifier))]require 'datafoodconsortium/connector/skos_helper'[/if]
+[if (classifier.isSKOSConceptClass())]require 'datafoodconsortium/connector/skos_helper'[/if]
 [/template]
 
 [template public generateImport(ei: ElementImport)]require "datafoodconsortium/connector/[generateFileName(ei.importedElement.name) /]"[/template]
