@@ -84,8 +84,7 @@ module DataFoodConsortium
         if property.value.is_a?(Enumerable)
           property.value << value
         else
-          setter = guess_setter_name(statement.predicate)
-          subject.send(setter, value) if setter && subject.respond_to?(setter)
+          property.value = value
         end
       end
 
@@ -107,19 +106,6 @@ module DataFoodConsortium
           "dfc-m:"
         )
         SKOSParser.concepts[id]
-      end
-
-      def guess_setter_name(predicate)
-        name =
-          # Some predicates are named like `hasQuantity`
-          # but the attribute name would be `quantity`.
-          predicate.fragment&.sub(/^has/, "") ||
-          # And sometimes the URI looks like `ofn:spree_product_id`.
-          predicate.to_s.split(":").last
-
-        # If we stripped "has" we need to downcase the first letter.
-        name[0] = name[0].downcase
-        "#{name}="
       end
     end
   end
