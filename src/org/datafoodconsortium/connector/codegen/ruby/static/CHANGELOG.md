@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Fix random code changes of the generated code by sorting elements (e36a923).
-- Fix some tests so they can pass by changing the expected JSON (e36a923).
-- Enable loading of measures v1.0.2 (6ef17f7).
+- Fix random code changes of the generated code by sorting elements (e36a9236fa012f87946b34c36cd463709d1cd2c5).
+- Fix some tests so they can pass by changing the expected JSON (e36a9236fa012f87946b34c36cd463709d1cd2c5).
+- Enable loading of measures v1.0.2 (6ef17f7d4a19aebd9d89b544db115d36f7e6fe93).
 - Allow output context to be configured ([PR #8](https://github.com/datafoodconsortium/connector-codegen/pull/8)).
 - Improve SKOS Concept parsing ([PR #10](https://github.com/datafoodconsortium/connector-codegen/pull/10)).
 
