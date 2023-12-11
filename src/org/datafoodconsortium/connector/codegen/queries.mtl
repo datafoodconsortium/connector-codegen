@@ -154,6 +154,9 @@
 [query public isPrimitive(t: Type): Boolean = if (t.name = 'String' or t.name = 'Boolean' or t.name = 'Real' or t.name = 'Integer') then true else false endif /]
 [query public isPrimitive(anElement: TypedElement): Boolean = anElement.type.isPrimitive() /]
 
+[query public isSKOSConceptClass(c: Classifier): Boolean = (c.name = 'SKOSConcept') /]
+[query public isSKOSConceptPrefLabel(p: Property): Boolean = (p.name = 'prefLabels') /]
+
 [comment query public getAttributeForStereotypedOperation(c: Class, s: String, o: String): String 
 	= invoke('org.datafoodconsortium.connector.codegen.common.Common', 'getAttributeForStereotypedOperation(org.eclipse.uml2.uml.Class, java.lang.String, java.lang.String)', Sequence{c, s, o})
 /]
