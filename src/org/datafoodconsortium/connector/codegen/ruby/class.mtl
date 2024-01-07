@@ -11,12 +11,18 @@
 [generateLicence()/]
 
 [generateImports(aClass)/]
-
 class DataFoodConsortium::Connector::[aClass.name.toUpperFirst()/][generateGeneralization(aClass)/]
+[if (aClass.isSemantic() and aClass.generalization->isEmpty())]
+    include VirtualAssembly::Semantizer::SemanticObject
+[/if]
+[if (aClass.isSKOSConceptClass())]
+    include DataFoodConsortium::Connector::SKOSHelper
+[/if]
+[if (aClass.isSemantic())]
 
-	[if (aClass.isSemantic() and aClass.generalization->isEmpty())]include VirtualAssembly::Semantizer::SemanticObject[/if]
-	[if (aClass.isSKOSConceptClass())]include DataFoodConsortium::Connector::SKOSHelper[/if]
-	
+    SEMANTIC_TYPE = "[aClass.getValue(aClass.getAppliedStereotype('datafoodconsortium_connector::semantic'), 'map')/]".freeze
+[/if]
+
 	[for (property: Property | aClass.ownedAttribute) separator('\n')]
 	# @return ['['/][property.type.name /][']'/]
 	attr_accessor :[property.name /]

@@ -22,6 +22,7 @@
 
 require 'singleton'
 require 'datafoodconsortium/connector/context'
+require 'datafoodconsortium/connector/importer'
 require 'datafoodconsortium/connector/json_ld_serializer'
 
 class DataFoodConsortium::Connector::Connector
@@ -36,6 +37,10 @@ class DataFoodConsortium::Connector::Connector
 
     def export(subject, *subjects)
         return @exporter.process(subject, *subjects)
+    end
+
+    def import(json_string_or_io)
+        DataFoodConsortium::Connector::Importer.new.import(json_string_or_io)
     end
 
     def loadFacets(data)

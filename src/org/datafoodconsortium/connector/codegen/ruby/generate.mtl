@@ -20,6 +20,12 @@ module DataFoodConsortium
 		require 'datafoodconsortium/connector/[generateFileName(member.name) /].rb'
 		[/for]
 	[/for]
+
+		def self.semantic_types
+		  constants.map(&method(:const_get)).select do |c|
+		    c.constants.include?(:SEMANTIC_TYPE)
+		  end
+		end
 	end
 end
 [/file]

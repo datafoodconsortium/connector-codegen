@@ -38,6 +38,10 @@ end
 class DataFoodConsortium::Connector::SKOSParser
   CONCEPT_SCHEMES = ["Facet", "productTypes"].freeze
 
+  def self.concepts
+    @concepts ||= {}
+  end
+
   def initialize
     @results = DataFoodConsortium::Connector::SKOSInstance.new
     @skosConcepts = {}
@@ -91,6 +95,8 @@ class DataFoodConsortium::Connector::SKOSParser
       element.id, broaders: element.broader, narrowers: element.narrower, prefLabels: element.label
     )
     skosConcept.semanticType = element.type
+
+    self.class.concepts[element.id] = skosConcept
 
     skosConcept
   end
