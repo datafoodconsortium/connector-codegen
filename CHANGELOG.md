@@ -25,6 +25,7 @@ Ruby:
 
 Ruby:
 - Preload context to avoid remote loading (4741acb7b2a396dc56f66f0c3b5e2d64078c7130).
+- Use nil as default value for all types.
 
 ## [1.0.1] - 2023-11-06
 
