@@ -32,7 +32,7 @@ self.semanticType = "[class.getValue(class.getAppliedStereotype('datafoodconsort
 [/template]
 
 [template public generateSemanticProperty(property: Property)]
-registerSemanticProperty("[property.getValue(property.getAppliedStereotype('datafoodconsortium_connector::semantic'), 'map')/]") { self.[property.name/] }
+registerSemanticProperty("[property.getValue(property.getAppliedStereotype('datafoodconsortium_connector::semantic'), 'map')/]", &method("[property.name/]")).valueSetter = method("[property.name/]=")
 [/template]
 
 [template public generateConstructorSuper(constructor: Operation, aClass: Class)]

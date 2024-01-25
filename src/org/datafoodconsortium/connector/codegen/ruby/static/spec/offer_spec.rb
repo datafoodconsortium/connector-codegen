@@ -1,4 +1,8 @@
 describe DataFoodConsortium::Connector::Offer do
+  it "has a type" do
+    expect(described_class::SEMANTIC_TYPE).to eq "dfc-b:Offer"
+  end
+
   it "can be empty when exported" do
     subject = DataFoodConsortium::Connector::Offer.new(
       "https://myplatform.com/o"

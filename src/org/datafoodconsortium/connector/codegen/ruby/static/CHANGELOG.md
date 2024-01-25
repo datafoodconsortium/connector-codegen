@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add Import method reading JSON and returning objects.
+- Add `SEMANTIC_TYPE` constant to every semantic class.
+
 ### Fixed
 
 - Fix random code changes of the generated code by sorting elements (e36a9236fa012f87946b34c36cd463709d1cd2c5).
@@ -14,11 +19,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enable loading of measures v1.0.2 (6ef17f7d4a19aebd9d89b544db115d36f7e6fe93).
 - Allow output context to be configured ([PR #8](https://github.com/datafoodconsortium/connector-codegen/pull/8)).
 - Improve SKOS Concept parsing ([PR #10](https://github.com/datafoodconsortium/connector-codegen/pull/10)).
+- Replace revoked json-canonicalization version 0.3.2 with 1.0.0
 
 ### Changed
 
 - Preload context to avoid remote loading (4741acb).
 - Rewrite MiniTest tests as Rspec specs ([PR #9](https://github.com/datafoodconsortium/connector-codegen/pull/9)).
+- Bump json-ld from 3.3.0 to 3.3.1
 
 ## [1.0.0-alpha.9] - 2023-11-06
 
