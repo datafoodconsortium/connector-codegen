@@ -7,9 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0-alpha.10] - 2024-01-30
+
+This version has been generated using:
+
+- [Connector code generator](https://github.com/datafoodconsortium/connector-codegen) [58d66e80d2d317a715c3aeabac05efa38c39ea29](https://github.com/datafoodconsortium/connector-codegen/commit/58d66e80d2d317a715c3aeabac05efa38c39ea29).
+- [UML data model](https://github.com/datafoodconsortium/data-model-uml) [2.1.0](https://github.com/datafoodconsortium/data-model-uml/releases/tag/v2.1.0)
+
 ### Added
 
-- Add Import method reading JSON and returning objects.
+- Add Import method reading JSON and returning objects. ([PR #12](https://github.com/datafoodconsortium/connector-codegen/pull/12))
 - Add `SEMANTIC_TYPE` constant to every semantic class.
 
 ### Fixed
@@ -104,6 +111,7 @@ This version has been generated using the [code generator](https://github.com/da
 - Initial version of this library.
 
 [unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0...HEAD
+[1.0.0-alpha.10]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.9...v1.0.0-alpha.10
 [1.0.0-alpha.9]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.8...v1.0.0-alpha.9
 [1.0.0-alpha.8]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.7...v1.0.0-alpha.8
 [1.0.0-alpha.7]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.6...v1.0.0-alpha.7
