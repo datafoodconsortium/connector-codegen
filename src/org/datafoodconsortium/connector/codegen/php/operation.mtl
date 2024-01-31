@@ -59,7 +59,7 @@ if ($other) {
 [let parameter: Parameter = operation.getInputParameter()]
 [let property: Property = operation.getProperty(aClass)]
 [let map: String = property.getMapping()]
-[if (parameter.type.isPrimitive())]this.addSemanticPropertyLiteral("[map/]", [parameter.name/]);[else]$this->addSemanticPropertyReference("[map/]", $[parameter.name/]);[/if][/let][/let][/let]
+[if (parameter.type.isPrimitive())]$this->addSemanticPropertyLiteral("[map/]", $[parameter.name/]);[else]$this->addSemanticPropertyReference("[map/]", $[parameter.name/]);[/if][/let][/let][/let]
 [/template]
 
 [template public generateGetterBody(aClass: Class, operation: Operation)]

@@ -13,6 +13,11 @@ Ruby:
 - Add Import method reading JSON and returning objects.
 - Add `SEMANTIC_TYPE` constant to every semantic class.
 
+Php:
+- Add vocabulary thesaurus in tests.
+- Add fetch method in `Connector`.
+- Set default prefix value in `Connector` for dfc-f, dfc-m, dfc-pt and dfc-v.
+
 ### Fixed
 
 Ruby:
@@ -20,6 +25,9 @@ Ruby:
 - Fix some tests so they can pass by changing the expected JSON (e36a9236fa012f87946b34c36cd463709d1cd2c5).
 - Enable loading of measures v1.0.2 (6ef17f7d4a19aebd9d89b544db115d36f7e6fe93).
 - Improve SKOS Concept parsing ([PR #10](https://github.com/datafoodconsortium/connector-codegen/pull/10)).
+
+Php:
+- Fix missing `$` in variable name and missing `->` in `generateAdderBody`.
 
 ### Changed
 

@@ -26,18 +26,19 @@ You can then load our different SKOS taxonomies providing the corresponding JSON
 $connector->import("/path/to/measures.json");
 $connector->import("/path/to/facets.json");
 $connector->import("/path/to/productTypes.json");
+$connector->import("/path/to/vocabulary.json");
 ```
 
 These taxonomies are accessible directly from the connector, like:
 ```PHP
 // Example of a facet
-$fruit = $connector->fetch("dfcf:Fruit");
+$fruit = $connector->fetch("dfc-f:Fruit");
 
 // Example of an measure
-$kilogram = $connector->fetch("dfcm:Kilogram");
+$kilogram = $connector->fetch("dfc-m:Kilogram");
 
 // Example of a product type
-$tomato = $connector->fetch("dfcpt:RoundTomato");
+$tomato = $connector->fetch("dfc-pt:RoundTomato");
 ```
 
 ## Object creation
@@ -59,21 +60,21 @@ $allergenCharacteristic = new AllergenCharacteristic(
     connector: $connector, // You have to pass a reference to the connector.
     value: 1, 
     unit: $kilogram, 
-    allergenDimension: $connector->fetch("dfcm:Peanuts"); 
+    allergenDimension: $connector->fetch("dfc-m:Peanuts"); 
 );
 
 $nutrientCharacteristic = new NutrientCharacteristic( 
     connector: $connector, // You have to pass a reference to the connector.
     value: 10, 
     unit: $gram, 
-    nutrientDimension: $connector->fetch("dfcm:Calcium")
+    nutrientDimension: $connector->fetch("dfc-m:Calcium")
 );
 
 $physicalCharacteristic = new PhysicalCharacteristic({ 
     connector: $connector, // You have to pass a reference to the connector.
     value: 100, 
     unit: $gram, 
-    physicalDimension: $connector->fetch("dfcm:Weight") 
+    physicalDimension: $connector->fetch("dfc-m:Weight") 
 });
 
 $catalogItem = new CatalogItem({ 
@@ -85,21 +86,21 @@ $suppliedProduct = new SuppliedProduct({
     connector: onnector, // You have to pass a reference to the connector.
     semanticId: "http://myplatform.com/tomato",
     description: "Awesome tomato",
-    productType: $connector->fetch("dfcpt:RoundTomato"), 
+    productType: $connector->fetch("dfc-pt:RoundTomato"), 
     quantity: $quantity,
     totalTheoreticalStock: 2.23,
     alcoholPercentage: 0, 
     lifetime: "a week", 
-    claims: [$connector->fetch("dfcf:NoAddedSugar")], 
+    claims: [$connector->fetch("dfc-f:NoAddedSugar")], 
     usageOrStorageConditions: "free text", 
     allergenCharacteristics: [$allergenCharacteristic],
     nutrientCharacteristics: [$nutrientCharacteristic],
     physicalCharacteristics: [$physicalCharacteristic],
-    geographicalOrigin: $connector->fetch("dfcf:CentreValLoire"),
+    geographicalOrigin: $connector->fetch("dfc-f:CentreValLoire"),
     catalogItems: [$catalogItem], 
-    certifications: [$connector->fetch("dfcf:OrganicAB"), $connector->fetch("dfcf:OrganicEU")],
-    natureOrigin: [$connector->fetch("dfcf:PlantOrigin")],
-    partOrigin: [$connector->fetch("dfcf:Fruit")]
+    certifications: [$connector->fetch("dfc-f:OrganicAB"), $connector->fetch("dfc-f:OrganicEU")],
+    natureOrigin: [$connector->fetch("dfc-f:PlantOrigin")],
+    partOrigin: [$connector->fetch("dfc-f:Fruit")]
 });
 ```
 
@@ -116,6 +117,9 @@ $suppliedProduct = new SuppliedProduct({
 - `OrderLine`
 - `Person`
 - `PhysicalCharacteristic`
+- `PlannedConsumptionFlow`
+- `PlannedProductionFlow`
+- `PlannedTransformation`
 - `Price`
 - `QuantitativeValue`
 - `Quantity`
@@ -127,7 +131,7 @@ $suppliedProduct = new SuppliedProduct({
 ## Object accessors and mutators
 
 ### Read object properties (accessor)
-You can read the properties of an objet using getter methods.
+You can read the properties of an object using getter methods.
 
 ```PHP
 $suppliedProduct->getDescription();
@@ -153,7 +157,7 @@ $suppliedProduct->setQuantity(new QuantitiveValue(connector: $connector, unit: $
 You can also add a value to properties that are array:
 ```PHP
 // Add a new certification to the product
-$suppliedProduct->addCertification($connector->fetch("dfcf:AocFR"));
+$suppliedProduct->addCertification($connector->fetch("dfc-f:AocFR"));
 ```
 
 ## Export objects
@@ -271,3 +275,41 @@ Connector::setFactory(IFactory $factory);
 ```
 
 See the [Semantizer](https://github.com/assemblee-virtuelle/semantizer-php) documentation for more details.
+
+## Examples
+
+### Planned transformation loop
+
+```php
+$connector = new Connector();
+$connector->import("./test/thesaurus/measures.json");
+$connector->import("./test/thesaurus/vocabulary.json");
+
+$quantity = new Quantity(
+    connector: $connector,
+    unit: $connector->fetch("dfc-m:Kilogram"),
+    value: 1.0
+);
+
+$consumptionFlow = new PlannedConsumptionFlow(
+    connector: $connector,
+    semanticId: "http://example.org/consumptionFlow",
+    quantity: $quantity
+);
+
+$productionFlow = new PlannedProductionFlow(
+    connector: $connector,
+    semanticId: "http://example.org/productionFlow",
+    quantity: $quantity
+);
+
+$transformation = new PlannedTransformation(
+    connector: $connector, 
+    semanticId: "http://example.org/transformation",
+    consumptionFlow: $consumptionFlow,
+    productionFlow: $productionFlow,
+    transformationType: $connector->fetch("dfc-v:combine")
+);
+
+echo $connector->export([$transformation, $consumptionFlow, $productionFlow]);
+```

@@ -3,8 +3,8 @@
 namespace DataFoodConsortium\Connector;
 
 use \VirtualAssembly\Semantizer\Semantizer;
+use \VirtualAssembly\Semantizer\Semanticable;
 use \VirtualAssembly\Semantizer\IFactory;
-use \VirtualAssembly\Semantizer\SemanticObjectAnonymous;
 
 class Connector implements IConnector {
 
@@ -15,6 +15,10 @@ class Connector implements IConnector {
         $this->semantizer = new Semantizer();
         $this->setFactory(new ConnectorFactory($this));
         $this->setPrefix("dfc-b", "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#");
+        $this->setPrefix("dfc-f", "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/facets.rdf#");
+        $this->setPrefix("dfc-m", "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/measures.rdf#");
+        $this->setPrefix("dfc-pt", "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/productTypes.rdf#");
+        $this->setPrefix("dfc-v", "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/vocabulary.rdf#");
         $this->context = ["https://www.datafoodconsortium.org"];
     }
 
@@ -53,6 +57,11 @@ class Connector implements IConnector {
     public function export(Array $objects, Array $context = null): string {
         $context = $context? $context: $this->context;
         return $this->getSemantizer()->export($objects, $context);
+    }
+
+    public function fetch(string $semanticId): Semanticable {
+        $expanded = $this->getSemantizer()->expand($semanticId); // allow to use prefixed id, like "dfc-m:Kilogram".
+        return $this->getSemantizer()->fetch($expanded);
     }
 
     /**
