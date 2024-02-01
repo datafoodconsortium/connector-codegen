@@ -2,7 +2,7 @@ describe DataFoodConsortium::Connector::Person do
   it "can be empty when exported" do
     p = DataFoodConsortium::Connector::Person.new("https://myplatform.com/p")
     actual = connector.export(p)
-    expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/p","@type":"dfc-b:Person","dfc-b:firstName":"","dfc-b:familyName":""}'
+    expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/p","@type":"dfc-b:Person"}'
     expect(actual).to eq expected
   end
 

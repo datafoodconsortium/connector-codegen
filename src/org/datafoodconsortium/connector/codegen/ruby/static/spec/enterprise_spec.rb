@@ -5,7 +5,7 @@ describe DataFoodConsortium::Connector::Enterprise do
     )
     result = connector.export(subject)
     expect(result).to eq(
-      '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/e","@type":"dfc-b:Enterprise","dfc-b:name":"","dfc-b:hasDescription":"","dfc-b:VATnumber":""}'
+      '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/e","@type":"dfc-b:Enterprise"}'
     )
   end
 

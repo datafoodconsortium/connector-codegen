@@ -2,7 +2,7 @@ describe DataFoodConsortium::Connector::SuppliedProduct do
   it "can be empty when exported" do
     sp = DataFoodConsortium::Connector::SuppliedProduct.new("https://myplatform.com/sp")
     actual = connector.export(sp)
-    expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/sp","@type":"dfc-b:SuppliedProduct","dfc-b:name":"","dfc-b:description":"","dfc-b:alcoholPercentage":0.0,"dfc-b:lifetime":"","dfc-b:usageOrStorageCondition":"","dfc-b:totalTheoreticalStock":0.0}'
+    expected = '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/sp","@type":"dfc-b:SuppliedProduct"}'
     expect(actual).to eq expected
   end
 

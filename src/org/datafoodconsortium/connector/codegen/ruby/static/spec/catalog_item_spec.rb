@@ -5,7 +5,7 @@ describe DataFoodConsortium::Connector::CatalogItem do
     )
     result = connector.export(subject)
     expect(result).to eq(
-      '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/ci","@type":"dfc-b:CatalogItem","dfc-b:sku":"","dfc-b:stockLimitation":0.0}'
+      '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/ci","@type":"dfc-b:CatalogItem"}'
     )
   end
 

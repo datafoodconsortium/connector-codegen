@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Preload context to avoid remote loading (4741acb).
 - Rewrite MiniTest tests as Rspec specs ([PR #9](https://github.com/datafoodconsortium/connector-codegen/pull/9)).
 - Bump json-ld from 3.3.0 to 3.3.1
+- Use nil as default value for all types.
 
 ## [1.0.0-alpha.9] - 2023-11-06
 
