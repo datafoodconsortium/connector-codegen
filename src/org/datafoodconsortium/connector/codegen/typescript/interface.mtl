@@ -1,0 +1,15 @@
+[comment encoding = UTF-8 /]
+[module interface('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::datafoodconsortium::connector::codegen::queries /]
+[import org::datafoodconsortium::connector::codegen::php::common /]
+
+[template public generateInterface(anInterface : Interface)]
+[file (getProperty('typescript_outputFolder_src') + anInterface.name.concat('.ts'), false, 'UTF-8')]
+[generateLicence()/]
+
+interface [anInterface.name.toUpperFirst()/] {
+	// TODO
+}
+[/file]
+[/template]
