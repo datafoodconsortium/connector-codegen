@@ -1,0 +1,4 @@
+[comment encoding = UTF-8 /]
+[module test('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::datafoodconsortium::connector::codegen::queries /]

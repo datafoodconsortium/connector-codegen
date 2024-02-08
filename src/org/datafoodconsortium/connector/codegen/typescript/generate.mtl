@@ -1,0 +1,17 @@
+[comment encoding = UTF-8 /]
+[module generate('http://www.eclipse.org/uml2/5.0.0/UML')/]
+
+[import org::datafoodconsortium::connector::codegen::queries /]
+[import org::datafoodconsortium::connector::codegen::typescript::class /]
+[import org::datafoodconsortium::connector::codegen::typescript::interface /]
+[comment TODO: write test generator][import org::datafoodconsortium::connector::codegen::typescript::test /][/comment]
+
+[template public generateTypeScript(model: Model)]
+[for (aClass: Class | model.getClasses())][generateClass(model, aClass)/][/for]
+
+[for (anInterface: Interface | model.getInterfaces())][generateInterface(anInterface)/][/for]
+
+[comment TODO: write test generator][for (aClass: Class | model.getConcreateClasses())][generateClassTest(model, aClass)/][/for][/comment]
+
+[comment TODO: write factory generator][model.generateFactory()/][/comment]
+[/template]
