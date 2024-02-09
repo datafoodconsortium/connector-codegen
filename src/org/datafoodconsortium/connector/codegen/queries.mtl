@@ -48,6 +48,10 @@
 [query public getStereotypeValueSemanticMap(e: Element): String = e.getValue(e.getStereotypeSemantic(), getStereotypePropertyNameSemanticMap()) /]
 [query public getStereotypeValueSkosBroaderMap(e: Element): String = e.getValue(e.getStereotypeSkosBroader(), getStereotypePropertyNameSkosBroaderMap()) /]
 
+[query public getSemanticVocabularyOfProperties(m: Model): Set(String) = m.getConcreateSemanticClasses()->collect(c: Class | c.ownedAttribute)->collect(p: Property | p.getStereotypeValueSemanticMap())->asSet() /]
+[query public getSemanticVocabularyOfClasses(m: Model): Set(String) = m.getConcreateSemanticClasses()->collect(c: Class | c.getStereotypeValueSemanticMap())->asSet() /]
+[query public getSemanticVocabulary(m: Model): Set(String) = m.getSemanticVocabularyOfClasses()->union(m.getSemanticVocabularyOfProperties())->asSet() /]
+
 [query public getPackageImports(model: Model): Set(PackageImport) = model.packageImport /]
 
 [query public getPackages(model: Model): Bag(Package) = model.getPackageImports()->collect(pi: PackageImport | pi.importedPackage) /]
