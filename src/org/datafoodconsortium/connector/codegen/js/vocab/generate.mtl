@@ -14,13 +14,13 @@ function unprefix(prefixed) {
 	return prefixed.replace(':', '').replace(prefix, context['[prefix]'/]);
 }
 
-const DFC = {
+export const DFC = {
 	NAMESPACE: context['["dfc-b"]'/],
 [for (map: String | model.getSemanticVocabulary()->select(s: String | s.startsWith('dfc-b')))]
 	[map.substring(7)/]: unprefix("[map/]"),
 [/for]
 }
 
-module.exports = { default: DFC }
+export default DFC;
 [/file]
 [/template]
