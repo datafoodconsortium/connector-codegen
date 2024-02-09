@@ -8,7 +8,7 @@
 [file (getProperty('typescript_outputFolder_src') + aClass.name.concat('.ts'), false, 'UTF-8')]
 [generateLicense()/]
 
-class [aClass.name.toUpperFirst()/] {
+export default class [aClass.name.toUpperFirst()/] {
 	// TODO
 }
 [/file]
