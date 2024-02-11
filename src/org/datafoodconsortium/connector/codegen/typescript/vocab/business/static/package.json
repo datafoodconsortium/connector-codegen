@@ -1,0 +1,30 @@
+{
+  "name": "@datafoodconsortium/vocab-business",
+  "version": "1.0.0-alpha.1",
+  "type": "module",
+  "description": "Business vocabulary.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "./node_modules/typescript/bin/tsc -p .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/datafoodconsortium/vocab-business-typescript.git"
+  },
+  "keywords": [
+    "datafoodconsortium",
+    "food",
+    "short supply chain"
+  ],
+  "author": "Maxime Lecoq",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/datafoodconsortium/vocab-business-typescript/issues"
+  },
+  "homepage": "https://github.com/datafoodconsortium/vocab-business-typescript#readme",
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

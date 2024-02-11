@@ -429,7 +429,7 @@ public class Generate extends AbstractAcceleoGenerator {
      * @generated NOT 
      */
     public void copyStaticFiles() throws IOException {
-    	String[] languages = new String[] { "php", "ruby", "js/vocab" };
+    	String[] languages = new String[] { "php", "ruby", "typescript/vocab/business" };
     	
     	for (String language : languages) {			
 	    	String base = "src/org/datafoodconsortium/connector/codegen/" + language;
