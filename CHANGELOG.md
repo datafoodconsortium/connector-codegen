@@ -29,6 +29,9 @@ Ruby:
 Php:
 - Fix missing `$` in variable name and missing `->` in `generateAdderBody`.
 
+JS/vocab:
+- Add JS business vocab generator (#17)
+
 ### Changed
 
 Ruby:
