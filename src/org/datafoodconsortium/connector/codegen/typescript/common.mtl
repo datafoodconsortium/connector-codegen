@@ -5,3 +5,13 @@
 [import org::datafoodconsortium::connector::codegen::php::common /]
 
 [template public generateLicense(traceabilityContext: OclAny)][generateLicence()/][/template]
+
+[template public generateImports(classifier: Classifier)]
+[for (ei: ElementImport | classifier.elementImport) separator('\n')][generateImport(ei)/][/for]
+[if (classifier.oclIsTypeOf(Class))]import { SemanticObject[if (classifier.isBlankNode())]Anonymous[/if] } from "@virtual-assembly/semantizer"[/if]
+import { Semanticable } from "@virtual-assembly/semantizer"
+[/template]
+
+[template public generateImport(ei: ElementImport)]
+import [ei.importedElement.name/] from "./[ei.importedElement.name/].js"
+[/template]

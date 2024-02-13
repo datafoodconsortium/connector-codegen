@@ -7,6 +7,7 @@
 [template public generateInterface(anInterface : Interface)]
 [file (getProperty('typescript_outputFolder_src') + anInterface.name.concat('.ts'), false, 'UTF-8')]
 [generateLicense()/]
+[generateImports(anInterface) /]
 
 export default interface [anInterface.name.toUpperFirst()/] {
 	// TODO
