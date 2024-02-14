@@ -8,8 +8,16 @@
 [file (getProperty('typescript_outputFolder_src') + aClass.name.concat('.ts'), false, 'UTF-8')]
 [generateLicense()/]
 
-export default class [aClass.name.toUpperFirst()/] {
+export default class [aClass.name.toUpperFirst()/] [generateGeneralization(aClass)/][generateInterfaceRealizationHeader(aClass)/]{
 	// TODO
 }
 [/file]
+[/template]
+
+[template public generateGeneralization(classifier: Classifier)]
+extends [for (generalization: Generalization | classifier.generalization) separator(', ')][generalization.general.name/][/for][if (classifier.generalization->isEmpty())][if (classifier.isSemantic())]SemanticObject[if (classifier.isBlankNode())]Anonymous[/if][/if][/if] 
+[/template]
+
+[template public generateInterfaceRealizationHeader(aClass: Class)]
+[if not (aClass.interfaceRealization->isEmpty())]implements [for (interface: InterfaceRealization | aClass.interfaceRealization) separator(', ')][interface.contract.name/][/for] [/if]
 [/template]
