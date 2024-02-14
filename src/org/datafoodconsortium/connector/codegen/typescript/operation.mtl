@@ -1,0 +1,70 @@
+[comment encoding = UTF-8 /]
+[module operation('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::datafoodconsortium::connector::codegen::queries /]
+
+[template public generateOperationImplementation(aClass: Class, operation: Operation) post(trim())]
+[if (operation.isConstructor())][genConstructorSignatureImplementation(aClass, operation)/][else]public [generateOperationSignature(aClass, operation) /] {
+	// TODO
+[comment][if (isGetter(operation))]
+	[generateGetterBody(aClass, operation)/]
+[elseif (isSetter(operation))]
+	[generateSetterBody(aClass, operation)/]
+[elseif (isAdder(operation))]
+	[generateAdderBody(aClass, operation)/]
+[elseif (isRemover(operation))]
+	[generateRemoverBody(aClass, operation)/]
+[/if][/comment]
+}
+[/if]
+[/template]
+
+[template public generateOperationSignature(aClass: Class, operation: Operation) post(trim())]
+[if (operation.isConstructor())]constructor[else][if (operation.isAbstract)]abstract [/if][operation.name/][/if]([genOperationParameters(operation)/])[if not (operation.isConstructor())]: [generateOperationReturn(operation)/][/if][if (operation.isAbstract)];[/if]
+[/template]
+
+[template public genOperationParameters(operation: Operation)]
+[operation.getInputParameters().genOperationParameter()->sep(', ')/]
+[/template]
+
+[template public genOperationParameter(parameter: Parameter)]
+[if (parameter.direction = ParameterDirectionKind::_in)][parameter.name/]: [/if][generateType(parameter)/]
+[/template]
+
+[template public generateOperationReturn(operation: Operation)]
+[if (operation.ownedParameter->select(p: Parameter | (p.direction = ParameterDirectionKind::return))->isEmpty())]
+void[else]
+[let parameter: Parameter = operation.ownedParameter->select(p: Parameter | (p.direction = ParameterDirectionKind::return))->at(1)]
+[if (operation.isGetter() and not parameter.type.isPrimitive())]Promise<[operation.ownedParameter->select(p: Parameter | (p.direction = ParameterDirectionKind::return)).genOperationParameter()/][if (parameter.upper = 1)] | undefined[/if]>[else][operation.ownedParameter->select(p: Parameter | (p.direction = ParameterDirectionKind::return)).genOperationParameter()/][/if]
+[/let]
+[/if]
+[/template]
+
+[template public genConstructorSignatureImplementation(aClass: Class, operation: Operation)]
+[if (aClass.isAbstract)]protected[else]public[/if] constructor(parameters: {
+	connector: IConnector,
+	semanticType?: string,
+	[if ((aClass.isSemantic() or aClass.isAbstract) and not aClass.isBlankNode())]
+	semanticId?: string,
+	[/if]
+	other?: Semanticable,
+	[genConstructorParameters(aClass, operation)/],
+	[if (not (aClass.isBlankNode()))]
+	doNotStore?: boolean,
+	[/if]
+}) {
+	// TODO
+	[comment][generateConstructorBody(aClass, operation)/][/comment]
+}
+[/template]
+
+[template public genConstructorParameters(aClass: Class, operation: Operation)]
+[for (parameter: Parameter | operation.getInputParameters()) separator(',\n')][parameter.name/]?: [generateType(parameter.type.name, parameter.upper) /][/for]
+[/template]
+
+[template public generateType(p: Parameter)][if (p.upper = -1)]Array<[/if][p.type.generateTypeName()/][if (not (p.type.isPrimitive()) and p.upper = -1)]>[/if][if (p.type.isPrimitive() and p.upper = -1)]['[]'/][/if][/template]
+
+[template public generateType(name: String, upper: Integer)][if (name = 'String')]string[elseif (name = 'Real' or name = 'Integer' )]number[elseif (name = 'Boolean')]boolean[else][name/][/if][if (upper = 1)][elseif (upper = -1)]['[]'/][/if][/template]
+
+[template public generateTypeName(t: Type)][if (t.name = 'String')]string[elseif (name = 'Real')]float[elseif (name = 'Integer')]int[elseif (name = 'Boolean')]bool[else][t.name/][/if][/template]
+
