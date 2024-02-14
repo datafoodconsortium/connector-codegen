@@ -3,6 +3,7 @@
 
 [import org::datafoodconsortium::connector::codegen::queries /]
 [import org::datafoodconsortium::connector::codegen::typescript::common /]
+[import org::datafoodconsortium::connector::codegen::typescript::operation /]
 
 [template public generateClass(model: Model, aClass : Class)]
 [file (getProperty('typescript_outputFolder_src') + aClass.name.concat('.ts'), false, 'UTF-8')]
@@ -14,6 +15,9 @@ export default class [aClass.name.toUpperFirst()/] [generateGeneralization(aClas
 	[if (aClass.generalization->isEmpty())]
 	protected connector: IConnector;['\n'/]
 	[/if]
+	[for (operation: Operation | aClass.ownedOperation) separator('\n')]
+	[if (operation.isAbstract)][generateOperationSignature(aClass, operation)/][else][generateOperationImplementation(aClass, operation)/][/if]
+	[/for]
 	// TODO
 }
 [/file]
