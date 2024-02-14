@@ -8,8 +8,12 @@
 [file (getProperty('typescript_outputFolder_src') + aClass.name.concat('.ts'), false, 'UTF-8')]
 [generateLicense()/]
 [generateImports(aClass) /]
+import IConnector from "./IConnector.js";
 
-export default class [aClass.name.toUpperFirst()/] [generateGeneralization(aClass)/][generateInterfaceRealizationHeader(aClass)/]{
+export default class [aClass.name.toUpperFirst()/] [generateGeneralization(aClass)/][generateInterfaceRealizationHeader(aClass)/]{['\n'/]
+	[if (aClass.generalization->isEmpty())]
+	protected connector: IConnector;['\n'/]
+	[/if]
 	// TODO
 }
 [/file]
