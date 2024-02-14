@@ -3,14 +3,21 @@
 
 [import org::datafoodconsortium::connector::codegen::queries /]
 [import org::datafoodconsortium::connector::codegen::typescript::common /]
+[import org::datafoodconsortium::connector::codegen::typescript::operation /]
 
 [template public generateInterface(anInterface : Interface)]
 [file (getProperty('typescript_outputFolder_src') + anInterface.name.concat('.ts'), false, 'UTF-8')]
 [generateLicense()/]
 [generateImports(anInterface) /]
 
-export default interface [anInterface.name.toUpperFirst()/] {
+export default interface [anInterface.name.toUpperFirst()/] [generateGeneralization(anInterface)/]{
 	// TODO
 }
 [/file]
 [/template]
+
+[template public generateGeneralization(interface: Interface)]
+[if (not (interface.generalization->isEmpty()) or interface.isSemantic())]extends [if (interface.isSemantic())]Semanticable[if (not (interface.generalization->isEmpty()))], [/if][/if][for (generalization: Generalization | interface.generalization) separator(', ') after(' ')][generalization.general.name/][/for][/if]
+[/template]
+
+[template public generateOperationSignature(operation: Operation)][operation.name/]([genOperationParameters(operation)/])[if not (operation.isConstructor())]: [generateOperationReturn(operation)/][/if][/template]
