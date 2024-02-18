@@ -2,9 +2,12 @@
 [module operation('http://www.eclipse.org/uml2/5.0.0/UML')]
 
 [import org::datafoodconsortium::connector::codegen::queries /]
+[import org::datafoodconsortium::connector::codegen::typescript::common /]
 
 [template public generateOperationImplementation(aClass: Class, operation: Operation) post(trim())]
-[if (operation.isConstructor())][genConstructorSignatureImplementation(aClass, operation)/][else]public [generateOperationSignature(aClass, operation) /] {
+[if (operation.isConstructor())]
+[genConstructorSignatureImplementation(aClass, operation)/]
+[else]public [generateOperationSignature(aClass, operation) /] {
 	// TODO
 [comment][if (isGetter(operation))]
 	[generateGetterBody(aClass, operation)/]
@@ -43,19 +46,71 @@ void[else]
 [template public genConstructorSignatureImplementation(aClass: Class, operation: Operation)]
 [if (aClass.isAbstract)]protected[else]public[/if] constructor(parameters: {
 	connector: IConnector,
-	semanticType?: string,
-	[if ((aClass.isSemantic() or aClass.isAbstract) and not aClass.isBlankNode())]
+	[if (aClass.isSemantic() or aClass.isAbstract)]
 	semanticId?: string,
+	[if (aClass.isAbstract or aClass.isBlankNode())]
+	semanticType?: string,
 	[/if]
 	other?: Semanticable,
+	[/if]
+	[if ((aClass.isSemantic() or aClass.isAbstract) and operation.hasInputParameter())]
 	[genConstructorParameters(aClass, operation)/],
 	[if (not (aClass.isBlankNode()))]
 	doNotStore?: boolean,
-	[/if]
-}) {
-	// TODO
-	[comment][generateConstructorBody(aClass, operation)/][/comment]
+[/if]}) {
+	[generateConstructorBody(aClass, operation)/]
+}[/if]
+[/template]
+
+[template public generateConstructorBody(aClass: Class, operation: Operation)]
+['\n'/][if (aClass.isAbstract)]
+if (parameters.other) {
+	super({
+		[if (aClass.hasGeneralization())]
+		connector: parameters.connector,
+		[/if]
+		semanticId: parameters.semanticId!,
+		other: parameters.other,
+	});
+}[else]
+const type: string = [if (aClass.isAbstract or aClass.isBlankNode())]parameters.semanticType ? parameters.semanticType : [/if][toSemanticTypeConst(aClass)/];
+
+if (parameters.other) {
+	super({
+		[if (aClass.hasGeneralization())]
+		connector: parameters.connector,
+		[/if]
+		semanticId: parameters.semanticId!,
+		other: parameters.other,
+	});
+	if (!parameters.other.isSemanticTypeOf(type))
+		throw new Error("Can't create the semantic object of type " + type + " from a copy: the copy is of type " + parameters.other.getSemanticType() + ".");
+}[/if] else {
+	super({
+		[if (aClass.hasGeneralization())]
+		connector: parameters.connector,
+		[/if]
+		semanticId: parameters.semanticId!,
+		semanticType: [if (aClass.isAbstract)]parameters.semanticType![else]type[/if],
+		[if (operation.hasInputParameter())]
+		[generateConstructorSuper(operation, aClass)/]
+	[/if]});
 }
+[if (not aClass.hasGeneralization())]this.connector = parameters.connector;['\n'/][/if]
+[for (p: Parameter | operation.getUninitializedParentParameters()) separator('\n')]
+if (parameters.[p.name/][if (p.type.name = 'Integer' or p.type.name = 'Real')] || parameters.[p.name/] === 0[/if]) {
+	[if (p.upper = 1)]
+	this.[getSetter(p).name /](parameters.[p.name /]);
+	[else]
+	parameters.[p.name /].forEach(e => this.[getAdder(p).name /](e));
+	[/if]
+}
+[/for]
+[/template]
+
+[comment handle initializer / initializer parent /]
+[template public generateConstructorSuper(constructor: Operation, aClass: Class) post(trim())]
+[if (constructor.hasInitializedParentParameters())][/if][for (parameter: Parameter | constructor.getInitializedParentParameters()) separator(',\n')][parameter.name/]: parameters.[parameter.name/][/for]
 [/template]
 
 [template public genConstructorParameters(aClass: Class, operation: Operation)]

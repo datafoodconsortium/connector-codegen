@@ -11,6 +11,9 @@
 [generateImports(aClass) /]
 import IConnector from "./IConnector.js";
 
+[if (not aClass.isAbstract)]
+const [toSemanticTypeConst(aClass)/]: string = "[aClass.getValue(aClass.getAppliedStereotype('datafoodconsortium_connector::semantic'), 'map')/]";['\n'/]
+[/if]
 export default [if (aClass.isAbstract)]abstract [/if]class [aClass.name.toUpperFirst()/] [generateGeneralization(aClass)/][generateInterfaceRealizationHeader(aClass)/]{['\n'/]
 	[if (aClass.generalization->isEmpty())]
 	protected connector: IConnector;['\n'/]
