@@ -15,3 +15,7 @@ import { Semanticable } from "@virtual-assembly/semantizer"
 [template public generateImport(ei: ElementImport)]
 import [ei.importedElement.name/] from "./[ei.importedElement.name/].js"
 [/template]
+
+[template public toSemanticTypeConst(classifier: Classifier) post(trim())]
+[classifier.name.replaceAll('(.)([A-Z]+)', '$1_$2').toUpper()/]_SEM_TYPE
+[/template]
