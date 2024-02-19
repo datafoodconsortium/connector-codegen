@@ -23,24 +23,7 @@
 [/template]
 
 [template public generateOperationSignature(aClass: Class, operation: Operation) post(trim())]
-[if (operation.isConstructor())]constructor[else][if (operation.isAbstract)]abstract [/if][operation.name/][/if]([genOperationParameters(operation)/])[if not (operation.isConstructor())]: [generateOperationReturn(operation)/][/if][if (operation.isAbstract)];[/if]
-[/template]
-
-[template public genOperationParameters(operation: Operation)]
-[operation.getInputParameters().genOperationParameter()->sep(', ')/]
-[/template]
-
-[template public genOperationParameter(parameter: Parameter)]
-[if (parameter.direction = ParameterDirectionKind::_in)][parameter.name/]: [/if][generateType(parameter)/]
-[/template]
-
-[template public generateOperationReturn(operation: Operation)]
-[if (operation.ownedParameter->select(p: Parameter | (p.direction = ParameterDirectionKind::return))->isEmpty())]
-void[else]
-[let parameter: Parameter = operation.ownedParameter->select(p: Parameter | (p.direction = ParameterDirectionKind::return))->at(1)]
-[if (operation.isGetter() and not parameter.type.isPrimitive())]Promise<[operation.ownedParameter->select(p: Parameter | (p.direction = ParameterDirectionKind::return)).genOperationParameter()/][if (parameter.upper = 1)] | undefined[/if]>[else][operation.ownedParameter->select(p: Parameter | (p.direction = ParameterDirectionKind::return)).genOperationParameter()/][/if]
-[/let]
-[/if]
+[if (operation.isConstructor())]constructor[else][if (operation.isAbstract)]abstract [/if][operation.name/][/if]([genOperationParameters(operation)/])[if not (operation.isConstructor())]: [generateOperationReturnType(operation)/][/if][if (operation.isAbstract)];[/if]
 [/template]
 
 [template public genConstructorSignatureImplementation(aClass: Class, operation: Operation)]
@@ -60,6 +43,19 @@ void[else]
 [/if]}) {
 	[generateConstructorBody(aClass, operation)/]
 }[/if]
+[/template]
+
+[template public genConstructorParameters(aClass: Class, operation: Operation)]
+[for (parameter: Parameter | operation.getInputParameters()) separator(',\n')][parameter.name/]?: [generateType(parameter.type.name, parameter.upper) /][/for]
+[/template]
+
+[template public generateOperationReturnType(operation: Operation)]
+[if (operation.ownedParameter->select(p: Parameter | (p.direction = ParameterDirectionKind::return))->isEmpty())]
+void[else]
+[let parameter: Parameter = operation.ownedParameter->select(p: Parameter | (p.direction = ParameterDirectionKind::return))->at(1)]
+[if (operation.isGetter() and not parameter.type.isPrimitive())]Promise<[operation.ownedParameter->select(p: Parameter | (p.direction = ParameterDirectionKind::return)).genOperationParameter()/][if (parameter.upper = 1)] | undefined[/if]>[else][operation.ownedParameter->select(p: Parameter | (p.direction = ParameterDirectionKind::return)).genOperationParameter()/][/if]
+[/let]
+[/if]
 [/template]
 
 [template public generateConstructorBody(aClass: Class, operation: Operation)]
@@ -113,8 +109,12 @@ if (parameters.[p.name/][if (p.type.name = 'Integer' or p.type.name = 'Real')] |
 [if (constructor.hasInitializedParentParameters())][/if][for (parameter: Parameter | constructor.getInitializedParentParameters()) separator(',\n')][parameter.name/]: parameters.[parameter.name/][/for]
 [/template]
 
-[template public genConstructorParameters(aClass: Class, operation: Operation)]
-[for (parameter: Parameter | operation.getInputParameters()) separator(',\n')][parameter.name/]?: [generateType(parameter.type.name, parameter.upper) /][/for]
+[template public genOperationParameters(operation: Operation)]
+[operation.getInputParameters().genOperationParameter()->sep(', ')/]
+[/template]
+
+[template public genOperationParameter(parameter: Parameter)]
+[if (parameter.direction = ParameterDirectionKind::_in)][parameter.name/]: [/if][generateType(parameter)/]
 [/template]
 
 [template public generateType(p: Parameter)][if (p.upper = -1)]Array<[/if][p.type.generateTypeName()/][if (not (p.type.isPrimitive()) and p.upper = -1)]>[/if][if (p.type.isPrimitive() and p.upper = -1)]['[]'/][/if][/template]
