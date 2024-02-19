@@ -20,4 +20,4 @@ export default interface [anInterface.name.toUpperFirst()/] [generateGeneralizat
 [if (not (interface.generalization->isEmpty()) or interface.isSemantic())]extends [if (interface.isSemantic())]Semanticable[if (not (interface.generalization->isEmpty()))], [/if][/if][for (generalization: Generalization | interface.generalization) separator(', ') after(' ')][generalization.general.name/][/for][/if]
 [/template]
 
-[template public generateOperationSignature(operation: Operation)][operation.name/]([genOperationParameters(operation)/])[if not (operation.isConstructor())]: [generateOperationReturn(operation)/][/if][/template]
+[template public generateOperationSignature(operation: Operation)][operation.name/]([genOperationParameters(operation)/])[if not (operation.isConstructor())]: [generateOperationReturnType(operation)/][/if][/template]
