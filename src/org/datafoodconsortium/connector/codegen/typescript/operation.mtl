@@ -120,7 +120,7 @@ for await (const semanticId of properties) {
 [/if]return results;[elseif (returned.type.isBlankNode())]
 const blankNode: any = this.getSemanticPropertyAnonymous("[map/]");
 return <[returned.type.name /]> this.connector.getDefaultFactory().createFromRdfDataset(blankNode);[elseif (not returned.type.isPrimitive())]
-let result: [returned.type.name/] = undefined;
+let result: [returned.type.name/] | undefined = undefined;
 const semanticId = this.getSemanticProperty("[map/]");
 if (semanticId) {
 	const semanticObject: Semanticable | undefined = await this.connector.fetch(semanticId, options);
