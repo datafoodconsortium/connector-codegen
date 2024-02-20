@@ -11,8 +11,7 @@
 [elseif (isSetter(operation))]
 	[generateSetterBody(aClass, operation)/]
 [elseif (isAdder(operation))]
-	// TODO: [operation.name/] (adder)
-[comment]	[generateAdderBody(aClass, operation)/][/comment]
+	[generateAdderBody(aClass, operation)/]
 [elseif (isRemover(operation))]
 	// TODO: [operation.name/] (remover)
 [comment]	[generateRemoverBody(aClass, operation)/][/comment]
@@ -138,6 +137,19 @@ return [if (returned.type.name = 'Real' or returned.type.name = 'Integer')]Numbe
 [let parameter: Parameter = operation.getInputParameter()][let property: Property = operation.getProperty(aClass)][let map: String = property.getMapping()]
 [if (parameter.type.isPrimitive())]this.setSemanticPropertyLiteral("[map/]", [parameter.name/]);[else]this.setSemanticProperty[if (parameter.type.isBlankNode())]Anonymous[else]Reference[/if]("[map/]", [parameter.name/]);
 [if (not parameter.type.isBlankNode())]['\n'/]this.connector.store([parameter.name/]);[/if][/if][/let][/let][/let]
+[/template]
+
+[template public generateAdderBody(aClass: Class, operation: Operation)]
+[let parameter: Parameter = operation.getInputParameter()]
+[let property: Property = operation.getProperty(aClass)]
+[let map: String = property.getMapping()]
+[if (parameter.type.isPrimitive())]this.addSemanticPropertyLiteral("[map/]", [parameter.name/]);[else]if ([parameter.name/].isSemanticObjectAnonymous()) {
+	this.addSemanticPropertyAnonymous("[map/]", [parameter.name/]);
+}
+else {
+	this.connector.store([parameter.name/]);
+	this.addSemanticPropertyReference("[map/]", [parameter.name/]);
+}[/if][/let][/let][/let]
 [/template]
 
 [template public generateTypeWithDefaultUndefined(p: Parameter)]
