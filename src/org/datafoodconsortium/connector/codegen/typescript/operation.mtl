@@ -9,8 +9,7 @@
 [if (isGetter(operation))]
 	[generateGetterBody(aClass, operation)/]
 [elseif (isSetter(operation))]
-	// TODO: [operation.name/] (setter)
-[comment]	[generateSetterBody(aClass, operation)/][/comment]
+	[generateSetterBody(aClass, operation)/]
 [elseif (isAdder(operation))]
 	// TODO: [operation.name/] (adder)
 [comment]	[generateAdderBody(aClass, operation)/][/comment]
@@ -133,6 +132,12 @@ return result;
 [else]
 return [if (returned.type.name = 'Real' or returned.type.name = 'Integer')]Number([/if]this.getSemanticProperty("[map/]")[if (returned.type.name = 'Real' or returned.type.name = 'Integer')])[/if];[/if]
 [/let][/let][/let][/let]
+[/template]
+
+[template public generateSetterBody(aClass: Class, operation: Operation)]
+[let parameter: Parameter = operation.getInputParameter()][let property: Property = operation.getProperty(aClass)][let map: String = property.getMapping()]
+[if (parameter.type.isPrimitive())]this.setSemanticPropertyLiteral("[map/]", [parameter.name/]);[else]this.setSemanticProperty[if (parameter.type.isBlankNode())]Anonymous[else]Reference[/if]("[map/]", [parameter.name/]);
+[if (not parameter.type.isBlankNode())]['\n'/]this.connector.store([parameter.name/]);[/if][/if][/let][/let][/let]
 [/template]
 
 [template public generateTypeWithDefaultUndefined(p: Parameter)]
