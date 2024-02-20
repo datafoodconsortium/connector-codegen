@@ -176,6 +176,6 @@ throw new Error("Not yet implemented.");
 
 [template public generateType(name: String, upper: Integer)][if (name = 'String')]string[elseif (name = 'Real' or name = 'Integer' )]number[elseif (name = 'Boolean')]boolean[else][name/][/if][if (upper = 1)][elseif (upper = -1)]['[]'/][/if][/template]
 
-[template public generateTypeName(t: Type)][if (t.name = 'String')]string[elseif (name = 'Real')]float[elseif (name = 'Integer')]int[elseif (name = 'Boolean')]bool[else][t.name/][/if][/template]
+[template public generateTypeName(t: Type)][if (t.name = 'String')]string[elseif (name = 'Real' or name = 'Integer')]number[elseif (name = 'Boolean')]boolean[else][t.name/][/if][/template]
 
 [query private isAsyncParameter(p: Parameter): Boolean = (not p.type.isBlankNode() and ((not p.type.isPrimitive()) or p.upper =-1)) /]
