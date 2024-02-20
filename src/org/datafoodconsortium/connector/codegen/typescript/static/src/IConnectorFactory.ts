@@ -1,43 +1,39 @@
-// External
 import { Semanticable } from "@virtual-assembly/semantizer";
-
-// Static
-import IConnectorFactory from "./IConnectorFactory.js";
-import IGetterOptions from "./IGetterOptions.js";
-import IConnectorExportOptions from "./IConnectorExportOptions.js";
-import IConnectorImportOptions from "./IConnectorImportOptions.js";
-
-// Generated Code
+import DatasetExt from "rdf-ext/lib/Dataset";
+import { DatasetCore } from '@rdfjs/types';
 import IAddress from "./IAddress";
-import IAgent from "./IAgent";
 import IAllergenCharacteristic from "./IAllergenCharacteristic";
-import IAllergenDimension from "./IAllergenDimension";
 import ICatalog from "./ICatalog";
 import ICatalogItem from "./ICatalogItem";
-import ICertification from "./ICertification";
-import IClaim from "./IClaim";
 import ICustomerCategory from "./ICustomerCategory";
 import IEnterprise from "./IEnterprise";
-import IGeographicalOrigin from "./IGeographicalOrigin";
-import INatureOrigin from "./INatureOrigin";
 import INutrientCharacteristic from "./INutrientCharacteristic";
-import INutrientDimension from "./INutrientDimension";
 import IOffer from "./IOffer";
 import IOrder from "./IOrder";
 import IOrderLine from "./IOrderLine";
-import IPartOrigin from "./IPartOrigin";
 import IPerson from "./IPerson";
 import IPhysicalCharacteristic from "./IPhysicalCharacteristic";
-import IPhysicalDimension from "./IPhysicalDimension";
 import IPrice from "./IPrice";
-import IProductType from "./IProductType";
 import IQuantity from "./IQuantity";
 import ISaleSession from "./ISaleSession";
 import ISuppliedProduct from "./ISuppliedProduct";
 import IUnit from "./IUnit";
+import IAllergenDimension from "./IAllergenDimension";
+import INutrientDimension from "./INutrientDimension";
+import IAgent from "./IAgent";
+import IPhysicalDimension from "./IPhysicalDimension";
+import IPartOrigin from "./IPartOrigin";
+import INatureOrigin from "./INatureOrigin";
+import ICertification from "./ICertification";
+import IGeographicalOrigin from "./IGeographicalOrigin";
+import IClaim from "./IClaim";
+import IProductType from "./IProductType";
 
-export default interface IConnector {
-    
+export default interface IConnectorFactory {
+
+    createFromRdfDataset(dataset: DatasetExt): Semanticable | undefined;
+    createFromRdfDatasetCore(dataset: DatasetCore): Semanticable | undefined;
+    createFromType(type: string): Semanticable | undefined;
     createAddress(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, street?: string, postalCode?: string, city?: string, country?: string}): IAddress;
     createAllergenCharacteristic(parameters: {other?: Semanticable, unit?: IUnit, value?: number, allergenDimension?: IAllergenDimension}): IAllergenCharacteristic;
     createCatalog(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, maintainers?: IEnterprise[], items?: ICatalogItem[]}): ICatalog;
@@ -54,17 +50,5 @@ export default interface IConnector {
     createQuantity(parameters: {other?: Semanticable, unit?: IUnit, value?: number}): IQuantity;
     createSaleSession(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, beginDate?: string, endDate?: string, quantity?: number, offers?: IOffer[]}): ISaleSession;
     createSuppliedProduct(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, name?: string, description?: string, productType?: IProductType, quantity?: IQuantity, alcoholPercentage?: number, lifetime?: string, claims?: IClaim[], usageOrStorageConditions?: string, allergenCharacteristics?: IAllergenCharacteristic[], nutrientCharacteristics?: INutrientCharacteristic[], physicalCharacteristics?: IPhysicalCharacteristic[], geographicalOrigin?: IGeographicalOrigin, catalogItems?: ICatalogItem[], certifications?: ICertification[], natureOrigin?: INatureOrigin[], partOrigin?: IPartOrigin[], totalTheoreticalStock?: number}): ISuppliedProduct;
-   
-    export(objects: Array<Semanticable>, options?: IConnectorExportOptions): Promise<string>;
-    fetch(semanticObjectId: string, options?: IGetterOptions): Promise<Semanticable | undefined>;
-    
-    // TODO: remove
-    getDefaultFactory(): IConnectorFactory;
-
-    import(data: string, options?: IConnectorImportOptions): Promise<Array<Semanticable>>;
-    importOne(data: string, options?: IConnectorImportOptions): Promise<Semanticable | undefined>;
-    importOneTyped<Type>(data: string, options?: IConnectorImportOptions): Promise<Type | undefined>;
-    
-    store(semanticObject: Semanticable): void;
 
 }
