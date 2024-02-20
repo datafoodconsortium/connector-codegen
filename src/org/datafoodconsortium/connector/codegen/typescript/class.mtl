@@ -21,7 +21,15 @@ export default [if (aClass.isAbstract)]abstract [/if]class [aClass.name.toUpperF
 	[for (operation: Operation | aClass.ownedOperation) separator('\n')]
 	[if (operation.isAbstract)][generateOperationSignature(aClass, operation)/][else][generateOperationImplementation(aClass, operation)/][/if]
 	[/for]
-	// TODO
+
+	[if not (aClass.interfaceRealization->isEmpty())]
+	[for (interface: Interface | aClass.getAllImplementedInterfaces()->select(i: Interface | aClass.generalization->asSequence()->at(1).general.allRealizedInterfaces()->excludes(i)))]
+		[for (operation: Operation | interface.getOperations()->select(o: Operation | aClass.ownedOperation->excludesAll(aClass.ownedOperation->select(op: Operation | op.isAbstract and o.name = op.name)))) separator ('\n')]
+	[generateOperationImplementation(aClass, operation)/]
+		[/for]
+	[/for]
+	[/if]
+
 }
 [/file]
 [/template]
