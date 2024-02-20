@@ -112,7 +112,8 @@ if (parameters.[p.name/][if (p.type.name = 'Integer' or p.type.name = 'Real')] |
 blankNodesId.forEach(blankNodeId => {
 	const blankNode = <[returned.type.name/]> this.connector.getDefaultFactory().createFromRdfDataset(blankNodeId);
 	results.push(blankNode);
-});[else]const properties = this.getSemanticPropertyAll("[map/]");
+});
+[else]const properties = this.getSemanticPropertyAll("[map/]");
 for await (const semanticId of properties) {
 	const semanticObject: Semanticable | undefined = await this.connector.fetch(semanticId, options);
 	if (semanticObject) results.push([if (not returned.type.isPrimitive())]<[generateTypeName(returned.type)/]>[/if]semanticObject[if (returned.type.isPrimitive())] as unknown as [returned.type.generateTypeName()/]['[]'/][/if]);
@@ -126,10 +127,8 @@ if (semanticId) {
 	const semanticObject: Semanticable | undefined = await this.connector.fetch(semanticId, options);
 	if (semanticObject) result = <[returned.type.name/]> semanticObject;
 }
-return result;
-[else]
-return [if (returned.type.name = 'Real' or returned.type.name = 'Integer')]Number([/if]this.getSemanticProperty("[map/]")[if (returned.type.name = 'Real' or returned.type.name = 'Integer')])[/if];[/if]
-[/let][/let][/let][/let]
+return result;[else]
+return [if (returned.type.name = 'Real' or returned.type.name = 'Integer')]Number([/if]this.getSemanticProperty("[map/]")[if (returned.type.name = 'Real' or returned.type.name = 'Integer')])[/if];[/if][/let][/let][/let][/let]
 [/template]
 
 [template public generateSetterBody(aClass: Class, operation: Operation)]
