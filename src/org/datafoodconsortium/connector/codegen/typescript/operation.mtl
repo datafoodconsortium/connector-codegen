@@ -55,7 +55,7 @@
 [let parameter: Parameter = getReturnParameter(operation)]
 [let resolved: OrderedSet(Parameter) = operation.getReturnParameters()]
 [let isAsyncGetter: Boolean = (operation.isGetter() and isAsyncParameter(parameter))]
-[if (operation.isGetter() and not parameter.type.isPrimitive())]Promise<[resolved.genOperationParameter()/][if (parameter.upper = 1)] | undefined[/if]>[else][resolved.genOperationParameter()/][/if][/let][/let][/let]
+[if (isAsyncGetter)]Promise<[resolved.genOperationParameter()/][if (parameter.upper = 1)] | undefined[/if]>[else][resolved.genOperationParameter()/][/if][/let][/let][/let]
 [else]void[/if]
 [/template]
 
@@ -118,7 +118,7 @@ blankNodesId.forEach(blankNodeId => {
 });[else]const properties = this.getSemanticPropertyAll("[map/]");
 for await (const semanticId of properties) {
 	const semanticObject: Semanticable | undefined = await this.connector.fetch(semanticId, options);
-	if (semanticObject) results.push(<[generateTypeName(returned.type)/]>semanticObject);
+	if (semanticObject) results.push([if (not returned.type.isPrimitive())]<[generateTypeName(returned.type)/]>[/if]semanticObject[if (returned.type.isPrimitive())] as unknown as [returned.type.generateTypeName()/]['[]'/][/if]);
 }
 [/if]return results;[elseif (returned.type.isBlankNode())]
 const blankNode: any = this.getSemanticPropertyAnonymous("[map/]");
@@ -152,7 +152,7 @@ return [if (returned.type.name = 'Real' or returned.type.name = 'Integer')]Numbe
 [if (parameter.direction = ParameterDirectionKind::_in)][parameter.name/]: [/if][generateType(parameter)/]
 [/template]
 
-[template public generateType(p: Parameter)][if (not (p.type.isBlankNode()) and p.upper = -1)]Array<[/if][p.type.generateTypeName()/][if (not (p.type.isBlankNode()) and p.upper = -1)]>[/if][if (p.type.isPrimitive() and p.upper = -1)]['[]'/][/if][/template]
+[template public generateType(p: Parameter)][if (not (p.type.isBlankNode()) and p.upper = -1)]Array<[/if][p.type.generateTypeName()/][if (p.type.isPrimitive() and p.upper = -1)]['[]'/][/if][if (not (p.type.isBlankNode()) and p.upper = -1)]>[/if][/template]
 
 [template public generateType(name: String, upper: Integer)][if (name = 'String')]string[elseif (name = 'Real' or name = 'Integer' )]number[elseif (name = 'Boolean')]boolean[else][name/][/if][if (upper = 1)][elseif (upper = -1)]['[]'/][/if][/template]
 
