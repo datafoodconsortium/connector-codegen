@@ -10,6 +10,7 @@
 [generateLicense()/]
 [generateImports(aClass) /]
 import IConnector from "./IConnector.js";
+import IGetterOptions from "./IGetterOptions.js";
 
 [if (not aClass.isAbstract)]
 const [toSemanticTypeConst(aClass)/]: string = "[aClass.getValue(aClass.getAppliedStereotype('datafoodconsortium_connector::semantic'), 'map')/]";['\n'/]
