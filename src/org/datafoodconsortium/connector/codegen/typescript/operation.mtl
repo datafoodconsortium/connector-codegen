@@ -13,8 +13,7 @@
 [elseif (isAdder(operation))]
 	[generateAdderBody(aClass, operation)/]
 [elseif (isRemover(operation))]
-	// TODO: [operation.name/] (remover)
-[comment]	[generateRemoverBody(aClass, operation)/][/comment]
+	[generateRemoverBody(aClass, operation)/]
 [/if]
 }
 [/if]
@@ -150,6 +149,10 @@ else {
 	this.connector.store([parameter.name/]);
 	this.addSemanticPropertyReference("[map/]", [parameter.name/]);
 }[/if][/let][/let][/let]
+[/template]
+
+[template public generateRemoverBody(aClass: Class, operation: Operation)]
+throw new Error("Not yet implemented.");
 [/template]
 
 [template public generateTypeWithDefaultUndefined(p: Parameter)]
