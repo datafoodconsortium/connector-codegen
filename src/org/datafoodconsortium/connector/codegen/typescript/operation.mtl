@@ -24,7 +24,7 @@
 
 [template public generateOperationSignature(aClass: Class, operation: Operation)]
 [let isAsyncGetter: Boolean = (operation.isGetter() and getReturnParameter(operation).isAsyncParameter())]
-[if (operation.isConstructor())]constructor[else][if (operation.isAbstract)] abstract [/if][if (isAsyncGetter)]async [/if][operation.name/][/if]([if (isAsyncGetter)]options?: IGetterOptions[else][genOperationParameters(operation)/][/if])[if not (operation.isConstructor())]: [generateOperationReturnType(operation)/][/if][/let]
+[if (operation.isConstructor())]constructor [else][if (operation.isAbstract)]abstract [/if][if (isAsyncGetter and not operation.isAbstract)]async [/if][operation.name/][/if]([if (isAsyncGetter)]options?: IGetterOptions[else][genOperationParameters(operation)/][/if])[if not (operation.isConstructor())]: [generateOperationReturnType(operation)/][/if][/let]
 [/template]
 
 [template public genConstructorSignatureImplementation(aClass: Class, operation: Operation)]
