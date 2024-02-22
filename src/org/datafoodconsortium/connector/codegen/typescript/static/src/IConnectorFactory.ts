@@ -1,33 +1,37 @@
+// External
 import { Semanticable } from "@virtual-assembly/semantizer";
 import DatasetExt from "rdf-ext/lib/Dataset";
 import { DatasetCore } from '@rdfjs/types';
+
+// Generated Interfaces
 import IAddress from "./IAddress";
+import IAgent from "./IAgent";
 import IAllergenCharacteristic from "./IAllergenCharacteristic";
+import IAllergenDimension from "./IAllergenDimension";
 import ICatalog from "./ICatalog";
 import ICatalogItem from "./ICatalogItem";
 import ICustomerCategory from "./ICustomerCategory";
+import ICertification from "./ICertification";
+import IClaim from "./IClaim";
 import IEnterprise from "./IEnterprise";
+import IGeographicalOrigin from "./IGeographicalOrigin";
+import INatureOrigin from "./INatureOrigin";
 import INutrientCharacteristic from "./INutrientCharacteristic";
+import INutrientDimension from "./INutrientDimension";
 import IOffer from "./IOffer";
 import IOrder from "./IOrder";
 import IOrderLine from "./IOrderLine";
+import IPartOrigin from "./IPartOrigin";
 import IPerson from "./IPerson";
 import IPhysicalCharacteristic from "./IPhysicalCharacteristic";
+import IPhysicalDimension from "./IPhysicalDimension";
 import IPrice from "./IPrice";
+import IProductType from "./IProductType";
 import IQuantity from "./IQuantity";
 import ISaleSession from "./ISaleSession";
 import ISuppliedProduct from "./ISuppliedProduct";
 import IUnit from "./IUnit";
-import IAllergenDimension from "./IAllergenDimension";
-import INutrientDimension from "./INutrientDimension";
-import IAgent from "./IAgent";
-import IPhysicalDimension from "./IPhysicalDimension";
-import IPartOrigin from "./IPartOrigin";
-import INatureOrigin from "./INatureOrigin";
-import ICertification from "./ICertification";
-import IGeographicalOrigin from "./IGeographicalOrigin";
-import IClaim from "./IClaim";
-import IProductType from "./IProductType";
+
 
 export default interface IConnectorFactory {
 
