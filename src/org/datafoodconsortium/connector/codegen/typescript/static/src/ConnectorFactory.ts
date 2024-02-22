@@ -1,53 +1,60 @@
+// External
 import { Semanticable } from "@virtual-assembly/semantizer";
 import DatasetExt from "rdf-ext/lib/Dataset.js";
 import { DatasetCore } from '@rdfjs/types';
 
+// Static
+import IConnector from "./IConnector.js";
+import IConnectorFactory from "./IConnectorFactory.js";
+
+// Generated Classes
 import Address from "./Address.js";
-import Catalog from "./Catalog.js";
-import SaleSession from "./SaleSession.js";
-import Order from "./Order.js";
-import OrderLine from "./OrderLine.js";
 import AllergenCharacteristic from "./AllergenCharacteristic.js";
+import Catalog from "./Catalog.js";
 import CatalogItem from "./CatalogItem.js";
 import CustomerCategory from "./CustomerCategory.js";
 import Enterprise from "./Enterprise.js";
-import IConnectorFactory from "./IConnectorFactory.js";
 import NutrientCharacteristic from "./NutrientCharacteristic.js";
 import Offer from "./Offer.js";
+import Order from "./Order.js";
+import OrderLine from "./OrderLine.js";
 import Person from "./Person.js";
 import PhysicalCharacteristic from "./PhysicalCharacteristic.js";
 import Price from "./Price.js";
 import QuantitativeValue from "./QuantitativeValue.js";
+import SaleSession from "./SaleSession.js";
 import SKOSConcept from "./SKOSConcept.js";
 import SuppliedProduct from "./SuppliedProduct.js";
-import IAddress from "./IAddress.js";
-import IConnector from "./IConnector.js";
-import IAllergenDimension from "./IAllergenDimension.js";
-import IUnit from "./IUnit.js";
-import ICatalogItem from "./ICatalogItem.js";
-import IEnterprise from "./IEnterprise.js";
-import ICatalog from "./ICatalog.js";
-import IOffer from "./IOffer.js";
-import ISuppliedProduct from "./ISuppliedProduct.js";
-import ICustomerCategory from "./ICustomerCategory.js";
-import INutrientDimension from "./INutrientDimension.js";
-import IPrice from "./IPrice.js";
-import IOrderLine from "./IOrderLine.js";
+
+// Generated Interfaces
 import IAgent from "./IAgent.js";
-import ISaleSession from "./ISaleSession.js";
-import IOrder from "./IOrder.js";
-import IPhysicalDimension from "./IPhysicalDimension.js";
-import IPartOrigin from "./IPartOrigin.js";
-import INatureOrigin from "./INatureOrigin.js";
-import ICertification from "./ICertification.js";
-import IGeographicalOrigin from "./IGeographicalOrigin.js";
-import IPhysicalCharacteristic from "./IPhysicalCharacteristic.js";
-import INutrientCharacteristic from "./INutrientCharacteristic.js";
+import IAddress from "./IAddress.js";
 import IAllergenCharacteristic from "./IAllergenCharacteristic.js";
+import IAllergenDimension from "./IAllergenDimension.js";
+import ICatalog from "./ICatalog.js";
+import ICatalogItem from "./ICatalogItem.js";
+import ICertification from "./ICertification.js";
 import IClaim from "./IClaim.js";
-import IQuantity from "./IQuantity.js";
-import IProductType from "./IProductType.js";
+import ICustomerCategory from "./ICustomerCategory.js";
+import IEnterprise from "./IEnterprise.js";
+import IGeographicalOrigin from "./IGeographicalOrigin.js";
+import IPrice from "./IPrice.js";
+import ISuppliedProduct from "./ISuppliedProduct.js";
+import INatureOrigin from "./INatureOrigin.js";
+import INutrientCharacteristic from "./INutrientCharacteristic.js";
+import INutrientDimension from "./INutrientDimension.js";
+import IOffer from "./IOffer.js";
+import IOrder from "./IOrder.js";
+import IOrderLine from "./IOrderLine.js";
+import IPartOrigin from "./IPartOrigin.js";
 import IPerson from "./IPerson.js";
+import IPhysicalCharacteristic from "./IPhysicalCharacteristic.js";
+import IPhysicalDimension from "./IPhysicalDimension.js";
+import IProductType from "./IProductType.js";
+import IQuantity from "./IQuantity.js";
+import ISaleSession from "./ISaleSession.js";
+import IUnit from "./IUnit.js";
+
 
 export default class ConnectorFactory implements IConnectorFactory {
 
