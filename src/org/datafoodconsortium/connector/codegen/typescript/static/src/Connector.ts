@@ -21,31 +21,21 @@ import IGetterOptions from "./IGetterOptions.js";
 import IAddress from "./IAddress.js";
 import IAgent from "./IAgent.js";
 import IAllergenCharacteristic from "./IAllergenCharacteristic.js";
-import IAllergenDimension from "./IAllergenDimension.js";
 import ICatalog from "./ICatalog.js";
 import ICatalogItem from "./ICatalogItem.js";
-import ICertification from "./ICertification.js";
-import IClaim from "./IClaim.js";
 import ICustomerCategory from "./ICustomerCategory.js";
 import IEnterprise from "./IEnterprise.js";
-import IGeographicalOrigin from "./IGeographicalOrigin.js";
-import INatureOrigin from "./INatureOrigin.js";
 import INutrientCharacteristic from "./INutrientCharacteristic.js";
-import INutrientDimension from "./INutrientDimension.js";
 import IOffer from "./IOffer.js";
 import IOrder from "./IOrder.js";
 import IOrderLine from "./IOrderLine.js";
-import IPartOrigin from "./IPartOrigin.js";
 import IPerson from "./IPerson.js";
 import IPhysicalCharacteristic from "./IPhysicalCharacteristic.js";
-import IPhysicalDimension from "./IPhysicalDimension.js";
 import IPrice from "./IPrice.js";
-import IProductType from "./IProductType.js";
 import IQuantity from "./IQuantity.js";
 import ISaleSession from "./ISaleSession.js";
 import ISKOSConcept from "./ISKOSConcept";
 import ISuppliedProduct from "./ISuppliedProduct.js";
-import IUnit from "./IUnit.js";
 
 export default class Connector implements IConnector {
 
@@ -74,9 +64,9 @@ export default class Connector implements IConnector {
         return this.factory.createAddress(parameters);
     }
 
-    public createAllergenCharacteristic(parameters: {unit?: IUnit, value?: number, allergenDimension?: IAllergenDimension}): IAllergenCharacteristic
+    public createAllergenCharacteristic(parameters: {unit?: ISKOSConcept, value?: number, allergenDimension?: ISKOSConcept}): IAllergenCharacteristic
     public createAllergenCharacteristic(parameters: {other: IAllergenCharacteristic}): IAllergenCharacteristic;
-    public createAllergenCharacteristic(parameters: {other?: IAllergenCharacteristic, unit?: IUnit, value?: number, allergenDimension?: IAllergenDimension}): IAllergenCharacteristic {
+    public createAllergenCharacteristic(parameters: {other?: IAllergenCharacteristic, unit?: ISKOSConcept, value?: number, allergenDimension?: ISKOSConcept}): IAllergenCharacteristic {
         return this.factory.createAllergenCharacteristic(parameters);
     }
 
@@ -104,9 +94,9 @@ export default class Connector implements IConnector {
         return this.factory.createEnterprise(parameters);
     }
 
-    public createNutrientCharacteristic(parameters: {unit?: IUnit, value?: number, nutrientDimension?: INutrientDimension}): INutrientCharacteristic
+    public createNutrientCharacteristic(parameters: {unit?: ISKOSConcept, value?: number, nutrientDimension?: ISKOSConcept}): INutrientCharacteristic
     public createNutrientCharacteristic(parameters: {other: INutrientCharacteristic, doNotStore?: boolean}): INutrientCharacteristic
-    public createNutrientCharacteristic(parameters: {other?: INutrientCharacteristic, unit?: IUnit, value?: number, nutrientDimension?: INutrientDimension}): INutrientCharacteristic {
+    public createNutrientCharacteristic(parameters: {other?: INutrientCharacteristic, unit?: ISKOSConcept, value?: number, nutrientDimension?: ISKOSConcept}): INutrientCharacteristic {
         return this.factory.createNutrientCharacteristic(parameters);
     }
 
@@ -134,21 +124,21 @@ export default class Connector implements IConnector {
         return this.factory.createPerson(parameters);
     }
 
-    public createPhysicalCharacteristic(parameters: {unit: IUnit, value?: number, physicalDimension?: IPhysicalDimension}): IPhysicalCharacteristic
+    public createPhysicalCharacteristic(parameters: {unit: ISKOSConcept, value?: number, physicalDimension?: ISKOSConcept}): IPhysicalCharacteristic
     public createPhysicalCharacteristic(parameters: {other: IPhysicalCharacteristic, doNotStore?: boolean}): IPhysicalCharacteristic
-    public createPhysicalCharacteristic(parameters: {other?: IPhysicalCharacteristic, unit?: IUnit, value?: number, physicalDimension?: IPhysicalDimension}): IPhysicalCharacteristic {
+    public createPhysicalCharacteristic(parameters: {other?: IPhysicalCharacteristic, unit?: ISKOSConcept, value?: number, physicalDimension?: ISKOSConcept}): IPhysicalCharacteristic {
         return this.factory.createPhysicalCharacteristic(parameters);
     }
 
-    public createPrice(parameters: {value?: number, vatRate?: number, unit?: IUnit}): IPrice
+    public createPrice(parameters: {value?: number, vatRate?: number, unit?: ISKOSConcept}): IPrice
     public createPrice(parameters: {other: IPrice, doNotStore?: boolean}): IPrice
-    public createPrice(parameters: {other?: IPrice, value?: number, vatRate?: number, unit?: IUnit}): IPrice {
+    public createPrice(parameters: {other?: IPrice, value?: number, vatRate?: number, unit?: ISKOSConcept}): IPrice {
         return this.factory.createPrice(parameters);
     }
 
-    public createQuantity(parameters: {unit?: IUnit, value?: number}): IQuantity
+    public createQuantity(parameters: {unit?: ISKOSConcept, value?: number}): IQuantity
     public createQuantity(parameters: {other: IQuantity, doNotStore?: boolean}): IQuantity
-    public createQuantity(parameters: {other?: IQuantity, unit?: IUnit, value?: number}): IQuantity {
+    public createQuantity(parameters: {other?: IQuantity, unit?: ISKOSConcept, value?: number}): IQuantity {
         return this.factory.createQuantity(parameters);
     }
 
@@ -158,9 +148,9 @@ export default class Connector implements IConnector {
         return this.factory.createSaleSession(parameters);
     }
 
-    public createSuppliedProduct(parameters: {semanticId: string, name?: string, description?: string, productType?: IProductType, quantity?: IQuantity, alcoholPercentage?: number, lifetime?: string, claims?: IClaim[], usageOrStorageConditions?: string, allergenCharacteristics?: IAllergenCharacteristic[], nutrientCharacteristics?: INutrientCharacteristic[], physicalCharacteristics?: IPhysicalCharacteristic[], geographicalOrigin?: IGeographicalOrigin, catalogItems?: ICatalogItem[], certifications?: ICertification[], natureOrigin?: INatureOrigin[], partOrigin?: IPartOrigin[], totalTheoreticalStock?: number, doNotStore?: boolean}): ISuppliedProduct
+    public createSuppliedProduct(parameters: {semanticId: string, name?: string, description?: string, productType?: ISKOSConcept, quantity?: IQuantity, alcoholPercentage?: number, lifetime?: string, claims?: ISKOSConcept[], usageOrStorageConditions?: string, allergenCharacteristics?: IAllergenCharacteristic[], nutrientCharacteristics?: INutrientCharacteristic[], physicalCharacteristics?: IPhysicalCharacteristic[], geographicalOrigin?: ISKOSConcept, catalogItems?: ICatalogItem[], certifications?: ISKOSConcept[], natureOrigin?: ISKOSConcept[], partOrigin?: ISKOSConcept[], totalTheoreticalStock?: number, doNotStore?: boolean}): ISuppliedProduct
     public createSuppliedProduct(parameters: {other: ISuppliedProduct, doNotStore?: boolean}): ISuppliedProduct
-    public createSuppliedProduct(parameters: {doNotStore?: boolean, semanticId?: string, other?: ISuppliedProduct, name?: string, description?: string, productType?: IProductType, quantity?: IQuantity, alcoholPercentage?: number, lifetime?: string, claims?: IClaim[], usageOrStorageConditions?: string, allergenCharacteristics?: IAllergenCharacteristic[], nutrientCharacteristics?: INutrientCharacteristic[], physicalCharacteristics?: IPhysicalCharacteristic[], geographicalOrigin?: IGeographicalOrigin, catalogItems?: ICatalogItem[], certifications?: ICertification[], natureOrigin?: INatureOrigin[], partOrigin?: IPartOrigin[], totalTheoreticalStock?: number}): ISuppliedProduct {
+    public createSuppliedProduct(parameters: {doNotStore?: boolean, semanticId?: string, other?: ISuppliedProduct, name?: string, description?: string, productType?: ISKOSConcept, quantity?: IQuantity, alcoholPercentage?: number, lifetime?: string, claims?: ISKOSConcept[], usageOrStorageConditions?: string, allergenCharacteristics?: IAllergenCharacteristic[], nutrientCharacteristics?: INutrientCharacteristic[], physicalCharacteristics?: IPhysicalCharacteristic[], geographicalOrigin?: ISKOSConcept, catalogItems?: ICatalogItem[], certifications?: ISKOSConcept[], natureOrigin?: ISKOSConcept[], partOrigin?: ISKOSConcept[], totalTheoreticalStock?: number}): ISuppliedProduct {
         return this.factory.createSuppliedProduct(parameters);
     }
 
