@@ -30,31 +30,21 @@ import SuppliedProduct from "./SuppliedProduct.js";
 import IAgent from "./IAgent.js";
 import IAddress from "./IAddress.js";
 import IAllergenCharacteristic from "./IAllergenCharacteristic.js";
-import IAllergenDimension from "./IAllergenDimension.js";
 import ICatalog from "./ICatalog.js";
 import ICatalogItem from "./ICatalogItem.js";
-import ICertification from "./ICertification.js";
-import IClaim from "./IClaim.js";
 import ICustomerCategory from "./ICustomerCategory.js";
 import IEnterprise from "./IEnterprise.js";
-import IGeographicalOrigin from "./IGeographicalOrigin.js";
 import IPrice from "./IPrice.js";
 import ISuppliedProduct from "./ISuppliedProduct.js";
-import INatureOrigin from "./INatureOrigin.js";
 import INutrientCharacteristic from "./INutrientCharacteristic.js";
-import INutrientDimension from "./INutrientDimension.js";
 import IOffer from "./IOffer.js";
 import IOrder from "./IOrder.js";
 import IOrderLine from "./IOrderLine.js";
-import IPartOrigin from "./IPartOrigin.js";
 import IPerson from "./IPerson.js";
 import IPhysicalCharacteristic from "./IPhysicalCharacteristic.js";
-import IPhysicalDimension from "./IPhysicalDimension.js";
-import IProductType from "./IProductType.js";
 import IQuantity from "./IQuantity.js";
 import ISaleSession from "./ISaleSession.js";
-import IUnit from "./IUnit.js";
-
+import ISKOSConcept from "./ISKOSConcept";
 
 export default class ConnectorFactory implements IConnectorFactory {
 
@@ -74,7 +64,7 @@ export default class ConnectorFactory implements IConnectorFactory {
         return new Address({ connector: this.connector, ...parameters });
     }
 
-    public createAllergenCharacteristic(parameters: {other?: Semanticable, unit?: IUnit, value?: number, allergenDimension?: IAllergenDimension}): IAllergenCharacteristic {
+    public createAllergenCharacteristic(parameters: {other?: Semanticable, unit?: ISKOSConcept, value?: number, allergenDimension?: ISKOSConcept}): IAllergenCharacteristic {
         return new AllergenCharacteristic({ connector: this.connector, ...parameters });
     }
 
@@ -94,7 +84,7 @@ export default class ConnectorFactory implements IConnectorFactory {
         return new Enterprise({ connector: this.connector, ...parameters });
     }
 
-    public createNutrientCharacteristic(parameters: {other?: Semanticable, unit?: IUnit, value?: number, nutrientDimension?: INutrientDimension}): INutrientCharacteristic {
+    public createNutrientCharacteristic(parameters: {other?: Semanticable, unit?: ISKOSConcept, value?: number, nutrientDimension?: ISKOSConcept}): INutrientCharacteristic {
         return new NutrientCharacteristic({ connector: this.connector, ...parameters });
     }
 
@@ -114,15 +104,15 @@ export default class ConnectorFactory implements IConnectorFactory {
         return new Person({ connector: this.connector, ...parameters });
     }
 
-    public createPhysicalCharacteristic(parameters: {other?: Semanticable, unit?: IUnit, value?: number, physicalDimension?: IPhysicalDimension}): IPhysicalCharacteristic {
+    public createPhysicalCharacteristic(parameters: {other?: Semanticable, unit?: ISKOSConcept, value?: number, physicalDimension?: ISKOSConcept }): IPhysicalCharacteristic {
         return new PhysicalCharacteristic({ connector: this.connector, ...parameters });
     }
 
-    public createPrice(parameters: {other?: Semanticable, value?: number, vatRate?: number, unit?: IUnit}): IPrice {
+    public createPrice(parameters: {other?: Semanticable, value?: number, vatRate?: number, unit?: ISKOSConcept}): IPrice {
         return new Price({ connector: this.connector, ...parameters });
     }
 
-    public createQuantity(parameters: {other?: Semanticable, unit?: IUnit, value?: number}): IQuantity {
+    public createQuantity(parameters: {other?: Semanticable, unit?: ISKOSConcept, value?: number}): IQuantity {
         return new QuantitativeValue({ connector: this.connector, ...parameters });
     }
 
@@ -130,7 +120,7 @@ export default class ConnectorFactory implements IConnectorFactory {
         return new SaleSession({ connector: this.connector, ...parameters });
     }
 
-    public createSuppliedProduct(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, name?: string, description?: string, productType?: IProductType, quantity?: IQuantity, alcoholPercentage?: number, lifetime?: string, claims?: IClaim[], usageOrStorageConditions?: string, allergenCharacteristics?: IAllergenCharacteristic[], nutrientCharacteristics?: INutrientCharacteristic[], physicalCharacteristics?: IPhysicalCharacteristic[], geographicalOrigin?: IGeographicalOrigin, catalogItems?: ICatalogItem[], certifications?: ICertification[], natureOrigin?: INatureOrigin[], partOrigin?: IPartOrigin[], totalTheoreticalStock?: number}): ISuppliedProduct {
+    public createSuppliedProduct(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, name?: string, description?: string, productType?: ISKOSConcept, quantity?: IQuantity, alcoholPercentage?: number, lifetime?: string, claims?: ISKOSConcept[], usageOrStorageConditions?: string, allergenCharacteristics?: IAllergenCharacteristic[], nutrientCharacteristics?: INutrientCharacteristic[], physicalCharacteristics?: IPhysicalCharacteristic[], geographicalOrigin?: ISKOSConcept, catalogItems?: ICatalogItem[], certifications?: ISKOSConcept[], natureOrigin?: ISKOSConcept[], partOrigin?: ISKOSConcept[], totalTheoreticalStock?: number}): ISuppliedProduct {
         return new SuppliedProduct({ connector: this.connector, ...parameters });
     }
 
