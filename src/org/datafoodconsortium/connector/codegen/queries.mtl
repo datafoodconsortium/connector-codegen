@@ -68,6 +68,16 @@
 [query public getImplementation(aType: Type, model: Model): Class = if (aType.oclIsTypeOf(Interface)) then aType.oclAsType(Interface).getImplementation(model) else if (aType.oclIsTypeOf(Class)) then aType.oclAsType(Class) else null endif endif /]
 [query public getImplementation(anElement: TypedElement, model: Model): Class = anElement.type.getImplementation(model) /]
 
+[query public getImportedClasses(aClass: Class): Set(Interface) = aClass.getImportedClassifiers()->filter(Class)->asSet() /]
+[query public getImportedClasses(anInterface: Interface): Set(Interface) = anInterface.getImportedClassifiers()->filter(Class)->asSet() /]
+[query public getImportedInterfaces(aClass: Class): Set(Interface) = aClass.getImportedClassifiers()->filter(Interface)->asSet() /]
+[query public getImportedInterfaces(anInterface: Interface): Set(Interface) = anInterface.getImportedClassifiers()->filter(Interface)->asSet() /]
+[query public getImportedClassifiers(aClass: Class): Set(Classifier) = aClass.getGenerals()->union(aClass.interfaceRealization->collect(ir: InterfaceRealization | ir.contract)->asSet())->union(aClass.getImportedTypesOfOperations()) /]
+[query public getImportedClassifiers(anInterface: Interface): Set(Classifier) = anInterface.getGenerals()->union(anInterface.getImportedTypesOfOperations()) /]
+[query public getImportedClassifiers(c: Classifier): Set(Classifier) = if (c.oclIsTypeOf(Interface)) then c.oclAsType(Interface).getImportedClassifiers() else c.oclAsType(Class).getImportedClassifiers() endif /]
+[query public getImportedClassifiersWithoutPrimitives(c: Classifier): Set(Classifier) = c.getImportedClassifiers()->select(cl: Classifier | not cl.isPrimitive()) /]
+[query public getImportedTypesOfOperations(classifier: Classifier): Set(Type) = self.getOperations()->collect(o: Operation | o.ownedParameter)->collect(p: Parameter | p.type)->asSet() /]
+
 [query public hasGeneralization(classifier: Classifier): Boolean = not (classifier.generalization->isEmpty()) /]
 
 [query public hasOwnedOperations(aClass: Class): Boolean = not aClass.ownedOperation->isEmpty() /]
