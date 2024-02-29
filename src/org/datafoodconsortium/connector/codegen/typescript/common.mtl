@@ -7,13 +7,13 @@
 [template public generateLicense(traceabilityContext: OclAny)][generateLicence()/][/template]
 
 [template public generateImports(classifier: Classifier)]
-[for (ei: ElementImport | classifier.elementImport) separator('\n')][generateImport(ei)/][/for]
+[for (c: Classifier | classifier.getImportedClassifiersWithoutPrimitives()) separator('\n')][generateImport(c)/][/for]
 [if (classifier.oclIsTypeOf(Class))]import { SemanticObject[if (classifier.isBlankNode())]Anonymous[/if] } from "@virtual-assembly/semantizer"[/if]
 import { Semanticable } from "@virtual-assembly/semantizer"
 [/template]
 
-[template public generateImport(ei: ElementImport)]
-import [ei.importedElement.name/] from "./[ei.importedElement.name/].js"
+[template public generateImport(c: Classifier)]
+import [c.name/] from "./[c.name/].js"
 [/template]
 
 [template public toSemanticTypeConst(classifier: Classifier) post(trim())]
