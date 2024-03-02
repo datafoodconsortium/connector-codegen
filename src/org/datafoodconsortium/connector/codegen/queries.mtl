@@ -68,8 +68,8 @@
 [query public getImplementation(aType: Type, model: Model): Class = if (aType.oclIsTypeOf(Interface)) then aType.oclAsType(Interface).getImplementation(model) else if (aType.oclIsTypeOf(Class)) then aType.oclAsType(Class) else null endif endif /]
 [query public getImplementation(anElement: TypedElement, model: Model): Class = anElement.type.getImplementation(model) /]
 
-[query public getImportedClasses(aClass: Class): Set(Interface) = aClass.getImportedClassifiers()->filter(Class)->asSet() /]
-[query public getImportedClasses(anInterface: Interface): Set(Interface) = anInterface.getImportedClassifiers()->filter(Class)->asSet() /]
+[query public getImportedClasses(aClass: Class): Set(Class) = aClass.getImportedClassifiers()->filter(Class)->asSet() /]
+[query public getImportedClasses(anInterface: Interface): Set(Class) = anInterface.getImportedClassifiers()->filter(Class)->asSet() /]
 [query public getImportedInterfaces(aClass: Class): Set(Interface) = aClass.getImportedClassifiers()->filter(Interface)->asSet() /]
 [query public getImportedInterfaces(anInterface: Interface): Set(Interface) = anInterface.getImportedClassifiers()->filter(Interface)->asSet() /]
 [query public getImportedClassifiers(aClass: Class): Set(Classifier) = aClass.getGenerals()->union(aClass.interfaceRealization->collect(ir: InterfaceRealization | ir.contract)->asSet())->union(aClass.getImportedTypesOfOperations())->select(t: Type | aClass <> t) /]
