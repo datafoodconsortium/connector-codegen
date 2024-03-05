@@ -6,7 +6,7 @@ import Connector from "../lib/Connector.js";
 
 const connector = new Connector();
 
-const json = `{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"http://myplatform.com/catalogItem1","@type":"dfc-b:CatalogItem","dfc-b:listedIn":{"@id":"http://myplatform.com/catalog1"},"dfc-b:offeredThrough":"http://myplatform.com/offer1","dfc-b:references":"http://myplatform.com/suppliedProduct1","dfc-b:sku":"sku","dfc-b:stockLimitation":"6.32"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org","@id":"http://myplatform.com/catalogItem1","@type":"dfc-b:CatalogItem","dfc-b:listedIn":{"@id":"http://myplatform.com/catalog1"},"dfc-b:offeredThrough":"http://myplatform.com/offer1","dfc-b:references":"http://myplatform.com/suppliedProduct1","dfc-b:sku":"sku","dfc-b:stockLimitation":"6.32"}`;
 
 const suppliedProduct = new SuppliedProduct({
     connector: connector,

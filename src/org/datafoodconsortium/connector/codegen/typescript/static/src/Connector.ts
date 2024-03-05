@@ -54,7 +54,7 @@ export default class Connector implements IConnector {
         this.fetchFunction = async (semanticId: string) => (await fetch(semanticId));
         this.factory = new ConnectorFactory(this);
         this.importer = new ConnectorImporterJsonldStream({ context: context });
-        const outputContext = "http://static.datafoodconsortium.org/ontologies/context.json";
+        const outputContext = "https://www.datafoodconsortium.org";
         this.exporter = new ConnectorExporterJsonldStream(context, outputContext);
     }
 
@@ -260,17 +260,17 @@ export default class Connector implements IConnector {
     }
 
     public async loadFacets(facets: any): Promise<void> {
-        const prefix: string = "http://static.datafoodconsortium.org/data/facets.rdf#";
+        const prefix: string = "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/facets.rdf#";
         this.FACETS = await this.importThesaurus(facets, prefix);
     }
 
     public async loadMeasures(measures: any): Promise<void> {
-        const prefix: string = "http://static.datafoodconsortium.org/data/measures.rdf#";
+        const prefix: string = "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/measures.rdf#";
         this.MEASURES = await this.importThesaurus(measures, prefix);
     }
 
     public async loadProductTypes(productTypes: any): Promise<void> {
-        const prefix: string = "http://static.datafoodconsortium.org/data/productTypes.rdf#";
+        const prefix: string = "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/productTypes.rdf#";
         this.PRODUCT_TYPES = await this.importThesaurus(productTypes, prefix);
     }
 

@@ -15,7 +15,7 @@ const allergenCharacteristic = new AllergenCharacteristic({
     allergenDimension: allergenDimension
 });
 
-const json = `{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"_:b1","@type":"dfc-b:AllergenCharacteristic","dfc-b:hasAllergenDimension":"dfc-m:Peanuts","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org","@id":"_:b1","@type":"dfc-b:AllergenCharacteristic","dfc-b:hasAllergenDimension":"dfc-m:Peanuts","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1"}`;
 
 test('AllergenCharacteristic:import', async () => {
     const imported = await connector.import(json);
