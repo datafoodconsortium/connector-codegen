@@ -9,7 +9,7 @@ const customerCategory = new CustomerCategory({
     description: "description"
 })
 
-const json = `{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"http://myplatform.com/customerCategory1","@type":"dfc-b:CustomerCategory","dfc-b:description":"description"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org","@id":"http://myplatform.com/customerCategory1","@type":"dfc-b:CustomerCategory","dfc-b:description":"description"}`;
 
 test('CustomerCategory:import', async () => {
     const imported = await connector.import(json);
