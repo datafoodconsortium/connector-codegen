@@ -46,7 +46,7 @@ const order = new Order({
     lines: [orderLine]
 });
 
-const json = `{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"http://myplatform.com/order1","@type":"dfc-b:Order","dfc-b:belongsTo":{"@id":"http://myplatform.com/saleSession1"},"dfc-b:date":"date","dfc-b:hasPart":{"@id":"http://myplatform.com/orderLine1"},"dfc-b:orderNumber":"0001","dfc-b:orderedBy":{"@id":"http://myplatform.com/person1"}}`;
+const json = `{"@context":"https://www.datafoodconsortium.org","@id":"http://myplatform.com/order1","@type":"dfc-b:Order","dfc-b:belongsTo":{"@id":"http://myplatform.com/saleSession1"},"dfc-b:date":"date","dfc-b:hasPart":{"@id":"http://myplatform.com/orderLine1"},"dfc-b:orderNumber":"0001","dfc-b:orderedBy":{"@id":"http://myplatform.com/person1"}}`;
 
 test('Order:import', async () => {
     const imported = await connector.import(json);

@@ -72,7 +72,7 @@ const enterprise = new Enterprise({
     catalogItems: [catalogItem]
 });
 
-const json = `{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"http://myplatform.com/enterprise1","@type":"dfc-b:Enterprise","dfc-b:VATnumber":"vatNumber","dfc-b:defines":"http://myplatform.com/customerCategory1","dfc-b:hasAddress":{"@id":"http://myplatform.com/address1"},"dfc-b:hasDescription":"description","dfc-b:maintains":{"@id":"http://myplatform.com/catalog1"},"dfc-b:manages":"http://myplatform.com/catalogItem1","dfc-b:supplies":"http://myplatform.com/suppliedProduct1"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org","@id":"http://myplatform.com/enterprise1","@type":"dfc-b:Enterprise","dfc-b:VATnumber":"vatNumber","dfc-b:defines":"http://myplatform.com/customerCategory1","dfc-b:hasAddress":{"@id":"http://myplatform.com/address1"},"dfc-b:hasDescription":"description","dfc-b:maintains":{"@id":"http://myplatform.com/catalog1"},"dfc-b:manages":"http://myplatform.com/catalogItem1","dfc-b:supplies":"http://myplatform.com/suppliedProduct1"}`;
 
 test('Enterprise:import', async () => {
     const imported = await connector.import(json);

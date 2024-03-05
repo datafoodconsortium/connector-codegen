@@ -126,7 +126,7 @@ export default class ConnectorFactory implements IConnectorFactory {
 
     public createFromType(type: string): Semanticable | undefined {
         let result: Semanticable | undefined = undefined;
-        const prefix: string = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#";
+        const prefix: string = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#";
         switch (type) {
             case prefix + "Enterprise":
                 result = this.createEnterprise({ semanticId: "" });
