@@ -19,17 +19,9 @@ export default [if (aClass.isAbstract)]abstract [/if]class [aClass.name.toUpperF
 	[if (aClass.generalization->isEmpty())]
 	protected connector: IConnector;['\n'/]
 	[/if]
-	[for (operation: Operation | aClass.ownedOperation) separator('\n')]
+	[for (operation: Operation | aClass.getOperationsToImplementOrDeclare()) separator('\n')]
 	[if (operation.isAbstract)][generateOperationSignature(aClass, operation)/][else][generateOperationImplementation(aClass, operation)/][/if]
 	[/for]
-
-	[if not (aClass.interfaceRealization->isEmpty())]
-	[for (interface: Interface | aClass.getAllImplementedInterfaces()->removeAll(aClass.generalization->asSequence()->at(1).general.oclAsType(Class).getAllImplementedInterfaces()))]
-		[for (operation: Operation | interface.getOperations()->select(o: Operation | aClass.ownedOperation->excludesAll(aClass.ownedOperation->select(op: Operation | op.isAbstract and o.name = op.name)))) separator ('\n')]
-	[generateOperationImplementation(aClass, operation)/]
-		[/for]
-	[/for]
-	[/if]
 }
 [/file]
 [/template]
