@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Queries for auto-importing (`getImportedClasses`, `getImportedInterfaces`, `getImportedClassifiers`, `getImportedClassifiersWithoutPrimitives` and `getImportedTypesOfOperations`).
+- Queries for operations to be implemented or declared by a class: 
+  - `getAllImplementedInterfacesWithoutParents`.
+  - `getOperationsToImplementOrDeclareFromInterfacesWithoutParents`.
+  - `getOperationsToImplementOrDeclare`.
 
 Ruby:
 - Add Import method reading JSON and returning objects. ([PR #12](https://github.com/datafoodconsortium/connector-codegen/pull/12)).

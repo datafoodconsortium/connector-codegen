@@ -62,6 +62,7 @@
 [query public getAbstractClasses(model: Model): Bag(Class) = model.getClasses()->select(c: Class | c.isAbstract) /]
 
 [query public getInterfaces(model: Model): Bag(Interface) = model.getClassifiers()->selectByType(Interface) /]
+[query public getAllImplementedInterfacesWithoutParents(aClass: Class): Set(Interface) = if (aClass.generalization->isEmpty()) then aClass.getAllImplementedInterfaces() else aClass.getAllImplementedInterfaces()->removeAll(aClass.generalization->asSequence()->at(1).general.oclAsType(Class).getAllImplementedInterfaces()) endif /]
 
 [query public getImplementations(i: Interface, model: Model): Bag(Class) = model.getConcreateClasses()->select(c: Class | c.getAllImplementedInterfaces()->includes(i)) /]
 [query public getImplementation(i: Interface, model: Model): Class = i.getImplementations(model)->asSequence()->at(1) /]
@@ -83,6 +84,8 @@
 [query public hasOwnedOperations(aClass: Class): Boolean = not aClass.ownedOperation->isEmpty() /]
 
 [query public getOperations(owner: Class): OrderedSet(Operation) = owner.ownedOperation /]
+[query public getOperationsToImplementOrDeclareFromInterfacesWithoutParents(aClass: Class): Bag(Operation) = aClass.getAllImplementedInterfacesWithoutParents()->collect(i: Interface | i.getOperations())->select(o: Operation | aClass.ownedOperation->excludesAll(aClass.ownedOperation->select(op: Operation | op.isAbstract and o.name = op.name))) /]
+[query public getOperationsToImplementOrDeclare(owner: Class): OrderedSet(Operation) = if (owner.interfaceRealization->isEmpty()) then owner.getOperations() else owner.getOperations()->addAll(owner.getOperationsToImplementOrDeclareFromInterfacesWithoutParents()) endif /]
 
 [query public getProperties(aClass: Class): OrderedSet(Property) = aClass.allAttributes() /]
 
