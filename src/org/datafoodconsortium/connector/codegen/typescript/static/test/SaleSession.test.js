@@ -23,7 +23,7 @@ const saleSession = new SaleSession({
     offers: [offer]
 });
 
-const json = `{"@context":"http://static.datafoodconsortium.org/ontologies/context.json","@id":"http://myplatform.com/saleSession1","@type":"dfc-b:SaleSession","dfc-b:beginDate":"beginDate","dfc-b:endDate":"endDate","dfc-b:lists":{"@id":"http://myplatform.com/offer1"},"dfc-b:quantity":"5"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org","@id":"http://myplatform.com/saleSession1","@type":"dfc-b:SaleSession","dfc-b:beginDate":"beginDate","dfc-b:endDate":"endDate","dfc-b:lists":{"@id":"http://myplatform.com/offer1"},"dfc-b:quantity":"5"}`;
 
 test('SaleSession:import', async () => {
     const importedAll = await connector.import(json);

@@ -270,7 +270,7 @@ options?: {
 This will output DFC compliant valid JSON-LD like:
 ```JS
 {
-  "@context": "http://static.datafoodconsortium.org/ontologies/context.json",
+  "@context": "http://www.datafoodconsortium.org/ontologies/context.json",
   "@graph": [
     {
       "@id": "_:b1",
@@ -374,7 +374,7 @@ const Semanticable | undefined = await connector.importOne(jsonAsAString);
 
 You can pass the `only` option to target one type using the `importOneTyped` method:
 ```JS
-const order: string = "http://static.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#Order";
+const order: string = "http://www.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#Order";
 const IOrder | undefined = await connector.importOneTyped<IOrder>(jsonAsAString, { only: order });
 ```
 
