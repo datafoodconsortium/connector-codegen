@@ -1,3 +1,5 @@
+import expect from 'node:assert';
+import { test } from 'node:test';
 import Order from '../lib/Order.js';
 import OrderLine from '../lib/OrderLine.js';
 import Person from '../lib/Person.js';
@@ -51,76 +53,76 @@ const json = `{"@context":"https://www.datafoodconsortium.org","@id":"http://myp
 test('Order:import', async () => {
     const imported = await connector.import(json);
     const importedOrder = imported[0];
-    expect(imported.length).toStrictEqual(1);
-    expect(importedOrder.equals(order)).toStrictEqual(true);
+    expect.strictEqual(imported.length, 1);
+    expect.strictEqual(importedOrder.equals(order), true);
 });
 
 test('Order:export', async () => {
     const serialized = await connector.export([order]);
-    expect(serialized).toStrictEqual(json);
+    expect.strictEqual(serialized, json);
 });
 
 test('Order:getSemanticId', async () => {
-    expect(order.getSemanticId()).toStrictEqual("http://myplatform.com/order1");
+    expect.strictEqual(order.getSemanticId(), "http://myplatform.com/order1");
 });
 
 test('Order:getNumber', async () => {
-    expect(order.getNumber()).toStrictEqual("0001");
+    expect.strictEqual(order.getNumber(), "0001");
 });
 
 test('Order:getDate', async () => {
-    expect(order.getDate()).toStrictEqual("date");
+    expect.strictEqual(order.getDate(), "date");
 });
 
 test('Order:getSaleSession', async () => {
     const expected = await order.getSaleSession();
-    expect(expected.equals(saleSession)).toStrictEqual(true);
+    expect.strictEqual(expected.equals(saleSession), true);
 });
 
 test('Order:getLines', async () => {
     const expected = await order.getLines();
-    expect(expected.length).toStrictEqual(1);
-    expect(expected[0].equals(orderLine)).toStrictEqual(true);
+    expect.strictEqual(expected.length, 1);
+    expect.strictEqual(expected[0].equals(orderLine), true);
 });
 
 test('Order:getClient', async () => {
     const expected = await order.getClient();
-    expect(expected.equals(customer)).toStrictEqual(true);
+    expect.strictEqual(expected.equals(customer), true);
 });
 
 test('Order:setNumber', async () => {
     order.setNumber("0002");
-    expect(order.getNumber()).toStrictEqual("0002");
+    expect.strictEqual(order.getNumber(), "0002");
 });
 
 test('Order:setDate', async () => {
     order.setDate("date2");
-    expect(order.getDate()).toStrictEqual("date2");
+    expect.strictEqual(order.getDate(), "date2");
 });
 
 test('Order:setSaleSession', async () => {
     order.setSaleSession(saleSession2);
     const expected = await order.getSaleSession();
-    expect(expected.equals(saleSession2)).toStrictEqual(true);
+    expect.strictEqual(expected.equals(saleSession2), true);
 });
 
 test('Order:setClient', async () => {
     order.setClient(customer2);
     const expected = await order.getClient();
-    expect(expected.equals(customer2)).toStrictEqual(true);
+    expect.strictEqual(expected.equals(customer2), true);
 });
 
 test('Order:addLine', async () => {
     order.addLine(orderLine2);
     const expected = await order.getLines();
-    expect(expected.length).toStrictEqual(2);
-    expect(expected[0].equals(orderLine)).toStrictEqual(true);
-    expect(expected[1].equals(orderLine2)).toStrictEqual(true);
+    expect.strictEqual(expected.length, 2);
+    expect.strictEqual(expected[0].equals(orderLine), true);
+    expect.strictEqual(expected[1].equals(orderLine2), true);
 });
 
 test('Order:removeLine', async () => {
     order.removeLine(orderLine);
     const expected = await order.getLines();
-    expect(expected.length).toStrictEqual();
-    expect(expected[0].equals(orderLine2)).toStrictEqual(true);
+    expect(expected.length).strictEqual();
+    expect.strictEqual(expected[0].equals(orderLine2), true);
 });

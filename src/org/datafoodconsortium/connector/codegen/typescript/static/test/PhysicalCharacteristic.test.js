@@ -1,3 +1,5 @@
+import expect from 'node:assert';
+import { test } from 'node:test';
 import PhysicalCharacteristic from '../lib/PhysicalCharacteristic.js';
 import Connector from "../lib/Connector.js";
 import facets from '../test/thesaurus/facets.json' assert { type: 'json' };
@@ -24,42 +26,42 @@ const json = `{"@context":"https://www.datafoodconsortium.org","@id":"_:b1","@ty
 test('PhysicalCharacteristic:import', async () => {
     const imported = await connector.import(json);
     const importedPhysicalCharacteristic = imported[0];
-    expect(imported.length).toStrictEqual(1);
-    expect(importedPhysicalCharacteristic.equals(physicalCharacteristic)).toStrictEqual(true);
+    expect.strictEqual(imported.length, 1);
+    expect.strictEqual(importedPhysicalCharacteristic.equals(physicalCharacteristic), true);
 });
 
 test('PhysicalCharacteristic:export', async () => {
     const serialized = await connector.export([physicalCharacteristic]);
-    expect(serialized).toStrictEqual(json);
+    expect.strictEqual(serialized, json);
 });
 
 test('PhysicalCharacteristic:getSemanticId', async () => {
-    expect(physicalCharacteristic.getSemanticId()).toStrictEqual(undefined);
+    expect.strictEqual(physicalCharacteristic.getSemanticId(), undefined);
 });
 
 test('PhysicalCharacteristic:getQuantityValue', async () => {
-    expect(physicalCharacteristic.getQuantityValue()).toStrictEqual(100);
+    expect.strictEqual(physicalCharacteristic.getQuantityValue(), 100);
 });
 
 test('PhysicalCharacteristic:getQuantityUnit', async () => {
-    expect(await physicalCharacteristic.getQuantityUnit()).toStrictEqual(kilogram);
+    expect.strictEqual(await physicalCharacteristic.getQuantityUnit(), kilogram);
 });
 
 test('PhysicalCharacteristic:getQuantityDimension', async () => {
-    expect(await physicalCharacteristic.getQuantityDimension()).toStrictEqual(physicalDimension);
+    expect.strictEqual(await physicalCharacteristic.getQuantityDimension(), physicalDimension);
 });
 
 test('PhysicalCharacteristic:setQuantityValue', async () => {
     physicalCharacteristic.setQuantityValue(6.35);
-    expect(physicalCharacteristic.getQuantityValue()).toStrictEqual(6.35);
+    expect.strictEqual(physicalCharacteristic.getQuantityValue(), 6.35);
 });
 
 test('PhysicalCharacteristic:setQuantityUnit', async () => {
     physicalCharacteristic.setQuantityUnit(gram);
-    expect(await physicalCharacteristic.getQuantityUnit()).toStrictEqual(gram);
+    expect.strictEqual(await physicalCharacteristic.getQuantityUnit(), gram);
 });
 
 test('PhysicalCharacteristic:setQuantityDimension', async () => {
     physicalCharacteristic.setQuantityDimension(physicalDimension2);
-    expect(await physicalCharacteristic.getQuantityDimension()).toStrictEqual(physicalDimension2);
+    expect.strictEqual(await physicalCharacteristic.getQuantityDimension(), physicalDimension2);
 });

@@ -1,3 +1,5 @@
+import expect from 'node:assert';
+import { test } from 'node:test';
 import Address from '../lib/Address.js';
 import Connector from "../lib/Connector.js";
 //import ConnectorImporterJsonldStream from "../lib/ConnectorImporterJsonldStream.js";
@@ -14,56 +16,56 @@ const address = new Address({
     country: "Belgium",
 });
 
-const data = '{"@context":"https://www.datafoodconsortium.org","@id":"http://myplatform.com/address/address1","@type":"dfc-b:Address","dfc-b:hasCity":"Brussels","dfc-b:hasCountry":"Belgium","dfc-b:hasPostalCode":"00001","dfc-b:hasStreet":"1, place or Europe"}';
+const json = '{"@context":"https://www.datafoodconsortium.org","@id":"http://myplatform.com/address/address1","@type":"dfc-b:Address","dfc-b:hasCity":"Brussels","dfc-b:hasCountry":"Belgium","dfc-b:hasPostalCode":"00001","dfc-b:hasStreet":"1, place or Europe"}';
 
 test('Address:import', async () => {
-    const imported = await connector.import(data);
+    const imported = await connector.import(json);
     const expected = imported[0];
-    expect(imported.length).toStrictEqual(1);
-    expect(expected.equals(address)).toStrictEqual(true);
+    expect.strictEqual(imported.length, 1);
+    expect.strictEqual(expected.equals(address), true);
 });
 
 test('Address:export', async () => {   
     const serialized = await connector.export([address]);
-    expect(serialized).toStrictEqual(data);
+    expect.strictEqual(serialized, data);
 });
 
 test('Address:getSemanticId', async () => {
-    expect(address.getSemanticId()).toStrictEqual("http://myplatform.com/address/address1");
+    expect.strictEqual(address.getSemanticId(), "http://myplatform.com/address/address1");
 });
 
 test('Address:getStreet', async () => {
-    expect(address.getStreet()).toStrictEqual("1, place or Europe");
+    expect.strictEqual(address.getStreet(), "1, place or Europe");
 });
 
 test('Address:getPostalCode', async () => {
-    expect(address.getPostalCode()).toStrictEqual("00001");
+    expect.strictEqual(address.getPostalCode(), "00001");
 });
 
 test('Address:getCity', async () => {
-    expect(address.getCity()).toStrictEqual("Brussels");
+    expect.strictEqual(address.getCity(), "Brussels");
 });
 
 test('Address:getCountry', async () => {
-    expect(address.getCountry()).toStrictEqual("Belgium");
+    expect.strictEqual(address.getCountry(), "Belgium");
 });
 
 test('Address:setStreet', async () => {
     address.setStreet("21, place or Europe");
-    expect(address.getStreet()).toStrictEqual("21, place or Europe");
+    expect.strictEqual(address.getStreet(), "21, place or Europe");
 });
 
 test('Address:setPostalCode', async () => {
     address.setPostalCode("00002");
-    expect(address.getPostalCode()).toStrictEqual("00002");
+    expect.strictEqual(address.getPostalCode(), "00002");
 });
 
 test('Address:setCity', async () => {
     address.setCity("Paris");
-    expect(address.getCity()).toStrictEqual("Paris");
+    expect.strictEqual(address.getCity(), "Paris");
 });
 
 test('Address:setCountry', async () => {
     address.setCountry("France");
-    expect(address.getCountry()).toStrictEqual("France");
+    expect.strictEqual(address.getCountry(), "France");
 });

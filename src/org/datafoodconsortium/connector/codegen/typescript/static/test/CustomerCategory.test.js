@@ -1,3 +1,5 @@
+import expect from 'node:assert';
+import { test } from 'node:test';
 import CustomerCategory from '../lib/CustomerCategory.js';
 import Connector from "../lib/Connector.js";
 
@@ -14,24 +16,24 @@ const json = `{"@context":"https://www.datafoodconsortium.org","@id":"http://myp
 test('CustomerCategory:import', async () => {
     const imported = await connector.import(json);
     const importedCustomerCategory = imported[0];
-    expect(imported.length).toStrictEqual(1);
-    expect(importedCustomerCategory.equals(customerCategory)).toStrictEqual(true);
+    expect.strictEqual(imported.length, 1);
+    expect.strictEqual(importedCustomerCategory.equals(customerCategory), true);
 });
 
 test('CustomerCategory:export', async () => {
     const serialized = await connector.export([customerCategory]);
-    expect(serialized).toStrictEqual(json);
+    expect.strictEqual(serialized, json);
 });
 
 test('CustomerCategory:getSemanticId', async () => {
-    expect(customerCategory.getSemanticId()).toStrictEqual("http://myplatform.com/customerCategory1");
+    expect.strictEqual(customerCategory.getSemanticId(), "http://myplatform.com/customerCategory1");
 });
 
 test('CustomerCategory:getDescription', async () => {
-    expect(customerCategory.getDescription()).toStrictEqual("description");
+    expect.strictEqual(customerCategory.getDescription(), "description");
 });
 
 test('CustomerCategory:setDescription', async () => {
     customerCategory.setDescription("description2");
-    expect(customerCategory.getDescription()).toStrictEqual("description2");
+    expect.strictEqual(customerCategory.getDescription(), "description2");
 });

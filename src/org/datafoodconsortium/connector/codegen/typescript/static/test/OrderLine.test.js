@@ -1,3 +1,5 @@
+import expect from 'node:assert';
+import { test } from 'node:test';
 import Offer from '../lib/Offer.js';
 import Order from '../lib/Order.js';
 import Price from '../lib/Price.js';
@@ -39,36 +41,36 @@ const json = `{"@context":"https://www.datafoodconsortium.org","@graph":[{"@id":
 test('OrderLine:import', async () => {
     const imported = await connector.import(json);
     const importedOrderLine = imported[0];
-    expect(imported.length).toStrictEqual(1);
-    expect(importedOrderLine.equals(orderLine)).toStrictEqual(true);
+    expect.strictEqual(imported.length, 1);
+    expect.strictEqual(importedOrderLine.equals(orderLine), true);
 });
 
 test('OrderLine:export', async () => {
     const serialized = await connector.export([orderLine]);
-    expect(serialized).toStrictEqual(json);
+    expect.strictEqual(serialized, json);
 });
 
 test('OrderLine:getSemanticId', async () => {
-    expect(orderLine.getSemanticId()).toStrictEqual("http://myplatform.com/orderLine1");
+    expect.strictEqual(orderLine.getSemanticId(), "http://myplatform.com/orderLine1");
 });
 
 test('OrderLine:getOrder', async () => {
     const expected = await orderLine.getOrder();
-    expect(expected.equals(order)).toStrictEqual(true);
+    expect.strictEqual(expected.equals(order), true);
 });
 
 test('OrderLine:getOffer', async () => {
     const expected = await orderLine.getOffer();
-    expect(expected.equals(offer)).toStrictEqual(true);
+    expect.strictEqual(expected.equals(offer), true);
 });
 
 test('OrderLine:getPrice', async () => {
     const expected = await orderLine.getPrice();
-    expect(expected.equals(price)).toStrictEqual(true);
+    expect.strictEqual(expected.equals(price), true);
 });
 
 test('OrderLine:getQuantity', async () => {
-    expect(orderLine.getQuantity()).toStrictEqual(2);
+    expect.strictEqual(orderLine.getQuantity(), 2);
 });
 
 test('OrderLine:setOrder', async () => {
@@ -78,7 +80,7 @@ test('OrderLine:setOrder', async () => {
     });
     orderLine.setOrder(order2);
     const expected = await orderLine.getOrder();
-    expect(expected.equals(order2)).toStrictEqual(true);
+    expect.strictEqual(expected.equals(order2), true);
 });
 
 test('OrderLine:setOffer', async () => {
@@ -88,7 +90,7 @@ test('OrderLine:setOffer', async () => {
     });
     orderLine.setOffer(offer2);
     const expected = await orderLine.getOffer();
-    expect(expected.equals(offer2)).toStrictEqual(true);
+    expect.strictEqual(expected.equals(offer2), true);
 });
 
 test('OrderLine:setPrice', async () => {
@@ -100,10 +102,10 @@ test('OrderLine:setPrice', async () => {
     });
     orderLine.setPrice(price2);
     const expected = await orderLine.getPrice();
-    expect(expected.equals(price2)).toStrictEqual(true);
+    expect.strictEqual(expected.equals(price2), true);
 });
 
 test('OrderLine:setQuantity', async () => {
     orderLine.setQuantity(3.3);
-    expect(orderLine.getQuantity()).toStrictEqual(3.3);
+    expect.strictEqual(orderLine.getQuantity(), 3.3);
 });
