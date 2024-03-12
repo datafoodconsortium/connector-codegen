@@ -50,15 +50,15 @@ test('Person:export', async () => {
     expect.strictEqual(serialized, json);
 });
 
-test('Person:getSemanticId', async () => {
+test('Person:getSemanticId', () => {
     expect.strictEqual(person.getSemanticId(), "http://myplatform.com/person1");
 });
 
-test('Person:getFirstName', async () => {
+test('Person:getFirstName', () => {
     expect.strictEqual(person.getFirstName(), "John");
 });
 
-test('Person:getLastName', async () => {
+test('Person:getLastName', () => {
     expect.strictEqual(person.getLastName(), "Smith");
 });
 
@@ -74,12 +74,12 @@ test('Person:getAffiliatedOrganizations', async () => {
     expect.strictEqual(organizations[0].equals(enterprise), true);
 });
 
-test('Person:setFirstName', async () => {
+test('Person:setFirstName', () => {
     person.setFirstName("John2");
     expect.strictEqual(person.getFirstName(), "John2");
 });
 
-test('Person:setLastName', async () => {
+test('Person:setLastName', () => {
     person.setLastName("Smith2");
     expect.strictEqual(person.getLastName(), "Smith2");
 });

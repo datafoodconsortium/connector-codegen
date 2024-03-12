@@ -30,15 +30,15 @@ test('Price:export', async () => {
     expect.strictEqual(serialized, json);
 });
 
-test('Price:getSemanticId', async () => {
+test('Price:getSemanticId', () => {
     expect.strictEqual(price.getSemanticId(), undefined);
 });
 
-test('Price:getValue', async () => {
+test('Price:getValue', () => {
     expect.strictEqual(price.getValue(), 2.54);
 });
 
-test('Price:getVatRate', async () => {
+test('Price:getVatRate', () => {
     expect.strictEqual(price.getVatRate(), 8);
 });
 
@@ -46,12 +46,12 @@ test('Price:getUnit', async () => {
     expect.strictEqual(await price.getUnit(), euro);
 });
 
-test('Price:setValue', async () => {
+test('Price:setValue', () => {
     price.setValue(3);
     expect.strictEqual(price.getValue(), 3);
 });
 
-test('Price:setVatRate', async () => {
+test('Price:setVatRate', () => {
     price.setVatRate(19);
     expect.strictEqual(price.getVatRate(), 19);
 });

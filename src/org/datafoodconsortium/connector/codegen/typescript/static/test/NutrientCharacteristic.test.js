@@ -35,11 +35,11 @@ test('NutrientCharacteristic:export', async () => {
     expect.strictEqual(serialized, json);
 });
 
-test('NutrientCharacteristic:getSemanticId', async () => {
+test('NutrientCharacteristic:getSemanticId', () => {
     expect.strictEqual(nutrientCharacteristic.getSemanticId(), undefined);
 });
 
-test('NutrientCharacteristic:getQuantityValue', async () => {
+test('NutrientCharacteristic:getQuantityValue', () => {
     expect.strictEqual(nutrientCharacteristic.getQuantityValue(), 10);
 });
 
@@ -51,7 +51,7 @@ test('NutrientCharacteristic:getQuantityDimension', async () => {
     expect.strictEqual(await nutrientCharacteristic.getQuantityDimension(), nutrientDimension);
 });
 
-test('NutrientCharacteristic:setQuantityValue', async () => {
+test('NutrientCharacteristic:setQuantityValue', () => {
     nutrientCharacteristic.setQuantityValue(6.35);
     expect.strictEqual(nutrientCharacteristic.getQuantityValue(), 6.35);
 });

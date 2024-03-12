@@ -25,11 +25,11 @@ test('CustomerCategory:export', async () => {
     expect.strictEqual(serialized, json);
 });
 
-test('CustomerCategory:getSemanticId', async () => {
+test('CustomerCategory:getSemanticId', () => {
     expect.strictEqual(customerCategory.getSemanticId(), "http://myplatform.com/customerCategory1");
 });
 
-test('CustomerCategory:getDescription', async () => {
+test('CustomerCategory:getDescription', () => {
     expect.strictEqual(customerCategory.getDescription(), "description");
 });
 

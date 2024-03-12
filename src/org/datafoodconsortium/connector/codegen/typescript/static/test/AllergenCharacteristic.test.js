@@ -11,9 +11,9 @@ const kilogram = connector.MEASURES.UNIT.QUANTITYUNIT.KILOGRAM;
 const allergenDimension = connector.MEASURES.DIMENSION.ALLERGENDIMENSION.PEANUTS;
 
 const allergenCharacteristic = new AllergenCharacteristic({
-    connector: connector, 
-    value: 1, 
-    unit: kilogram, 
+    connector: connector,
+    value: 1,
+    unit: kilogram,
     allergenDimension: allergenDimension
 });
 
@@ -31,11 +31,11 @@ test('AllergenCharacteristic:export', async () => {
     expect.strictEqual(serialized, json);
 });
 
-test('AllergenCharacteristic:getSemanticId', async () => {
+test('AllergenCharacteristic:getSemanticId', () => {
     expect.strictEqual(allergenCharacteristic.getSemanticId(), undefined);
 });
 
-test('AllergenCharacteristic:getQuantityValue', async () => {
+test('AllergenCharacteristic:getQuantityValue', () => {
     expect.strictEqual(allergenCharacteristic.getQuantityValue(), 1);
 });
 
