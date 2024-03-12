@@ -50,7 +50,7 @@ test('Offer:export', async () => {
     expect.strictEqual(serialized, json);
 });
 
-test('Offer:getSemanticId', async () => {
+test('Offer:getSemanticId', () => {
     expect.strictEqual(offer.getSemanticId(), "http://myplatform.com/offer1");
 });
 
@@ -69,7 +69,7 @@ test('Offer:getPrice', async () => {
     expect.strictEqual(expected.equals(price), true);
 });
 
-test('Offer:getStockLimitation', async () => {
+test('Offer:getStockLimitation', () => {
     expect.strictEqual(offer.getStockLimitation(), 4.21);
 });
 

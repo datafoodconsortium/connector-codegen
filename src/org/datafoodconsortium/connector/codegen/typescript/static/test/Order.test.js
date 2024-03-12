@@ -62,15 +62,15 @@ test('Order:export', async () => {
     expect.strictEqual(serialized, json);
 });
 
-test('Order:getSemanticId', async () => {
+test('Order:getSemanticId', () => {
     expect.strictEqual(order.getSemanticId(), "http://myplatform.com/order1");
 });
 
-test('Order:getNumber', async () => {
+test('Order:getNumber', () => {
     expect.strictEqual(order.getNumber(), "0001");
 });
 
-test('Order:getDate', async () => {
+test('Order:getDate', () => {
     expect.strictEqual(order.getDate(), "date");
 });
 
@@ -90,12 +90,12 @@ test('Order:getClient', async () => {
     expect.strictEqual(expected.equals(customer), true);
 });
 
-test('Order:setNumber', async () => {
+test('Order:setNumber', () => {
     order.setNumber("0002");
     expect.strictEqual(order.getNumber(), "0002");
 });
 
-test('Order:setDate', async () => {
+test('Order:setDate', () => {
     order.setDate("date2");
     expect.strictEqual(order.getDate(), "date2");
 });

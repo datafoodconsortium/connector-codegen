@@ -29,7 +29,7 @@ test('QuantitativeValue:export', async () => {
     expect.strictEqual(serialized, json);
 });
 
-test('QuantitativeValue:getSemanticId', async () => {
+test('QuantitativeValue:getSemanticId', () => {
     expect.strictEqual(quantitativeValue.getSemanticId(), undefined);
 });
 
@@ -38,7 +38,7 @@ test('QuantitativeValue:getQuantityUnit', async () => {
     expect.strictEqual(expected.equals(kilogram), true);
 });
 
-test('QuantitativeValue:getQuantityValue', async () => {
+test('QuantitativeValue:getQuantityValue', () => {
     expect.strictEqual(quantitativeValue.getQuantityValue(), 1);
 });
 
