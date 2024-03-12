@@ -39,19 +39,19 @@ test('SaleSession:export', async () => {
     expect.strictEqual(serialized, json);
 });
 
-test('SaleSession:getSemanticId', async () => {
+test('SaleSession:getSemanticId', () => {
     expect.strictEqual(saleSession.getSemanticId(), "http://myplatform.com/saleSession1");
 });
 
-test('SaleSession:getBeginDate', async () => {
+test('SaleSession:getBeginDate', () => {
     expect.strictEqual(saleSession.getBeginDate(), "beginDate");
 });
 
-test('SaleSession:getEndDate', async () => {
+test('SaleSession:getEndDate', () => {
     expect.strictEqual(saleSession.getEndDate(), "endDate");
 });
 
-test('SaleSession:getQuantity', async () => {
+test('SaleSession:getQuantity', () => {
     expect.strictEqual(saleSession.getQuantity(), 5);
 });
 
@@ -61,17 +61,17 @@ test('SaleSession:getOffers', async () => {
     expect.strictEqual(offers[0].equals(offer), true);
 });
 
-test('SaleSession:setBeginDate', async () => {
+test('SaleSession:setBeginDate', () => {
     saleSession.setBeginDate("beginDate2");
     expect.strictEqual(saleSession.getBeginDate(), "beginDate2");
 });
 
-test('SaleSession:setEndDate', async () => {
+test('SaleSession:setEndDate', () => {
     saleSession.setEndDate("endDate2");
     expect.strictEqual(saleSession.getEndDate(), "endDate2");
 });
 
-test('SaleSession:setQuantity', async () => {
+test('SaleSession:setQuantity', () => {
     saleSession.setQuantity(2.3);
     expect.strictEqual(saleSession.getQuantity(), 2.3);
 });

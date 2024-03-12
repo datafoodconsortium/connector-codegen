@@ -48,7 +48,7 @@ test('Catalog:export', async () => {
     expect.strictEqual(serialized, json);
 });
 
-test('Catalog:getSemanticId', async () => {
+test('Catalog:getSemanticId', () => {
     expect.strictEqual(catalog.getSemanticId(), "http://myplatform.com/catalog1");
 });
 

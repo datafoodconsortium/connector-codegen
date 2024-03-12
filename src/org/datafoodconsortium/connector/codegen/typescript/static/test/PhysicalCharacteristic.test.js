@@ -35,11 +35,11 @@ test('PhysicalCharacteristic:export', async () => {
     expect.strictEqual(serialized, json);
 });
 
-test('PhysicalCharacteristic:getSemanticId', async () => {
+test('PhysicalCharacteristic:getSemanticId', () => {
     expect.strictEqual(physicalCharacteristic.getSemanticId(), undefined);
 });
 
-test('PhysicalCharacteristic:getQuantityValue', async () => {
+test('PhysicalCharacteristic:getQuantityValue', () => {
     expect.strictEqual(physicalCharacteristic.getQuantityValue(), 100);
 });
 
@@ -51,7 +51,7 @@ test('PhysicalCharacteristic:getQuantityDimension', async () => {
     expect.strictEqual(await physicalCharacteristic.getQuantityDimension(), physicalDimension);
 });
 
-test('PhysicalCharacteristic:setQuantityValue', async () => {
+test('PhysicalCharacteristic:setQuantityValue', () => {
     physicalCharacteristic.setQuantityValue(6.35);
     expect.strictEqual(physicalCharacteristic.getQuantityValue(), 6.35);
 });

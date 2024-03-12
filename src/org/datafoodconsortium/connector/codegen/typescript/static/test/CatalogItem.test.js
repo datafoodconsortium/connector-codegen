@@ -62,7 +62,7 @@ test('CatalogItem:export', async () => {
     expect.strictEqual(serialized, json);
 });
 
-test('CatalogItem:getSemanticId', async () => {
+test('CatalogItem:getSemanticId', () => {
     expect.strictEqual(catalogItem.getSemanticId(), "http://myplatform.com/catalogItem1");
 });
 
@@ -83,11 +83,11 @@ test('CatalogItem:getOfferedProduct', async () => {
     expect.strictEqual(offeredProduct.equals(suppliedProduct), true);
 });
 
-test('CatalogItem:getSku', async () => {
+test('CatalogItem:getSku', () => {
     expect.strictEqual(catalogItem.getSku(), "sku");
 });
 
-test('CatalogItem:getStockLimitation', async () => {
+test('CatalogItem:getStockLimitation', () => {
     expect.strictEqual(catalogItem.getStockLimitation(), 6.32);
 });
 
@@ -99,12 +99,12 @@ test('CatalogItem:registerInCatalog', async () => {
     expect.strictEqual(catalogs[1].equals(catalog2), true);
 });
 
-test('CatalogItem:setSku', async () => {
+test('CatalogItem:setSku', () => {
     catalogItem.setSku("sku2");
     expect.strictEqual(catalogItem.getSku(), "sku2");
 });
 
-test('CatalogItem:setStockLimitation', async () => {
+test('CatalogItem:setStockLimitation', () => {
     catalogItem.setStockLimitation(5);
     expect.strictEqual(catalogItem.getStockLimitation(), 5);
 });

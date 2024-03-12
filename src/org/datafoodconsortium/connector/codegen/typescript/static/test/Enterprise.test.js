@@ -88,11 +88,11 @@ test('Enterprise:export', async () => {
     expect.strictEqual(serialized, json);
 });
 
-test('Enterprise:getSemanticId', async () => {
+test('Enterprise:getSemanticId', () => {
     expect.strictEqual(enterprise.getSemanticId(), "http://myplatform.com/enterprise1");
 });
 
-test('Enterprise:getDescription', async () => {
+test('Enterprise:getDescription', () => {
     expect.strictEqual(enterprise.getDescription(), "description");
 });
 
@@ -102,7 +102,7 @@ test('Enterprise:getLocalizations', async () => {
     expect.strictEqual(localizations[0].equals(address), true);
 });
 
-test('Enterprise:getVatNumber', async () => {
+test('Enterprise:getVatNumber', () => {
     expect.strictEqual(enterprise.getVatNumber(), "vatNumber");
 });
 
@@ -130,7 +130,7 @@ test('Enterprise:getManagedCatalogItems', async () => {
     expect.strictEqual(catalogItems[0].equals(catalogItem), true);
 });
 
-test('Enterprise:setDescription', async () => {
+test('Enterprise:setDescription', () => {
     enterprise.setDescription("description2");
     expect.strictEqual(enterprise.getDescription(), "description2");
 });
@@ -142,7 +142,7 @@ test('Enterprise:addLocalization', async () => {
     expect.strictEqual(localizations[1].equals(address2), true);
 });
 
-test('Enterprise:setVatNumber', async () => {
+test('Enterprise:setVatNumber', () => {
     expect.strictEqual(enterprise.getVatNumber(), "vatNumber");
 });
 

@@ -25,47 +25,47 @@ test('Address:import', async () => {
     expect.strictEqual(expected.equals(address), true);
 });
 
-test('Address:export', async () => {   
+test('Address:export', async () => {
     const serialized = await connector.export([address]);
     expect.strictEqual(serialized, data);
 });
 
-test('Address:getSemanticId', async () => {
+test('Address:getSemanticId', () => {
     expect.strictEqual(address.getSemanticId(), "http://myplatform.com/address/address1");
 });
 
-test('Address:getStreet', async () => {
+test('Address:getStreet', () => {
     expect.strictEqual(address.getStreet(), "1, place or Europe");
 });
 
-test('Address:getPostalCode', async () => {
+test('Address:getPostalCode', () => {
     expect.strictEqual(address.getPostalCode(), "00001");
 });
 
-test('Address:getCity', async () => {
+test('Address:getCity', () => {
     expect.strictEqual(address.getCity(), "Brussels");
 });
 
-test('Address:getCountry', async () => {
+test('Address:getCountry', () => {
     expect.strictEqual(address.getCountry(), "Belgium");
 });
 
-test('Address:setStreet', async () => {
+test('Address:setStreet', () => {
     address.setStreet("21, place or Europe");
     expect.strictEqual(address.getStreet(), "21, place or Europe");
 });
 
-test('Address:setPostalCode', async () => {
+test('Address:setPostalCode', () => {
     address.setPostalCode("00002");
     expect.strictEqual(address.getPostalCode(), "00002");
 });
 
-test('Address:setCity', async () => {
+test('Address:setCity', () => {
     address.setCity("Paris");
     expect.strictEqual(address.getCity(), "Paris");
 });
 
-test('Address:setCountry', async () => {
+test('Address:setCountry', () => {
     address.setCountry("France");
     expect.strictEqual(address.getCountry(), "France");
 });

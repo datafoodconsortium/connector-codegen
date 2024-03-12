@@ -113,11 +113,11 @@ test('SuppliedProduct:export', async () => {
     expect.strictEqual(serialized, json);
 });
 
-test('SuppliedProduct:getSemanticId', async () => {
+test('SuppliedProduct:getSemanticId', () => {
     expect.strictEqual(suppliedProduct.getSemanticId(), "http://myplatform.com/tomato");
 });
 
-test('SuppliedProduct:getDescription', async () => {
+test('SuppliedProduct:getDescription', () => {
     expect.strictEqual(suppliedProduct.getDescription(), "Awesome tomato");
 });
 
@@ -131,15 +131,15 @@ test('SuppliedProduct:getQuantity', async () => {
     expect.strictEqual(expected.equals(quantity), true);
 });
 
-test('SuppliedProduct:getTotalTheoreticalStock', async () => {
+test('SuppliedProduct:getTotalTheoreticalStock', () => {
     expect.strictEqual(suppliedProduct.getTotalTheoreticalStock(), 2.23);
 });
 
-test('SuppliedProduct:getAlcoholPercentage', async () => {
+test('SuppliedProduct:getAlcoholPercentage', () => {
     expect.strictEqual(suppliedProduct.getAlcoholPercentage(), 0);
 });
 
-test('SuppliedProduct:getLifetime', async () => {
+test('SuppliedProduct:getLifetime', () => {
     expect.strictEqual(suppliedProduct.getLifetime(), "a week");
 });
 
@@ -149,7 +149,7 @@ test('SuppliedProduct:getClaims', async () => {
     expect.strictEqual(claims[0].equals(connector.FACETS.CLAIM.NUTRITIONALCLAIM.NOADDEDSUGARS), true);
 });
 
-test('SuppliedProduct:getUsageOrStorageConditions', async () => {
+test('SuppliedProduct:getUsageOrStorageConditions', () => {
     expect.strictEqual(suppliedProduct.getUsageOrStorageConditions(), "free text");
 });
 
@@ -201,7 +201,7 @@ test('SuppliedProduct:getPartOrigin', async () => {
     expect.strictEqual(partOrigins[0].equals(connector.FACETS.PARTORIGIN.PLANTPARTORIGIN.FRUIT), true);
 });
 
-test('SuppliedProduct:setDescription', async () => {
+test('SuppliedProduct:setDescription', () => {
     suppliedProduct.setDescription("description2")
     expect.strictEqual(suppliedProduct.getDescription(), "description2");
 });
@@ -223,17 +223,17 @@ test('SuppliedProduct:setQuantity', async () => {
     expect.strictEqual(expected.equals(quantity2), true);
 });
 
-test('SuppliedProduct:setTotalTheoreticalStock', async () => {
+test('SuppliedProduct:setTotalTheoreticalStock', () => {
     suppliedProduct.setTotalTheoreticalStock(5);
     expect.strictEqual(suppliedProduct.getTotalTheoreticalStock(), 5);
 });
 
-test('SuppliedProduct:setAlcoholPercentage', async () => {
+test('SuppliedProduct:setAlcoholPercentage', () => {
     suppliedProduct.setAlcoholPercentage(5.5);
     expect.strictEqual(suppliedProduct.getAlcoholPercentage(), 5.5);
 });
 
-test('SuppliedProduct:setLifetime', async () => {
+test('SuppliedProduct:setLifetime', () => {
     suppliedProduct.setLifetime("lifetime2");
     expect.strictEqual(suppliedProduct.getLifetime(), "lifetime2");
 });
@@ -253,7 +253,7 @@ test('SuppliedProduct:removeClaim', async () => {
     expect.strictEqual(claims[0].equals(connector.FACETS.CLAIM.NUTRITIONALCLAIM.FATFREE), true);
 });
 
-test('SuppliedProduct:setUsageOrStorageConditions', async () => {
+test('SuppliedProduct:setUsageOrStorageConditions', () => {
     suppliedProduct.setUsageOrStorageConditions("free text 2");
     expect.strictEqual(suppliedProduct.getUsageOrStorageConditions(), "free text 2");
 });

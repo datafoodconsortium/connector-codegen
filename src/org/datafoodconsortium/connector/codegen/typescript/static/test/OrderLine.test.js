@@ -50,7 +50,7 @@ test('OrderLine:export', async () => {
     expect.strictEqual(serialized, json);
 });
 
-test('OrderLine:getSemanticId', async () => {
+test('OrderLine:getSemanticId', () => {
     expect.strictEqual(orderLine.getSemanticId(), "http://myplatform.com/orderLine1");
 });
 
@@ -69,7 +69,7 @@ test('OrderLine:getPrice', async () => {
     expect.strictEqual(expected.equals(price), true);
 });
 
-test('OrderLine:getQuantity', async () => {
+test('OrderLine:getQuantity', () => {
     expect.strictEqual(orderLine.getQuantity(), 2);
 });
 
