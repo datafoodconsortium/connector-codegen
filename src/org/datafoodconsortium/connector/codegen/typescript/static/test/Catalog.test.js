@@ -1,3 +1,5 @@
+import expect from 'node:assert';
+import { test } from 'node:test';
 import Catalog from '../lib/Catalog.js';
 import CatalogItem from '../lib/CatalogItem.js';
 import Enterprise from '../lib/Enterprise.js';
@@ -37,57 +39,57 @@ const catalog = new Catalog({
 test('Catalog:import', async () => {
     const imported = await connector.import(json);
     const importedCatalog = imported[0];
-    expect(imported.length).toStrictEqual(1);
-    expect(importedCatalog.equals(catalog)).toStrictEqual(true);
+    expect.strictEqual(imported.length, 1);
+    expect.strictEqual(importedCatalog.equals(catalog), true);
 });
 
 test('Catalog:export', async () => {
     const serialized = await connector.export([catalog]);
-    expect(serialized).toStrictEqual(json);
+    expect.strictEqual(serialized, json);
 });
 
 test('Catalog:getSemanticId', async () => {
-    expect(catalog.getSemanticId()).toStrictEqual("http://myplatform.com/catalog1");
+    expect.strictEqual(catalog.getSemanticId(), "http://myplatform.com/catalog1");
 });
 
 test('Catalog:getMaintainers', async () => {
     const maintainers = await catalog.getMaintainers();
-    expect(maintainers.length).toStrictEqual(1);
-    expect(maintainers[0].equals(enterprise)).toStrictEqual(true);
+    expect.strictEqual(maintainers.length, 1);
+    expect.strictEqual(maintainers[0].equals(enterprise), true);
 });
 
 test('Catalog:getItems', async () => {
     const items = await catalog.getItems();
-    expect(items.length).toStrictEqual(1);
-    expect(items[0].equals(catalogItem)).toStrictEqual(true);
+    expect.strictEqual(items.length, 1);
+    expect.strictEqual(items[0].equals(catalogItem), true);
 });
 
 test('Catalog:addMaintainer', async () => {
     catalog.addMaintainer(enterprise2);
     const maintainers = await catalog.getMaintainers();
-    expect(maintainers.length).toStrictEqual(2);
-    expect(maintainers[0].equals(enterprise)).toStrictEqual(true);
-    expect(maintainers[1].equals(enterprise2)).toStrictEqual(true);
+    expect.strictEqual(maintainers.length, 2);
+    expect.strictEqual(maintainers[0].equals(enterprise), true);
+    expect.strictEqual(maintainers[1].equals(enterprise2), true);
 });
 
 test('Catalog:addItem', async () => {
     catalog.addItem(catalogItem2);
     const items = await catalog.getItems();
-    expect(items.length).toStrictEqual(2);
-    expect(items[0].equals(catalogItem)).toStrictEqual(true);
-    expect(items[1].equals(catalogItem2)).toStrictEqual(true);
+    expect.strictEqual(items.length, 2);
+    expect.strictEqual(items[0].equals(catalogItem), true);
+    expect.strictEqual(items[1].equals(catalogItem2), true);
 });
 
 test('Catalog:removeMaintainer', async () => {
     catalog.removeMaintainer(enterprise);
     const maintainers = await catalog.getMaintainers();
-    expect(maintainers.length).toStrictEqual(1);
-    expect(maintainers[0].equals(enterprise2)).toStrictEqual(true);
+    expect.strictEqual(maintainers.length, 1);
+    expect.strictEqual(maintainers[0].equals(enterprise2), true);
 });
 
 test('Catalog:removeItem', async () => {
     catalog.removeItem(catalogItem);
     const items = await catalog.getItems();
-    expect(items.length).toStrictEqual(1);
-    expect(items[0].equals(catalogItem2)).toStrictEqual(true);
+    expect.strictEqual(items.length, 1);
+    expect.strictEqual(items[0].equals(catalogItem2), true);
 });

@@ -1,3 +1,5 @@
+import expect from 'node:assert';
+import { test } from 'node:test';
 import Price from '../lib/Price.js';
 import Connector from "../lib/Connector.js";
 import measures from '../test/thesaurus/measures.json' assert { type: 'json' };
@@ -19,43 +21,43 @@ const json = `{"@context":"https://www.datafoodconsortium.org","@id":"_:b1","@ty
 test('Price:import', async () => {
     const imported = await connector.import(json);
     const importedPrice = imported[0];
-    expect(imported.length).toStrictEqual(1);
-    expect(importedPrice.equals(price)).toStrictEqual(true);
+    expect.strictEqual(imported.length, 1);
+    expect.strictEqual(importedPrice.equals(price), true);
 });
 
 test('Price:export', async () => {
     const serialized = await connector.export([price]);
-    expect(serialized).toStrictEqual(json);
+    expect.strictEqual(serialized, json);
 });
 
 test('Price:getSemanticId', async () => {
-    expect(price.getSemanticId()).toStrictEqual(undefined);
+    expect.strictEqual(price.getSemanticId(), undefined);
 });
 
 test('Price:getValue', async () => {
-    expect(price.getValue()).toStrictEqual(2.54);
+    expect.strictEqual(price.getValue(), 2.54);
 });
 
 test('Price:getVatRate', async () => {
-    expect(price.getVatRate()).toStrictEqual(8);
+    expect.strictEqual(price.getVatRate(), 8);
 });
 
 test('Price:getUnit', async () => {
-    expect(await price.getUnit()).toStrictEqual(euro);
+    expect.strictEqual(await price.getUnit(), euro);
 });
 
 test('Price:setValue', async () => {
     price.setValue(3);
-    expect(price.getValue()).toStrictEqual(3);
+    expect.strictEqual(price.getValue(), 3);
 });
 
 test('Price:setVatRate', async () => {
     price.setVatRate(19);
-    expect(price.getVatRate()).toStrictEqual(19);
+    expect.strictEqual(price.getVatRate(), 19);
 });
 
 test('Price:setUnit', async () => {
     const dollar = connector.MEASURES.UNIT.CURRENCYUNIT.USDOLLAR;
     price.setUnit(dollar);
-    expect(await price.getUnit()).toStrictEqual(dollar);
+    expect.strictEqual(await price.getUnit(), dollar);
 });
