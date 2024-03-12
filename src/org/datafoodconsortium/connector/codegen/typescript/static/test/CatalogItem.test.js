@@ -1,3 +1,5 @@
+import expect from 'node:assert';
+import { test } from 'node:test';
 import CatalogItem from '../lib/CatalogItem.js';
 import Catalog from '../lib/Catalog.js';
 import SuppliedProduct from '../lib/SuppliedProduct.js';
@@ -51,72 +53,72 @@ const catalogItem = new CatalogItem({
 test('CatalogItem:import', async () => {
     const imported = await connector.import(json);
     const importedCatalogItem = imported[0];
-    expect(imported.length).toStrictEqual(1);
-    expect(importedCatalogItem.equals(catalogItem)).toStrictEqual(true);
+    expect.strictEqual(imported.length, 1);
+    expect.strictEqual(importedCatalogItem.equals(catalogItem), true);
 });
 
 test('CatalogItem:export', async () => {
     const serialized = await connector.export([catalogItem]);
-    expect(serialized).toStrictEqual(json);
+    expect.strictEqual(serialized, json);
 });
 
 test('CatalogItem:getSemanticId', async () => {
-    expect(catalogItem.getSemanticId()).toStrictEqual("http://myplatform.com/catalogItem1");
+    expect.strictEqual(catalogItem.getSemanticId(), "http://myplatform.com/catalogItem1");
 });
 
 test('CatalogItem:getCatalogs', async () => {
     const catalogs = await catalogItem.getCatalogs();
-    expect(catalogs.length).toStrictEqual(1);
-    expect(catalogs[0].equals(catalog)).toStrictEqual(true);
+    expect.strictEqual(catalogs.length, 1);
+    expect.strictEqual(catalogs[0].equals(catalog), true);
 });
 
 test('CatalogItem:getOfferers', async () => {
     const offers = await catalogItem.getOfferers();
-    expect(offers.length).toStrictEqual(1);
-    expect(offers[0].equals(offer1)).toStrictEqual(true);
+    expect.strictEqual(offers.length, 1);
+    expect.strictEqual(offers[0].equals(offer1), true);
 });
 
 test('CatalogItem:getOfferedProduct', async () => {
     const offeredProduct = await catalogItem.getOfferedProduct();
-    expect(offeredProduct.equals(suppliedProduct)).toStrictEqual(true);
+    expect.strictEqual(offeredProduct.equals(suppliedProduct), true);
 });
 
 test('CatalogItem:getSku', async () => {
-    expect(catalogItem.getSku()).toStrictEqual("sku");
+    expect.strictEqual(catalogItem.getSku(), "sku");
 });
 
 test('CatalogItem:getStockLimitation', async () => {
-    expect(catalogItem.getStockLimitation()).toStrictEqual(6.32);
+    expect.strictEqual(catalogItem.getStockLimitation(), 6.32);
 });
 
 test('CatalogItem:registerInCatalog', async () => {
     catalogItem.registerInCatalog(catalog2);
     const catalogs = await catalogItem.getCatalogs();
-    expect(catalogs.length).toStrictEqual(2);
-    expect(catalogs[0].equals(catalog)).toStrictEqual(true);
-    expect(catalogs[1].equals(catalog2)).toStrictEqual(true);
+    expect.strictEqual(catalogs.length, 2);
+    expect.strictEqual(catalogs[0].equals(catalog), true);
+    expect.strictEqual(catalogs[1].equals(catalog2), true);
 });
 
 test('CatalogItem:setSku', async () => {
     catalogItem.setSku("sku2");
-    expect(catalogItem.getSku()).toStrictEqual("sku2");
+    expect.strictEqual(catalogItem.getSku(), "sku2");
 });
 
 test('CatalogItem:setStockLimitation', async () => {
     catalogItem.setStockLimitation(5);
-    expect(catalogItem.getStockLimitation()).toStrictEqual(5);
+    expect.strictEqual(catalogItem.getStockLimitation(), 5);
 });
 
 test('CatalogItem:setOfferedProduct', async () => {
     catalogItem.setOfferedProduct(suppliedProduct2);
     const offeredProduct = await catalogItem.getOfferedProduct();
-    expect(offeredProduct.equals(suppliedProduct2)).toStrictEqual(true);
+    expect.strictEqual(offeredProduct.equals(suppliedProduct2), true);
 });
 
 test('CatalogItem:addOffer', async () => {
     catalogItem.addOffer(offer2);
     const offers = await catalogItem.getOfferers();
-    expect(offers.length).toStrictEqual(2);
-    expect(offers[0].equals(offer1)).toStrictEqual(true);
-    expect(offers[1].equals(offer2)).toStrictEqual(true);
+    expect.strictEqual(offers.length, 2);
+    expect.strictEqual(offers[0].equals(offer1), true);
+    expect.strictEqual(offers[1].equals(offer2), true);
 });

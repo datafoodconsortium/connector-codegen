@@ -1,3 +1,5 @@
+import expect from 'node:assert';
+import { test } from 'node:test';
 import NutrientCharacteristic from '../lib/NutrientCharacteristic.js';
 import Connector from "../lib/Connector.js";
 import facets from '../test/thesaurus/facets.json' assert { type: 'json' };
@@ -24,42 +26,42 @@ const json = `{"@context":"https://www.datafoodconsortium.org","@id":"_:b1","@ty
 test('NutrientCharacteristic:import', async () => {
     const imported = await connector.import(json);
     const importedNutrientCharacteristic = imported[0];
-    expect(imported.length).toStrictEqual(1);
-    expect(importedNutrientCharacteristic.equals(nutrientCharacteristic)).toStrictEqual(true);
+    expect.strictEqual(imported.length, 1);
+    expect.strictEqual(importedNutrientCharacteristic.equals(nutrientCharacteristic), true);
 });
 
 test('NutrientCharacteristic:export', async () => {
     const serialized = await connector.export([nutrientCharacteristic]);
-    expect(serialized).toStrictEqual(json);
+    expect.strictEqual(serialized, json);
 });
 
 test('NutrientCharacteristic:getSemanticId', async () => {
-    expect(nutrientCharacteristic.getSemanticId()).toStrictEqual(undefined);
+    expect.strictEqual(nutrientCharacteristic.getSemanticId(), undefined);
 });
 
 test('NutrientCharacteristic:getQuantityValue', async () => {
-    expect(nutrientCharacteristic.getQuantityValue()).toStrictEqual(10);
+    expect.strictEqual(nutrientCharacteristic.getQuantityValue(), 10);
 });
 
 test('NutrientCharacteristic:getQuantityUnit', async () => {
-    expect(await nutrientCharacteristic.getQuantityUnit()).toStrictEqual(kilogram);
+    expect.strictEqual(await nutrientCharacteristic.getQuantityUnit(), kilogram);
 });
 
 test('NutrientCharacteristic:getQuantityDimension', async () => {
-    expect(await nutrientCharacteristic.getQuantityDimension()).toStrictEqual(nutrientDimension);
+    expect.strictEqual(await nutrientCharacteristic.getQuantityDimension(), nutrientDimension);
 });
 
 test('NutrientCharacteristic:setQuantityValue', async () => {
     nutrientCharacteristic.setQuantityValue(6.35);
-    expect(nutrientCharacteristic.getQuantityValue()).toStrictEqual(6.35);
+    expect.strictEqual(nutrientCharacteristic.getQuantityValue(), 6.35);
 });
 
 test('NutrientCharacteristic:setQuantityUnit', async () => {
     nutrientCharacteristic.setQuantityUnit(gram);
-    expect(await nutrientCharacteristic.getQuantityUnit()).toStrictEqual(gram);
+    expect.strictEqual(await nutrientCharacteristic.getQuantityUnit(), gram);
 });
 
 test('NutrientCharacteristic:setQuantityDimension', async () => {
     nutrientCharacteristic.setQuantityDimension(nutrientDimension2);
-    expect(await nutrientCharacteristic.getQuantityDimension()).toStrictEqual(nutrientDimension2);
+    expect.strictEqual(await nutrientCharacteristic.getQuantityDimension(), nutrientDimension2);
 });

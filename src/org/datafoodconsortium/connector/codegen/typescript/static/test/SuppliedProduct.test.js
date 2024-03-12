@@ -1,3 +1,5 @@
+import expect from 'node:assert';
+import { test } from 'node:test';
 import CatalogItem from '../lib/CatalogItem.js';
 import SuppliedProduct from '../lib/SuppliedProduct.js';
 import QuantitativeValue from '../lib/QuantitativeValue.js';
@@ -102,112 +104,112 @@ const json = `{"@context":"https://www.datafoodconsortium.org","@graph":[{"@id":
 test('SuppliedProduct:import', async () => {
     const importedAll = await connector.import(json);
     const imported = importedAll[0];
-    expect(importedAll.length).toStrictEqual(1);
-    expect(imported.equals(suppliedProduct)).toStrictEqual(true);
+    expect.strictEqual(importedAll.length, 1);
+    expect.strictEqual(imported.equals(suppliedProduct), true);
 });
 
 test('SuppliedProduct:export', async () => {
     const serialized = await connector.export([suppliedProduct]);
-    expect(serialized).toStrictEqual(json);
+    expect.strictEqual(serialized, json);
 });
 
 test('SuppliedProduct:getSemanticId', async () => {
-    expect(suppliedProduct.getSemanticId()).toStrictEqual("http://myplatform.com/tomato");
+    expect.strictEqual(suppliedProduct.getSemanticId(), "http://myplatform.com/tomato");
 });
 
 test('SuppliedProduct:getDescription', async () => {
-    expect(suppliedProduct.getDescription()).toStrictEqual("Awesome tomato");
+    expect.strictEqual(suppliedProduct.getDescription(), "Awesome tomato");
 });
 
 test('SuppliedProduct:getProductType', async () => {
     const expected = await suppliedProduct.getProductType();
-    expect(expected.equals(connector.PRODUCT_TYPES.VEGETABLE.TOMATO.ROUND_TOMATO)).toStrictEqual(true);
+    expect.strictEqual(expected.equals(connector.PRODUCT_TYPES.VEGETABLE.TOMATO.ROUND_TOMATO), true);
 });
 
 test('SuppliedProduct:getQuantity', async () => {
     const expected = await suppliedProduct.getQuantity();
-    expect(expected.equals(quantity)).toStrictEqual(true);
+    expect.strictEqual(expected.equals(quantity), true);
 });
 
 test('SuppliedProduct:getTotalTheoreticalStock', async () => {
-    expect(suppliedProduct.getTotalTheoreticalStock()).toStrictEqual(2.23);
+    expect.strictEqual(suppliedProduct.getTotalTheoreticalStock(), 2.23);
 });
 
 test('SuppliedProduct:getAlcoholPercentage', async () => {
-    expect(suppliedProduct.getAlcoholPercentage()).toStrictEqual(0);
+    expect.strictEqual(suppliedProduct.getAlcoholPercentage(), 0);
 });
 
 test('SuppliedProduct:getLifetime', async () => {
-    expect(suppliedProduct.getLifetime()).toStrictEqual("a week");
+    expect.strictEqual(suppliedProduct.getLifetime(), "a week");
 });
 
 test('SuppliedProduct:getClaims', async () => {
     const claims = await suppliedProduct.getClaims();
-    expect(claims.length).toStrictEqual(1);
-    expect(claims[0].equals(connector.FACETS.CLAIM.NUTRITIONALCLAIM.NOADDEDSUGARS)).toStrictEqual(true);
+    expect.strictEqual(claims.length, 1);
+    expect.strictEqual(claims[0].equals(connector.FACETS.CLAIM.NUTRITIONALCLAIM.NOADDEDSUGARS), true);
 });
 
 test('SuppliedProduct:getUsageOrStorageConditions', async () => {
-    expect(suppliedProduct.getUsageOrStorageConditions()).toStrictEqual("free text");
+    expect.strictEqual(suppliedProduct.getUsageOrStorageConditions(), "free text");
 });
 
 test('SuppliedProduct:getAllergenCharacteristics', async () => {
     const allergenCharacteristics = await suppliedProduct.getAllergenCharacteristics();
-    expect(allergenCharacteristics.length).toStrictEqual(1);
-    expect(allergenCharacteristics[0].equals(allergenCharacteristic)).toStrictEqual(true);
+    expect.strictEqual(allergenCharacteristics.length, 1);
+    expect.strictEqual(allergenCharacteristics[0].equals(allergenCharacteristic), true);
 });
 
 test('SuppliedProduct:getNutrientCharacteristics', async () => {
     const nutrientCharacteristics = await suppliedProduct.getNutrientCharacteristics();
-    expect(nutrientCharacteristics.length).toStrictEqual(1);
-    expect(nutrientCharacteristics[0].equals(nutrientCharacteristic)).toStrictEqual(true);
+    expect.strictEqual(nutrientCharacteristics.length, 1);
+    expect.strictEqual(nutrientCharacteristics[0].equals(nutrientCharacteristic), true);
 });
 
 test('SuppliedProduct:getPhysicalCharacteristics', async () => {
     const physicalCharacteristics = await suppliedProduct.getPhysicalCharacteristics();
-    expect(physicalCharacteristics.length).toStrictEqual(1);
-    expect(physicalCharacteristics[0].equals(physicalCharacteristic)).toStrictEqual(true);
+    expect.strictEqual(physicalCharacteristics.length, 1);
+    expect.strictEqual(physicalCharacteristics[0].equals(physicalCharacteristic), true);
 });
 
 test('SuppliedProduct:getGeographicalOrigin', async () => {
     const expected = await suppliedProduct.getGeographicalOrigin();
-    expect(expected.equals(connector.FACETS.TERRITORIALORIGIN.EUROPE.FRANCE.CENTREVALLOIRE)).toStrictEqual(true);
+    expect.strictEqual(expected.equals(connector.FACETS.TERRITORIALORIGIN.EUROPE.FRANCE.CENTREVALLOIRE), true);
 });
 
 test('SuppliedProduct:getCatalogItems', async () => {
     const catalogItems = await suppliedProduct.getCatalogItems();
-    expect(catalogItems.length).toStrictEqual(1);
-    expect(catalogItems[0].equals(catalogItem)).toStrictEqual(true);
+    expect.strictEqual(catalogItems.length, 1);
+    expect.strictEqual(catalogItems[0].equals(catalogItem), true);
 });
 
 test('SuppliedProduct:getCertifications', async () => {
     const certifications = await suppliedProduct.getCertifications();
-    expect(certifications.length).toStrictEqual(2);
-    expect(certifications[0].equals(connector.FACETS.CERTIFICATION.ORGANICLABEL.ORGANIC_AB)).toStrictEqual(true);
-    expect(certifications[1].equals(connector.FACETS.CERTIFICATION.ORGANICLABEL.ORGANIC_EU)).toStrictEqual(true);
+    expect.strictEqual(certifications.length, 2);
+    expect.strictEqual(certifications[0].equals(connector.FACETS.CERTIFICATION.ORGANICLABEL.ORGANIC_AB), true);
+    expect.strictEqual(certifications[1].equals(connector.FACETS.CERTIFICATION.ORGANICLABEL.ORGANIC_EU), true);
 });
 
 test('SuppliedProduct:getNatureOrigin', async () => {
     const natureOrigins = await suppliedProduct.getNatureOrigin();
-    expect(natureOrigins.length).toStrictEqual(1);
-    expect(natureOrigins[0].equals(connector.FACETS.NATUREORIGIN.PLANTORIGIN)).toStrictEqual(true);
+    expect.strictEqual(natureOrigins.length, 1);
+    expect.strictEqual(natureOrigins[0].equals(connector.FACETS.NATUREORIGIN.PLANTORIGIN), true);
 });
 
 test('SuppliedProduct:getPartOrigin', async () => {
     const partOrigins = await suppliedProduct.getPartOrigin();
-    expect(partOrigins.length).toStrictEqual(1);
-    expect(partOrigins[0].equals(connector.FACETS.PARTORIGIN.PLANTPARTORIGIN.FRUIT)).toStrictEqual(true);
+    expect.strictEqual(partOrigins.length, 1);
+    expect.strictEqual(partOrigins[0].equals(connector.FACETS.PARTORIGIN.PLANTPARTORIGIN.FRUIT), true);
 });
 
 test('SuppliedProduct:setDescription', async () => {
     suppliedProduct.setDescription("description2")
-    expect(suppliedProduct.getDescription()).toStrictEqual("description2");
+    expect.strictEqual(suppliedProduct.getDescription(), "description2");
 });
 
 test('SuppliedProduct:setProductType', async () => {
     suppliedProduct.setProductType(connector.PRODUCT_TYPES.VEGETABLE.ARTICHOKE);
     const expected = await suppliedProduct.getProductType();
-    expect(expected.equals(connector.PRODUCT_TYPES.VEGETABLE.ARTICHOKE)).toStrictEqual(true);
+    expect.strictEqual(expected.equals(connector.PRODUCT_TYPES.VEGETABLE.ARTICHOKE), true);
 });
 
 test('SuppliedProduct:setQuantity', async () => {
@@ -218,153 +220,153 @@ test('SuppliedProduct:setQuantity', async () => {
     });
     suppliedProduct.setQuantity(quantity2);
     const expected = await suppliedProduct.getQuantity();
-    expect(expected.equals(quantity2)).toStrictEqual(true);
+    expect.strictEqual(expected.equals(quantity2), true);
 });
 
 test('SuppliedProduct:setTotalTheoreticalStock', async () => {
     suppliedProduct.setTotalTheoreticalStock(5);
-    expect(suppliedProduct.getTotalTheoreticalStock()).toStrictEqual(5);
+    expect.strictEqual(suppliedProduct.getTotalTheoreticalStock(), 5);
 });
 
 test('SuppliedProduct:setAlcoholPercentage', async () => {
     suppliedProduct.setAlcoholPercentage(5.5);
-    expect(suppliedProduct.getAlcoholPercentage()).toStrictEqual(5.5);
+    expect.strictEqual(suppliedProduct.getAlcoholPercentage(), 5.5);
 });
 
 test('SuppliedProduct:setLifetime', async () => {
     suppliedProduct.setLifetime("lifetime2");
-    expect(suppliedProduct.getLifetime()).toStrictEqual("lifetime2");
+    expect.strictEqual(suppliedProduct.getLifetime(), "lifetime2");
 });
 
 test('SuppliedProduct:addClaim', async () => {
     suppliedProduct.addClaim(connector.FACETS.CLAIM.NUTRITIONALCLAIM.FATFREE);
     const claims = await suppliedProduct.getClaims();
-    expect(claims.length).toStrictEqual(2);
-    expect(claims[0].equals(connector.FACETS.CLAIM.NUTRITIONALCLAIM.NOADDEDSUGARS)).toStrictEqual(true);
-    expect(claims[1].equals(connector.FACETS.CLAIM.NUTRITIONALCLAIM.FATFREE)).toStrictEqual(true);
+    expect.strictEqual(claims.length, 2);
+    expect.strictEqual(claims[0].equals(connector.FACETS.CLAIM.NUTRITIONALCLAIM.NOADDEDSUGARS), true);
+    expect.strictEqual(claims[1].equals(connector.FACETS.CLAIM.NUTRITIONALCLAIM.FATFREE), true);
 });
 
 test('SuppliedProduct:removeClaim', async () => {
     suppliedProduct.removeClaim(connector.FACETS.CLAIM.NUTRITIONALCLAIM.NOADDEDSUGARS);
     const claims = await suppliedProduct.getClaims();
-    expect(claims.length).toStrictEqual(1);
-    expect(claims[0].equals(connector.FACETS.CLAIM.NUTRITIONALCLAIM.FATFREE)).toStrictEqual(true);
+    expect.strictEqual(claims.length, 1);
+    expect.strictEqual(claims[0].equals(connector.FACETS.CLAIM.NUTRITIONALCLAIM.FATFREE), true);
 });
 
 test('SuppliedProduct:setUsageOrStorageConditions', async () => {
     suppliedProduct.setUsageOrStorageConditions("free text 2");
-    expect(suppliedProduct.getUsageOrStorageConditions()).toStrictEqual("free text 2");
+    expect.strictEqual(suppliedProduct.getUsageOrStorageConditions(), "free text 2");
 });
 
 test('SuppliedProduct:addAllergenCharacteristics', async () => {
     suppliedProduct.addAllergenCharacteristic(allergenCharacteristic2);
     const allergenCharacteristics = await suppliedProduct.getAllergenCharacteristics();
-    expect(allergenCharacteristics.length).toStrictEqual(2);
-    expect(allergenCharacteristics[0].equals(allergenCharacteristic)).toStrictEqual(true);
-    expect(allergenCharacteristics[1].equals(allergenCharacteristic2)).toStrictEqual(true);
+    expect.strictEqual(allergenCharacteristics.length, 2);
+    expect.strictEqual(allergenCharacteristics[0].equals(allergenCharacteristic), true);
+    expect.strictEqual(allergenCharacteristics[1].equals(allergenCharacteristic2), true);
 });
 
 test('SuppliedProduct:removeAllergenCharacteristics', async () => {
     suppliedProduct.removeAllergenCharacteristic(allergenCharacteristic);
     const allergenCharacteristics = await suppliedProduct.getAllergenCharacteristics();
-    expect(allergenCharacteristics.length).toStrictEqual(1);
-    expect(allergenCharacteristics[0].equals(allergenCharacteristic2)).toStrictEqual(true);
+    expect.strictEqual(allergenCharacteristics.length, 1);
+    expect.strictEqual(allergenCharacteristics[0].equals(allergenCharacteristic2), true);
 });
 
 test('SuppliedProduct:addNutrientCharacteristics', async () => {
     suppliedProduct.addNutrientCharacteristic(nutrientCharacteristic2);
     const nutrientCharacteristics = await suppliedProduct.getNutrientCharacteristics();
-    expect(nutrientCharacteristics.length).toStrictEqual(2);
-    expect(nutrientCharacteristics[0].equals(nutrientCharacteristic)).toStrictEqual(true);
-    expect(nutrientCharacteristics[1].equals(nutrientCharacteristic2)).toStrictEqual(true);
+    expect.strictEqual(nutrientCharacteristics.length, 2);
+    expect.strictEqual(nutrientCharacteristics[0].equals(nutrientCharacteristic), true);
+    expect.strictEqual(nutrientCharacteristics[1].equals(nutrientCharacteristic2), true);
 });
 
 test('SuppliedProduct:removeNutrientCharacteristics', async () => {
     suppliedProduct.removeNutrientCharacteristic(nutrientCharacteristic);
     const nutrientCharacteristics = await suppliedProduct.getNutrientCharacteristics();
-    expect(nutrientCharacteristics.length).toStrictEqual(1);
-    expect(nutrientCharacteristics[0].equals(nutrientCharacteristic2)).toStrictEqual(true);
+    expect.strictEqual(nutrientCharacteristics.length, 1);
+    expect.strictEqual(nutrientCharacteristics[0].equals(nutrientCharacteristic2), true);
 });
 
 test('SuppliedProduct:getPhysicalCharacteristics', async () => {
     suppliedProduct.addPhysicalCharacteristic(physicalCharacteristic2);
     const physicalCharacteristics = await suppliedProduct.getPhysicalCharacteristics();
-    expect(physicalCharacteristics.length).toStrictEqual(2);
-    expect(physicalCharacteristics[0].equals(physicalCharacteristic)).toStrictEqual(true);
-    expect(physicalCharacteristics[1].equals(physicalCharacteristic2)).toStrictEqual(true);
+    expect.strictEqual(physicalCharacteristics.length, 2);
+    expect.strictEqual(physicalCharacteristics[0].equals(physicalCharacteristic), true);
+    expect.strictEqual(physicalCharacteristics[1].equals(physicalCharacteristic2), true);
 });
 
 test('SuppliedProduct:removePhysicalCharacteristics', async () => {
     suppliedProduct.removePhysicalCharacteristic(physicalCharacteristic);
     const physicalCharacteristics = await suppliedProduct.getPhysicalCharacteristics();
-    expect(physicalCharacteristics.length).toStrictEqual(1);
-    expect(physicalCharacteristics[0].equals(physicalCharacteristic2)).toStrictEqual(true);
+    expect.strictEqual(physicalCharacteristics.length, 1);
+    expect.strictEqual(physicalCharacteristics[0].equals(physicalCharacteristic2), true);
 });
 
 test('SuppliedProduct:setGeographicalOrigin', async () => {
     suppliedProduct.setGeographicalOrigin(connector.FACETS.TERRITORIALORIGIN.EUROPE.FRANCE.NORMANDY);
     const expected = await suppliedProduct.getGeographicalOrigin();
-    expect(expected.equals(connector.FACETS.TERRITORIALORIGIN.EUROPE.FRANCE.NORMANDY)).toStrictEqual(true);
+    expect.strictEqual(expected.equals(connector.FACETS.TERRITORIALORIGIN.EUROPE.FRANCE.NORMANDY), true);
 });
 
 test('SuppliedProduct:addCatalogItem', async () => {
     suppliedProduct.addCatalogItem(catalogItem2);
     const catalogItems = await suppliedProduct.getCatalogItems()
-    expect(catalogItems.length).toStrictEqual(2);
-    expect(catalogItems[0].equals(catalogItem)).toStrictEqual(true);
-    expect(catalogItems[1].equals(catalogItem2)).toStrictEqual(true);
+    expect.strictEqual(catalogItems.length, 2);
+    expect.strictEqual(catalogItems[0].equals(catalogItem), true);
+    expect.strictEqual(catalogItems[1].equals(catalogItem2), true);
 });
 
 test('SuppliedProduct:removeCatalogItem', async () => {
     suppliedProduct.removeCatalogItem(catalogItem);
     const catalogItems = await suppliedProduct.getCatalogItems()
-    expect(catalogItems.length).toStrictEqual(1);
-    expect(catalogItems[0].equals(catalogItem2)).toStrictEqual(true);
+    expect.strictEqual(catalogItems.length, 1);
+    expect.strictEqual(catalogItems[0].equals(catalogItem2), true);
 });
 
 test('SuppliedProduct:addCertification', async () => {
     suppliedProduct.addCertification(connector.FACETS.CERTIFICATION.ORGANICLABEL.NATUREETPROGRES);
     const certifications = await suppliedProduct.getCertifications();
-    expect(certifications.length).toStrictEqual(3);
-    expect(certifications[0].equals(connector.FACETS.CERTIFICATION.ORGANICLABEL.ORGANIC_AB)).toStrictEqual(true);
-    expect(certifications[1].equals(connector.FACETS.CERTIFICATION.ORGANICLABEL.ORGANIC_EU)).toStrictEqual(true);
-    expect(certifications[2].equals(connector.FACETS.CERTIFICATION.ORGANICLABEL.NATUREETPROGRES)).toStrictEqual(true);
+    expect.strictEqual(certifications.length, 3);
+    expect.strictEqual(certifications[0].equals(connector.FACETS.CERTIFICATION.ORGANICLABEL.ORGANIC_AB), true);
+    expect.strictEqual(certifications[1].equals(connector.FACETS.CERTIFICATION.ORGANICLABEL.ORGANIC_EU), true);
+    expect.strictEqual(certifications[2].equals(connector.FACETS.CERTIFICATION.ORGANICLABEL.NATUREETPROGRES), true);
 });
 
 test('SuppliedProduct:removeCertification', async () => {
     suppliedProduct.removeCertification(connector.FACETS.CERTIFICATION.ORGANICLABEL.ORGANIC_EU);
     const certifications = await suppliedProduct.getCertifications();
-    expect(certifications.length).toStrictEqual(2);
-    expect(certifications[0].equals(connector.FACETS.CERTIFICATION.ORGANICLABEL.ORGANIC_AB)).toStrictEqual(true);
-    expect(certifications[1].equals(connector.FACETS.CERTIFICATION.ORGANICLABEL.NATUREETPROGRES)).toStrictEqual(true);
+    expect.strictEqual(certifications.length, 2);
+    expect.strictEqual(certifications[0].equals(connector.FACETS.CERTIFICATION.ORGANICLABEL.ORGANIC_AB), true);
+    expect.strictEqual(certifications[1].equals(connector.FACETS.CERTIFICATION.ORGANICLABEL.NATUREETPROGRES), true);
 });
 
 test('SuppliedProduct:addNatureOrigin', async () => {
     suppliedProduct.addNatureOrigin(connector.FACETS.NATUREORIGIN.ALGAE);
     const natureOrigins = await suppliedProduct.getNatureOrigin();
-    expect(natureOrigins.length).toStrictEqual(2);
-    expect(natureOrigins[0].equals(connector.FACETS.NATUREORIGIN.PLANTORIGIN)).toStrictEqual(true);
-    expect(natureOrigins[1].equals(connector.FACETS.NATUREORIGIN.ALGAE)).toStrictEqual(true);
+    expect.strictEqual(natureOrigins.length, 2);
+    expect.strictEqual(natureOrigins[0].equals(connector.FACETS.NATUREORIGIN.PLANTORIGIN), true);
+    expect.strictEqual(natureOrigins[1].equals(connector.FACETS.NATUREORIGIN.ALGAE), true);
 });
 
 test('SuppliedProduct:removeNatureOrigin', async () => {
     suppliedProduct.removeNatureOrigin(connector.FACETS.NATUREORIGIN.PLANTORIGIN);
     const natureOrigins = await suppliedProduct.getNatureOrigin();
-    expect(natureOrigins.length).toStrictEqual(1);
-    expect(natureOrigins[0].equals(connector.FACETS.NATUREORIGIN.ALGAE)).toStrictEqual(true);
+    expect.strictEqual(natureOrigins.length, 1);
+    expect.strictEqual(natureOrigins[0].equals(connector.FACETS.NATUREORIGIN.ALGAE), true);
 });
 
 test('SuppliedProduct:addPartOrigin', async () => {
     suppliedProduct.addPartOrigin(connector.FACETS.PARTORIGIN.ANIMALPARTORIGIN.COW)
     const partOrigins = await suppliedProduct.getPartOrigin();
-    expect(partOrigins.length).toStrictEqual(2);
-    expect(partOrigins[0].equals(connector.FACETS.PARTORIGIN.PLANTPARTORIGIN.FRUIT)).toStrictEqual(true);
-    expect(partOrigins[1].equals(connector.FACETS.PARTORIGIN.ANIMALPARTORIGIN.COW)).toStrictEqual(true);
+    expect.strictEqual(partOrigins.length, 2);
+    expect.strictEqual(partOrigins[0].equals(connector.FACETS.PARTORIGIN.PLANTPARTORIGIN.FRUIT), true);
+    expect.strictEqual(partOrigins[1].equals(connector.FACETS.PARTORIGIN.ANIMALPARTORIGIN.COW), true);
 });
 
 test('SuppliedProduct:removePartOrigin', async () => {
     suppliedProduct.removePartOrigin(connector.FACETS.PARTORIGIN.PLANTPARTORIGIN.FRUIT)
     const partOrigins = await suppliedProduct.getPartOrigin();
-    expect(partOrigins.length).toStrictEqual(1);
-    expect(partOrigins[0].equals(connector.FACETS.PARTORIGIN.ANIMALPARTORIGIN.COW)).toStrictEqual(true);
+    expect.strictEqual(partOrigins.length, 1);
+    expect.strictEqual(partOrigins[0].equals(connector.FACETS.PARTORIGIN.ANIMALPARTORIGIN.COW), true);
 });
