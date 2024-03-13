@@ -38,11 +38,11 @@ export default class SKOSConcept extends SemanticObject implements ISKOSConcept 
 		const type: string = "http://www.w3.org/2004/02/skos/core#Concept";
 		
 		if (parameters.other) {
-			super({ semanticId: parameters.semanticId!, other: parameters.other });
+			super({ semantizer: parameters.connector.getSemantizer(), semanticId: parameters.semanticId!, other: parameters.other });
 			if (!parameters.other.isSemanticTypeOf(type))
 				throw new Error("Can't create the semantic object of type " + type + " from a copy: the copy is of type " + parameters.other.getSemanticType() + ".");
 		}
-		else super({ semanticId: parameters.semanticId!, semanticType: type });
+		else super({ semantizer: parameters.connector.getSemantizer(), semanticId: parameters.semanticId!, semanticType: type });
 		
 		this.connector = parameters.connector;
 		

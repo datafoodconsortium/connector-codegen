@@ -11,7 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- None.
+- Update `rdf-ext` to version 2.5.1.
+- Update `@types/rdf-ext` to version 2.5.0.
+- Update `@virtual-assembly/semantizer` to version alpha.3 (use GitHub repository).
 
 ## [1.0.0-alpha.2] - 2023-05-23
 

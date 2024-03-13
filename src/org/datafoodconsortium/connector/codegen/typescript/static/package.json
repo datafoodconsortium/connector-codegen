@@ -1,10 +1,10 @@
 {
   "name": "@datafoodconsortium/connector",
-  "description": "",
+  "description": "The Data Food Consortium (DFC) Connector is a tool to help you to integrate the DFC standard within you application.",
   "author": "Maxime Lecoq",
   "license": "MIT",
   "type": "module",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.9",
   "repository": {
     "type": "git",
     "url": "https://github.com/datafoodconsortium/connector-typescript.git",
@@ -16,15 +16,15 @@
   },
   "dependencies": {
     "@rdfjs/serializer-jsonld-ext": "^4.0.0",
-    "@virtual-assembly/semantizer": "^1.0.0-alpha.2",
+    "@virtual-assembly/semantizer": "github:assemblee-virtuelle/semantizer-typescript#alpha.3",
     "jsonld": "^8.1.0",
     "jsonld-streaming-parser": "^3.2.0",
-    "rdf-ext": "^2.2.0",
+    "rdf-ext": "^2.5.1",
     "readable-stream": "^4.3.0"
   },
   "devDependencies": {
     "@types/jsonld": "^1.5.7",
-    "@types/rdf-ext": "^2.2.0",
+    "@types/rdf-ext": "^2.5.0",
     "@types/rdfjs__serializer-jsonld-ext": "^2.0.5",
     "typescript": "^4.5"
   },
