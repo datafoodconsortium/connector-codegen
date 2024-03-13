@@ -1,5 +1,5 @@
 // Exernal
-import { Semanticable } from "@virtual-assembly/semantizer"
+import { ISemantizer, Semanticable, Semantizer } from "@virtual-assembly/semantizer"
 import DatasetExt from "rdf-ext/lib/Dataset";
 
 // Static
@@ -43,6 +43,7 @@ export default class Connector implements IConnector {
     public MEASURES?: ISKOSConcept;
     public PRODUCT_TYPES?: ISKOSConcept;
 
+    private semantizer: ISemantizer;
     private fetchFunction: (semanticId: string) => Promise<Response>;
     private factory: IConnectorFactory;
     private importer: IConnectorImporter;
@@ -50,6 +51,7 @@ export default class Connector implements IConnector {
     private storeObject: IConnectorStore;
 
     public constructor() {
+        this.semantizer = new Semantizer(context);
         this.storeObject = new ConnectorStoreMap();
         this.fetchFunction = async (semanticId: string) => (await fetch(semanticId));
         this.factory = new ConnectorFactory(this);
@@ -160,6 +162,10 @@ export default class Connector implements IConnector {
             inputContext: options?.inputContext,
             outputContext: options?.outputContext
         });
+    }
+
+    public getSemantizer(): ISemantizer {
+        return this.semantizer;
     }
 
     public getDefaultFactory(): IConnectorFactory {

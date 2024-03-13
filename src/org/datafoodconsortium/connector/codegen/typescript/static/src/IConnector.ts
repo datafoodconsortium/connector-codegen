@@ -1,5 +1,5 @@
 // External
-import { Semanticable } from "@virtual-assembly/semantizer";
+import { ISemantizer, Semanticable } from "@virtual-assembly/semantizer";
 
 // Static
 import IConnectorFactory from "./IConnectorFactory.js";
@@ -49,6 +49,8 @@ export default interface IConnector {
     export(objects: Array<Semanticable>, options?: IConnectorExportOptions): Promise<string>;
     fetch(semanticObjectId: string, options?: IGetterOptions): Promise<Semanticable | undefined>;
     
+    getSemantizer(): ISemantizer;
+
     // TODO: remove
     getDefaultFactory(): IConnectorFactory;
 
