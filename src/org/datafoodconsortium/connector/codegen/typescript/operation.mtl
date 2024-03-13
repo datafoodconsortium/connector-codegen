@@ -62,6 +62,8 @@ if (parameters.other) {
 	super({
 		[if (aClass.hasGeneralization())]
 		connector: parameters.connector,
+		[else]
+		semantizer: parameters.connector.getSemantizer(),
 		[/if]
 		semanticId: parameters.semanticId!,
 		other: parameters.other,
@@ -73,6 +75,8 @@ if (parameters.other) {
 	super({
 		[if (aClass.hasGeneralization())]
 		connector: parameters.connector,
+		[else]
+		semantizer: parameters.connector.getSemantizer(),
 		[/if]
 		semanticId: parameters.semanticId!,
 		other: parameters.other,
@@ -83,6 +87,8 @@ if (parameters.other) {
 	super({
 		[if (aClass.hasGeneralization())]
 		connector: parameters.connector,
+		[else]
+		semantizer: parameters.connector.getSemantizer(),
 		[/if]
 		semanticId: parameters.semanticId!,
 		semanticType: [if (aClass.isAbstract)]parameters.semanticType![else]type[/if],

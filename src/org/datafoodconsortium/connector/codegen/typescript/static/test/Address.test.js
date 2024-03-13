@@ -27,7 +27,7 @@ test('Address:import', async () => {
 
 test('Address:export', async () => {
     const serialized = await connector.export([address]);
-    expect.strictEqual(serialized, data);
+    expect.strictEqual(serialized, json);
 });
 
 test('Address:getSemanticId', () => {
