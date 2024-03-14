@@ -1,8 +1,9 @@
+import * as fs from 'fs';
 import expect from 'node:assert';
 import { test } from 'node:test';
 import Price from '../lib/Price.js';
 import Connector from "../lib/Connector.js";
-import measures from '../test/thesaurus/measures.json' assert { type: 'json' };
+const measures = JSON.parse(fs.readFileSync('./test/thesaurus/measures.json'));
 
 const connector = new Connector();
 await connector.loadMeasures(JSON.stringify(measures));
@@ -34,21 +35,21 @@ test('Price:getSemanticId', () => {
     expect.strictEqual(price.getSemanticId(), undefined);
 });
 
-test('Price:getValue', () => {
-    expect.strictEqual(price.getValue(), 2.54);
+test('Price:getQuantityValue', () => {
+    expect.strictEqual(price.getQuantityValue(), 2.54);
 });
 
 test('Price:getVatRate', () => {
     expect.strictEqual(price.getVatRate(), 8);
 });
 
-test('Price:getUnit', async () => {
-    expect.strictEqual(await price.getUnit(), euro);
+test('Price:getQuantityUnit', async () => {
+    expect.strictEqual(await price.getQuantityUnit(), euro);
 });
 
-test('Price:setValue', () => {
-    price.setValue(3);
-    expect.strictEqual(price.getValue(), 3);
+test('Price:setQuantityValue', () => {
+    price.setQuantityValue(3);
+    expect.strictEqual(price.getQuantityValue(), 3);
 });
 
 test('Price:setVatRate', () => {
@@ -56,8 +57,8 @@ test('Price:setVatRate', () => {
     expect.strictEqual(price.getVatRate(), 19);
 });
 
-test('Price:setUnit', async () => {
+test('Price:setQuantityUnit', async () => {
     const dollar = connector.MEASURES.UNIT.CURRENCYUNIT.USDOLLAR;
-    price.setUnit(dollar);
-    expect.strictEqual(await price.getUnit(), dollar);
+    price.setQuantityUnit(dollar);
+    expect.strictEqual(await price.getQuantityUnit(), dollar);
 });

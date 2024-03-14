@@ -106,6 +106,12 @@ export default class ConnectorImporterJsonldStream implements IConnectorImporter
                     else throw new Error(errorMessage);
                 });
 
+                // If we are just importing one blank node,
+                // we have to add it to the result set.
+                if (datasets.length === 0 && blankNodes.length === 1) {
+                    datasets.push(blankNodes[0]);
+                }
+
                 resolve(datasets);
             });
         });
