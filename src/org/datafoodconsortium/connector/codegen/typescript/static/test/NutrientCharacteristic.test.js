@@ -22,7 +22,7 @@ const nutrientCharacteristic = new NutrientCharacteristic({
     nutrientDimension: nutrientDimension
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org","@id":"_:b1","@type":"dfc-b:NutrientCharacteristic","dfc-b:hasNutrientDimension":{"@id":"dfc-m:Calcium"},"dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"10"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org","@id":"_:b1","@type":"dfc-b:NutrientCharacteristic","dfc-b:hasNutrientDimension":"dfc-m:Calcium","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"10"}`;
 
 test('NutrientCharacteristic:import', async () => {
     const imported = await connector.import(json);
