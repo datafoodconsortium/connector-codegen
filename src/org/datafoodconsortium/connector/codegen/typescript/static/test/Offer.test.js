@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import expect from 'node:assert';
 import { test } from 'node:test';
 import Offer from '../lib/Offer.js';
@@ -5,7 +6,7 @@ import Price from '../lib/Price.js';
 import CustomerCategory from '../lib/CustomerCategory.js';
 import SuppliedProduct from '../lib/SuppliedProduct.js';
 import Connector from "../lib/Connector.js";
-import measures from '../test/thesaurus/measures.json' assert { type: 'json' };
+const measures = JSON.parse(fs.readFileSync('./test/thesaurus/measures.json'));
 
 const connector = new Connector();
 await connector.loadMeasures(JSON.stringify(measures));

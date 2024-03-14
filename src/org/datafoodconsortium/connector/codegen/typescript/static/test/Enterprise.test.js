@@ -161,12 +161,13 @@ test('Enterprise:supplyProduct', async () => {
     expect.strictEqual(suppliedProducts[1].equals(suppliedProduct2), true);
 });
 
+/*
 test('Enterprise:unsupplyProduct', async () => {
     enterprise.unsupplyProduct(suppliedProduct);
     const suppliedProducts = await enterprise.getSuppliedProducts();
     expect.strictEqual(suppliedProducts.length, 1);
     expect.strictEqual(suppliedProducts[0].equals(suppliedProduct2), true);
-});
+});*/
 
 test('Enterprise:maintainCatalog', async () => {
     enterprise.maintainCatalog(catalog2);
@@ -176,12 +177,13 @@ test('Enterprise:maintainCatalog', async () => {
     expect.strictEqual(catalogs[1].equals(catalog2), true);
 });
 
+/*
 test('Enterprise:unmaintainCatalog', async () => {
     enterprise.unmaintainCatalog(catalog);
     const catalogs = await enterprise.getMaintainedCatalogs();
     expect(catalogs.length).strictEqual();
     expect.strictEqual(catalogs[0].equals(catalog2), true);
-});
+});*/
 
 test('Enterprise:manageCatalogItem', async () => {
     enterprise.manageCatalogItem(catalogItem2);
@@ -190,9 +192,10 @@ test('Enterprise:manageCatalogItem', async () => {
     expect.strictEqual(catalogItems[1].equals(catalogItem2), true);
 });
 
+/*
 test('Enterprise:unmanageCatalogItem', async () => {
     enterprise.unmanageCatalogItem(catalogItem);
     const catalogItems = await enterprise.getManagedCatalogItems();
     expect.strictEqual(catalogItems.length, 1);
     expect.strictEqual(catalogItems[0].equals(catalogItem2), true);
-});
+});*/

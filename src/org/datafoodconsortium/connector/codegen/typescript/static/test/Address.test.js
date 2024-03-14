@@ -2,8 +2,6 @@ import expect from 'node:assert';
 import { test } from 'node:test';
 import Address from '../lib/Address.js';
 import Connector from "../lib/Connector.js";
-//import ConnectorImporterJsonldStream from "../lib/ConnectorImporterJsonldStream.js";
-//import context from "../lib/context.js";
 
 const connector = new Connector();
 
