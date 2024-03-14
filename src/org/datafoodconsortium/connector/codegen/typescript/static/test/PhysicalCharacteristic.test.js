@@ -1,9 +1,10 @@
+import * as fs from 'fs';
 import expect from 'node:assert';
 import { test } from 'node:test';
 import PhysicalCharacteristic from '../lib/PhysicalCharacteristic.js';
 import Connector from "../lib/Connector.js";
-import facets from '../test/thesaurus/facets.json' assert { type: 'json' };
-import measures from '../test/thesaurus/measures.json' assert { type: 'json' };
+const facets = JSON.parse(fs.readFileSync('./test/thesaurus/facets.json'));
+const measures = JSON.parse(fs.readFileSync('./test/thesaurus/measures.json'));
 
 const connector = new Connector();
 await connector.loadFacets(JSON.stringify(facets));

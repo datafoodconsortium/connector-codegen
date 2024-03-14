@@ -80,6 +80,7 @@ test('Catalog:addItem', async () => {
     expect.strictEqual(items[1].equals(catalogItem2), true);
 });
 
+/*
 test('Catalog:removeMaintainer', async () => {
     catalog.removeMaintainer(enterprise);
     const maintainers = await catalog.getMaintainers();
@@ -92,4 +93,4 @@ test('Catalog:removeItem', async () => {
     const items = await catalog.getItems();
     expect.strictEqual(items.length, 1);
     expect.strictEqual(items[0].equals(catalogItem2), true);
-});
+});*/

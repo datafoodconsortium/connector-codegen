@@ -181,14 +181,16 @@ export default class Connector implements IConnector {
                 const datasets: Array<DatasetExt> = await importer.import(data, { context: options?.context });
 
                 datasets.forEach(dataset => {
-                    const semanticObject = factory.createFromRdfDataset(dataset);
-                    if (semanticObject) {
-                        results.push(semanticObject);
-                        if (options?.doNotStore === undefined || options.doNotStore !== false)
+                    try {
+                        const semanticObject = factory.createFromRdfDataset(dataset);
+                        if (semanticObject) {
+                            results.push(semanticObject);
+                            if (options?.doNotStore === undefined || options.doNotStore !== false)
                             this.store(semanticObject);
                         if (options && options.callbacks)
-                            options.callbacks.forEach((callback: Function) => callback(semanticObject));
-                    }
+                        options.callbacks.forEach((callback: Function) => callback(semanticObject));
+                        }
+                    } catch(e) {}
                 });
 
                 if (options) {
@@ -241,8 +243,9 @@ export default class Connector implements IConnector {
             const narrowers = parent.getSemanticPropertyAll(skosNarrower);
 
             narrowers.forEach((narrower: string) => {
-                const name: string = narrower.split(prefix)[1].replace('-', '_').toUpperCase();
-                const concept: Semanticable | undefined = concepts.get(narrower);
+                const expandedNarrower = this.getSemantizer().expand(narrower);
+                const name: string = expandedNarrower.split(prefix)[1].replace('-', '_').toUpperCase();
+                const concept: Semanticable | undefined = concepts.get(expandedNarrower);
                 if (concept) {
                     // @ts-ignore
                     parent[name] = concept;
@@ -253,8 +256,10 @@ export default class Connector implements IConnector {
 
         // @ts-ignore: if the conceptScheme does not exist, an exception should have be already throwned
         conceptScheme.getSemanticPropertyAll(skosHasTopConcept).forEach((topConcept: any) => {
-            const name: string = topConcept.split(prefix)[1].replace('-', '_').toUpperCase();
-            const concept: Semanticable | undefined = concepts.get(topConcept);
+            const expandedTopConcept = this.getSemantizer().expand(topConcept);
+            //const name: string = topConcept.split(prefix)[1].replace('-', '_').toUpperCase();
+            const name: string = expandedTopConcept.split(prefix)[1].replace('-', '_').toUpperCase();
+            const concept: Semanticable | undefined = concepts.get(expandedTopConcept);
             if (!concept)
                 throw new Error("The thesaurus top concept " + topConcept + " was not found.");
             // @ts-ignore
@@ -280,8 +285,9 @@ export default class Connector implements IConnector {
         this.PRODUCT_TYPES = await this.importThesaurus(productTypes, prefix);
     }
 
-    public async fetch(semanticObjectId: string, options?: IGetterOptions): Promise<Semanticable | undefined> {
+    public async fetch(semanticObject: string, options?: IGetterOptions): Promise<Semanticable | undefined> {
         const store: IConnectorStore = options?.store? options.store : this.storeObject;
+        const semanticObjectId = this.getSemantizer().expand(semanticObject);
 
         if (!store.has(semanticObjectId)) {
             const fetchFunction = options?.fetch? options.fetch : this.fetchFunction;

@@ -1,14 +1,14 @@
 export default {
   "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
   "skos" : "http://www.w3.org/2004/02/skos/core#",
-  "dfc": "http://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#",
+  "dfc": "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#",
   "dc": "http://purl.org/dc/elements/1.1/#",
-  "dfc-b": "http://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#",
-  "dfc-p": "http://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_ProductOntology.owl#",
-  "dfc-t": "http://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_TechnicalOntology.owl#",
-  "dfc-m": "http://github.com/datafoodconsortium/ontology/releases/latest/download/measures.rdf#",
-  "dfc-pt": "http://github.com/datafoodconsortium/ontology/releases/latest/download/productTypes.rdf#",
-  "dfc-f": "http://github.com/datafoodconsortium/ontology/releases/latest/download/facets.rdf#",
+  "dfc-b": "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#",
+  "dfc-p": "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_ProductOntology.owl#",
+  "dfc-t": "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_TechnicalOntology.owl#",
+  "dfc-m": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/measures.rdf#",
+  "dfc-pt": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/productTypes.rdf#",
+  "dfc-f": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/facets.rdf#",
   "dfc-p:hasUnit":{
     "@type":"@id"
   },
@@ -60,7 +60,7 @@ export default {
   "dfc-b:hasAllergenDimension":{
     "@type":"@id"
   },
-  "dfc-b:hasNutrimentDimension":{
+  "dfc-b:hasNutrientDimension":{
     "@type":"@id"
   },
   "dfc-b:hasPhysicalDimension":{

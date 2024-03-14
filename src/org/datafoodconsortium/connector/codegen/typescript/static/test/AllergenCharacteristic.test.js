@@ -1,8 +1,9 @@
+import * as fs from 'fs';
 import expect from 'node:assert';
 import { test } from 'node:test';
 import AllergenCharacteristic from '../lib/AllergenCharacteristic.js';
 import Connector from "../lib/Connector.js";
-import measures from '../test/thesaurus/measures.json' assert { type: 'json' };
+const measures = JSON.parse(fs.readFileSync('./test/thesaurus/measures.json'));
 
 const connector = new Connector();
 await connector.loadMeasures(JSON.stringify(measures));
