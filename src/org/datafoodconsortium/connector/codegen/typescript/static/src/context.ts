@@ -9,10 +9,22 @@ export default {
   "dfc-m": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/measures.rdf#",
   "dfc-pt": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/productTypes.rdf#",
   "dfc-f": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/facets.rdf#",
-  "dfc-p:hasUnit":{
+  "dfc-b:hasUnit":{
     "@type":"@id"
   },
-  "dfc-b:hasUnit":{
+  "dfc-b:consumes":{
+    "@type":"@id"
+  },
+  "dfc-b:produces":{
+    "@type":"@id"
+  },
+  "dfc-b:hasIncome":{
+    "@type":"@id"
+  },
+  "dfc-b:hasOutcome":{
+    "@type":"@id"
+  },
+  "dfc-b:hasTransformationType":{
     "@type":"@id"
   },
   "dfc-b:hasQuantity":{

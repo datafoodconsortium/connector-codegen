@@ -42,6 +42,7 @@ export default class Connector implements IConnector {
     public FACETS?: ISKOSConcept;
     public MEASURES?: ISKOSConcept;
     public PRODUCT_TYPES?: ISKOSConcept;
+    public VOCABULARY?: ISKOSConcept;
 
     private semantizer: ISemantizer;
     private fetchFunction: (semanticId: string) => Promise<Response>;
@@ -283,6 +284,11 @@ export default class Connector implements IConnector {
     public async loadProductTypes(productTypes: any): Promise<void> {
         const prefix: string = "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/productTypes.rdf#";
         this.PRODUCT_TYPES = await this.importThesaurus(productTypes, prefix);
+    }
+
+    public async loadVocabulary(vocabulary: any): Promise<void> {
+        const prefix: string = "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/vocabulary.rdf#";
+        this.VOCABULARY = await this.importThesaurus(vocabulary, prefix);
     }
 
     public async fetch(semanticObject: string, options?: IGetterOptions): Promise<Semanticable | undefined> {
