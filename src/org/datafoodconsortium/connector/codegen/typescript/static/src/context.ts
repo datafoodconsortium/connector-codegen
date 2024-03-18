@@ -9,6 +9,7 @@ export default {
   "dfc-m": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/measures.rdf#",
   "dfc-pt": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/productTypes.rdf#",
   "dfc-f": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/facets.rdf#",
+  "dfc-v": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/vocabulary.rdf#",
   "dfc-b:hasUnit":{
     "@type":"@id"
   },
