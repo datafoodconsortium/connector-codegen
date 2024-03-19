@@ -25,6 +25,9 @@ import QuantitativeValue from "./QuantitativeValue.js";
 import SaleSession from "./SaleSession.js";
 import SKOSConcept from "./SKOSConcept.js";
 import SuppliedProduct from "./SuppliedProduct.js";
+import PlannedTransformation from "./PlannedTransformation.js";
+import PlannedConsumptionFlow from "./PlannedConsumptionFlow.js";
+import PlannedProductionFlow from "./PlannedProductionFlow.js";
 
 // Generated Interfaces
 import IAgent from "./IAgent.js";
@@ -44,7 +47,11 @@ import IPerson from "./IPerson.js";
 import IPhysicalCharacteristic from "./IPhysicalCharacteristic.js";
 import IQuantity from "./IQuantity.js";
 import ISaleSession from "./ISaleSession.js";
-import ISKOSConcept from "./ISKOSConcept";
+import ISKOSConcept from "./ISKOSConcept.js";
+import IPlannedConsumptionFlow from "./IPlannedConsumptionFlow.js";
+import IPlannedProductionFlow from "./IPlannedProductionFlow.js";
+import IPlannedTransformation from "./IPlannedTransformation.js";
+import IDefinedProduct from "./IDefinedProduct.js";
 
 export default class ConnectorFactory implements IConnectorFactory {
 
@@ -124,6 +131,18 @@ export default class ConnectorFactory implements IConnectorFactory {
         return new SuppliedProduct({ connector: this.connector, ...parameters });
     }
 
+    public createPlannedTransformation(parameters: {doNotStore?: boolean, semanticId?: string,other?: Semanticable, transformationType?: ISKOSConcept, consumptionFlow?: IPlannedConsumptionFlow, productionFlow?: IPlannedProductionFlow}): IPlannedTransformation {
+        return new PlannedTransformation({ connector: this.connector, ...parameters });
+    }
+
+    public createPlannedConsumptionFLow(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, quantity?: IQuantity, transformation?: IPlannedTransformation, product?: IDefinedProduct}): IPlannedConsumptionFlow {
+        return new PlannedConsumptionFlow({ connector: this.connector, ...parameters });
+    }
+
+    public createPlannedProductionFlow(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, quantity?: IQuantity, transformation?: IPlannedTransformation, product?: ISuppliedProduct}): IPlannedProductionFlow {
+        return new PlannedProductionFlow({ connector: this.connector, ...parameters });
+    }
+
     public createFromType(type: string): Semanticable | undefined {
         let result: Semanticable | undefined = undefined;
         const prefix: string = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#";
@@ -186,6 +205,18 @@ export default class ConnectorFactory implements IConnectorFactory {
 
             case prefix + "OrderLine":
                 result = this.createOrderLine({ semanticId: "" });
+                break;
+
+            case prefix + "AsPlannedTransformation":
+                result = this.createPlannedTransformation({ semanticId: "" });
+                break;
+            
+            case prefix + "AsPlannedConsumptionFlow":
+                result = this.createPlannedConsumptionFLow({ semanticId: "" });
+                break;
+            
+            case prefix + "AsPlannedProductionFlow":
+                result = this.createPlannedProductionFlow({ semanticId: "" });
                 break;
 
             case prefix + "SaleSession":

@@ -64,6 +64,17 @@ const plannedTransformation = new PlannedTransformation({
 
 const json = '{"@context":"https://www.datafoodconsortium.org","@graph":[{"@id":"_:b1","@type":"dfc-b:QuantitativeValue","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1.2"},{"@id":"_:b2","@type":"dfc-b:QuantitativeValue","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1"},{"@id":"http://myplatform.com/plannedConsumptionFlow","@type":"dfc-b:AsPlannedConsumptionFlow","dfc-b:consumes":"http://myplatform.com/inputProduct","dfc-b:hasQuantity":"_:b1"},{"@id":"http://myplatform.com/plannedProductionFlow","@type":"dfc-b:AsPlannedProductionFlow","dfc-b:hasQuantity":"_:b2","dfc-b:produces":"http://myplatform.com/outputProduct"},{"@id":"http://myplatform.com/transformation","@type":"dfc-b:AsPlannedTransformation","dfc-b:hasIncome":"http://myplatform.com/plannedConsumptionFlow","dfc-b:hasOutcome":"http://myplatform.com/plannedProductionFlow","dfc-b:hasTransformationType":"dfc-v:modify"}]}';
 
+test('PlannedTransformationLoop:import', async () => {
+    const imported = await connector.import(json);
+    const expectedPlannedConsumptionFlow = imported[0];
+    const expectedPlannedProductionFlow = imported[1];
+    const expectedPlannedTransformation = imported[2];
+    expect.strictEqual(imported.length, 3);
+    expect.strictEqual(expectedPlannedTransformation.equals(plannedTransformation), true);
+    expect.strictEqual(expectedPlannedConsumptionFlow.equals(plannedConsumptionFlow), true);
+    expect.strictEqual(expectedPlannedProductionFlow.equals(plannedProductionFlow), true);
+});
+
 test('PlannedTransformationLoop:export', async () => {
     const serialized = await connector.export([plannedTransformation, plannedConsumptionFlow, plannedProductionFlow]);
     expect.strictEqual(serialized, json);
