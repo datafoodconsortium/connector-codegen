@@ -97,6 +97,10 @@ if (parameters.other) {
 	[/if]});
 }
 [if (not aClass.hasGeneralization())]this.connector = parameters.connector;['\n'/][/if]
+[if (not (aClass.isBlankNode() or aClass.isAbstract))]['\n'/]if (!parameters.doNotStore) {
+	this.connector.store(this);
+}[/if]
+
 [for (p: Parameter | operation.getUninitializedParentParameters()) separator('\n')]
 if (parameters.[p.name/][if (p.type.name = 'Integer' or p.type.name = 'Real')] || parameters.[p.name/] === 0[/if]) {
 	[if (p.upper = 1)]
