@@ -58,8 +58,8 @@ const plannedTransformation = new PlannedTransformation({
     connector: connector,
     semanticId: "http://myplatform.com/transformation",
     transformationType: connector.VOCABULARY.TRANSFORMATIONTYPE.MODIFY,
-    consumptionFlow: plannedConsumptionFlow,
-    productionFlow: plannedProductionFlow
+    consumptionFlows: [plannedConsumptionFlow],
+    productionFlows: [plannedProductionFlow]
 });
 
 const json = '{"@context":"https://www.datafoodconsortium.org","@graph":[{"@id":"_:b1","@type":"dfc-b:QuantitativeValue","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1.2"},{"@id":"_:b2","@type":"dfc-b:QuantitativeValue","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1"},{"@id":"http://myplatform.com/plannedConsumptionFlow","@type":"dfc-b:AsPlannedConsumptionFlow","dfc-b:consumes":"http://myplatform.com/inputProduct","dfc-b:hasQuantity":"_:b1"},{"@id":"http://myplatform.com/plannedProductionFlow","@type":"dfc-b:AsPlannedProductionFlow","dfc-b:hasQuantity":"_:b2","dfc-b:produces":"http://myplatform.com/outputProduct"},{"@id":"http://myplatform.com/transformation","@type":"dfc-b:AsPlannedTransformation","dfc-b:hasIncome":"http://myplatform.com/plannedConsumptionFlow","dfc-b:hasOutcome":"http://myplatform.com/plannedProductionFlow","dfc-b:hasTransformationType":"dfc-v:modify"}]}';
