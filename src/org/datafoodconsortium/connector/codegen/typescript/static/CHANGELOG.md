@@ -1,5 +1,4 @@
 <!-- TODO: Update this CHANGELOG before merging into connector-codegen#main -->
-
 <!-- TODO: Also update semver values here and in package.json etc -->
 
 # Changelog
@@ -11,18 +10,86 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- None
+
+## [1.0.0-alpha.9] - 2024-03-20
+
+### Changed
+
 - Update `rdf-ext` to version 2.5.1.
 - Update `@types/rdf-ext` to version 2.5.0.
 - Update `@virtual-assembly/semantizer` to version alpha.3 (use GitHub repository).
+- Generate the code from the code generator.
+- Generated from the next branch of UML data model[31ec1f7](https://github.com/datafoodconsortium/data-model-uml/commit/31ec1f79dad25016af6d684c30bce355e92a8649).
+
+### Added
+
+- Compare the SUPPORTED.md file [from main to next](https://github.com/datafoodconsortium/data-model-uml/compare/main...next#diff-25a3722bf6006b7a060d6900ea707cb596a854ea3cdb6ef3b1980531d5d85bc5).
+
+## [1.0.0-alpha.8] - 2024-01-31
+
+### Added
+
+- Add `DefinedProduct` support for images url.
+
+## [1.0.0-alpha.7] - 2024-01-13
+
+### Fixed
+
+- Compile sources.
+
+## [1.0.0-alpha.6] - 2024-01-13
+
+### Fixed
+
+- Allow to create SKOSConcept in the factory.
+
+## [1.0.0-alpha.5] - 2024-01-13
+
+### Fixed
+
+- Support loading taxonomies with unknown parsed type (ex: owl:Class).
+
+### Changed
+
+- Use latest taxonomy files in tests.
+
+### Added
+
+- Add vocabulary taxonomy in tests (for later).
+
+## [1.0.0-alpha.4] - 2023-07-11
+
+### Fixed
+
+- The `dfc-b` prefix points to the business ontology, not the full model.
+
+## [1.0.0-alpha.3] - 2023-07-10
+
+### Fixed
+
+- The importer is able to import only one blank node.
+### Changed
+
+- Use the new DFC semantic resources:
+  - https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl
+  - https://github.com/datafoodconsortium/taxonomies/releases/latest/download/productTypes.rdf
+  - https://github.com/datafoodconsortium/taxonomies/releases/latest/download/measures.rdf
+  - https://github.com/datafoodconsortium/taxonomies/releases/latest/download/facets.rdf
+- Update thesaurus with the new resources (test directory).
+- Update context to https://www.datafoodconsortium.org (was previously static.datafoodconsortium.org).
+- Update jest to version >= 29.5.0.
+- Expect exceptions in tests for not implemented features.
+- Increase the timeout for all the tests (10sec instead of 5sec).
 
 ## [1.0.0-alpha.2] - 2023-05-23
 
 ### Changed
 
-- index does not export Semanticable anymore.
-- update @types/rdf-ext to version 2.2.0.
-- git ignore .code-workspace files.
-- update dependency to semantizer version alpha.2.
+- Index does not export Semanticable anymore.
+- Update @types/rdf-ext to version 2.2.0.
+- Git ignore .code-workspace files.
+- Update dependency to semantizer version alpha.2.
 
 ## [1.0.0-alpha.1] - 2023-03-27
 
@@ -70,7 +137,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release.
 
-[unreleased]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.2...HEAD
+[unreleased]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.9...HEAD
+[1.0.0-alpha.9]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.8...v1.0.0-alpha.9
+[1.0.0-alpha.8]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.7...v1.0.0-alpha.8
+[1.0.0-alpha.7]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.6...v1.0.0-alpha.7
+[1.0.0-alpha.6]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.5...v1.0.0-alpha.6
+[1.0.0-alpha.5]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.4...v1.0.0-alpha.5
+[1.0.0-alpha.4]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.3...v1.0.0-alpha.4
+[1.0.0-alpha.3]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.2...v1.0.0-alpha.3
 [1.0.0-alpha.2]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.1...v1.0.0-alpha.2
 [1.0.0-alpha.1]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha...v1.0.0-alpha.1
 [1.0.0-alpha]: https://github.com/datafoodconsortium/connector-typescript/releases/tag/v1.0.0-alpha

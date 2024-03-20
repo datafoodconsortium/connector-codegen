@@ -83,6 +83,7 @@ let suppliedProduct = new SuppliedProduct({
     connector: connector,
     semanticId: "http://myplatform.com/tomato",
     description: "Awesome tomato",
+    images: ["http://myplatform.com/image1", "http://myplatform.com/image2"],
     productType: connector.PRODUCT_TYPES.VEGETABLE.TOMATO.ROUND_TOMATO, 
     quantity: quantity,
     totalTheoreticalStock: 2.23,
@@ -100,7 +101,7 @@ let suppliedProduct = new SuppliedProduct({
     partOrigin: [connector.FACETS.PARTORIGIN.PLANTPARTORIGIN.FRUIT]
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org","@graph":[{"@id":"_:b1","@type":"dfc-b:QuantitativeValue","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1.2"},{"@id":"_:b2","@type":"dfc-b:AllergenCharacteristic","dfc-b:hasAllergenDimension":"dfc-m:Peanuts","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1"},{"@id":"_:b4","@type":"dfc-b:NutrientCharacteristic","dfc-b:hasNutrientDimension":"dfc-m:Calcium","dfc-b:hasUnit":"dfc-m:Gram","dfc-b:value":"10"},{"@id":"_:b6","@type":"dfc-b:PhysicalCharacteristic","dfc-b:hasPhysicalDimension":"dfc-m:Weight","dfc-b:hasUnit":"dfc-m:Gram","dfc-b:value":"100"},{"@id":"http://myplatform.com/tomato","@type":"dfc-b:SuppliedProduct","dfc-b:alcoholPercentage":"0","dfc-b:description":"Awesome tomato","dfc-b:hasAllergenCharacteristic":{"@id":"_:b2"},"dfc-b:hasCertification":[{"@id":"dfc-f:Organic-AB"},{"@id":"dfc-f:Organic-EU"}],"dfc-b:hasClaim":"dfc-f:NoAddedSugars","dfc-b:hasGeographicalOrigin":"dfc-f:CentreValLoire","dfc-b:hasNatureOrigin":{"@id":"dfc-f:PlantOrigin"},"dfc-b:hasNutrientCharacteristic":{"@id":"_:b4"},"dfc-b:hasPartOrigin":{"@id":"dfc-f:Fruit"},"dfc-b:hasPhysicalCharacteristic":{"@id":"_:b6"},"dfc-b:hasQuantity":"_:b1","dfc-b:hasType":"dfc-pt:round-tomato","dfc-b:lifetime":"a week","dfc-b:referencedBy":"http://myplatform.com/catalogItem","dfc-b:totalTheoreticalStock":"2.23","dfc-b:usageOrStorageCondition":"free text"}]}`;
+const json = `{"@context":"https://www.datafoodconsortium.org","@graph":[{"@id":"_:b1","@type":"dfc-b:QuantitativeValue","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1.2"},{"@id":"_:b2","@type":"dfc-b:AllergenCharacteristic","dfc-b:hasAllergenDimension":"dfc-m:Peanuts","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1"},{"@id":"_:b4","@type":"dfc-b:NutrientCharacteristic","dfc-b:hasNutrientDimension":"dfc-m:Calcium","dfc-b:hasUnit":"dfc-m:Gram","dfc-b:value":"10"},{"@id":"_:b6","@type":"dfc-b:PhysicalCharacteristic","dfc-b:hasPhysicalDimension":"dfc-m:Weight","dfc-b:hasUnit":"dfc-m:Gram","dfc-b:value":"100"},{"@id":"http://myplatform.com/tomato","@type":"dfc-b:SuppliedProduct","dfc-b:alcoholPercentage":"0","dfc-b:description":"Awesome tomato","dfc-b:hasAllergenCharacteristic":{"@id":"_:b2"},"dfc-b:hasCertification":[{"@id":"dfc-f:Organic-AB"},{"@id":"dfc-f:Organic-EU"}],"dfc-b:hasClaim":"dfc-f:NoAddedSugars","dfc-b:hasGeographicalOrigin":"dfc-f:CentreValLoire","dfc-b:hasNatureOrigin":{"@id":"dfc-f:PlantOrigin"},"dfc-b:hasNutrientCharacteristic":{"@id":"_:b4"},"dfc-b:hasPartOrigin":{"@id":"dfc-f:Fruit"},"dfc-b:hasPhysicalCharacteristic":{"@id":"_:b6"},"dfc-b:hasQuantity":"_:b1","dfc-b:hasType":"dfc-pt:round-tomato","dfc-b:image":["http://myplatform.com/image1","http://myplatform.com/image2"],"dfc-b:lifetime":"a week","dfc-b:referencedBy":"http://myplatform.com/catalogItem","dfc-b:totalTheoreticalStock":"2.23","dfc-b:usageOrStorageCondition":"free text"}]}`;
 
 test('SuppliedProduct:import', async () => {
     const importedAll = await connector.import(json);
@@ -379,3 +380,14 @@ test('SuppliedProduct:removePartOrigin', async () => {
     expect.strictEqual(partOrigins.length, 1);
     expect.strictEqual(partOrigins[0].equals(connector.FACETS.PARTORIGIN.ANIMALPARTORIGIN.COW), true);
 });*/
+
+test('SuppliedProduct:getImages', () => {
+    expect.strictEqual(suppliedProduct.getImages().length, 2);
+    expect.strictEqual(suppliedProduct.getImages().every(e => ["http://myplatform.com/image1", "http://myplatform.com/image2"].includes(e)), true);
+});
+
+test('SuppliedProduct:addImage', () => {
+    suppliedProduct.addImage("http://myplatform.com/image3");
+    expect.strictEqual(suppliedProduct.getImages().length, 3);
+    expect.strictEqual(suppliedProduct.getImages().every(e => ["http://myplatform.com/image1", "http://myplatform.com/image2", "http://myplatform.com/image3"].includes(e)), true);
+});
