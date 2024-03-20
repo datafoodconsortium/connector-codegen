@@ -116,7 +116,7 @@ if (parameters.[p.name/][if (p.type.name = 'Integer' or p.type.name = 'Real')] |
 [let property: Property = operation.getProperty(aClass)]
 [let returned: Parameter = getReturnParameter(operation)]
 [let map: String = property.getMapping()]
-[if (property.isPropertyMultiple())]const results = new [generateTypeWithDefaultUndefined(returned)/]();
+[if (property.isPropertyMultiple())][if (not returned.type.isPrimitive())]const results = new [generateTypeWithDefaultUndefined(returned)/]();
 [if (returned.type.isBlankNode())]const blankNodesId = this.getSemanticPropertyAnonymousAll("[map/]");
 blankNodesId.forEach(blankNodeId => {
 	const blankNode = <[returned.type.name/]> this.connector.getDefaultFactory().createFromRdfDataset(blankNodeId);
@@ -127,7 +127,7 @@ for await (const semanticId of properties) {
 	const semanticObject: Semanticable | undefined = await this.connector.fetch(semanticId, options);
 	if (semanticObject) results.push([if (not returned.type.isPrimitive())]<[generateTypeName(returned.type)/]>[/if]semanticObject[if (returned.type.isPrimitive())] as unknown as [returned.type.generateTypeName()/][/if]);
 }
-[/if]return results;[elseif (returned.type.isBlankNode())]
+[/if]return results;[else]return this.getSemanticPropertyAll("[map/]");[/if][elseif (returned.type.isBlankNode())]
 const blankNode: any = this.getSemanticPropertyAnonymous("[map/]");
 return <[returned.type.name /]> this.connector.getDefaultFactory().createFromRdfDataset(blankNode);[elseif (not returned.type.isPrimitive())]
 let result: [returned.type.name/] | undefined = undefined;
@@ -187,4 +187,5 @@ throw new Error("Not yet implemented.");
 [template public generateTypeName(t: Type)][if (t.name = 'String')]string[elseif (name = 'Real' or name = 'Integer')]number[elseif (name = 'Boolean')]boolean[else][t.name/][/if][/template]
 
 [comment][query private isAsyncParameter(p: Parameter): Boolean = (not p.type.isBlankNode() and ((not p.type.isPrimitive()) or p.upper =-1)) /][/comment]
-[query private isAsyncParameter(p: Parameter): Boolean = (p.upper = -1 or (not p.type.isBlankNode() and not p.type.isPrimitive())) /]
+[comment][query private isAsyncParameter(p: Parameter): Boolean = (p.upper = -1 or (not p.type.isBlankNode() and not p.type.isPrimitive())) /][/comment]
+[query private isAsyncParameter(p: Parameter): Boolean = ((p.upper = -1 and not p.type.isPrimitive()) or (not p.type.isBlankNode() and not p.type.isPrimitive())) /]
