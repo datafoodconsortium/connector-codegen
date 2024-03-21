@@ -1,35 +1,27 @@
 import * as fs from 'fs';
 import expect from 'node:assert';
 import { test } from 'node:test';
-import Offer from '../lib/Offer.js';
-import Price from '../lib/Price.js';
-import CustomerCategory from '../lib/CustomerCategory.js';
-import SuppliedProduct from '../lib/SuppliedProduct.js';
 import Connector from "../lib/Connector.js";
 const measures = JSON.parse(fs.readFileSync('./test/thesaurus/measures.json'));
 
 const connector = new Connector();
 await connector.loadMeasures(JSON.stringify(measures));
 
-const customerCategory = new CustomerCategory({
-    connector: connector,
+const customerCategory = connector.createCustomerCategory({
     semanticId: "http://myplatform.com/customerCategory1"
 });
 
-const suppliedProduct = new SuppliedProduct({
-    connector: connector,
+const suppliedProduct = connector.createSuppliedProduct({
     semanticId: "http://myplatform.com/suppliedProduct1"
 });
 
-const price = new Price({
-    connector: connector,
+const price = connector.createPrice({
     value: 2.54,
     vatRate: 8.0,
     unit: connector.MEASURES.UNIT.CURRENCYUNIT.EURO
 });
 
-const offer = new Offer({
-    connector: connector,
+const offer = connector.createOffer({
     semanticId: "http://myplatform.com/offer1",
     offeredItem: suppliedProduct,
     offeredTo: customerCategory,
@@ -75,8 +67,7 @@ test('Offer:getStockLimitation', () => {
 });
 
 test('Offer:setOfferedItem', async () => {
-    const expected = new SuppliedProduct({
-        connector: connector,
+    const expected = connector.createSuppliedProduct({
         semanticId: "http://myplatform.com/suppliedProductSet"
     });
 
@@ -87,8 +78,7 @@ test('Offer:setOfferedItem', async () => {
 });
 
 test('Offer:setOfferedTo', async () => {
-    const expected = new CustomerCategory({
-        connector: connector,
+    const expected = connector.createCustomerCategory({
         semanticId: "http://myplatform.com/customerCategory1"
     });
 
@@ -99,8 +89,7 @@ test('Offer:setOfferedTo', async () => {
 });
 
 test('Offer:setPrice', async () => {
-    const expected = new Price({
-        connector: connector,
+    const expected = connector.createPrice({
         value: 3,
         vatRate: 19.0,
         unit: connector.MEASURES.UNIT.CURRENCYUNIT.EURO

@@ -1,12 +1,10 @@
 import expect from 'node:assert';
 import { test } from 'node:test';
-import Address from '../lib/Address.js';
 import Connector from "../lib/Connector.js";
 
 const connector = new Connector();
 
-const address = new Address({
-    connector: connector,
+const address = connector.createAddress({
     semanticId: "http://myplatform.com/address/address1",
     street: "1, place or Europe",
     postalCode: "00001",

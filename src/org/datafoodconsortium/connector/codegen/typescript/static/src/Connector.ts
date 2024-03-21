@@ -36,6 +36,10 @@ import IQuantity from "./IQuantity.js";
 import ISaleSession from "./ISaleSession.js";
 import ISKOSConcept from "./ISKOSConcept";
 import ISuppliedProduct from "./ISuppliedProduct.js";
+import IPlannedTransformation from "./IPlannedTransformation.js";
+import IPlannedConsumptionFlow from "./IPlannedConsumptionFlow.js";
+import IPlannedProductionFlow from "./IPlannedProductionFlow.js";
+import IDefinedProduct from "./IDefinedProduct.js";
 
 export default class Connector implements IConnector {
 
@@ -155,6 +159,24 @@ export default class Connector implements IConnector {
     public createSuppliedProduct(parameters: {other: ISuppliedProduct, doNotStore?: boolean}): ISuppliedProduct
     public createSuppliedProduct(parameters: {doNotStore?: boolean, semanticId?: string, other?: ISuppliedProduct, name?: string, description?: string, productType?: ISKOSConcept, quantity?: IQuantity, alcoholPercentage?: number, lifetime?: string, claims?: ISKOSConcept[], usageOrStorageConditions?: string, allergenCharacteristics?: IAllergenCharacteristic[], nutrientCharacteristics?: INutrientCharacteristic[], physicalCharacteristics?: IPhysicalCharacteristic[], geographicalOrigin?: ISKOSConcept, catalogItems?: ICatalogItem[], certifications?: ISKOSConcept[], natureOrigin?: ISKOSConcept[], partOrigin?: ISKOSConcept[], totalTheoreticalStock?: number}): ISuppliedProduct {
         return this.factory.createSuppliedProduct(parameters);
+    }
+
+    public createPlannedTransformation(parameters: {doNotStore?: boolean, semanticId: string, transformationType?: ISKOSConcept, consumptionFlow?: IPlannedConsumptionFlow, productionFlow?: IPlannedProductionFlow}): IPlannedTransformation;
+    public createPlannedTransformation(parameters: {doNotStore?: boolean, other: IPlannedTransformation}): IPlannedTransformation;
+    public createPlannedTransformation(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, transformationType?: ISKOSConcept, consumptionFlow?: IPlannedConsumptionFlow, productionFlow?: IPlannedProductionFlow}): IPlannedTransformation {
+        return this.factory.createPlannedTransformation(parameters);
+    }
+
+    public createPlannedConsumptionFlow(parameters: {doNotStore?: boolean, semanticId: string, quantity?: IQuantity, transformation?: IPlannedTransformation, product?: IDefinedProduct}): IPlannedConsumptionFlow;
+    public createPlannedConsumptionFlow(parameters: {doNotStore?: boolean, other: IPlannedConsumptionFlow}): IPlannedConsumptionFlow;
+    public createPlannedConsumptionFlow(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, quantity?: IQuantity, transformation?: IPlannedTransformation, product?: IDefinedProduct}): IPlannedConsumptionFlow {
+        return this.factory.createPlannedConsumptionFlow(parameters);
+    }
+
+    public createPlannedProductionFlow(parameters: {doNotStore?: boolean, semanticId: string, quantity?: IQuantity, transformation?: IPlannedTransformation, product?: ISuppliedProduct}): IPlannedProductionFlow;
+    public createPlannedProductionFlow(parameters: {doNotStore?: boolean, other: IPlannedProductionFlow}): IPlannedProductionFlow;
+    public createPlannedProductionFlow(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, quantity?: IQuantity, transformation?: IPlannedTransformation, product?: ISuppliedProduct}): IPlannedProductionFlow {
+        return this.factory.createPlannedProductionFlow(parameters);
     }
 
     public async export(objects: Array<Semanticable>, options?: IConnectorExportOptions): Promise<string> {

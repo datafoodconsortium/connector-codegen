@@ -1,34 +1,26 @@
 import expect from 'node:assert';
 import { test } from 'node:test';
-import Person from '../lib/Person.js';
-import Address from '../lib/Address.js';
 import Connector from "../lib/Connector.js";
-import Enterprise from '../lib/Enterprise.js';
 
 const connector = new Connector();
 
-const address = new Address({
-    connector: connector,
+const address = connector.createAddress({
     semanticId: "http://myplatform.com/address/address1"
 });
 
-const address2 = new Address({
-    connector: connector,
+const address2 = connector.createAddress({
     semanticId: "http://myplatform.com/address/address2"
 });
 
-const enterprise = new Enterprise({
-    connector: connector,
+const enterprise = connector.createEnterprise({
     semanticId: "http://myplatform.com/address/enterprise1"
 });
 
-const enterprise2 = new Enterprise({
-    connector: connector,
+const enterprise2 = connector.createEnterprise({
     semanticId: "http://myplatform.com/address/enterprise2"
 });
 
-const person = new Person({
-    connector: connector,
+const person = connector.createPerson({
     semanticId: "http://myplatform.com/person1",
     firstName: "John",
     lastName: "Smith",

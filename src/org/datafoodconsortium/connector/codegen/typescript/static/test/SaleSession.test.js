@@ -1,23 +1,18 @@
 import expect from 'node:assert';
 import { test } from 'node:test';
-import Offer from '../lib/Offer.js';
-import SaleSession from '../lib/SaleSession.js';
 import Connector from "../lib/Connector.js";
 
 const connector = new Connector();
 
-const offer = new Offer({
-    connector: connector,
+const offer = connector.createOffer({
     semanticId: "http://myplatform.com/offer1"
 });
 
-const offer2 = new Offer({
-    connector: connector,
+const offer2 = connector.createOffer({
     semanticId: "http://myplatform.com/offer2"
 });
 
-const saleSession = new SaleSession({
-    connector: connector,
+const saleSession = connector.createSaleSession({
     semanticId: "http://myplatform.com/saleSession1",
     beginDate: "beginDate",
     endDate: "endDate",

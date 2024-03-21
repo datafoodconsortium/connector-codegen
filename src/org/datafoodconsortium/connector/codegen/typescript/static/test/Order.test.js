@@ -1,45 +1,34 @@
 import expect from 'node:assert';
 import { test } from 'node:test';
-import Order from '../lib/Order.js';
-import OrderLine from '../lib/OrderLine.js';
-import Person from '../lib/Person.js';
-import SaleSession from '../lib/SaleSession.js';
 import Connector from "../lib/Connector.js";
 
 const connector = new Connector();
 
-const customer = new Person({
-    connector: connector,
+const customer = connector.createPerson({
     semanticId: "http://myplatform.com/person1",
 });
 
-const customer2 = new Person({
-    connector: connector,
+const customer2 = connector.createPerson({
     semanticId: "http://myplatform.com/person12",
 });
 
-const saleSession = new SaleSession({
-    connector: connector,
+const saleSession = connector.createSaleSession({
     semanticId: "http://myplatform.com/saleSession1"
 });
 
-const saleSession2 = new SaleSession({
-    connector: connector,
+const saleSession2 = connector.createSaleSession({
     semanticId: "http://myplatform.com/saleSession2"
 });
 
-const orderLine = new OrderLine({
-    connector: connector,
+const orderLine = connector.createOrderLine({
     semanticId: "http://myplatform.com/orderLine1"
 });
 
-const orderLine2 = new OrderLine({
-    connector: connector,
+const orderLine2 = connector.createOrderLine({
     semanticId: "http://myplatform.com/orderLine2"
 });
 
-const order = new Order({
-    connector: connector,
+const order = connector.createOrder({
     semanticId: "http://myplatform.com/order1",
     number: "0001",
     date: "date",

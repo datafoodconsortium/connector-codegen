@@ -1,47 +1,36 @@
 import expect from 'node:assert';
 import { test } from 'node:test';
-import CatalogItem from '../lib/CatalogItem.js';
-import Catalog from '../lib/Catalog.js';
-import SuppliedProduct from '../lib/SuppliedProduct.js';
-import Offer from '../lib/Offer.js';
 import Connector from "../lib/Connector.js";
 
 const connector = new Connector();
 
 const json = `{"@context":"https://www.datafoodconsortium.org","@id":"http://myplatform.com/catalogItem1","@type":"dfc-b:CatalogItem","dfc-b:listedIn":{"@id":"http://myplatform.com/catalog1"},"dfc-b:offeredThrough":"http://myplatform.com/offer1","dfc-b:references":"http://myplatform.com/suppliedProduct1","dfc-b:sku":"sku","dfc-b:stockLimitation":"6.32"}`;
 
-const suppliedProduct = new SuppliedProduct({
-    connector: connector,
+const suppliedProduct = connector.createSuppliedProduct({
     semanticId: "http://myplatform.com/suppliedProduct1"
 });
 
-const suppliedProduct2 = new SuppliedProduct({
-    connector: connector,
+const suppliedProduct2 = connector.createSuppliedProduct({
     semanticId: "http://myplatform.com/suppliedProduct2"
 });
 
-const offer1 = new Offer({
-    connector: connector,
+const offer1 = connector.createOffer({
     semanticId: "http://myplatform.com/offer1"
 });
 
-const offer2 = new Offer({
-    connector: connector,
+const offer2 = connector.createOffer({
     semanticId: "http://myplatform.com/offer2"
 });
 
-const catalog = new Catalog({
-    connector: connector,
+const catalog = connector.createCatalog({
     semanticId: "http://myplatform.com/catalog1"
 });
 
-const catalog2 = new Catalog({
-    connector: connector,
+const catalog2 = connector.createCatalog({
     semanticId: "http://myplatform.com/catalog2"
 });
 
-const catalogItem = new CatalogItem({
-    connector: connector,
+const catalogItem = connector.createCatalogItem({
     semanticId: "http://myplatform.com/catalogItem1",
     catalogs: [catalog],
     offers: [offer1],

@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import expect from 'node:assert';
 import { test } from 'node:test';
-import AllergenCharacteristic from '../lib/AllergenCharacteristic.js';
 import Connector from "../lib/Connector.js";
 const measures = JSON.parse(fs.readFileSync('./test/thesaurus/measures.json'));
 
@@ -11,8 +10,7 @@ await connector.loadMeasures(JSON.stringify(measures));
 const kilogram = connector.MEASURES.UNIT.QUANTITYUNIT.KILOGRAM;
 const allergenDimension = connector.MEASURES.DIMENSION.ALLERGENDIMENSION.PEANUTS;
 
-const allergenCharacteristic = new AllergenCharacteristic({
-    connector: connector,
+const allergenCharacteristic = connector.createAllergenCharacteristic({
     value: 1,
     unit: kilogram,
     allergenDimension: allergenDimension

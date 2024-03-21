@@ -1,36 +1,28 @@
 import expect from 'node:assert';
 import { test } from 'node:test';
-import Catalog from '../lib/Catalog.js';
-import CatalogItem from '../lib/CatalogItem.js';
-import Enterprise from '../lib/Enterprise.js';
 import Connector from "../lib/Connector.js";
 
 const connector = new Connector();
 
 const json = `{"@context":"https://www.datafoodconsortium.org","@id":"http://myplatform.com/catalog1","@type":"dfc-b:Catalog","dfc-b:lists":{"@id":"http://myplatform.com/catalogItem1"},"dfc-b:maintainedBy":{"@id":"http://myplatform.com/enterprise1"}}`;
 
-const enterprise = new Enterprise({
-    connector: connector,
+const enterprise = connector.createEnterprise({
     semanticId: "http://myplatform.com/enterprise1"
 });
 
-const enterprise2 = new Enterprise({
-    connector: connector,
+const enterprise2 = connector.createEnterprise({
     semanticId: "http://myplatform.com/enterprise2"
 });
 
-const catalogItem = new CatalogItem({
-    connector: connector,
+const catalogItem = connector.createCatalogItem({
     semanticId: "http://myplatform.com/catalogItem1"
 });
 
-const catalogItem2 = new CatalogItem({
-    connector: connector,
+const catalogItem2 = connector.createCatalogItem({
     semanticId: "http://myplatform.com/catalogItem2"
 });
 
-const catalog = new Catalog({
-    connector: connector,
+const catalog = connector.createCatalog({
     semanticId: "http://myplatform.com/catalog1",
     maintainers: [enterprise],
     items: [catalogItem]
