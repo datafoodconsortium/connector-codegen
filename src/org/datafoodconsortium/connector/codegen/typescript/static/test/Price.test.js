@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import expect from 'node:assert';
 import { test } from 'node:test';
-import Price from '../lib/Price.js';
 import Connector from "../lib/Connector.js";
 const measures = JSON.parse(fs.readFileSync('./test/thesaurus/measures.json'));
 
@@ -10,8 +9,7 @@ await connector.loadMeasures(JSON.stringify(measures));
 
 const euro = connector.MEASURES.UNIT.CURRENCYUNIT.EURO;
 
-const price = new Price({
-    connector: connector,
+const price = connector.createPrice({
     value: 2.54,
     vatRate: 8.0,
     unit: euro

@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import expect from 'node:assert';
 import { test } from 'node:test';
-import NutrientCharacteristic from '../lib/NutrientCharacteristic.js';
 import Connector from "../lib/Connector.js";
 const facets = JSON.parse(fs.readFileSync('./test/thesaurus/facets.json'));
 const measures = JSON.parse(fs.readFileSync('./test/thesaurus/measures.json'));
@@ -15,8 +14,7 @@ const kilogram = connector.MEASURES.UNIT.QUANTITYUNIT.KILOGRAM;
 const nutrientDimension = connector.MEASURES.DIMENSION.NUTRIENTDIMENSION.CALCIUM;
 const nutrientDimension2 = connector.MEASURES.DIMENSION.NUTRIENTDIMENSION.FAT;
 
-const nutrientCharacteristic = new NutrientCharacteristic({ 
-    connector: connector, 
+const nutrientCharacteristic = connector.createNutrientCharacteristic({ 
     value: 10, 
     unit: kilogram, 
     nutrientDimension: nutrientDimension

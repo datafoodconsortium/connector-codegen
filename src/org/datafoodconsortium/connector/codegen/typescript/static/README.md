@@ -31,6 +31,7 @@ You can then load our different SKOS taxonomies providing the corresponding JSON
 connector.loadMeasures(File.read("/path/to/measures.json"));
 connector.loadFacets(File.read("/path/to/facets.json"));
 connector.loadProductTypes(File.read("/path/to/productTypes.json"));
+connector.loadVocabulary(File.read("/path/to/vocabulary.json"));
 ```
 
 These taxonomies are accessible directly from the connector, like:
@@ -43,15 +44,16 @@ const kilogram = connector.MEASURES.UNIT.QUANTITYUNIT.KILOGRAM;
 
 // Example of a product type
 const tomato = connector.PRODUCT_TYPES.VEGETABLE.TOMATO.ROUND_TOMATO;
+
+// Example of a transformation type
+const combines = connector.VOCABULARY.TRANSFORMATIONTYPE.COMBINES;
 ```
 
 ## Object creation
 
-You can create objects using the connector's factory or by calling the new operator by yourself.
-
 _Remark: each newly created object will be saved into the store provided to the Connector. This store will allow you to access to the referenced objects more easily. You can disable this behavior passing the `doNotStore: true` parameter when constructing the objects._
 
-### Using the connector's factory
+Call the creation methods from the connector:
 ```JS
 import { Connector } from "@datafoodconsortium/connector";
 
@@ -122,97 +124,9 @@ _Remark: Except for anonymous objects (blank nodes), the `semanticId` constructo
 - `IConnector:createQuantity(parameters): IQuantity;`
 - `IConnector:createSaleSession(parameters): ISaleSession;`
 - `IConnector:createSuppliedProduct(parameters): ISuppliedProduct;`
-
-### Using the new operator
-
-This is identical to the previous method except:
-- you have to import all the concreate classes
-- you have to set the connector parameter in the constructor
-
-```JS
-// You have to import all the concreate classes.
-import { 
-  CatalogItem,
-  SuppliedProduct,
-  QuantitativeValue,
-  AllergenCharacteristic,
-  NutrientCharacteristic,
-  PhysicalCharacteristic
-} from  "@datafoodconsortium/connector";
-
-const quantity = new QuantitativeValue({ 
-    connector: connector, // You have to pass a reference to the connector.
-    value: 1.2, 
-    unit: kilogram
-});
-
-const allergenCharacteristic = new AllergenCharacteristic({ 
-    connector: connector, // You have to pass a reference to the connector.
-    value: 1, 
-    unit: kilogram, 
-    allergenDimension: connector.MEASURES.DIMENSION.ALLERGENDIMENSION.PEANUTS 
-});
-
-const nutrientCharacteristic = new NutrientCharacteristic({ 
-    connector: connector, // You have to pass a reference to the connector.
-    value: 10, 
-    unit: gram, 
-    nutrientDimension: connector.MEASURES.DIMENSION.NUTRIENTDIMENSION.CALCIUM 
-});
-
-const physicalCharacteristic = new PhysicalCharacteristic({ 
-    connector: connector, // You have to pass a reference to the connector.
-    value: 100, 
-    unit: gram, 
-    physicalDimension: connector.MEASURES.DIMENSION.PHYSICALDIMENSION.WEIGHT 
-});
-
-const catalogItem = new CatalogItem({ 
-    connector: connector, // You have to pass a reference to the connector.
-    semanticId: "http://myplatform.com/catalogItem" 
-});
-
-let suppliedProduct = new SuppliedProduct({
-    connector: connector, // You have to pass a reference to the connector.
-    semanticId: "http://myplatform.com/tomato",
-    description: "Awesome tomato",
-    productType: connector.PRODUCT_TYPES.VEGETABLE.TOMATO.ROUND_TOMATO, 
-    quantity: quantity,
-    totalTheoreticalStock: 2.23,
-    alcoholPercentage: 0, 
-    lifetime: "a week", 
-    claims: [connector.FACETS.CLAIM.NUTRITIONALCLAIM.NOADDEDSUGARS], 
-    usageOrStorageConditions: "free text", 
-    allergenCharacteristics: [allergenCharacteristic],
-    nutrientCharacteristics: [nutrientCharacteristic],
-    physicalCharacteristics: [physicalCharacteristic],
-    geographicalOrigin: connector.FACETS.TERRITORIALORIGIN.EUROPE.FRANCE.CENTREVALLOIRE,
-    catalogItems: [catalogItem], 
-    certifications: [connector.FACETS.CERTIFICATION.ORGANICLABEL.ORGANIC_AB, connector.FACETS.CERTIFICATION.ORGANICLABEL.ORGANIC_EU],
-    natureOrigin: [connector.FACETS.NATUREORIGIN.PLANTORIGIN],
-    partOrigin: [connector.FACETS.PARTORIGIN.PLANTPARTORIGIN.FRUIT]
-});
-```
-
-_Remark: Except for anonymous objects (blank nodes), the `semanticId` constructor parameter is mandatory. All the other parameters are optional._
-
-**Available concreate classes:**
-- `Address`
-- `AllergenCharacteristic`
-- `Catalog`
-- `CatalogItem`
-- `CustomerCategory`
-- `Enterprise`
-- `NutrientCharacteristic`
-- `Offer`
-- `Order`
-- `OrderLine`
-- `Person`
-- `PhysicalCharacteristic`
-- `Price`
-- `QuantitativeValue`
-- `SaleSession`
-- `SuppliedProduct`
+- `IConnector:createPlannedTransformation(parameters);`
+- `IConnector:createPlannedConsumptionFlow(parameters);`
+- `IConnector:createPlannedProductionFlow(parameters);`
 
 ## Object accessors and mutators
 
@@ -403,7 +317,7 @@ Connector:setDefaultFactory(factory: IConnectorFactory);
 
 ### Address
 
-`Connector:createAddress(parameters): IAddress`
+`IConnector:createAddress(parameters): IAddress`
 
 ```JS
 parameters: {
@@ -416,7 +330,7 @@ parameters: {
 }
 ```
 
-`Connector:createAddress(parameters): IAddress`
+`IConnector:createAddress(parameters): IAddress`
 
 ```JS
 parameters: {
@@ -427,7 +341,7 @@ parameters: {
 
 ### AllergenCharacteristic
 
-`Connector:createAllergenCharacteristic(parameters): IAllergenCharacteristic`
+`IConnector:createAllergenCharacteristic(parameters): IAllergenCharacteristic`
 
 ```JS
 parameters: {
@@ -437,7 +351,7 @@ parameters: {
 }
 ```
 
-`Connector:createAllergenCharacteristic(parameters): IAllergenCharacteristic`
+`IConnector:createAllergenCharacteristic(parameters): IAllergenCharacteristic`
 
 ```JS
 parameters: {
@@ -447,7 +361,7 @@ parameters: {
 
 ### Catalog
 
-`Connector:createCatalog(parameters): ICatalog`
+`IConnector:createCatalog(parameters): ICatalog`
   
 ```JS
 parameters: {
@@ -458,7 +372,7 @@ parameters: {
 }
 ```
 
-`Connector:createCatalog(parameters): ICatalog`
+`IConnector:createCatalog(parameters): ICatalog`
   
 ```JS
 parameters: {
@@ -469,7 +383,7 @@ parameters: {
 
 ### CatalogItem
 
-`Connector:createCatalogItem(parameters): ICatalogItem`
+`IConnector:createCatalogItem(parameters): ICatalogItem`
   
 ```JS
 parameters: {
@@ -483,7 +397,7 @@ parameters: {
 }
 ```
 
-`Connector:createCatalogItem(parameters): ICatalogItem`
+`IConnector:createCatalogItem(parameters): ICatalogItem`
   
 ```JS
 parameters: {
@@ -494,7 +408,7 @@ parameters: {
 
 ### CustomerCategory
 
-`Connector:createCustomerCategory(parameters): ICustomerCategory`
+`IConnector:createCustomerCategory(parameters): ICustomerCategory`
   
 ```JS
 parameters: {
@@ -504,7 +418,7 @@ parameters: {
 }
 ```
 
-`Connector:createCustomerCategory(parameters): ICustomerCategory`
+`IConnector:createCustomerCategory(parameters): ICustomerCategory`
   
 ```JS
 parameters: {
@@ -515,7 +429,7 @@ parameters: {
 
 ### Enterprise
 
-`Connector:createEnterprise(parameters): IEnterprise`
+`IConnector:createEnterprise(parameters): IEnterprise`
   
 ```JS
 parameters: {
@@ -531,7 +445,7 @@ parameters: {
 }
 ```
 
-`Connector:createEnterprise(parameters): IEnterprise`
+`IConnector:createEnterprise(parameters): IEnterprise`
   
 ```JS
 parameters: {
@@ -542,7 +456,7 @@ parameters: {
 
 ### NutrientCharacteristic
 
-`Connector:createNutrientCharacteristic(parameters): INutrientCharacteristic`
+`IConnector:createNutrientCharacteristic(parameters): INutrientCharacteristic`
   
 ```JS
 parameters: {
@@ -552,7 +466,7 @@ parameters: {
 }
 ```
 
-`Connector:createNutrientCharacteristic(parameters): INutrientCharacteristic`
+`IConnector:createNutrientCharacteristic(parameters): INutrientCharacteristic`
   
 ```JS
 parameters: {
@@ -562,7 +476,7 @@ parameters: {
 
 ### Offer
 
-`Connector:createOffer(parameters): IOffer`
+`IConnector:createOffer(parameters): IOffer`
   
 ```JS
 parameters: {
@@ -575,7 +489,7 @@ parameters: {
 }
 ```
 
-`Connector:createOffer(parameters): IOffer`
+`IConnector:createOffer(parameters): IOffer`
   
 ```JS
 parameters: {
@@ -586,7 +500,7 @@ parameters: {
 
 ### Order
 
-`Connector:createOrder(parameters): IOrder`
+`IConnector:createOrder(parameters): IOrder`
   
 ```JS
 parameters: {
@@ -600,7 +514,7 @@ parameters: {
 }
 ```
 
-`Connector:createOrder(parameters): IOrder`
+`IConnector:createOrder(parameters): IOrder`
   
 ```JS
 parameters: {
@@ -611,7 +525,7 @@ parameters: {
 
 ### OrderLine
 
-`Connector:createOrderLine(parameters): IOrderLine`
+`IConnector:createOrderLine(parameters): IOrderLine`
   
 ```JS
 parameters: {
@@ -624,7 +538,7 @@ parameters: {
 }
 ```
 
-`Connector:createOrderLine(parameters): IOrderLine`
+`IConnector:createOrderLine(parameters): IOrderLine`
   
 ```JS
 parameters: {
@@ -635,7 +549,7 @@ parameters: {
 
 ### Person
 
-`Connector:createPerson(parameters): IPerson`
+`IConnector:createPerson(parameters): IPerson`
   
 ```JS
 parameters: {
@@ -648,7 +562,7 @@ parameters: {
 }
 ```
 
-`Connector:createPerson(parameters): IPerson`
+`IConnector:createPerson(parameters): IPerson`
   
 ```JS
 parameters: {
@@ -659,7 +573,7 @@ parameters: {
 
 ### PhysicalCharacteristic
 
-`Connector:createPhysicalCharacteristic(parameters): IPhysicalCharacteristic`
+`IConnector:createPhysicalCharacteristic(parameters): IPhysicalCharacteristic`
   
 ```JS
 parameters: {
@@ -669,7 +583,7 @@ parameters: {
 }
 ```
 
-`Connector:createPhysicalCharacteristic(parameters): IPhysicalCharacteristic`
+`IConnector:createPhysicalCharacteristic(parameters): IPhysicalCharacteristic`
   
 ```JS
 parameters: {
@@ -677,9 +591,53 @@ parameters: {
 }
 ```
 
+### PlannedConsumptionFlow
+
+`IConnector:createPlannedConsumptionFlow(parameters);`
+
+```ts
+parameters: {
+  doNotStore?: boolean, 
+  semanticId?: string, 
+  other?: Semanticable, 
+  quantity?: IQuantity, 
+  transformation?: IPlannedTransformation, 
+  product?: IDefinedProduct
+}
+```
+
+### PlannedProductionFlow
+`IConnector:createPlannedProductionFlow(parameters);`
+
+```ts
+parameters: {
+  doNotStore?: boolean, 
+  semanticId?: string, 
+  other?: Semanticable, 
+  quantity?: IQuantity, 
+  transformation?: IPlannedTransformation, 
+  product?: ISuppliedProduct
+}
+```
+
+### PlannedTransformation
+
+`IConnector:createPlannedTransformation(parameters);`
+
+```ts
+parameters: {
+  doNotStore?: boolean, 
+  semanticId?: string,
+  other?: Semanticable, 
+  transformationType?: ISKOSConcept, 
+  consumptionFlow?: IPlannedConsumptionFlow, 
+  productionFlow?: IPlannedProductionFlow
+}
+```
+
 ### Price
 
-`Connector:createPrice(parameters): IPrice`
+`IConnector:createPrice(parameters): IPrice`
   
 ```JS
 parameters: {
@@ -689,7 +647,7 @@ parameters: {
 }
 ```
 
-`Connector:createPrice(parameters): IPrice`
+`IConnector:createPrice(parameters): IPrice`
   
 ```JS
 parameters: {
@@ -699,7 +657,7 @@ parameters: {
 
 ### Quantity
 
-`Connector:createQuantity(parameters): IQuantity`
+`IConnector:createQuantity(parameters): IQuantity`
   
 ```JS
 parameters: {
@@ -708,7 +666,7 @@ parameters: {
 }
 ```
 
-`Connector:createQuantity(parameters): IQuantity`
+`IConnector:createQuantity(parameters): IQuantity`
   
 ```JS
 parameters: {
@@ -718,7 +676,7 @@ parameters: {
 
 ### SaleSession
 
-`Connector:createSaleSession(parameters): ISaleSession`
+`IConnector:createSaleSession(parameters): ISaleSession`
   
 ```JS
 parameters: {
@@ -731,7 +689,7 @@ parameters: {
 }
 ```
 
-`Connector:createSaleSession(parameters): ISaleSession`
+`IConnector:createSaleSession(parameters): ISaleSession`
   
 ```JS
 parameters: {
@@ -742,7 +700,7 @@ parameters: {
 
 ### SuppliedProduct
 
-`Connector:createSuppliedProduct(parameters): ISuppliedProduct`
+`IConnector:createSuppliedProduct(parameters): ISuppliedProduct`
   
 ```JS
 parameters: {
@@ -768,11 +726,60 @@ parameters: {
 }
 ```
 
-`Connector:createSuppliedProduct(parameters): ISuppliedProduct`
+`IConnector:createSuppliedProduct(parameters): ISuppliedProduct`
   
 ```JS
 parameters: {
   other: ISuppliedProduct, // construct the object by copy 
   doNotStore?: boolean // if true, do not save the object into the connector store
 }
+```
+
+## Examples
+
+### Transformation loop
+
+This example shows how to create a product case containing 10 pieces:
+
+```ts
+const connector = new Connector();
+await connector.loadMeasures(JSON.stringify(measures));
+await connector.loadVocabulary(JSON.stringify(vocabulary));
+
+const piece = connector.MEASURES.UNIT.QUANTITYUNIT.PIECE;
+
+const inputSuppliedProduct = connector.createSuppliedProduct({
+    semanticId: "http://myplatform.com/inputProduct",
+    description: "Some product"
+});
+
+const outputSuppliedProduct = connector.createSuppliedProduct({
+    semanticId: "http://myplatform.com/caseOfProduct",
+    description: "Case of 10 products"
+});
+
+const plannedConsumptionFlow = connector.createPlannedConsumptionFlow({
+    semanticId: "http://myplatform.com/plannedConsumptionFlow",
+    quantity: connector.createQuantity({ 
+        value: 10, 
+        unit: piece
+    }),
+    product: inputSuppliedProduct
+})
+
+const plannedProductionFlow = connector.createPlannedProductionFlow({
+    semanticId: "http://myplatform.com/plannedProductionFlow",
+    quantity: connector.createQuantity({ 
+        value: 1.0, 
+        unit: piece
+    }),
+    product: outputSuppliedProduct
+})
+
+const plannedTransformation = connector.createPlannedTransformation({
+    semanticId: "http://myplatform.com/transformation",
+    transformationType: connector.VOCABULARY.TRANSFORMATIONTYPE.COMBINES,
+    consumptionFlows: [plannedConsumptionFlow],
+    productionFlows: [plannedProductionFlow]
+});
 ```

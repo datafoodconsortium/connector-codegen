@@ -1,35 +1,27 @@
 import * as fs from 'fs';
 import expect from 'node:assert';
 import { test } from 'node:test';
-import Offer from '../lib/Offer.js';
-import Order from '../lib/Order.js';
-import Price from '../lib/Price.js';
-import OrderLine from '../lib/OrderLine.js';
 import Connector from "../lib/Connector.js";
 const measures = JSON.parse(fs.readFileSync('./test/thesaurus/measures.json'));
 
 const connector = new Connector();
 await connector.loadMeasures(JSON.stringify(measures));
 
-const offer = new Offer({
-    connector: connector,
+const offer = connector.createOffer({
     semanticId: "http://myplatform.com/offer1"
 });
 
-const order = new Order({
-    connector: connector,
+const order = connector.createOrder({
     semanticId: "http://myplatform.com/order1"
 });
 
-const price = new Price({
-    connector: connector,
+const price = connector.createPrice({
     value: 5.42,
     vatRate: 19.9,
     unit: connector.MEASURES.UNIT.CURRENCYUNIT.EURO
 });
 
-const orderLine = new OrderLine({
-    connector: connector,
+const orderLine = connector.createOrderLine({
     semanticId: "http://myplatform.com/orderLine1",
     order: order,
     offer: offer,
@@ -75,8 +67,7 @@ test('OrderLine:getQuantity', () => {
 });
 
 test('OrderLine:setOrder', async () => {
-    const order2 = new Order({
-        connector: connector,
+    const order2 = connector.createOrder({
         semanticId: "http://myplatform.com/order2"
     });
     orderLine.setOrder(order2);
@@ -85,8 +76,7 @@ test('OrderLine:setOrder', async () => {
 });
 
 test('OrderLine:setOffer', async () => {
-    const offer2 = new Offer({
-        connector: connector,
+    const offer2 = connector.createOffer({
         semanticId: "http://myplatform.com/offer2"
     });
     orderLine.setOffer(offer2);
@@ -95,8 +85,7 @@ test('OrderLine:setOffer', async () => {
 });
 
 test('OrderLine:setPrice', async () => {
-    const price2 = new Price({
-        connector: connector,
+    const price2 = connector.createPrice({
         value: 2.8,
         vatRate: 7,
         unit: connector.MEASURES.UNIT.CURRENCYUNIT.EURO

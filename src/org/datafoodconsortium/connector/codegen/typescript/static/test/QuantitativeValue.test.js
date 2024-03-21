@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import expect from 'node:assert';
 import { test } from 'node:test';
-import QuantitativeValue from '../lib/QuantitativeValue.js';
 import Connector from "../lib/Connector.js";
 const measures = JSON.parse(fs.readFileSync('./test/thesaurus/measures.json'));
 
@@ -10,8 +9,7 @@ await connector.loadMeasures(JSON.stringify(measures));
 
 const kilogram = connector.MEASURES.UNIT.QUANTITYUNIT.KILOGRAM;
 
-const quantitativeValue = new QuantitativeValue({ 
-    connector: connector, 
+const quantitativeValue = connector.createQuantity({ 
     value: 1, 
     unit: kilogram 
 });

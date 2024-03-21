@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import expect from 'node:assert';
 import { test } from 'node:test';
-import PhysicalCharacteristic from '../lib/PhysicalCharacteristic.js';
 import Connector from "../lib/Connector.js";
 const facets = JSON.parse(fs.readFileSync('./test/thesaurus/facets.json'));
 const measures = JSON.parse(fs.readFileSync('./test/thesaurus/measures.json'));
@@ -15,8 +14,7 @@ const gram = connector.MEASURES.UNIT.QUANTITYUNIT.GRAM;
 const physicalDimension = connector.MEASURES.DIMENSION.PHYSICALDIMENSION.WEIGHT;
 const physicalDimension2 = connector.MEASURES.DIMENSION.PHYSICALDIMENSION.HEIGHT;
 
-const physicalCharacteristic = new PhysicalCharacteristic({ 
-    connector: connector, 
+const physicalCharacteristic = connector.createPhysicalCharacteristic({ 
     value: 100, 
     unit: kilogram, 
     physicalDimension: physicalDimension

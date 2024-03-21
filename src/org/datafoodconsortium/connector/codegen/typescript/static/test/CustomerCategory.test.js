@@ -1,12 +1,10 @@
 import expect from 'node:assert';
 import { test } from 'node:test';
-import CustomerCategory from '../lib/CustomerCategory.js';
 import Connector from "../lib/Connector.js";
 
 const connector = new Connector();
 
-const customerCategory = new CustomerCategory({
-    connector: connector,
+const customerCategory = connector.createCustomerCategory({
     semanticId: "http://myplatform.com/customerCategory1",
     description: "description"
 })

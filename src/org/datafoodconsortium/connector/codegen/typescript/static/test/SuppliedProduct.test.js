@@ -1,12 +1,6 @@
 import * as fs from 'fs';
 import expect from 'node:assert';
 import { test } from 'node:test';
-import CatalogItem from '../lib/CatalogItem.js';
-import SuppliedProduct from '../lib/SuppliedProduct.js';
-import QuantitativeValue from '../lib/QuantitativeValue.js';
-import AllergenCharacteristic from '../lib/AllergenCharacteristic.js';
-import NutrientCharacteristic from '../lib/NutrientCharacteristic.js';
-import PhysicalCharacteristic from '../lib/PhysicalCharacteristic.js';
 import Connector from "../lib/Connector.js";
 const facets = JSON.parse(fs.readFileSync('./test/thesaurus/facets.json'));
 const measures = JSON.parse(fs.readFileSync('./test/thesaurus/measures.json'));
@@ -21,66 +15,56 @@ await connector.loadProductTypes(JSON.stringify(productTypes));
 const gram = connector.MEASURES.UNIT.QUANTITYUNIT.GRAM;
 const kilogram = connector.MEASURES.UNIT.QUANTITYUNIT.KILOGRAM;
 
-const quantity = new QuantitativeValue({ 
-    connector: connector, 
+const quantity = connector.createQuantity({ 
     value: 1.2, 
     unit: kilogram
 });
 
-const allergenCharacteristic = new AllergenCharacteristic({ 
-    connector: connector, 
+const allergenCharacteristic = connector.createAllergenCharacteristic({ 
     value: 1, 
     unit: kilogram, 
     allergenDimension: connector.MEASURES.DIMENSION.ALLERGENDIMENSION.PEANUTS 
 });
 
-const allergenCharacteristic2 = new AllergenCharacteristic({ 
-    connector: connector, 
+const allergenCharacteristic2 = connector.createAllergenCharacteristic({ 
     value: 3.5, 
     unit: gram, 
     allergenDimension: connector.MEASURES.DIMENSION.ALLERGENDIMENSION.EGGS 
 });
 
-const nutrientCharacteristic = new NutrientCharacteristic({ 
-    connector: connector,
+const nutrientCharacteristic = connector.createNutrientCharacteristic({ 
     value: 10, 
     unit: gram, 
     nutrientDimension: connector.MEASURES.DIMENSION.NUTRIENTDIMENSION.CALCIUM 
 });
 
-const nutrientCharacteristic2 = new NutrientCharacteristic({ 
-    connector: connector,
+const nutrientCharacteristic2 = connector.createNutrientCharacteristic({ 
     value: 8, 
     unit: kilogram, 
     nutrientDimension: connector.MEASURES.DIMENSION.NUTRIENTDIMENSION.FIBRE 
 });
 
-const physicalCharacteristic = new PhysicalCharacteristic({ 
-    connector: connector, 
+const physicalCharacteristic = connector.createPhysicalCharacteristic({ 
     value: 100, 
     unit: gram, 
     physicalDimension: connector.MEASURES.DIMENSION.PHYSICALDIMENSION.WEIGHT 
 });
 
-const physicalCharacteristic2 = new PhysicalCharacteristic({ 
-    connector: connector, 
+const physicalCharacteristic2 = connector.createPhysicalCharacteristic({ 
     value: 32.5, 
     unit: kilogram, 
     physicalDimension: connector.MEASURES.DIMENSION.PHYSICALDIMENSION.HEIGHT 
 });
 
-const catalogItem = new CatalogItem({ 
-    connector: connector, 
+const catalogItem = connector.createCatalogItem({ 
     semanticId: "http://myplatform.com/catalogItem" 
 });
 
-const catalogItem2 = new CatalogItem({ 
-    connector: connector, 
+const catalogItem2 = connector.createCatalogItem({ 
     semanticId: "http://myplatform.com/catalogItem2" 
 });
 
-let suppliedProduct = new SuppliedProduct({
-    connector: connector,
+let suppliedProduct = connector.createSuppliedProduct({
     semanticId: "http://myplatform.com/tomato",
     description: "Awesome tomato",
     images: ["http://myplatform.com/image1", "http://myplatform.com/image2"],
@@ -215,9 +199,8 @@ test('SuppliedProduct:setProductType', async () => {
 });
 
 test('SuppliedProduct:setQuantity', async () => {
-    const quantity2 = new QuantitativeValue({ 
-        connector: connector, 
-        quantity: 3, 
+    const quantity2 = connector.createQuantity({ 
+            quantity: 3, 
         unit: kilogram 
     });
     suppliedProduct.setQuantity(quantity2);
