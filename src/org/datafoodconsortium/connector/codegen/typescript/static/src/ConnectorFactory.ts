@@ -135,7 +135,7 @@ export default class ConnectorFactory implements IConnectorFactory {
         return new PlannedTransformation({ connector: this.connector, ...parameters });
     }
 
-    public createPlannedConsumptionFLow(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, quantity?: IQuantity, transformation?: IPlannedTransformation, product?: IDefinedProduct}): IPlannedConsumptionFlow {
+    public createPlannedConsumptionFlow(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, quantity?: IQuantity, transformation?: IPlannedTransformation, product?: IDefinedProduct}): IPlannedConsumptionFlow {
         return new PlannedConsumptionFlow({ connector: this.connector, ...parameters });
     }
 
@@ -212,7 +212,7 @@ export default class ConnectorFactory implements IConnectorFactory {
                 break;
             
             case prefix + "AsPlannedConsumptionFlow":
-                result = this.createPlannedConsumptionFLow({ semanticId: "" });
+                result = this.createPlannedConsumptionFlow({ semanticId: "" });
                 break;
             
             case prefix + "AsPlannedProductionFlow":

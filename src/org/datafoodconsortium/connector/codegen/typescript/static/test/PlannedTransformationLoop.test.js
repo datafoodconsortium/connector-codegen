@@ -1,11 +1,6 @@
 import * as fs from 'fs';
 import expect from 'node:assert';
 import { test } from 'node:test';
-import SuppliedProduct from '../lib/SuppliedProduct.js';
-import QuantitativeValue from '../lib/QuantitativeValue.js';
-import PlannedConsumptionFlow from '../lib/PlannedConsumptionFlow.js';
-import PlannedProductionFlow from '../lib/PlannedProductionFlow.js';
-import PlannedTransformation from '../lib/PlannedTransformation.js';
 import Connector from "../lib/Connector.js";
 const measures = JSON.parse(fs.readFileSync('./test/thesaurus/measures.json'));
 const vocabulary = JSON.parse(fs.readFileSync('./test/thesaurus/vocabulary.json'));
@@ -16,46 +11,39 @@ await connector.loadVocabulary(JSON.stringify(vocabulary));
 
 const kilogram = connector.MEASURES.UNIT.QUANTITYUNIT.KILOGRAM;
 
-const inputSuppliedProduct = new SuppliedProduct({
-    connector: connector,
+const inputSuppliedProduct = connector.createSuppliedProduct({
     semanticId: "http://myplatform.com/inputProduct",
     description: "Awesome product"
 });
 
-const outputSuppliedProduct = new SuppliedProduct({
-    connector: connector,
+const outputSuppliedProduct = connector.createSuppliedProduct({
     semanticId: "http://myplatform.com/outputProduct",
     description: "Modified product"
 });
 
-const inputQuantity = new QuantitativeValue({ 
-    connector: connector, 
+const inputQuantity = connector.createQuantity({ 
     value: 1.2, 
     unit: kilogram
 });
 
-const outputQuantity = new QuantitativeValue({ 
-    connector: connector, 
+const outputQuantity = connector.createQuantity({ 
     value: 1.0, 
     unit: kilogram
 });
 
-const plannedConsumptionFlow = new PlannedConsumptionFlow({
-    connector: connector,
+const plannedConsumptionFlow = connector.createPlannedConsumptionFlow({
     semanticId: "http://myplatform.com/plannedConsumptionFlow",
     quantity: inputQuantity,
     product: inputSuppliedProduct
 })
 
-const plannedProductionFlow = new PlannedProductionFlow({
-    connector: connector,
+const plannedProductionFlow = connector.createPlannedProductionFlow({
     semanticId: "http://myplatform.com/plannedProductionFlow",
     quantity: outputQuantity,
     product: outputSuppliedProduct
 })
 
-const plannedTransformation = new PlannedTransformation({
-    connector: connector,
+const plannedTransformation = connector.createPlannedTransformation({
     semanticId: "http://myplatform.com/transformation",
     transformationType: connector.VOCABULARY.TRANSFORMATIONTYPE.MODIFY,
     consumptionFlows: [plannedConsumptionFlow],

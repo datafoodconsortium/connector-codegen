@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - None
 
-## [1.0.0-alpha.9] - 2024-03-20
+## [1.0.0-alpha.9] - 2024-03-21
 
 ### Changed
 
@@ -20,11 +20,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update `@types/rdf-ext` to version 2.5.0.
 - Update `@virtual-assembly/semantizer` to version alpha.3 (use GitHub repository).
 - Generate the code from the code generator.
-- Generated from the next branch of UML data model[31ec1f7](https://github.com/datafoodconsortium/data-model-uml/commit/31ec1f79dad25016af6d684c30bce355e92a8649).
+- Generated from the next branch of UML data model [edac402](https://github.com/datafoodconsortium/data-model-uml/commit/edac40255591f46884e75da47e28f04adc53d97a).
 
 ### Added
 
-- Compare the SUPPORTED.md file [from main to next](https://github.com/datafoodconsortium/data-model-uml/compare/main...next#diff-25a3722bf6006b7a060d6900ea707cb596a854ea3cdb6ef3b1980531d5d85bc5).
+- `Address`:
+  - latitute
+  - longitude
+  - region
+- `Agent`:
+  - logo
+- `PlannedConsumptionFlow`:
+  - quantity
+  - consumes
+- `PlannedProductionFlow`:
+  - quantity
+  - produces
+- `PlannedTransformation`:
+  - hasIncome
+  - hasOutcome
+  - hasTransformationType
+- `DefinedProduct`:
+  - image
+- `Order`:
+  - date
+  - hasFulfilmentStatus
+  - hasOrderStatus
+  - hasPaymentStatus
+  - orderNumber
+
+See the SUPPORTED.md file [comparison from main to next](https://github.com/datafoodconsortium/data-model-uml/compare/main...next#diff-25a3722bf6006b7a060d6900ea707cb596a854ea3cdb6ef3b1980531d5d85bc5).
 
 ## [1.0.0-alpha.8] - 2024-01-31
 

@@ -1,68 +1,51 @@
 import expect from 'node:assert';
 import { test } from 'node:test';
-import Enterprise from '../lib/Enterprise.js';
-import Address from '../lib/Address.js';
-import CustomerCategory from '../lib/CustomerCategory.js';
-import SuppliedProduct from '../lib/SuppliedProduct.js';
-import Catalog from '../lib/Catalog.js';
-import CatalogItem from '../lib/CatalogItem.js';
 import Connector from "../lib/Connector.js";
 
 const connector = new Connector();
 
-const address = new Address({
-    connector: connector,
+const address = connector.createAddress({
     semanticId: "http://myplatform.com/address1",
     city: "Briouze"
 });
 
-const address2 = new Address({
-    connector: connector,
+const address2 = connector.createAddress({
     semanticId: "http://myplatform.com/address2",
 });
 
-const customerCategory = new CustomerCategory({
-    connector: connector,
+const customerCategory = connector.createCustomerCategory({
     semanticId: "http://myplatform.com/customerCategory1"
 });
 
-const customerCategory2 = new CustomerCategory({
-    connector: connector,
+const customerCategory2 = connector.createCustomerCategory({
     semanticId: "http://myplatform.com/customerCategory2"
 });
 
-const suppliedProduct = new SuppliedProduct({
-    connector: connector,
+const suppliedProduct = connector.createSuppliedProduct({
     semanticId: "http://myplatform.com/suppliedProduct1"
 });
 
-const suppliedProduct2 = new SuppliedProduct({
-    connector: connector,
+const suppliedProduct2 = connector.createSuppliedProduct({
     semanticId: "http://myplatform.com/suppliedProduct2"
 });
 
-const catalog = new Catalog({
-    connector: connector,
+const catalog = connector.createCatalog({
     semanticId: "http://myplatform.com/catalog1"
 });
 
-const catalog2 = new Catalog({
-    connector: connector,
+const catalog2 = connector.createCatalog({
     semanticId: "http://myplatform.com/catalog2"
 });
 
-const catalogItem = new CatalogItem({
-    connector: connector,
+const catalogItem = connector.createCatalogItem({
     semanticId: "http://myplatform.com/catalogItem1"
 });
 
-const catalogItem2 = new CatalogItem({
-    connector: connector,
+const catalogItem2 = connector.createCatalogItem({
     semanticId: "http://myplatform.com/catalogItem2"
 });
 
-const enterprise = new Enterprise({
-    connector: connector,
+const enterprise = connector.createEnterprise({
     semanticId: "http://myplatform.com/enterprise1",
     description: "description",
     localizations: [address],

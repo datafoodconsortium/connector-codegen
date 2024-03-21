@@ -22,6 +22,10 @@ import IQuantity from "./IQuantity";
 import ISaleSession from "./ISaleSession";
 import ISKOSConcept from "./ISKOSConcept";
 import ISuppliedProduct from "./ISuppliedProduct";
+import IPlannedConsumptionFlow from "./IPlannedConsumptionFlow";
+import IPlannedProductionFlow from "./IPlannedProductionFlow";
+import IPlannedTransformation from "./IPlannedTransformation";
+import IDefinedProduct from "./IDefinedProduct";
 
 export default interface IConnectorFactory {
 
@@ -44,5 +48,8 @@ export default interface IConnectorFactory {
     createQuantity(parameters: {other?: Semanticable, unit?: ISKOSConcept, value?: number}): IQuantity;
     createSaleSession(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, beginDate?: string, endDate?: string, quantity?: number, offers?: IOffer[]}): ISaleSession;
     createSuppliedProduct(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, name?: string, description?: string, productType?: ISKOSConcept, quantity?: IQuantity, alcoholPercentage?: number, lifetime?: string, claims?: ISKOSConcept[], usageOrStorageConditions?: string, allergenCharacteristics?: IAllergenCharacteristic[], nutrientCharacteristics?: INutrientCharacteristic[], physicalCharacteristics?: IPhysicalCharacteristic[], geographicalOrigin?: ISKOSConcept, catalogItems?: ICatalogItem[], certifications?: ISKOSConcept[], natureOrigin?: ISKOSConcept[], partOrigin?: ISKOSConcept[], totalTheoreticalStock?: number}): ISuppliedProduct;
+    createPlannedTransformation(parameters: {doNotStore?: boolean, semanticId?: string,other?: Semanticable, transformationType?: ISKOSConcept, consumptionFlow?: IPlannedConsumptionFlow, productionFlow?: IPlannedProductionFlow}): IPlannedTransformation;
+    createPlannedConsumptionFlow(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, quantity?: IQuantity, transformation?: IPlannedTransformation, product?: IDefinedProduct}): IPlannedConsumptionFlow;
+    createPlannedProductionFlow(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, quantity?: IQuantity, transformation?: IPlannedTransformation, product?: ISuppliedProduct}): IPlannedProductionFlow;
 
 }
