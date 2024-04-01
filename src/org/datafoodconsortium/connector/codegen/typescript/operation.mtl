@@ -188,4 +188,3 @@ throw new Error("Not yet implemented.");
 
 [comment][query private isAsyncParameter(p: Parameter): Boolean = (not p.type.isBlankNode() and ((not p.type.isPrimitive()) or p.upper =-1)) /][/comment]
 [comment][query private isAsyncParameter(p: Parameter): Boolean = (p.upper = -1 or (not p.type.isBlankNode() and not p.type.isPrimitive())) /][/comment]
-[query private isAsyncParameter(p: Parameter): Boolean = ((p.upper = -1 and not p.type.isPrimitive()) or (not p.type.isBlankNode() and not p.type.isPrimitive())) /]
