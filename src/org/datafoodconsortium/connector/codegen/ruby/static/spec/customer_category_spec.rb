@@ -1,4 +1,4 @@
-describe DataFoodConsortium::Connector::CustomerCategory do
+RSpec.describe DataFoodConsortium::Connector::CustomerCategory do
   it "can be empty when exported" do
     subject = DataFoodConsortium::Connector::CustomerCategory.new(
       "https://myplatform.com/cc"

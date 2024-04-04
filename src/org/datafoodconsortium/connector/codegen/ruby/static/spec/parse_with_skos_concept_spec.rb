@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe "parse with skos concept" do
+RSpec.describe "parse with skos concept" do
   describe "productTypes" do
     describe "topConcepts" do
       it "returns a list of available topConcepts" do
