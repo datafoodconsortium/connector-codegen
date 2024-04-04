@@ -17,7 +17,7 @@ RSpec.describe "parse with skos concept" do
     describe "prefLabels" do
       it "populates SKOS Concept prefLabels" do
         drink_type = connector.PRODUCT_TYPES.DRINK
-        expect(drink_type.prefLabels).to eq({en: "drink", fr: "boisson" })
+        expect(drink_type.prefLabels).to eq({ en: "drink", fr: "boisson" })
       end
     end
 
@@ -37,7 +37,6 @@ RSpec.describe "parse with skos concept" do
       expect(drink_type.narrowers).to include(/fruit-juice/, /lemonade/, /smoothie/)
     end
 
-
     it "parses leaf level" do
       drink_type = connector.PRODUCT_TYPES.DRINK.SOFT_DRINK.LEMONADE
 
@@ -46,7 +45,6 @@ RSpec.describe "parse with skos concept" do
       expect(drink_type.narrowers).to eq([])
     end
   end
-
 
   describe "facets" do
     describe "topConcepts" do
