@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0-alpha.11] - 2024-04-04
+
+This version has been generated using:
+
+- [Connector code generator](https://github.com/datafoodconsortium/connector-codegen) [main](https://github.com/datafoodconsortium/connector-codegen/commit/4f27cdecff1fc727283cbbb0a7847e0e178b761c).
+- [UML data model](https://github.com/datafoodconsortium/data-model-uml) [next](https://github.com/datafoodconsortium/data-model-uml/commit/7fec05679450864108e20ce7411cbc957e559d30)
+
 ## [1.0.0-alpha.10] - 2024-01-30
 
 This version has been generated using:
@@ -111,6 +118,7 @@ This version has been generated using the [code generator](https://github.com/da
 - Initial version of this library.
 
 [unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0...HEAD
+[1.0.0-alpha.11]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.10...v1.0.0-alpha.11
 [1.0.0-alpha.10]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.9...v1.0.0-alpha.10
 [1.0.0-alpha.9]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.8...v1.0.0-alpha.9
 [1.0.0-alpha.8]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.7...v1.0.0-alpha.8
