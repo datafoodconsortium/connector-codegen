@@ -1,4 +1,4 @@
-describe DataFoodConsortium::Connector::CatalogItem do
+RSpec.describe DataFoodConsortium::Connector::CatalogItem do
   it "can be empty when exported" do
     subject = DataFoodConsortium::Connector::CatalogItem.new(
       "https://myplatform.com/ci"

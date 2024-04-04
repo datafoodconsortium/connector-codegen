@@ -1,4 +1,4 @@
-describe DataFoodConsortium::Connector::SuppliedProduct do
+RSpec.describe DataFoodConsortium::Connector::SuppliedProduct do
   it "can be empty when exported" do
     sp = DataFoodConsortium::Connector::SuppliedProduct.new("https://myplatform.com/sp")
     actual = connector.export(sp)

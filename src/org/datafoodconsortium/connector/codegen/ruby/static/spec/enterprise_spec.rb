@@ -1,4 +1,4 @@
-describe DataFoodConsortium::Connector::Enterprise do
+RSpec.describe DataFoodConsortium::Connector::Enterprise do
   it "can be empty when exported" do
     subject = DataFoodConsortium::Connector::Enterprise.new(
       "https://myplatform.com/e"

@@ -1,4 +1,4 @@
-describe DataFoodConsortium::Connector::Connector do
+RSpec.describe DataFoodConsortium::Connector::Connector do
   it "exports multiple subjects in a graph" do
     a = DataFoodConsortium::Connector::Address.new(
         "https://myplatform.com/a",

@@ -1,4 +1,4 @@
-describe DataFoodConsortium::Connector::Importer do
+RSpec.describe DataFoodConsortium::Connector::Importer do
   let(:enterprise) do
     DataFoodConsortium::Connector::Enterprise.new(
       "https://example.net/foo-food-inc",

@@ -1,4 +1,4 @@
-describe DataFoodConsortium::Connector::Person do
+RSpec.describe DataFoodConsortium::Connector::Person do
   it "can be empty when exported" do
     p = DataFoodConsortium::Connector::Person.new("https://myplatform.com/p")
     actual = connector.export(p)

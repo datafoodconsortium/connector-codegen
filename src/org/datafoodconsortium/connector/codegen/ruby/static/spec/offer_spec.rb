@@ -1,4 +1,4 @@
-describe DataFoodConsortium::Connector::Offer do
+RSpec.describe DataFoodConsortium::Connector::Offer do
   it "has a type" do
     expect(described_class::SEMANTIC_TYPE).to eq "dfc-b:Offer"
   end
