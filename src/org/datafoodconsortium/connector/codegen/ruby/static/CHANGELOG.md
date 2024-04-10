@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Use nil as default value for all types.
 
+This version has been generated using:
+
+- [Connector code generator](https://github.com/datafoodconsortium/connector-codegen) [main](https://github.com/datafoodconsortium/connector-codegen/commit/4f27cdecff1fc727283cbbb0a7847e0e178b761c).
+- [UML data model](https://github.com/datafoodconsortium/data-model-uml) [next](https://github.com/datafoodconsortium/data-model-uml/commit/7fec05679450864108e20ce7411cbc957e559d30)
+
+- Bump semantizer from 1.0.5 to 1.1.1.
+  Semantic objects can now be compared with `==`.
+
 ## [1.0.0-alpha.11] - 2024-04-04
 
 This version has been generated using:
