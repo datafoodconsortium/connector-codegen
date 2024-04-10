@@ -18,6 +18,8 @@ This version has been generated using:
 - [Connector code generator](https://github.com/datafoodconsortium/connector-codegen) [main](https://github.com/datafoodconsortium/connector-codegen/commit/e0d4fceb069c029232ee63c9a631480f00f73a59).
 - [UML data model](https://github.com/datafoodconsortium/data-model-uml) [next](https://github.com/datafoodconsortium/data-model-uml/commit/7fec05679450864108e20ce7411cbc957e559d30)
 
+## Changed
+
 - Bump semantizer from 1.0.5 to 1.1.1.
   Semantic objects can now be compared with `==`.
 
