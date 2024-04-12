@@ -7,9 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0-alpha.12] - 2024-04-11
+
+This version has been generated using:
+
+- [Connector code generator](https://github.com/datafoodconsortium/connector-codegen) [main](https://github.com/datafoodconsortium/connector-codegen/commit/e0d4fceb069c029232ee63c9a631480f00f73a59).
+- [UML data model](https://github.com/datafoodconsortium/data-model-uml) [next](https://github.com/datafoodconsortium/data-model-uml/commit/7fec05679450864108e20ce7411cbc957e559d30)
+
+## Changed
+
+- Bump semantizer from 1.0.5 to 1.1.1.
+  Semantic objects can now be compared with `==`.
+
+## [1.0.0-alpha.11] - 2024-04-04
+
+This version has been generated using:
+
+- [Connector code generator](https://github.com/datafoodconsortium/connector-codegen) [main](https://github.com/datafoodconsortium/connector-codegen/commit/4f27cdecff1fc727283cbbb0a7847e0e178b761c).
+- [UML data model](https://github.com/datafoodconsortium/data-model-uml) [next](https://github.com/datafoodconsortium/data-model-uml/commit/7fec05679450864108e20ce7411cbc957e559d30)
+
+## [1.0.0-alpha.10] - 2024-01-30
+
+This version has been generated using:
+
+- [Connector code generator](https://github.com/datafoodconsortium/connector-codegen) [58d66e80d2d317a715c3aeabac05efa38c39ea29](https://github.com/datafoodconsortium/connector-codegen/commit/58d66e80d2d317a715c3aeabac05efa38c39ea29).
+- [UML data model](https://github.com/datafoodconsortium/data-model-uml) [2.1.0](https://github.com/datafoodconsortium/data-model-uml/releases/tag/v2.1.0)
+
 ### Added
 
-- Add Import method reading JSON and returning objects.
+- Add Import method reading JSON and returning objects. ([PR #12](https://github.com/datafoodconsortium/connector-codegen/pull/12))
 - Add `SEMANTIC_TYPE` constant to every semantic class.
 
 ### Fixed
@@ -103,7 +129,10 @@ This version has been generated using the [code generator](https://github.com/da
 
 - Initial version of this library.
 
-[unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0...HEAD
+[unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.12...HEAD
+[1.0.0-alpha.12]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.11...v1.0.0-alpha.12
+[1.0.0-alpha.11]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.10...v1.0.0-alpha.11
+[1.0.0-alpha.10]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.9...v1.0.0-alpha.10
 [1.0.0-alpha.9]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.8...v1.0.0-alpha.9
 [1.0.0-alpha.8]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.7...v1.0.0-alpha.8
 [1.0.0-alpha.7]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.6...v1.0.0-alpha.7
