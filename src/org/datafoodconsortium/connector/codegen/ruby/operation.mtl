@@ -40,7 +40,7 @@ registerSemanticProperty("[property.getValue(property.getAppliedStereotype('data
 [/template]
 
 [template public getInitializationValueForType(type: String, upper: Integer)]
-[if upper = -1]['[]'/][elseif type = 'String']""[elseif type = 'Boolean']false[elseif type = 'Integer']0[elseif type = 'Real']0.0[else]nil[/if]
+[if upper = -1]['[]'/][else]nil[/if]
 [/template]
 
 [template public generateAdderBody(aClass: Class, operation: Operation)]
