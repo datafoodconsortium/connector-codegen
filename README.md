@@ -123,6 +123,9 @@ You will find predefined queries in the `queries.mtl` file contained in the `org
 |`getReturnParameter(operation: Operation): Parameter`| Returns the returned parameter of the operation. |
 |`getReturnParameterAt(operation: Operation, index: Integer): Parameter`| Returns the specified returned parameter of the operation. |
 |`getReturnParameters(operation: Operation): OrderedSet(Parameter)`| Returns all the returned parameter of the operation. |
+|`getSemanticVocabulary(m: Model): Set(String)`| Returns the semantic URI of all classes and properties (`dfc-b:Address`, `dfc-b:firstName`, etc). This could be used to generate a vocabulary library. |
+|`getSemanticVocabularyOfClasses(m: Model): Set(String)`| Returns the semantic URI of all classes  (`dfc-b:Address`, `dfc-b:Catalog`, etc). |
+|`getSemanticVocabularyOfProperties(m: Model): Set(String)`| Returns the semantic URI of all the properties (`dfc-b:firstName`, `dfc-b:lastName`, etc). |
 |`getSetter(p: Parameter): Operation`| Returns the setter operation associated to the parameter. |
 |`getSetter(p: Property): Operation`| Returns the setter operation associated to the property. |
 |`getSkosBroader(p: Property): String`| Returns the URI of the SKOS Concept associated to the property. The returner URI might be prefixed. This is used to map taxonomy terms. Example of returned value: `dfc-m:AllergenDimension`. |
@@ -213,5 +216,6 @@ In order to generate, this file MUST be loaded in the launch configuration or pa
 | `<language>_outputFolder_test` | Defines the folder in which the tests will be generated for the targeted language. Ex: `php_outputFolder_test = php/test/`. |
 | `stereotype<StereotypeName>` | In the generator we need to get data associated to certain stereotypes like the name of a getter method for instance. This property points to the location of the corresponding stereotype in the UML model. Ex: `stereotypeGetter = datafoodconsortium_connector::getter`. |
 | `stereotype<StereotypeName>_<property>` | In the generator we need to get data associated to certain properties of stereotypes like the name of the mapping property for instance. This property points to the name of the corresponding property in the UML model. Ex: `stereotypeSemantic_map = map`. |
+| `context_<prefix>` | Defines the URI of the semantic prefix. Ex: `context_dfcB = https://...`. |
 
 [model specifications]: https://datafoodconsortium.gitbook.io/dfc-standard-documentation/connector/model-specifications
