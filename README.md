@@ -90,6 +90,7 @@ You will find predefined queries in the `queries.mtl` file contained in the `org
 |`getAbstractClasses(model: Model): Bag(Class)`| Returns all the abstract classes of the model. |
 |`getAdder(p: Parameter): Operation`| Returns the adder operation related to parameter. |
 |`getAdder(p: Property): Operation`| Returns the adder operation related to the property. |
+|`getAllImplementedInterfacesWithoutParents(Class): Set(Interface)`| Returns all the implemented interfaces of the class but without all the implemented interface of the parent class if any. |
 |`getClasses(model: Model): Bag(Class)`| Returns all the classes of the model. |
 |`getClassifiers(model: Model): Bag(NamedElement)`| Returns all the classes and interfaces of the model. |
 |`getConcreateClasses(model: Model): Bag(Class)`| Returns all the concreate classes of the model.  |
@@ -104,6 +105,15 @@ You will find predefined queries in the `queries.mtl` file contained in the `org
 |`getImplementation(aType: Type, model: Model): Class`| Returns the class that implements the passed type. |
 |`getImplementation(i: Interface, model: Model): Class`| Returns the (first-one) class that implements the passed interface. |
 |`getImplementations(i: Interface, model: Model): Bag(Class)`| Returns the classes that implements the passed interface. |
+|`getImportedClasses(aClass: Class): Set(Class)`| Computes the classes that the passed class needs to import. |
+|`getImportedClasses(anInterface: Interface): Set(Class)`| Computes the classes that the passed interface needs to import. |
+|`getImportedClassifiers(aClass: Class): Set(Classifier)`| Computes the classifiers (classes and interfaces) that the passed class needs to import. |
+|`getImportedClassifiers(anInterface: Interface): Set(Classifier)`| Computes the classifiers (classes and interfaces) that the passed interface needs to import. |
+|`getImportedClassifiers(c: Classifier): Set(Classifier)`| Computes the classifiers (classes and interfaces) that the passed classifier needs to import. |
+|`getImportedClassifiersWithoutPrimitives(c: Classifier)`| Computes the classifiers (classes and interfaces) without primitives types (ex: String, Boolean, Integer) that the passed class needs to import. |
+|`getImportedInterfaces(aClass: Class): Set(Interface)`| Computes the interfaces that the passed class needs to import. |
+|`getImportedInterfaces(anInterface: Interface): Set(Interface)`| Computes the interfaces that the passed interface needs to import. |
+|`getImportedTypesOfOperations(classifier: Classifier): Set(Type)`| Returns all the types of the parameters used by the operations (input parameters and output parameters) of the passed classifier. |
 |`getInitializedParentParameters(operation: Operation): OrderedSet(Parameter)`| For a constructor, returns the parameters that have already been initialized by the parent constructor. |
 |`getInitializerProperty(p: Parameter): Property`| Returns the property (class variable) that the  parameter will initialize.  |
 |`getInitializerPropertyGetter(p: Parameter): Operation`| Returns the getter operation of the property (class variable) that the parameter will initialize. |
@@ -113,6 +123,8 @@ You will find predefined queries in the `queries.mtl` file contained in the `org
 |`getInterfaces(model: Model): Bag(Interface)`| Returns all the interfaces of the model. |
 |`getMapping(element: Element): String`| Returns the mapped URI of the element. For instance, if you call this query on the `Address` class, it should returns `dfc-b:Address`.  |
 |`getOperations(owner: Class): OrderedSet(Operation)`| Returns all the owned operations of the class. This won't return operations of inherited class or implemented interface(s). |
+|`getOperationsToImplementOrDeclareFromInterfacesWithoutParents(Class): Bag(Operation)`| Returns the operations that need to be implemented from all the implemented interfaces of the class but without all the implemented interface of the parent class if any. |
+|`getOperationsToImplementOrDeclare(Class): OrderedSet(Operation)`| Returns all the operation that the class need to implements. |
 |`getPackageImports(model: Model): Set(PackageImport)`| Returns all the package imports of the model. |
 |`getPackages(model: Model): Bag(Package)`| Returns all the packages imported by the model. |
 |`getParameters(anOperation: Operation): OrderedSet(Parameter)`| Returns all the parameters of the operation. |
