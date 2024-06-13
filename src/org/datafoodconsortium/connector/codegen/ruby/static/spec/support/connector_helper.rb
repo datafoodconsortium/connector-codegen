@@ -16,4 +16,8 @@ module ConnectorHelper
       )
     )
   end
+
+  def exported_json(*args)
+    JSON.parse(connector.export(*args))
+  end
 end

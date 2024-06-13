@@ -1,4 +1,4 @@
-describe DataFoodConsortium::Connector::Connector do
+RSpec.describe DataFoodConsortium::Connector::Connector do
   let(:product) do
     DataFoodConsortium::Connector::SuppliedProduct.new(
       "https://example.net/tomato",

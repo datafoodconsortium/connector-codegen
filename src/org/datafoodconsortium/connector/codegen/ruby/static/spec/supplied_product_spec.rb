@@ -1,4 +1,4 @@
-describe DataFoodConsortium::Connector::SuppliedProduct do
+RSpec.describe DataFoodConsortium::Connector::SuppliedProduct do
   it "can be empty when exported" do
     sp = DataFoodConsortium::Connector::SuppliedProduct.new("https://myplatform.com/sp")
     actual = connector.export(sp)
@@ -13,9 +13,9 @@ describe DataFoodConsortium::Connector::SuppliedProduct do
     )
 
     sp = DataFoodConsortium::Connector::SuppliedProduct.new(
-      "https://myplatform.com/sp", 
-      name: "name", 
-      description: "description", 
+      "https://myplatform.com/sp",
+      name: "name",
+      description: "description",
       productType: connector.PRODUCT_TYPES.VEGETABLE.ARTICHOKE,
       quantity: quantity,
       totalTheoreticalStock: 123,
@@ -28,16 +28,14 @@ describe DataFoodConsortium::Connector::SuppliedProduct do
         connector.FACETS.CLAIM.NUTRITIONALCLAIM.FATFREE,
         connector.FACETS.CLAIM.NUTRITIONALCLAIM.HIGHFIBRE
       ],
-      allergenCharacteristics: [
-        
-      ], 
+      allergenCharacteristics: [],
       nutrientCharacteristics: [
         DataFoodConsortium::Connector::NutrientCharacteristic.new(
           nutrientDimension: connector.MEASURES.CALCIUM,
           unit: connector.MEASURES.GRAM,
           value: 8.47
         )
-      ], 
+      ],
       physicalCharacteristics: [
         DataFoodConsortium::Connector::PhysicalCharacteristic.new(
           physicalDimension: connector.MEASURES.WEIGHT,
