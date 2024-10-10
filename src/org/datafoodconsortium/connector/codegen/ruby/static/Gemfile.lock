@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    datafoodconsortium-connector (1.0.0.pre.alpha.12)
+    datafoodconsortium-connector (1.0.0.pre.alpha.13)
       virtual_assembly-semantizer (~> 1.0, >= 1.0.5)
 
 GEM
