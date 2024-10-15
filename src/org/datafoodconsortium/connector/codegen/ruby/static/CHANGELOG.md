@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0-alpha.13] - 2024-10-11
+
+This version has been generated using:
+
+- [Connector code generator](https://github.com/datafoodconsortium/connector-codegen) [main](https://github.com/datafoodconsortium/connector-codegen/commit/c3bc0728a936106b79dfba61c6bf40bfe3934aaf).
+- [UML data model](https://github.com/datafoodconsortium/data-model-uml) [next](https://github.com/datafoodconsortium/data-model-uml/commit/edac40255591f46884e75da47e28f04adc53d97a)
+
+### Changed
+
+- Use nil as default value for all types except arrays.
+
 ## [1.0.0-alpha.12] - 2024-04-11
 
 This version has been generated using:
@@ -129,7 +140,8 @@ This version has been generated using the [code generator](https://github.com/da
 
 - Initial version of this library.
 
-[unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.12...HEAD
+[unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.13...HEAD
+[1.0.0-alpha.13]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.12...v1.0.0-alpha.13
 [1.0.0-alpha.12]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.11...v1.0.0-alpha.12
 [1.0.0-alpha.11]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.10...v1.0.0-alpha.11
 [1.0.0-alpha.10]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.9...v1.0.0-alpha.10

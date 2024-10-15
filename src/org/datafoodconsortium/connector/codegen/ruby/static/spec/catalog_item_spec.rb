@@ -9,8 +9,6 @@ RSpec.describe DataFoodConsortium::Connector::CatalogItem do
         "@context" => "https://www.datafoodconsortium.org",
         "@id" => "https://myplatform.com/ci",
         "@type" => "dfc-b:CatalogItem",
-        "dfc-b:sku" => "",
-        "dfc-b:stockLimitation" => 0.0,
       }
     )
   end

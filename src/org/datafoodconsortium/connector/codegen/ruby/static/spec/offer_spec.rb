@@ -9,7 +9,7 @@ RSpec.describe DataFoodConsortium::Connector::Offer do
     )
     result = connector.export(subject)
     expect(result).to eq(
-      '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/o","@type":"dfc-b:Offer","dfc-b:stockLimitation":0.0}'
+      '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/o","@type":"dfc-b:Offer"}'
     )
   end
 

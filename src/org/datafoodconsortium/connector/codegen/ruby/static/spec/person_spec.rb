@@ -6,9 +6,6 @@ RSpec.describe DataFoodConsortium::Connector::Person do
       "@context" => "https://www.datafoodconsortium.org",
       "@id" => "https://myplatform.com/p",
       "@type" => "dfc-b:Person",
-      "dfc-b:familyName" => "",
-      "dfc-b:firstName" => "",
-      "dfc-b:logo" => "",
     }
     expect(actual).to eq expected
   end
@@ -34,7 +31,6 @@ RSpec.describe DataFoodConsortium::Connector::Person do
       "dfc-b:familyName" => "lastName",
       "dfc-b:firstName" => "firstName",
       "dfc-b:hasAddress" => "https://myplatform.com/a",
-      "dfc-b:logo" => "",
     }
     expect(actual).to eq expected
   end

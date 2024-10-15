@@ -5,7 +5,7 @@ RSpec.describe DataFoodConsortium::Connector::CustomerCategory do
     )
     result = connector.export(subject)
     expect(result).to eq(
-      '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/cc","@type":"dfc-b:CustomerCategory","dfc-b:description":""}'
+      '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/cc","@type":"dfc-b:CustomerCategory"}'
     )
   end
 

@@ -9,10 +9,6 @@ RSpec.describe DataFoodConsortium::Connector::Enterprise do
         "@context" => "https://www.datafoodconsortium.org",
         "@id" => "https://myplatform.com/e",
         "@type" => "dfc-b:Enterprise",
-        "dfc-b:VATnumber" => "",
-        "dfc-b:hasDescription" => "",
-        "dfc-b:logo" => "",
-        "dfc-b:name" => "",
       }
     )
   end
@@ -43,7 +39,6 @@ RSpec.describe DataFoodConsortium::Connector::Enterprise do
         "dfc-b:VATnumber" => "vatNumber",
         "dfc-b:defines" => "https://myplatform.com/cc",
         "dfc-b:hasDescription" => "description",
-        "dfc-b:logo" => "",
         "dfc-b:manages" => "https://myplatform.com/ci",
         "dfc-b:name" => "name",
         "dfc-b:supplies" => "https://myplatform.com/sp",
@@ -80,7 +75,6 @@ RSpec.describe DataFoodConsortium::Connector::Enterprise do
         "dfc-b:VATnumber" => "vatNumber",
         "dfc-b:defines" => ["https://myplatform.com/cc", "https://myplatform.com/cc2"],
         "dfc-b:hasDescription" => "description",
-        "dfc-b:logo" => "",
         "dfc-b:manages" => ["https://myplatform.com/ci", "https://myplatform.com/ci2"],
         "dfc-b:name" => "name",
         "dfc-b:supplies" => ["https://myplatform.com/sp", "https://myplatform.com/sp2"],
