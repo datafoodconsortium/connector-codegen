@@ -1,0 +1,2595 @@
+{
+  "@context": {
+    "dfc-m": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/measures.rdf#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "rdf": "http://www.w3.org/2000/01/rdf-schema#"
+  },
+  "@id" : "dfc-m:Measures",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Ontology" ],
+  "@graph" : [ {
+    "@id" : "dfc-m:AllergenDimension",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:Dimension"
+    } ],
+    "skos:narrower" : [ {
+      "@id" : "dfc-m:CerealsWithGluten"
+    }, {
+      "@id" : "dfc-m:Crustaceans"
+    }, {
+      "@id" : "dfc-m:Eggs"
+    }, {
+      "@id" : "dfc-m:Fishs"
+    }, {
+      "@id" : "dfc-m:Peanuts"
+    }, {
+      "@id" : "dfc-m:Soy"
+    }, {
+      "@id" : "dfc-m:LactoseMilks"
+    }, {
+      "@id" : "dfc-m:Nuts"
+    }, {
+      "@id" : "dfc-m:Celeriac"
+    }, {
+      "@id" : "dfc-m:Mustard"
+    }, {
+      "@id" : "dfc-m:SesameSeeds"
+    }, {
+      "@id" : "dfc-m:Sulphites"
+    }, {
+      "@id" : "dfc-m:Lupine"
+    }, {
+      "@id" : "dfc-m:Molluscs"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Allergen dimension"
+    }, {
+      "@language" : "fr",
+      "@value" : "Dimension allergène"
+    } ]
+  }, {
+    "@id" : "dfc-m:AustralianDollar",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:AUD"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:CurrencyUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "$AU"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "australian dollar"
+    }, {
+      "@language" : "fr",
+      "@value" : "dollar australien"
+    } ]
+  }, {
+    "@id" : "dfc-m:Calcium",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Calcium"
+    }, {
+      "@language" : "fr",
+      "@value" : "Calcium"
+    } ]
+  }, {
+    "@id" : "dfc-m:CanadianDollar",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:CAD"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:CurrencyUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "$CA"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "canadian dollar"
+    }, {
+      "@language" : "fr",
+      "@value" : "dollar canadien"
+    } ]
+  }, {
+    "@id" : "dfc-m:Carbohydrates",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Carbohydrates"
+    }, {
+      "@language" : "fr",
+      "@value" : "Carbohydrates"
+    } ]
+  }, {
+    "@id" : "dfc-m:Celeriac",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:AllergenDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Celeriac"
+    }, {
+      "@language" : "fr",
+      "@value" : "Celeriac"
+    } ]
+  }, {
+    "@id" : "dfc-m:Centilitre",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:CentiL"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "cl"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "centilitre"
+    }, {
+      "@language" : "fr",
+      "@value" : "centilitre"
+    } ]
+  }, {
+    "@id" : "dfc-m:Centimetre",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:CentiM"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "cm"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "centimetre"
+    }, {
+      "@language" : "fr",
+      "@value" : "centimètre"
+    } ]
+  }, {
+    "@id" : "dfc-m:CerealsWithGluten",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:AllergenDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Cereals containing gluten"
+    }, {
+      "@language" : "fr",
+      "@value" : "Céréales contenant du gluten"
+    } ]
+  }, {
+    "@id" : "dfc-m:Chloride",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Chloride"
+    }, {
+      "@language" : "fr",
+      "@value" : "Chloride"
+    } ]
+  }, {
+    "@id" : "dfc-m:Cholesterol",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Cholesterol"
+    }, {
+      "@language" : "fr",
+      "@value" : "Cholestérol"
+    } ]
+  }, {
+    "@id" : "dfc-m:Chromium",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "Chrome"
+    }, {
+      "@language" : "en",
+      "@value" : "Chromium"
+    } ]
+  }, {
+    "@id" : "dfc-m:Copper",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Copper"
+    }, {
+      "@language" : "fr",
+      "@value" : "Copper"
+    } ]
+  }, {
+    "@id" : "dfc-m:Crate",
+    "@type" : [ "skos:Concept" ],
+    "skos:altLabel" : [ {
+      "@language" : "fr",
+      "@value" : "caisse"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "cr"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "cagette"
+    }, {
+      "@language" : "en",
+      "@value" : "crate"
+    } ]
+  }, {
+    "@id" : "dfc-m:Crustaceans",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:AllergenDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Crustaceans"
+    }, {
+      "@language" : "fr",
+      "@value" : "Crustacés"
+    } ]
+  }, {
+    "@id" : "dfc-m:CurrencyUnit",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:Unit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:narrower" : [ {
+      "@id" : "dfc-m:AustralianDollar"
+    }, {
+      "@id" : "dfc-m:CanadianDollar"
+    }, {
+      "@id" : "dfc-m:Euro"
+    }, {
+      "@id" : "dfc-m:PoundSterling"
+    }, {
+      "@id" : "dfc-m:USDollar"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Currency unit"
+    }, {
+      "@language" : "fr",
+      "@value" : "Unité de devise monétaire"
+    } ]
+  }, {
+    "@id" : "dfc-m:Measures",
+    "@type" : [ "skos:ConceptScheme" ],
+    "http://purl.org/dc/elements/1.1/description" : [ {
+      "@language" : "en",
+      "@value" : "glossary measuring dimensions and units for measuring product"
+    }, {
+      "@language" : "fr",
+      "@value" : "Glossaire des dimensions et unités de mesures de produit"
+    } ],
+    "skos:hasTopConcept" : [ {
+      "@id" : "dfc-m:Dimension"
+    }, {
+      "@id" : "dfc-m:Unit"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Product measure glossary "
+    }, {
+      "@language" : "fr",
+      "@value" : "Glossaire mesure produit"
+    } ]
+  }, {
+    "@id" : "dfc-m:Decilitre",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:DeciL"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "dl"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "decilitre"
+    }, {
+      "@language" : "fr",
+      "@value" : "decilitre"
+    } ]
+  }, {
+    "@id" : "dfc-m:Decimetre",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:DeciM"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "dm"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "decimetre"
+    }, {
+      "@language" : "fr",
+      "@value" : "decimètre"
+    } ]
+  }, {
+    "@id" : "dfc-m:Depth",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:PhysicalDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Depth"
+    }, {
+      "@language" : "fr",
+      "@value" : "Profondeur"
+    } ]
+  }, {
+    "@id" : "dfc-m:Dimension",
+    "@type" : [ "skos:Concept" ],
+    "http://purl.org/dc/elements/1.1/description" : [ {
+      "@language" : "en",
+      "@value" : "Dimensions used to describe DFC's product characteristics"
+    }, {
+      "@language" : "fr",
+      "@value" : "Dimensions utilisées pour décrire les charactéristiques produit dans DFC"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:narrower" : [ {
+      "@id" : "dfc-m:AllergenDimension"
+    }, {
+      "@id" : "dfc-m:NutrientDimension"
+    }, {
+      "@id" : "dfc-m:LabellingDimension"
+    }, {
+      "@id" : "dfc-m:PhysicalDimension"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Dimension"
+    }, {
+      "@language" : "fr",
+      "@value" : "Dimension"
+    } ],
+    "skos:topConceptOf" : [ {
+      "@id" : "dfc-m:Measures"
+    } ]
+  }, {
+    "@id" : "dfc-m:EcoScore",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:LabellingDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Eco-score"
+    }, {
+      "@language" : "fr",
+      "@value" : "Eco-score"
+    } ]
+  }, {
+    "@id" : "dfc-m:Eggs",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:AllergenDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Eggs"
+    }, {
+      "@language" : "fr",
+      "@value" : "Oeufs"
+    } ]
+  }, {
+    "@id" : "dfc-m:Euro",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:Euro"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:CurrencyUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "€"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "euro"
+    }, {
+      "@language" : "fr",
+      "@value" : "euro"
+    } ]
+  }, {
+    "@id" : "dfc-m:Fat",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Fat"
+    }, {
+      "@language" : "fr",
+      "@value" : "Graisse"
+    } ]
+  }, {
+    "@id" : "dfc-m:Fibre",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Fibre"
+    }, {
+      "@language" : "fr",
+      "@value" : "Fibre"
+    } ]
+  }, {
+    "@id" : "dfc-m:Fishs",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:AllergenDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "fishs"
+    }, {
+      "@language" : "fr",
+      "@value" : "Poissons"
+    } ]
+  }, {
+    "@id" : "dfc-m:Fluoride",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Fluoride"
+    }, {
+      "@language" : "fr",
+      "@value" : "Fluoride"
+    } ]
+  }, {
+    "@id" : "dfc-m:FolicAcid",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "Acide folique"
+    }, {
+      "@language" : "en",
+      "@value" : "Folic acid"
+    } ]
+  }, {
+    "@id" : "dfc-m:Gallon",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:GAL_UK"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "gal"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "gallon (GB)"
+    }, {
+      "@language" : "en",
+      "@value" : "gallon (UK)"
+    } ]
+  }, {
+    "@id" : "dfc-m:Gram",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:GM"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "g"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "gram"
+    }, {
+      "@language" : "fr",
+      "@value" : "gramme"
+    } ]
+  }, {
+    "@id" : "dfc-m:Height",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:PhysicalDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "Hauteur"
+    }, {
+      "@language" : "en",
+      "@value" : "Height"
+    } ]
+  }, {
+    "@id" : "dfc-m:Inch",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:IN"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "in"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "inch"
+    }, {
+      "@language" : "fr",
+      "@value" : "pouce"
+    } ]
+  }, {
+    "@id" : "dfc-m:Iodine",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Iodine"
+    }, {
+      "@language" : "fr",
+      "@value" : "Iodine"
+    } ]
+  }, {
+    "@id" : "dfc-m:Iron",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "Fer"
+    }, {
+      "@language" : "en",
+      "@value" : "Iron"
+    } ]
+  }, {
+    "@id" : "dfc-m:Kilogram",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:KiloGM"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "kg"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "kilogram"
+    }, {
+      "@language" : "fr",
+      "@value" : "kilogramme"
+    } ]
+  }, {
+    "@id" : "dfc-m:Kilometre",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:KiloM"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "km"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "kilometre"
+    }, {
+      "@language" : "fr",
+      "@value" : "kilomètre"
+    } ]
+  }, {
+    "@id" : "dfc-m:LabellingDimension",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:Dimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:narrower" : [ {
+      "@id" : "dfc-m:NutriScore"
+    }, {
+      "@id" : "dfc-m:EcoScore"
+    }, {
+      "@id" : "dfc-m:PlanetScore"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Labelling dimension"
+    }, {
+      "@language" : "fr",
+      "@value" : "Dimension score de labellisation"
+    } ]
+  }, {
+    "@id" : "dfc-m:LactoseMilks",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:AllergenDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Milk and lactose-based products"
+    }, {
+      "@language" : "fr",
+      "@value" : "Lait et produits à base de lactose"
+    } ]
+  }, {
+    "@id" : "dfc-m:Litre",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:L"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "l"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "litre"
+    }, {
+      "@language" : "fr",
+      "@value" : "litre"
+    } ]
+  }, {
+    "@id" : "dfc-m:Lupine",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:AllergenDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Lupine"
+    }, {
+      "@language" : "fr",
+      "@value" : "Lupin"
+    } ]
+  }, {
+    "@id" : "dfc-m:Magnesium",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Magnesium"
+    }, {
+      "@language" : "fr",
+      "@value" : "Magnésium"
+    } ]
+  }, {
+    "@id" : "dfc-m:Manganese",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Manganese"
+    }, {
+      "@language" : "fr",
+      "@value" : "Manganèse"
+    } ]
+  }, {
+    "@id" : "dfc-m:Metre",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:M"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "m"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "metre"
+    }, {
+      "@language" : "fr",
+      "@value" : "mètre"
+    } ]
+  }, {
+    "@id" : "dfc-m:Milligram",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:MilliGM"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "g"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "milligram"
+    }, {
+      "@language" : "fr",
+      "@value" : "milligramme"
+    } ]
+  }, {
+    "@id" : "dfc-m:Millilitre",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:MilliL"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "ml"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "milliliter"
+    }, {
+      "@language" : "fr",
+      "@value" : "millilitre"
+    } ]
+  }, {
+    "@id" : "dfc-m:Molluscs",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:AllergenDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Molluscs"
+    }, {
+      "@language" : "fr",
+      "@value" : "Mollusques"
+    } ]
+  }, {
+    "@id" : "dfc-m:MonosaturatedFat",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "Graisse monosaturée"
+    }, {
+      "@language" : "en",
+      "@value" : "Monosaturated fat"
+    } ]
+  }, {
+    "@id" : "dfc-m:Mustard",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:AllergenDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Mustard"
+    }, {
+      "@language" : "fr",
+      "@value" : "Moutarde"
+    } ]
+  }, {
+    "@id" : "dfc-m:NutriScore",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:LabellingDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Nutri-score"
+    }, {
+      "@language" : "fr",
+      "@value" : "Nutri-score"
+    } ]
+  }, {
+    "@id" : "dfc-m:NutrientDimension",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:Dimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:narrower" : [ {
+      "@id" : "dfc-m:Calcium"
+    }, {
+      "@id" : "dfc-m:Carbohydrates"
+    }, {
+      "@id" : "dfc-m:Chloride"
+    }, {
+      "@id" : "dfc-m:Cholesterol"
+    }, {
+      "@id" : "dfc-m:Chromium"
+    }, {
+      "@id" : "dfc-m:Copper"
+    }, {
+      "@id" : "dfc-m:Fat"
+    }, {
+      "@id" : "dfc-m:Fibre"
+    }, {
+      "@id" : "dfc-m:Fluoride"
+    }, {
+      "@id" : "dfc-m:FolicAcid"
+    }, {
+      "@id" : "dfc-m:Iodine"
+    }, {
+      "@id" : "dfc-m:Iron"
+    }, {
+      "@id" : "dfc-m:Magnesium"
+    }, {
+      "@id" : "dfc-m:Manganese"
+    }, {
+      "@id" : "dfc-m:MonosaturatedFat"
+    }, {
+      "@id" : "dfc-m:Phosphorus"
+    }, {
+      "@id" : "dfc-m:PolyunsaturatedFat"
+    }, {
+      "@id" : "dfc-m:Potassium"
+    }, {
+      "@id" : "dfc-m:Protein"
+    }, {
+      "@id" : "dfc-m:Salt"
+    }, {
+      "@id" : "dfc-m:SaturatedFat"
+    }, {
+      "@id" : "dfc-m:Selenium"
+    }, {
+      "@id" : "dfc-m:Sodium"
+    }, {
+      "@id" : "dfc-m:Starch"
+    }, {
+      "@id" : "dfc-m:Sugars"
+    }, {
+      "@id" : "dfc-m:Transfat"
+    }, {
+      "@id" : "dfc-m:VitaminA"
+    }, {
+      "@id" : "dfc-m:VitaminB12"
+    }, {
+      "@id" : "dfc-m:VitaminB6"
+    }, {
+      "@id" : "dfc-m:VitaminC"
+    }, {
+      "@id" : "dfc-m:VitaminD"
+    }, {
+      "@id" : "dfc-m:VitaminE"
+    }, {
+      "@id" : "dfc-m:VitaminK"
+    }, {
+      "@id" : "dfc-m:Zinc"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Nutrient dimension"
+    }, {
+      "@language" : "fr",
+      "@value" : "Dimension nutritionnelle"
+    } ]
+  }, {
+    "@id" : "dfc-m:Nuts",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:AllergenDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Nuts"
+    }, {
+      "@language" : "fr",
+      "@value" : "Fruits à coque"
+    } ]
+  }, {
+    "@id" : "dfc-m:Package",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "pack"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "colis"
+    }, {
+      "@language" : "en",
+      "@value" : "package"
+    } ]
+  }, {
+    "@id" : "dfc-m:Peanuts",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:AllergenDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Peanuts"
+    }, {
+      "@language" : "fr",
+      "@value" : "Arachides"
+    } ]
+  }, {
+    "@id" : "dfc-m:Percent",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "%"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "percent"
+    }, {
+      "@language" : "fr",
+      "@value" : "pourcent"
+    } ]
+  }, {
+    "@id" : "dfc-m:Phosphorus",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "Phosphore"
+    }, {
+      "@language" : "en",
+      "@value" : "Phosphorus"
+    } ]
+  }, {
+    "@id" : "dfc-m:PhysicalDimension",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:Dimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:narrower" : [ {
+      "@id" : "dfc-m:Depth"
+    }, {
+      "@id" : "dfc-m:Height"
+    }, {
+      "@id" : "dfc-m:Volume"
+    }, {
+      "@id" : "dfc-m:Weight"
+    }, {
+      "@id" : "dfc-m:Width"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Physical dimension"
+    }, {
+      "@language" : "fr",
+      "@value" : "Dimension physique"
+    } ]
+  }, {
+    "@id" : "dfc-m:Piece",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "u"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "piece"
+    }, {
+      "@language" : "fr",
+      "@value" : "pièce"
+    } ]
+  }, {
+    "@id" : "dfc-m:PlanetScore",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:LabellingDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Planet-score"
+    }, {
+      "@language" : "fr",
+      "@value" : "Planet-score"
+    } ]
+  }, {
+    "@id" : "dfc-m:PolyunsaturatedFat",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "Graisse poly-insaturée"
+    }, {
+      "@language" : "en",
+      "@value" : "Poly-unsaturated fat"
+    } ]
+  }, {
+    "@id" : "dfc-m:Potassium",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Potassium"
+    }, {
+      "@language" : "fr",
+      "@value" : "Potassium"
+    } ]
+  }, {
+    "@id" : "dfc-m:PoundMass",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:LB"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "lb"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "pound"
+    }, {
+      "@language" : "fr",
+      "@value" : "pound"
+    } ]
+  }, {
+    "@id" : "dfc-m:PoundSterling",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:PoundSterling"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:CurrencyUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "£"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "livre sterling"
+    }, {
+      "@language" : "en",
+      "@value" : "pound sterling"
+    } ]
+  }, {
+    "@id" : "dfc-m:Protein",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Protein"
+    }, {
+      "@language" : "fr",
+      "@value" : "Protéine"
+    } ]
+  }, {
+    "@id" : "dfc-m:QuantityUnit",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:Unit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:narrower" : [ {
+      "@id" : "dfc-m:Centilitre"
+    }, {
+      "@id" : "dfc-m:Centimetre"
+    }, {
+      "@id" : "dfc-m:Crate"
+    }, {
+      "@id" : "dfc-m:Decilitre"
+    }, {
+      "@id" : "dfc-m:Decimetre"
+    }, {
+      "@id" : "dfc-m:Gallon"
+    }, {
+      "@id" : "dfc-m:Gram"
+    }, {
+      "@id" : "dfc-m:Inch"
+    }, {
+      "@id" : "dfc-m:Kilogram"
+    }, {
+      "@id" : "dfc-m:Kilometre"
+    }, {
+      "@id" : "dfc-m:Litre"
+    }, {
+      "@id" : "dfc-m:Metre"
+    }, {
+      "@id" : "dfc-m:Milligram"
+    }, {
+      "@id" : "dfc-m:Millilitre"
+    }, {
+      "@id" : "dfc-m:Package"
+    }, {
+      "@id" : "dfc-m:Percent"
+    }, {
+      "@id" : "dfc-m:Piece"
+    }, {
+      "@id" : "dfc-m:PoundMass"
+    }, {
+      "@id" : "dfc-m:Tonne"
+    }, {
+      "@id" : "dfc-m:4Pack"
+    }, {
+      "@id" : "dfc-m:6Pack"
+    }, {
+      "@id" : "dfc-m:Bundle"
+    }, {
+      "@id" : "dfc-m:Bag"
+    }, {
+      "@id" : "dfc-m:Bunch"
+    }, {
+      "@id" : "dfc-m:Bucket"
+    }, {
+      "@id" : "dfc-m:Basket"
+    }, {
+      "@id" : "dfc-m:Bottle"
+    }, {
+      "@id" : "dfc-m:Box"
+    }, {
+      "@id" : "dfc-m:BeerCrate"
+    }, {
+      "@id" : "dfc-m:Cask"
+    }, {
+      "@id" : "dfc-m:Carton"
+    }, {
+      "@id" : "dfc-m:Cup"
+    }, {
+      "@id" : "dfc-m:Can"
+    }, {
+      "@id" : "dfc-m:Drum"
+    }, {
+      "@id" : "dfc-m:Dozen"
+    }, {
+      "@id" : "dfc-m:HalfDozen"
+    }, {
+      "@id" : "dfc-m:Jar"
+    }, {
+      "@id" : "dfc-m:Keg"
+    }, {
+      "@id" : "dfc-m:Kit"
+    }, {
+      "@id" : "dfc-m:Net"
+    }, {
+      "@id" : "dfc-m:Packet"
+    }, {
+      "@id" : "dfc-m:Punnet"
+    }, {
+      "@id" : "dfc-m:Pouch"
+    }, {
+      "@id" : "dfc-m:Pair"
+    }, {
+      "@id" : "dfc-m:Pot"
+    }, {
+      "@id" : "dfc-m:Tray"
+    }, {
+      "@id" : "dfc-m:Pallet"
+    }, {
+      "@id" : "dfc-m:Roll"
+    }, {
+      "@id" : "dfc-m:Tablet"
+    }, {
+      "@id" : "dfc-m:Tub"
+    }, {
+      "@id" : "dfc-m:Tube"
+    }, {
+      "@id" : "dfc-m:Tin"
+    }, {
+      "@id" : "dfc-m:LiquidBulk"
+    }, {
+      "@id" : "dfc-m:NoduleBulk"
+    }, {
+      "@id" : "dfc-m:GrainBulk"
+    }, {
+      "@id" : "dfc-m:PowderBulk"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Quantity unit"
+    }, {
+      "@language" : "fr",
+      "@value" : "Unité de quantité"
+    } ]
+  }, {
+    "@id" : "dfc-m:Salt",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Salt"
+    }, {
+      "@language" : "fr",
+      "@value" : "Sel"
+    } ]
+  }, {
+    "@id" : "dfc-m:SaturatedFat",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "Graisse saturée"
+    }, {
+      "@language" : "en",
+      "@value" : "Saturated fat"
+    } ]
+  }, {
+    "@id" : "dfc-m:Selenium",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Selenium"
+    }, {
+      "@language" : "fr",
+      "@value" : "Sélénium"
+    } ]
+  }, {
+    "@id" : "dfc-m:SesameSeeds",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:AllergenDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Sesame seeds"
+    }, {
+      "@language" : "fr",
+      "@value" : "Graines de sésame"
+    } ]
+  }, {
+    "@id" : "dfc-m:Sodium",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Sodium"
+    }, {
+      "@language" : "fr",
+      "@value" : "Sodium"
+    } ]
+  }, {
+    "@id" : "dfc-m:Soy",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:AllergenDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Soy"
+    }, {
+      "@language" : "fr",
+      "@value" : "Soja"
+    } ]
+  }, {
+    "@id" : "dfc-m:Starch",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "Amidon"
+    }, {
+      "@language" : "en",
+      "@value" : "Starch"
+    } ]
+  }, {
+    "@id" : "dfc-m:Sugars",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "Sucres"
+    }, {
+      "@language" : "en",
+      "@value" : "Sugars"
+    } ]
+  }, {
+    "@id" : "dfc-m:Sulphites",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:AllergenDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Sulfur dioxide and sulphites in a concentration of more than 10mg/kg or 10mg/l (expressed as SO2)"
+    }, {
+      "@language" : "fr",
+      "@value" : "Anhydride sulfureux et sulfites en concentration de plus de 10mg/kg ou 10 mg/l (exprimés en SO2)"
+    } ]
+  }, {
+    "@id" : "dfc-m:Tonne",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:TONNE"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "T"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "tonne"
+    }, {
+      "@language" : "fr",
+      "@value" : "tonne"
+    } ]
+  }, {
+    "@id" : "dfc-m:Transfat",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "Graisse trans"
+    }, {
+      "@language" : "en",
+      "@value" : "Transfat"
+    } ]
+  }, {
+    "@id" : "dfc-m:USDollar",
+    "@type" : [ "skos:Concept" ],
+    "rdf:isDefinedBy" : [ {
+      "@id" : "dfc-m:USDollar"
+    } ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:CurrencyUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "$US"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "Dollar US"
+    }, {
+      "@language" : "en",
+      "@value" : "US Dollar"
+    } ]
+  }, {
+    "@id" : "dfc-m:Unit",
+    "@type" : [ "skos:Concept" ],
+    "http://purl.org/dc/elements/1.1/description" : [ {
+      "@language" : "en",
+      "@value" : "Units used to measure DFC's quantitative values"
+    }, {
+      "@language" : "fr",
+      "@value" : "Unités utilisées pour mesurer les valeurs quantitatives dans DFC"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:narrower" : [ {
+      "@id" : "dfc-m:CurrencyUnit"
+    }, {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Unit"
+    }, {
+      "@language" : "fr",
+      "@value" : "Unités"
+    } ],
+    "skos:topConceptOf" : [ {
+      "@id" : "dfc-m:Measures"
+    } ]
+  }, {
+    "@id" : "dfc-m:VitaminA",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Vitamin A"
+    }, {
+      "@language" : "fr",
+      "@value" : "Vitamine A"
+    } ]
+  }, {
+    "@id" : "dfc-m:VitaminB12",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Vitamin B12"
+    }, {
+      "@language" : "fr",
+      "@value" : "Vitamine B12"
+    } ]
+  }, {
+    "@id" : "dfc-m:VitaminB6",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Vitamin B6"
+    }, {
+      "@language" : "fr",
+      "@value" : "Vitamine B6"
+    } ]
+  }, {
+    "@id" : "dfc-m:VitaminC",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Vitamin C"
+    }, {
+      "@language" : "fr",
+      "@value" : "Vitamine C"
+    } ]
+  }, {
+    "@id" : "dfc-m:VitaminD",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Vitamin D"
+    }, {
+      "@language" : "fr",
+      "@value" : "Vitamine D"
+    } ]
+  }, {
+    "@id" : "dfc-m:VitaminE",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Vitamin E"
+    }, {
+      "@language" : "fr",
+      "@value" : "Vitamine E"
+    } ]
+  }, {
+    "@id" : "dfc-m:VitaminK",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Vitamin K"
+    }, {
+      "@language" : "fr",
+      "@value" : "Vitamine K"
+    } ]
+  }, {
+    "@id" : "dfc-m:Volume",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:PhysicalDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Volume"
+    }, {
+      "@language" : "fr",
+      "@value" : "Volume"
+    } ]
+  }, {
+    "@id" : "dfc-m:Weight",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:PhysicalDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "Poids"
+    }, {
+      "@language" : "en",
+      "@value" : "Weight"
+    } ]
+  }, {
+    "@id" : "dfc-m:Width",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:PhysicalDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "Largeur"
+    }, {
+      "@language" : "en",
+      "@value" : "Width"
+    } ]
+  }, {
+    "@id" : "dfc-m:Zinc",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:NutrientDimension"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "Zinc"
+    }, {
+      "@language" : "fr",
+      "@value" : "Zinc"
+    } ]
+  },
+  {
+    "@id" : "dfc-m:4Pack",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "4p"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "4 pack"
+    }, {
+      "@language" : "fr",
+      "@value" : "pack de 4"
+    } ]
+  }, {
+    "@id" : "dfc-m:6Pack",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "6p"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "6 pack"
+    }, {
+      "@language" : "fr",
+      "@value" : "pack de 6"
+    } ]
+  }, {
+    "@id" : "dfc-m:Bag",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:example" : [ {
+      "@language" : "fr",
+      "@value" : "sac d'avoine"
+    }, {
+      "@language" : "en",
+      "@value" : "bag of oat"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "bg"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "bag"
+    }, {
+      "@language" : "fr",
+      "@value" : "sac"
+    } ]
+  }, {
+    "@id" : "dfc-m:Basket",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "bk"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "basket"
+    }, {
+      "@language" : "fr",
+      "@value" : "panier"
+    } ]
+  }, {
+    "@id" : "dfc-m:BeerCrate",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "cb"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "beer crate"
+    }, {
+      "@language" : "fr",
+      "@value" : "casier à bière"
+    } ]
+  }, {
+    "@id" : "dfc-m:Bottle",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "bo"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "bottle"
+    }, {
+      "@language" : "fr",
+      "@value" : "bouteille"
+    } ]
+  }, {
+    "@id" : "dfc-m:Box",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "bx"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "box"
+    }, {
+      "@language" : "fr",
+      "@value" : "boîte"
+    } ]
+  }, {
+    "@id" : "dfc-m:Bucket",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "bj"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "bucket"
+    }, {
+      "@language" : "fr",
+      "@value" : "seau"
+    } ]
+  }, {
+    "@id" : "dfc-m:Bunch",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:example" : [ {
+      "@language" : "en",
+      "@value" : "bunch of parsley, bunch of carrots...."
+    }, {
+      "@language" : "fr",
+      "@value" : "botte de persil, botte de carottes..."
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "bh"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "bunch"
+    }, {
+      "@language" : "fr",
+      "@value" : "botte"
+    } ]
+  }, {
+    "@id" : "dfc-m:Bundle",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "bundle"
+    }, {
+      "@language" : "fr",
+      "@value" : "lot"
+    } ]
+  }, {
+    "@id" : "dfc-m:Can",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "cx"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "can"
+    }, {
+      "@language" : "fr",
+      "@value" : "canette"
+    } ]
+  }, {
+    "@id" : "dfc-m:Carton",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "ct"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "carton"
+    }, {
+      "@language" : "fr",
+      "@value" : "carton"
+    } ]
+  }, {
+    "@id" : "dfc-m:Cask",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "ck"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "cask"
+    }, {
+      "@language" : "fr",
+      "@value" : "tonneau"
+    } ]
+  }, {
+    "@id" : "dfc-m:Cup",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:example" : [ {
+      "@language" : "en",
+      "@value" : "1 handful = 0.5 cup"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "cu"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "cup"
+    }, {
+      "@language" : "fr",
+      "@value" : "tasse"
+    } ]
+  }, {
+    "@id" : "dfc-m:Dozen",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:example" : [ {
+      "@language" : "en",
+      "@value" : "2 dozens of eggs"
+    }, {
+      "@language" : "fr",
+      "@value" : "deux douzaines d'oeufs"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "dzn"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "dozen"
+    }, {
+      "@language" : "fr",
+      "@value" : "douzaine"
+    } ]
+  }, {
+    "@id" : "dfc-m:Drum",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "dr"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "drum"
+    }, {
+      "@language" : "fr",
+      "@value" : "baril"
+    } ]
+  }, {
+    "@id" : "dfc-m:GrainBulk",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "vr"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "grain bulk"
+    }, {
+      "@language" : "fr",
+      "@value" : "grain en vrac"
+    } ]
+  }, {
+    "@id" : "dfc-m:HalfDozen",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "hd"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "half dozen"
+    }, {
+      "@language" : "fr",
+      "@value" : "demi-douzaine"
+    } ]
+  }, {
+    "@id" : "dfc-m:Jar",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:example" : [ {
+      "@language" : "en",
+      "@value" : "jar of jam"
+    }, {
+      "@language" : "fr",
+      "@value" : "bocal de confiture"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "jr"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "jar"
+    }, {
+      "@language" : "fr",
+      "@value" : "bocal"
+    } ]
+  }, {
+    "@id" : "dfc-m:Keg",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "kg"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "keg"
+    }, {
+      "@language" : "fr",
+      "@value" : "fût"
+    } ]
+  }, {
+    "@id" : "dfc-m:Kit",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "ki"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "kit"
+    }, {
+      "@language" : "fr",
+      "@value" : "kit"
+    } ]
+  }, {
+    "@id" : "dfc-m:LiquidBulk",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "vl"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "liquid bulk"
+    }, {
+      "@language" : "fr",
+      "@value" : "liquide en vrac"
+    } ]
+  }, {
+    "@id" : "dfc-m:Net",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "nt"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "net"
+    }, {
+      "@language" : "fr",
+      "@value" : "filet"
+    } ]
+  }, {
+    "@id" : "dfc-m:NoduleBulk",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "vo"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "nodule bulk"
+    }, {
+      "@language" : "fr",
+      "@value" : "nodule en vrac"
+    } ]
+  }, {
+    "@id" : "dfc-m:Packet",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "pa"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "packet"
+    }, {
+      "@language" : "fr",
+      "@value" : "sachet"
+    } ]
+  }, {
+    "@id" : "dfc-m:Pair",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "pr"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "pair"
+    }, {
+      "@language" : "fr",
+      "@value" : "paire"
+    } ]
+  }, {
+    "@id" : "dfc-m:Pallet",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "px"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "pallet"
+    }, {
+      "@language" : "fr",
+      "@value" : "palette"
+    } ]
+  }, {
+    "@id" : "dfc-m:Pot",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:example" : [ {
+      "@language" : "en",
+      "@value" : "a flower pot"
+    }, {
+      "@language" : "fr",
+      "@value" : "un pot de fleur"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "pt"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "fr",
+      "@value" : "pot"
+    }, {
+      "@language" : "en",
+      "@value" : "pot"
+    } ]
+  }, {
+    "@id" : "dfc-m:Pouch",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "po"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "pouch"
+    }, {
+      "@language" : "fr",
+      "@value" : "poche"
+    } ]
+  }, {
+    "@id" : "dfc-m:PowderBulk",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "vy"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "powder bulk"
+    }, {
+      "@language" : "fr",
+      "@value" : "poudre en vrac"
+    } ]
+  }, {
+    "@id" : "dfc-m:Punnet",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "pj"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "punnet"
+    }, {
+      "@language" : "fr",
+      "@value" : "barquette"
+    } ]
+  }, {
+    "@id" : "dfc-m:Roll",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "ro"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "roll"
+    }, {
+      "@language" : "fr",
+      "@value" : "rouleau"
+    } ]
+  }, {
+    "@id" : "dfc-m:Tablet",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "t1"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "tablet"
+    }, {
+      "@language" : "fr",
+      "@value" : "tablette"
+    } ]
+  }, {
+    "@id" : "dfc-m:Tin",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "tn"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "tin"
+    }, {
+      "@language" : "fr",
+      "@value" : "boîte de conserve"
+    } ]
+  }, {
+    "@id" : "dfc-m:Tray",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "pu"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "tray"
+    }, {
+      "@language" : "fr",
+      "@value" : "plateau"
+    } ]
+  }, {
+    "@id" : "dfc-m:Tub",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:example" : [ {
+      "@language" : "en",
+      "@value" : "tub of ice cream"
+    }, {
+      "@language" : "fr",
+      "@value" : "bac de crème glacée"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "tb"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "tub"
+    }, {
+      "@language" : "fr",
+      "@value" : "bac"
+    } ]
+  }, {
+    "@id" : "dfc-m:Tube",
+    "@type" : [ "skos:Concept" ],
+    "skos:broader" : [ {
+      "@id" : "dfc-m:QuantityUnit"
+    } ],
+    "skos:example" : [ {
+      "@language" : "en",
+      "@value" : "tube of toothpaste"
+    }, {
+      "@language" : "fr",
+      "@value" : "un tube de dentifrice"
+    } ],
+    "skos:inScheme" : [ {
+      "@id" : "dfc-m:Measures"
+    } ],
+    "skos:notation" : [ {
+      "@value" : "td"
+    } ],
+    "skos:prefLabel" : [ {
+      "@language" : "en",
+      "@value" : "tube"
+    }, {
+      "@language" : "fr",
+      "@value" : "tube"
+    } ]
+  } ]
+}

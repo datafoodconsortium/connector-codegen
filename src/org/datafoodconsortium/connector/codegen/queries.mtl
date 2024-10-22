@@ -62,17 +62,30 @@
 [query public getAbstractClasses(model: Model): Bag(Class) = model.getClasses()->select(c: Class | c.isAbstract) /]
 
 [query public getInterfaces(model: Model): Bag(Interface) = model.getClassifiers()->selectByType(Interface) /]
+[query public getAllImplementedInterfacesWithoutParents(aClass: Class): Set(Interface) = if (aClass.generalization->isEmpty()) then aClass.getAllImplementedInterfaces() else aClass.getAllImplementedInterfaces()->removeAll(aClass.generalization->asSequence()->at(1).general.oclAsType(Class).getAllImplementedInterfaces()) endif /]
 
 [query public getImplementations(i: Interface, model: Model): Bag(Class) = model.getConcreateClasses()->select(c: Class | c.getAllImplementedInterfaces()->includes(i)) /]
 [query public getImplementation(i: Interface, model: Model): Class = i.getImplementations(model)->asSequence()->at(1) /]
 [query public getImplementation(aType: Type, model: Model): Class = if (aType.oclIsTypeOf(Interface)) then aType.oclAsType(Interface).getImplementation(model) else if (aType.oclIsTypeOf(Class)) then aType.oclAsType(Class) else null endif endif /]
 [query public getImplementation(anElement: TypedElement, model: Model): Class = anElement.type.getImplementation(model) /]
 
+[query public getImportedClasses(aClass: Class): Set(Class) = aClass.getImportedClassifiers()->filter(Class)->asSet() /]
+[query public getImportedClasses(anInterface: Interface): Set(Class) = anInterface.getImportedClassifiers()->filter(Class)->asSet() /]
+[query public getImportedInterfaces(aClass: Class): Set(Interface) = aClass.getImportedClassifiers()->filter(Interface)->asSet() /]
+[query public getImportedInterfaces(anInterface: Interface): Set(Interface) = anInterface.getImportedClassifiers()->filter(Interface)->asSet() /]
+[query public getImportedClassifiers(aClass: Class): Set(Classifier) = aClass.getGenerals()->union(aClass.interfaceRealization->collect(ir: InterfaceRealization | ir.contract)->asSet())->union(aClass.getImportedTypesOfOperations())->select(t: Type | aClass <> t) /]
+[query public getImportedClassifiers(anInterface: Interface): Set(Classifier) = anInterface.getGenerals()->union(anInterface.getImportedTypesOfOperations())->select(t: Type | anInterface <> t) /]
+[query public getImportedClassifiers(c: Classifier): Set(Classifier) = if (c.oclIsTypeOf(Interface)) then c.oclAsType(Interface).getImportedClassifiers() else c.oclAsType(Class).getImportedClassifiers() endif /]
+[query public getImportedClassifiersWithoutPrimitives(c: Classifier): Set(Classifier) = c.getImportedClassifiers()->select(cl: Classifier | not cl.isPrimitive()) /]
+[query public getImportedTypesOfOperations(classifier: Classifier): Set(Type) = self.getOperations()->collect(o: Operation | o.ownedParameter)->collect(p: Parameter | p.type)->asSet() /]
+
 [query public hasGeneralization(classifier: Classifier): Boolean = not (classifier.generalization->isEmpty()) /]
 
 [query public hasOwnedOperations(aClass: Class): Boolean = not aClass.ownedOperation->isEmpty() /]
 
 [query public getOperations(owner: Class): OrderedSet(Operation) = owner.ownedOperation /]
+[query public getOperationsToImplementOrDeclareFromInterfacesWithoutParents(aClass: Class): Bag(Operation) = aClass.getAllImplementedInterfacesWithoutParents()->collect(i: Interface | i.getOperations())->select(o: Operation | aClass.ownedOperation->excludesAll(aClass.ownedOperation->select(op: Operation | op.isAbstract and o.name = op.name))) /]
+[query public getOperationsToImplementOrDeclare(owner: Class): OrderedSet(Operation) = if (owner.interfaceRealization->isEmpty()) then owner.getOperations() else owner.getOperations()->addAll(owner.getOperationsToImplementOrDeclareFromInterfacesWithoutParents()) endif /]
 
 [query public getProperties(aClass: Class): OrderedSet(Property) = aClass.allAttributes() /]
 
