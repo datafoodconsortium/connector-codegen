@@ -1,6 +1,7 @@
 import { Semanticable } from "@virtual-assembly/semantizer";
 import SerializerJsonld from '@rdfjs/serializer-jsonld-ext';
-import { ContextDefinition } from "jsonld";
+import Quad from "rdf-ext/lib/Quad";
+import { ContextDefinition, ExpandedTermDefinition } from "jsonld";
 import { Readable } from 'readable-stream';
 
 import IConnectorExporter from "./IConnectorExporter";
@@ -24,7 +25,7 @@ export default class ConnectorExporterJsonldStream implements IConnectorExporter
         const input = new Readable({
             objectMode: true,
             read: () => {
-                semanticObjets.forEach((semanticObject) => semanticObject.toRdfDatasetExt().forEach((quad) => input.push(quad)));
+                semanticObjets.forEach((semanticObject) => semanticObject.toRdfDatasetExt().forEach((quad: Quad) => input.push(quad)));
                 input.push(null)
             }
         });
@@ -32,8 +33,8 @@ export default class ConnectorExporterJsonldStream implements IConnectorExporter
         const output = serializer.import(input);
 
         return new Promise<string>((resolve, reject) => {
-            output.on('error', (error) => reject(error));
-            output.on('data', (json) => {
+            output.on('error', (error: Error) => reject(error));
+            output.on('data', (json: ExpandedTermDefinition) => {
                 if (outputContext) {
                     json["@context"] = outputContext;
                 }

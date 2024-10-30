@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@types/jsonld": "^1.5.7",
+    "@types/node": "^22.7.6",
     "@types/rdf-ext": "^2.5.0",
     "@types/rdfjs__serializer-jsonld-ext": "^2.0.5",
     "typescript": "^4.5"

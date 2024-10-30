@@ -45,7 +45,7 @@ export default class ConnectorImporterJsonldStream implements IConnectorImporter
         // On each quad imported we fill the appropriate datasets.
         // If the quad is a blank node we add it to the blankNodes array, 
         // otherwise we add it to the datasets array.
-        output.on('data', (quad) => {
+        output.on('data', (quad: QuadExt) => {
             const subject: string = quad.subject.value;
             const isBlankNode: boolean = (quad.subject.termType === "BlankNode");
 
@@ -82,7 +82,7 @@ export default class ConnectorImporterJsonldStream implements IConnectorImporter
 
         return new Promise((resolve, reject) => {
             // If an error occured during the import process, we reject the promise.
-            output.on('error', (error) => reject(error));
+            output.on('error', (error: Error) => reject(error));
 
             // When the import is done without any error.
             output.on('finish', () => {
@@ -93,7 +93,7 @@ export default class ConnectorImporterJsonldStream implements IConnectorImporter
 
                     // We should find a blank node index associated to the blank node name.
                     if (blankNodeIndex !== undefined) {
-                        const blankNodeDataset: DatasetExt | undefined = blankNodes.at(blankNodeIndex);
+                        const blankNodeDataset: DatasetExt | undefined = blankNodes.at(blankNodeIndex); // FIXME: requires tsconfig target >= es2022
 
                         // When we find the blank node we add its quads to the corresponding dataset.
                         if (blankNodeDataset) dataset.addAll(blankNodeDataset);
