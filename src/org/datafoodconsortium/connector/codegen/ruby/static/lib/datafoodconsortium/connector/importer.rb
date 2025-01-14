@@ -21,7 +21,7 @@ module DataFoodConsortium
       end
 
       def self.prefixed_name(uri)
-        RDF::URI.new(uri).pname(prefixes: Context::VERSION_1_8)
+        RDF::URI.new(uri).pname(prefixes: Context.json)
       end
 
       def import(json_string_or_io)

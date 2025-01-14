@@ -8,9 +8,7 @@ require 'json/ld'
 module DataFoodConsortium
   module Connector
     class Context < JSON::LD::Context
-      VERSION_1_8 = JSON.parse(File.read("#{__dir__}/context_1.8.2.json"))["@context"]
-
-      add_preloaded("http://www.datafoodconsortium.org/") { parse(VERSION_1_8) }
+      add_preloaded("http://www.datafoodconsortium.org/") { parse(json) }
 
       # This is the actual file the DFC website refers to in a link header.
       alias_preloaded(
@@ -27,7 +25,11 @@ module DataFoodConsortium
 
       # The hash serializer expects only string values in the context.
       def self.inputContext
-        @inputContext = VERSION_1_8.select { |key, value| value.is_a? String }
+        @inputContext = json.select { |key, value| value.is_a? String }
+      end
+
+      def self.json
+        @json ||= JSON.parse(File.read("#{__dir__}/context_1.14.0.json"))["@context"]
       end
     end
   end

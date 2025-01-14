@@ -92,6 +92,9 @@
 		"dfc-b:from": {
 			"@type": "@id"
 		},
+		"dfc-b:fulfills": {
+			"@type": "@id"
+		},
 		"dfc-b:geographicalOriginOf": {
 			"@type": "@id"
 		},
@@ -243,6 +246,9 @@
 			"@type": "@id"
 		},
 		"dfc-b:inputOf": {
+			"@type": "@id"
+		},
+		"dfc-b:isFulfilledBy": {
 			"@type": "@id"
 		},
 		"dfc-b:isIngredientOf": {
