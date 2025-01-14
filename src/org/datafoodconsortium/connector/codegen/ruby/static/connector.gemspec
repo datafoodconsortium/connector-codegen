@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.description = "A library to easily integrate the DFC standard within your application."
   s.authors     = ["Maxime Lecoq"]
   s.email       = "maxime@lecoqlibre.fr"
-  s.files       = Dir["lib/**/*.rb"]
+  s.files       = Dir["lib/**/*.*"]
   s.homepage    = "https://github.com/datafoodconsortium/connector-ruby/"
   s.license     = "MIT"
 
