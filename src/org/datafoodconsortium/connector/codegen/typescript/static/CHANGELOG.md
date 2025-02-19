@@ -9,18 +9,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
 - None
 
-### Changed
-- Ensure the entry point, `src/index.ts`, is always regenerated on fresh builds.
-
-## [1.0.0-alpha.10] - 2025-03-01
+## [1.0.0-alpha.10] - 2025-04-28
 
 ### Changed
 - Ensure the entry point, `src/index.ts`, is always regenerated on fresh builds.
-- Fix setters for array properties so that all items are replaced.
-- Regenerate source and distribution code from the next branch of UML data model
-  [621e823](https://github.com/datafoodconsortium/data-model-uml/commit/621e823c21c79a58b117bae97132da9140e47be6).
+- Generated from updated [UML Model](https://github.com/datafoodconsortium/data-model-uml/):
+  - Release: [3.0.0](https://github.com/datafoodconsortium/data-model-uml/releases/tag/v3.0.0)
+  - Commit: [@732bc8e](https://github.com/datafoodconsortium/data-model-uml/commit/732bc8e5cbbf55818ce36330a6c58031d740fefa)
 
 ### Added
 - `DefinedProduct`:
