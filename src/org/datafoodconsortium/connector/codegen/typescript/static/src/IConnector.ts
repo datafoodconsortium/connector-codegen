@@ -30,6 +30,7 @@ import IPlannedConsumptionFlow from "./IPlannedConsumptionFlow.js";
 import IPlannedProductionFlow from "./IPlannedProductionFlow.js";
 import IPlannedTransformation from "./IPlannedTransformation.js";
 import IDefinedProduct from "./IDefinedProduct.js";
+import IConnectorStore from "./IConnectorStore.js";
 
 export default interface IConnector {
     
@@ -66,5 +67,6 @@ export default interface IConnector {
     importOneTyped<Type>(data: string, options?: IConnectorImportOptions): Promise<Type | undefined>;
     
     store(semanticObject: Semanticable): void;
+    removeFromStore(semanticObjectId: string): void;
 
 }

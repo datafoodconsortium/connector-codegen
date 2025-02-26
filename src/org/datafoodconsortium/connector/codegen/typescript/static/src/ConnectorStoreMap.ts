@@ -17,6 +17,10 @@ export default class ConnectorStoreMap implements IConnectorStore {
         return this.storeObject.has(semanticObjectId);
     }
 
+    public remove(semanticObjectId: string): void {
+        this.storeObject.delete(semanticObjectId);
+    }
+
     public set(semanticObject: Semanticable): void {
         const semanticId: string = semanticObject.getSemanticId();
         if (semanticId !== "")

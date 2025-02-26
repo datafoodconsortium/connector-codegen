@@ -352,4 +352,8 @@ export default class Connector implements IConnector {
     public store(semanticObject: Semanticable): void {
         this.storeObject.set(semanticObject);
     }
+
+    public removeFromStore(semanticObjectId: string): void {
+        this.storeObject.remove(semanticObjectId);
+    }
 }
