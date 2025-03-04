@@ -13,5 +13,26 @@
 
 [for (aClass: Class | model.getConcreateClasses())][generateClassTest(model, aClass)/][/for]
 
+[generateIndex(model) /]
+
 [comment TODO: write factory generator][model.generateFactory()/][/comment]
+
+[/template]
+
+[template public generateIndex(model: Model)]
+[file (getProperty('typescript_outputFolder_src') + 'index.ts', false, 'UTF-8')]
+export { default as Connector } from './Connector.js';
+export { default as ConnectorStoreMap } from './ConnectorStoreMap.js';
+export { default as ConnectorFactory } from './ConnectorFactory.js';
+export { default as ConnectorExporterJsonldStream } from './ConnectorExporterJsonldStream.js';
+export { default as ConnectorImporterJsonldStream } from './ConnectorImporterJsonldStream.js';
+[for (importedPackage: PackageImport | model.packageImport->select(pi: PackageImport | pi.importedPackage.name <> 'org.datafoodconsortium.semantizer'))][generateExport(importedPackage.importedPackage.ownedMember)/][/for]
+[generateExport(model.ownedMember)/]
+[/file]
+[/template]
+
+[template public generateExport(members: Set(NamedElement))]
+[for (member: NamedElement | members->select(ne: NamedElement | ne.oclIsTypeOf(Class) or ne.oclIsTypeOf(Interface)))]
+export { default as [member.name/] } from './[member.name/].js';
+[/for]
 [/template]
