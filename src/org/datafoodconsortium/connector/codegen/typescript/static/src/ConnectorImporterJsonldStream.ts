@@ -6,14 +6,16 @@ import QuadExt from "rdf-ext/lib/Quad";
 
 import IConnectorImporter from "./IConnectorImporter";
 import IConnectorImporterOptions from "./IConnectorImporterOptions";
+import { Observable, Observer } from "./observer";
 
-export default class ConnectorImporterJsonldStream implements IConnectorImporter {
+export default class ConnectorImporterJsonldStream extends Observable<DatasetExt[]> implements IConnectorImporter {
 
     private context: string | undefined;
     private documentLoader: any;
 
     // TODO: add the optional parameters of the JsonLdParser class.
     public constructor(parameters?: { context?: any, documentLoader?: any }) {
+        super();
         this.context = parameters?.context;
         this.documentLoader = parameters?.documentLoader;
     }
@@ -112,6 +114,9 @@ export default class ConnectorImporterJsonldStream implements IConnectorImporter
                     datasets.push(blankNodes[0]);
                 }
 
+                this.subscribers.forEach((observer: Observer<DatasetExt[]>) => {
+                    observer.next(datasets);
+                });
                 resolve(datasets);
             });
         });
