@@ -6,7 +6,7 @@ import { Readable } from 'readable-stream';
 
 import IConnectorExporter from "./IConnectorExporter";
 import IConnectorExporterOptions from "./IConnectorExporterOptions";
-import { Observable, Observer } from "./Observable";
+import { Observable, Observer } from "./observer";
 
 export default class ConnectorExporterJsonldStream extends Observable<string> implements IConnectorExporter {
 
