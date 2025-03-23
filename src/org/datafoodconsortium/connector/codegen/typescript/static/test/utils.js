@@ -11,7 +11,7 @@ export function assertSemanticEqual(actual, expected) {
 	const errOpts = { actual, expected, operator };
 	if (!(actual instanceof SemanticObject)) {
 		errOpts.message = 'Expected an instance of SemanticObject:';
-	} else if (!actual.equals(expected)) {
+	} else if (!expected.equals(actual)) {
 		errOpts.message = 'Expected semantic objects to have equal properties:';
 	}
 	if (errOpts.message) throw new AssertionError(errOpts);
