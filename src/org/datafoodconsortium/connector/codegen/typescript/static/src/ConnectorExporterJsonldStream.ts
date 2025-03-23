@@ -6,7 +6,8 @@ import { Readable } from 'readable-stream';
 
 import IConnectorExporter from "./IConnectorExporter";
 import IConnectorExporterOptions from "./IConnectorExporterOptions";
-import { Observable, Observer } from "./observer";
+import IConnectorExportObserver from "./IConnectorExportObserver";
+import { Observable } from "./observer.js";
 
 export default class ConnectorExporterJsonldStream extends Observable<string> implements IConnectorExporter {
 
@@ -41,7 +42,7 @@ export default class ConnectorExporterJsonldStream extends Observable<string> im
                     json["@context"] = outputContext;
                 }
                 const serialized = JSON.stringify(json);
-                this.subscribers.forEach((observer: Observer<string>) => {
+                this.subscribers.forEach((observer: IConnectorExportObserver) => {
                     observer.next(serialized);
                 });
                 resolve(serialized);
