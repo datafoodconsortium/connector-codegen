@@ -212,8 +212,7 @@ export default class Connector implements IConnector {
         const observable = event in this.OBSERVABLES
             ? this.OBSERVABLES[event as ConnectorObservableKeys]
             : event as ConnectorObservableMethods;
-        const { subscribe } = this[observable];
-        return subscribe(observer);
+        return this[observable].subscribe(observer);
     }
 
     public async import(data: string, options?: IConnectorImportOptions): Promise<Array<Semanticable>> {

@@ -103,15 +103,15 @@ export class Observable<T> implements Subscribable<T> {
         error?: (error: any) => void,
         complete?: () => void,
     ): Subscription {
-        const observer: Observer<T> = {
-            next: (_: T) => {},
-            error: typeof error === 'function' ? error : (_: any) => {},
-            complete: typeof complete === 'function' ? complete : () => {},
-        };
+        let observer: Observer<T>;
         if (typeof observerOrNext === 'function') {
-            observer.next = observerOrNext;
-        } else if (typeof observerOrNext?.next === 'function') {
-            observer.next = observerOrNext.next;
+            observer = {
+                next: observerOrNext,
+                error: typeof error === 'function' ? error : (_: any) => {},
+                complete: typeof complete === 'function' ? complete : () => {},
+            };
+        } else {
+            observer = observerOrNext as Observer<T>;
         }
         this.subscribers.add(observer);
         const finalizer: Teardown | void = this._subscribe(observer);
