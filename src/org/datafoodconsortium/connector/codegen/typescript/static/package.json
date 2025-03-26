@@ -18,7 +18,7 @@
     "@rdfjs/serializer-jsonld-ext": "^4.0.0",
     "@virtual-assembly/semantizer": "github:assemblee-virtuelle/semantizer-typescript#alpha.3",
     "jsonld": "^8.1.0",
-    "jsonld-streaming-parser": "^3.2.0",
+    "jsonld-streaming-parser": "^4.0.1",
     "rdf-ext": "^2.5.1",
     "readable-stream": "^4.3.0"
   },
