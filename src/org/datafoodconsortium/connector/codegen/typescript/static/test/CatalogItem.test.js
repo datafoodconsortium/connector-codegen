@@ -1,7 +1,7 @@
 import expect from 'node:assert';
 import { test } from 'node:test';
 import Connector from "../lib/Connector.js";
-import { TestObserver } from './utils.js';
+import { assertSemanticEqual, TestObserver } from './utils.js';
 
 const connector = new Connector();
 
@@ -40,14 +40,17 @@ const catalogItem = connector.createCatalogItem({
     stockLimitation: 6.32
 });
 
-// FIXME: Remove `.skip`
-test.skip('CatalogItem:import', async () => {
-    const testObs = new TestObserver(catalogItem, assertFirstSemanticEqual);
+test('CatalogItem:import', async () => {
+    const testObs = new TestObserver(catalogItem, assertSemanticEqual);
     const testSub = connector.subscribe('import', testObs);
     const imported = await connector.import(json);
     const importedCatalogItem = imported[0];
     expect.strictEqual(imported.length, 1);
     expect.strictEqual(importedCatalogItem.equals(catalogItem), true);
+    expect.doesNotThrow(() => {
+        testObs.complete();
+        testSub.unsubscribe();
+    }, '#unsubscribe');
 });
 
 test('CatalogItem:export', async () => {

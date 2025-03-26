@@ -2,6 +2,8 @@ import * as fs from 'fs';
 import expect from 'node:assert';
 import { test } from 'node:test';
 import Connector from "../lib/Connector.js";
+import { assertSemanticEqual, TestObserver } from './utils.js';
+
 const measures = JSON.parse(fs.readFileSync('./test/thesaurus/measures.json'));
 
 const connector = new Connector();
@@ -18,10 +20,16 @@ const price = connector.createPrice({
 const json = `{"@context":"https://www.datafoodconsortium.org","@id":"_:b1","@type":"dfc-b:Price","dfc-b:VATrate":"8","dfc-b:hasUnit":"dfc-m:Euro","dfc-b:value":"2.54"}`;
 
 test('Price:import', async () => {
+    const testObs = new TestObserver(price, assertSemanticEqual);
+    const testSub = connector.subscribe('import', testObs);
     const imported = await connector.import(json);
     const importedPrice = imported[0];
     expect.strictEqual(imported.length, 1);
     expect.strictEqual(importedPrice.equals(price), true);
+    expect.doesNotThrow(() => {
+        testObs.complete();
+        testSub.unsubscribe();
+    }, '#unsubscribe');
 });
 
 test('Price:export', async () => {

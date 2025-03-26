@@ -1,7 +1,7 @@
 import expect from 'node:assert';
 import { test } from 'node:test';
 import Connector from "../lib/Connector.js";
-import { TestObserver } from './utils.js';
+import { assertSemanticEqual, TestObserver } from './utils.js';
 
 const connector = new Connector();
 
@@ -60,12 +60,17 @@ const enterprise = connector.createEnterprise({
 
 const json = `{"@context":"https://www.datafoodconsortium.org","@id":"http://myplatform.com/enterprise1","@type":"dfc-b:Enterprise","dfc-b:VATnumber":"vatNumber","dfc-b:defines":"http://myplatform.com/customerCategory1","dfc-b:hasAddress":{"@id":"http://myplatform.com/address1"},"dfc-b:hasDescription":"description","dfc-b:maintains":{"@id":"http://myplatform.com/catalog1"},"dfc-b:manages":"http://myplatform.com/catalogItem1","dfc-b:supplies":"http://myplatform.com/suppliedProduct1"}`;
 
-// FIXME: Remove `.skip`
-test.skip('Enterprise:import', async () => {
+test('Enterprise:import', async () => {
+    const testObs = new TestObserver(enterprise, assertSemanticEqual);
+    const testSub = connector.subscribe('import', testObs);
     const imported = await connector.import(json);
     const importedEnterprise = imported[0];
     expect.strictEqual(imported.length, 1);
     expect.strictEqual(importedEnterprise.equals(enterprise), true);
+    expect.doesNotThrow(() => {
+        testObs.complete();
+        testSub.unsubscribe();
+    }, '#unsubscribe');
 });
 
 test('Enterprise:export', async () => {

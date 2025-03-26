@@ -1,6 +1,7 @@
 import expect from 'node:assert';
 import { test } from 'node:test';
 import Connector from "../lib/Connector.js";
+import { assertSemanticEqual, TestObserver } from './utils.js';
 
 const connector = new Connector();
 
@@ -40,10 +41,16 @@ const order = connector.createOrder({
 const json = `{"@context":"https://www.datafoodconsortium.org","@id":"http://myplatform.com/order1","@type":"dfc-b:Order","dfc-b:belongsTo":{"@id":"http://myplatform.com/saleSession1"},"dfc-b:date":"date","dfc-b:hasPart":{"@id":"http://myplatform.com/orderLine1"},"dfc-b:orderNumber":"0001","dfc-b:orderedBy":{"@id":"http://myplatform.com/person1"}}`;
 
 test('Order:import', async () => {
+    const testObs = new TestObserver(order, assertSemanticEqual);
+    const testSub = connector.subscribe('import', testObs);
     const imported = await connector.import(json);
     const importedOrder = imported[0];
     expect.strictEqual(imported.length, 1);
     expect.strictEqual(importedOrder.equals(order), true);
+    expect.doesNotThrow(() => {
+        testObs.complete();
+        testSub.unsubscribe();
+    }, '#unsubscribe');
 });
 
 test('Order:export', async () => {

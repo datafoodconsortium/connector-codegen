@@ -1,6 +1,7 @@
 import expect from 'node:assert';
 import { test } from 'node:test';
 import Connector from "../lib/Connector.js";
+import { assertSemanticEqual, TestObserver } from './utils.js';
 
 const connector = new Connector();
 
@@ -29,10 +30,16 @@ const catalog = connector.createCatalog({
 });
 
 test('Catalog:import', async () => {
+    const testObs = new TestObserver(catalog, assertSemanticEqual);
+    const testSub = connector.subscribe('import', testObs);
     const imported = await connector.import(json);
     const importedCatalog = imported[0];
     expect.strictEqual(imported.length, 1);
     expect.strictEqual(importedCatalog.equals(catalog), true);
+    expect.doesNotThrow(() => {
+        testObs.complete();
+        testSub.unsubscribe();
+    }, '#unsubscribe');
 });
 
 test('Catalog:export', async () => {
