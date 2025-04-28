@@ -15,6 +15,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `getOperationsToImplementOrDeclareFromInterfacesWithoutParents`.
   - `getOperationsToImplementOrDeclare`.
 
+### Changed
+TypeScript:
+- Ensure the entry point, `src/index.ts`, is always regenerated on fresh builds.
+
+### Fixed
+TypeScript:
+- Fix setters for array properties so that all items are replaced.
+
 ## [1.1.0] - 2024-10-22
 
 ### Added
