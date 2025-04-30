@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `getOperationsToImplementOrDeclareFromInterfacesWithoutParents`.
   - `getOperationsToImplementOrDeclare`.
 
+TypeScript:
+- Method Observers
+  - `connector.subscribe('export', observer: Observer<string>)`
+  - `connector.subscribe('import', observer: Observer<DatasetExt[]>)`
+- Released versions 1.0.0-alpha.10, 1.0.0-alpha-11
+
 ### Changed
 TypeScript:
 - Ensure the entry point, `src/index.ts`, is always regenerated on fresh builds.
