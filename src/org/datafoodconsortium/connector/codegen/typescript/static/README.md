@@ -292,6 +292,110 @@ const order: string = "http://www.datafoodconsortium.org/ontologies/DFC_Business
 const IOrder | undefined = await connector.importOneTyped<IOrder>(jsonAsAString, { only: order });
 ```
 
+## Method Observers
+Certain methods permit observers to listen events and perform side effects
+whenever those methods are called. For instance, you can subscribe to all
+`"export"` events by registering an object with three methods: a `.next()`
+method, which fires each time `connector.export()` is invoked and receives
+as its single argument the same JSON payload returned by the export method; an
+optional `.error()` method, in case the export fails; and an optional
+`.complete()` method, which is called without any arguments whenever the
+observer unsubscribes or in the case that the Connector cancels it for some
+reason.
+
+```js
+const exportedJson = new Map();
+const exportObserver = {
+  next(json) {
+    exportedJson.set(Date.now(), json);
+  },
+  error(e) { console.error(e.message); },
+  complete() {
+    console.log('Total exports:', exportedJson.size);
+  },
+}
+const subscription = connector.subscribe('export', exportObserver);
+
+connector.export(someDataSet); // exportedJson.size => 1
+connector.export(anotherDataSet); // exportedJson.size => 2
+subscription.unsubscribe(); // CONSOLE: 'Total exports: 2'
+```
+
+The following string values can be passed as the first argument to
+`Connector.subscribe()`, supporting the corresponding methods/events:
+
+- `"export"`
+- `"import"`
+
+An observer can also implement the `Observer<T>` interface as a class for more
+nuanced, stateful behavior, and so thatmultiple instantiations can each
+subscribe and unsubscribe to events separately:
+
+```ts
+class ImportObserver<T extends DatasetExt[]> implements Observer<T> {
+  type: string;
+  baseUrl: URL;
+  noisy = false;
+  #imported: QuadExt[] = [];
+
+  constructor(semType: string|Semanticable, baseUrl: string, noisy?: boolean) {
+    if (typeof semType === 'string') this.type = semType;
+    else this.type = semType.getSemanticType();
+    this.baseUrl = new URL(baseUrl);
+    if (typeof noisy === "boolean") this.noisy = noisy;
+  }
+
+  next(datasets: DatasetExt[]) {
+    const count = datasets.reduce((i, dSet) => {
+      return i + dSet.reduce((j, quad) => {
+        if (quad.subject.termType !== this.type) return j;
+        this.#imported.push(quad);
+        return j + 1;
+      }, 0);
+    }, 0);
+    if (this.noisy && count > 0) {
+      console.log(`Imported ${this.type} ${count}x.`);
+    }
+  }
+
+  error(e: Error) {
+    if (this.noisy) console.error('Whoops!', e.message);
+  }
+
+  complete() {
+    this.#imported.forEach((quad) => {
+      const opts = { method: 'POST', body: JSON.stringify(quad)};
+      fetch(`${this.baseUrl}/${this.type}`, opts);
+    });
+    if (this.noisy) {
+      const total = this.#imported.length;
+      const msg = this.noisy && total > 0
+        ? `Imported ${this.type} a total of ${total} times! 🙌`
+        : `Didn't import a single ${this.type}! 😭`;
+      console.log(msg);
+    }
+  }
+}
+```
+
+Multiple observers can also subscribe to the same method/event simultaneously to
+to control their behaviors and attributes separately:
+
+```js
+// Use the ImportObserver above to watch for different data types.
+const api = 'https://api.example.net/v1/';
+const addrObs = new ImportObserver('dfc-b:Address', api, true);
+const catalogObs = new ImportObserver('"dfc-b:CatalogItem"', api);
+const catalogSub = connector.subscribe('import', catalogObs);
+const addrSubAPIv1 = connector.subscribe('import', addrObs);
+
+// Add new observers with different behaviors or modify others.
+const api2 = 'https://api.example.net/v2/';
+const addrObsAPIv2 = new ImportObserver('dfc-b:Address', api2);
+const addrSubAPIv2 = connector.subscribe('import', addrObsAPIv2);
+addrObsAPIv1.noisy = false;
+```
+
 ## Configure
 
 You can adapt different components of the connector to your needs with the following connector methods:
