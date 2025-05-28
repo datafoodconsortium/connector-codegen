@@ -6,13 +6,16 @@ import { Readable } from 'readable-stream';
 
 import IConnectorExporter from "./IConnectorExporter";
 import IConnectorExporterOptions from "./IConnectorExporterOptions";
+import IConnectorExportObserver from "./IConnectorExportObserver";
+import { Observable } from "./observer.js";
 
-export default class ConnectorExporterJsonldStream implements IConnectorExporter {
+export default class ConnectorExporterJsonldStream extends Observable<string> implements IConnectorExporter {
 
     private context?: ContextDefinition;
     private outputContext?: any;
 
     public constructor(context?: ContextDefinition, outputContext?: any) {
+        super();
         this.context = context;
         this.outputContext = outputContext;
     }
@@ -38,7 +41,11 @@ export default class ConnectorExporterJsonldStream implements IConnectorExporter
                 if (outputContext) {
                     json["@context"] = outputContext;
                 }
-                resolve(JSON.stringify(json));
+                const serialized = JSON.stringify(json);
+                this.subscribers.forEach((observer: IConnectorExportObserver) => {
+                    observer.next(serialized);
+                });
+                resolve(serialized);
             });
         });
     }

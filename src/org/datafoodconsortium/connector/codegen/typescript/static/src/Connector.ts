@@ -16,6 +16,7 @@ import IConnectorImporter from "./IConnectorImporter";
 import IConnectorImportOptions from "./IConnectorImportOptions.js";
 import IConnectorStore from "./IConnectorStore";
 import IGetterOptions from "./IGetterOptions.js";
+import type { Observer } from "./observer.js";
 
 // Generated Code
 import IAddress from "./IAddress.js";
@@ -41,12 +42,24 @@ import IPlannedConsumptionFlow from "./IPlannedConsumptionFlow.js";
 import IPlannedProductionFlow from "./IPlannedProductionFlow.js";
 import IDefinedProduct from "./IDefinedProduct.js";
 
+// The keys map to the name of the method to the private member where the
+// corresponding observable object is actually stored.
+const ConnectorObservables = {
+    export: "exporter",
+    import: "importer",
+} as const;
+type ConnectorObservables = typeof ConnectorObservables;
+type ConnectorObservableKeys = keyof ConnectorObservables;
+type ConnectorObservableMethods = ConnectorObservables[ConnectorObservableKeys];
+type ConnectorObservableStrings = ConnectorObservableKeys | ConnectorObservableMethods;
+
 export default class Connector implements IConnector {
 
     public FACETS?: ISKOSConcept;
     public MEASURES?: ISKOSConcept;
     public PRODUCT_TYPES?: ISKOSConcept;
     public VOCABULARY?: ISKOSConcept;
+    public OBSERVABLES = ConnectorObservables;
 
     private semantizer: ISemantizer;
     private fetchFunction: (semanticId: string) => Promise<Response>;
@@ -193,6 +206,13 @@ export default class Connector implements IConnector {
 
     public getDefaultFactory(): IConnectorFactory {
         return this.factory;
+    }
+
+    public subscribe(event: ConnectorObservableStrings, observer: Observer<any>) {
+        const observable = event in this.OBSERVABLES
+            ? this.OBSERVABLES[event as ConnectorObservableKeys]
+            : event as ConnectorObservableMethods;
+        return this[observable].subscribe(observer);
     }
 
     public async import(data: string, options?: IConnectorImportOptions): Promise<Array<Semanticable>> {

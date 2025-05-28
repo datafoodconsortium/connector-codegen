@@ -1,6 +1,7 @@
 import expect from 'node:assert';
 import { test } from 'node:test';
 import Connector from "../lib/Connector.js";
+import { assertSemanticEqual, TestObserver } from './utils.js';
 
 const connector = new Connector();
 
@@ -40,15 +41,27 @@ const catalogItem = connector.createCatalogItem({
 });
 
 test('CatalogItem:import', async () => {
+    const testObs = new TestObserver(catalogItem, assertSemanticEqual);
+    const testSub = connector.subscribe('import', testObs);
     const imported = await connector.import(json);
     const importedCatalogItem = imported[0];
     expect.strictEqual(imported.length, 1);
     expect.strictEqual(importedCatalogItem.equals(catalogItem), true);
+    expect.doesNotThrow(() => {
+        testObs.complete();
+        testSub.unsubscribe();
+    }, '#unsubscribe');
 });
 
 test('CatalogItem:export', async () => {
+    const testObs = new TestObserver(json, expect.strictEqual);
+    const testSub = connector.subscribe('export', testObs);
     const serialized = await connector.export([catalogItem]);
     expect.strictEqual(serialized, json);
+    expect.doesNotThrow(() => {
+        testObs.complete();
+        testSub.unsubscribe();
+    }, '#unsubscribe');
 });
 
 test('CatalogItem:getSemanticId', () => {

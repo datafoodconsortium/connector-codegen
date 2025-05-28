@@ -2,6 +2,8 @@ import * as fs from 'fs';
 import expect from 'node:assert';
 import { test } from 'node:test';
 import Connector from "../lib/Connector.js";
+import { assertSemanticEqual, TestObserver } from './utils.js';
+
 const facets = JSON.parse(fs.readFileSync('./test/thesaurus/facets.json'));
 const measures = JSON.parse(fs.readFileSync('./test/thesaurus/measures.json'));
 
@@ -23,10 +25,16 @@ const physicalCharacteristic = connector.createPhysicalCharacteristic({
 const json = `{"@context":"https://www.datafoodconsortium.org","@id":"_:b1","@type":"dfc-b:PhysicalCharacteristic","dfc-b:hasPhysicalDimension":"dfc-m:Weight","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"100"}`;
 
 test('PhysicalCharacteristic:import', async () => {
+    const testObs = new TestObserver(physicalCharacteristic, assertSemanticEqual);
+    const testSub = connector.subscribe('import', testObs);
     const imported = await connector.import(json);
     const importedPhysicalCharacteristic = imported[0];
     expect.strictEqual(imported.length, 1);
     expect.strictEqual(importedPhysicalCharacteristic.equals(physicalCharacteristic), true);
+    expect.doesNotThrow(() => {
+        testObs.complete();
+        testSub.unsubscribe();
+    }, '#unsubscribe');
 });
 
 test('PhysicalCharacteristic:export', async () => {

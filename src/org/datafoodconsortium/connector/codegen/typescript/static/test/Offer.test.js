@@ -2,6 +2,8 @@ import * as fs from 'fs';
 import expect from 'node:assert';
 import { test } from 'node:test';
 import Connector from "../lib/Connector.js";
+import { assertSemanticEqual, TestObserver } from './utils.js';
+
 const measures = JSON.parse(fs.readFileSync('./test/thesaurus/measures.json'));
 
 const connector = new Connector();
@@ -32,10 +34,16 @@ const offer = connector.createOffer({
 const json = `{"@context":"https://www.datafoodconsortium.org","@graph":[{"@id":"_:b1","@type":"dfc-b:Price","dfc-b:VATrate":"8","dfc-b:hasUnit":"dfc-m:Euro","dfc-b:value":"2.54"},{"@id":"http://myplatform.com/offer1","@type":"dfc-b:Offer","dfc-b:hasPrice":{"@id":"_:b1"},"dfc-b:offeredItem":{"@id":"http://myplatform.com/suppliedProduct1"},"dfc-b:offeredTo":{"@id":"http://myplatform.com/customerCategory1"},"dfc-b:stockLimitation":"4.21"}]}`;
 
 test('Offer:import', async () => {
+    const testObs = new TestObserver(offer, assertSemanticEqual);
+    const testSub = connector.subscribe('import', testObs);
     const imported = await connector.import(json);
     const importedOffer = imported[0];
     expect.strictEqual(imported.length, 1);
     expect.strictEqual(importedOffer.equals(offer), true);
+    expect.doesNotThrow(() => {
+        testObs.complete();
+        testSub.unsubscribe();
+    }, '#unsubscribe');
 });
 
 test('Offer:export', async () => {

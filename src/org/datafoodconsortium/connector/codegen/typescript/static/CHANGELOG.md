@@ -12,6 +12,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - None
 
+## [1.0.0-alpha.11] - 2025-05-01
+
+### Added
+- Method Observers
+  - `connector.subscribe('export', observer: Observer<string>)`
+  - `connector.subscribe('import', observer: Observer<DatasetExt[]>)`
+
 ## [1.0.0-alpha.10] - 2025-04-28
 
 ### Changed
