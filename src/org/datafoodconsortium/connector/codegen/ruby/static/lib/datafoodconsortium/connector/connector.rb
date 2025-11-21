@@ -65,7 +65,7 @@ module DataFoodConsortium::Connector
         # See https://github.com/datafoodconsortium/connector-ruby/issues/11.
         inputContext = Context.inputContext
 
-        @context = "https://www.datafoodconsortium.org"
+        @context = Context::URL
 
         @exporter = JsonLdSerializer.new(@context, inputContext)
         @parser = SKOSParser.new

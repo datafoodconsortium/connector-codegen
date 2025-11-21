@@ -29,6 +29,9 @@
 		"dfc-b:allergenCharacteristicOf": {
 			"@type": "@id"
 		},
+		"dfc-b:basedAt": {
+			"@type": "@id"
+		},
 		"dfc-b:belongsTo": {
 			"@type": "@id"
 		},
@@ -86,6 +89,9 @@
 		"dfc-b:deliveredAt": {
 			"@type": "@id"
 		},
+		"dfc-b:endsAt": {
+			"@type": "@id"
+		},
 		"dfc-b:facetOf": {
 			"@type": "@id"
 		},
@@ -120,6 +126,9 @@
 			"@type": "@id"
 		},
 		"dfc-b:hasContainerInformation": {
+			"@type": "@id"
+		},
+		"dfc-b:hasCountry": {
 			"@type": "@id"
 		},
 		"dfc-b:hasDimension": {
@@ -224,6 +233,9 @@
 		"dfc-b:hasUnit": {
 			"@type": "@id"
 		},
+		"dfc-b:hasVariant": {
+			"@type": "@id"
+		},
 		"dfc-b:holds": {
 			"@type": "@id"
 		},
@@ -248,16 +260,28 @@
 		"dfc-b:inputOf": {
 			"@type": "@id"
 		},
+		"dfc-b:isAvailableDuring": {
+			"@type": "@id"
+		},
 		"dfc-b:isFulfilledBy": {
 			"@type": "@id"
 		},
 		"dfc-b:isIngredientOf": {
 			"@type": "@id"
 		},
+		"dfc-b:isOpenDuring": {
+			"@type": "@id"
+		},
 		"dfc-b:isPriceOf": {
 			"@type": "@id"
 		},
+		"dfc-b:isShippedIn": {
+			"@type": "@id"
+		},
 		"dfc-b:isTemperatureOf": {
+			"@type": "@id"
+		},
+		"dfc-b:isVariantOf": {
 			"@type": "@id"
 		},
 		"dfc-b:labellingCharacteristicOf": {
@@ -398,10 +422,16 @@
 		"dfc-b:sells": {
 			"@type": "@id"
 		},
+		"dfc-b:ships": {
+			"@type": "@id"
+		},
 		"dfc-b:socialMediaOf": {
 			"@type": "@id"
 		},
 		"dfc-b:soldBy": {
+			"@type": "@id"
+		},
+		"dfc-b:startsAt": {
 			"@type": "@id"
 		},
 		"dfc-b:storedIn": {
@@ -432,6 +462,12 @@
 			"@type": "@id"
 		},
 		"dfc-b:transforms": {
+			"@type": "@id"
+		},
+		"dfc-b:transportedBy": {
+			"@type": "@id"
+		},
+		"dfc-b:transports": {
 			"@type": "@id"
 		},
 		"dfc-b:typeOf": {
