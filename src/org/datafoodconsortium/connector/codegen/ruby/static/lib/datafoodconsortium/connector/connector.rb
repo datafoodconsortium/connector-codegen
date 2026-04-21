@@ -25,8 +25,8 @@ require 'datafoodconsortium/connector/context'
 require 'datafoodconsortium/connector/importer'
 require 'datafoodconsortium/connector/json_ld_serializer'
 
-class DataFoodConsortium::Connector::Connector
-
+module DataFoodConsortium::Connector
+  class Connector
     include Singleton
 
     attr_accessor :context
@@ -40,7 +40,7 @@ class DataFoodConsortium::Connector::Connector
     end
 
     def import(json_string_or_io)
-        DataFoodConsortium::Connector::Importer.new.import(json_string_or_io)
+        Importer.new.import(json_string_or_io)
     end
 
     def loadFacets(data)
@@ -63,12 +63,12 @@ class DataFoodConsortium::Connector::Connector
         # used to prefix properties
         # so the DFC's context can be used.
         # See https://github.com/datafoodconsortium/connector-ruby/issues/11.
-        inputContext = DataFoodConsortium::Connector::Context.inputContext
+        inputContext = Context.inputContext
 
-        @context = "https://www.datafoodconsortium.org"
+        @context = Context::URL
 
-        @exporter = DataFoodConsortium::Connector::JsonLdSerializer.new(@context, inputContext)
-        @parser = DataFoodConsortium::Connector::SKOSParser.new
+        @exporter = JsonLdSerializer.new(@context, inputContext)
+        @parser = SKOSParser.new
 
         @FACETS = []
         @MEASURES = []
@@ -80,5 +80,5 @@ class DataFoodConsortium::Connector::Connector
         data = data[0] if data.is_a?(Array)
         @parser.parse(data["@graph"])
     end
-    
+  end
 end
