@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - None
 
+## [1.0.0-alpha.11]
+
+Ontology v2 update.
+
 ## [1.0.0-alpha.10] - 2025-04-28
 
 ### Changed
@@ -178,7 +182,8 @@ See the SUPPORTED.md file [comparison from main to next](https://github.com/data
 
 - Initial release.
 
-[unreleased]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.10...HEAD
+[unreleased]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.11...HEAD
+[1.0.0-alpha.11]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.10...v1.0.0-alpha.11
 [1.0.0-alpha.10]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.9...v1.0.0-alpha.10
 [1.0.0-alpha.9]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.8...v1.0.0-alpha.9
 [1.0.0-alpha.8]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.7...v1.0.0-alpha.8

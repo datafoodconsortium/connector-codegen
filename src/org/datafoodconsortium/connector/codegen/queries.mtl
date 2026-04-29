@@ -164,7 +164,7 @@
 [query public isSetter(o: Operation): Boolean = o.hasStereotype(o.getStereotypeNameSetter()) /]
 [query public isSkosBroaderConstrained(p: Property): Boolean = p.hasStereotype(p.getStereotypeNameSkosBroader()) /]
 
-[query public isPrimitive(t: Type): Boolean = if (t.name = 'String' or t.name = 'Boolean' or t.name = 'Real' or t.name = 'Integer') then true else false endif /]
+[query public isPrimitive(t: Type): Boolean = if (t.name = 'String' or t.name = 'Boolean' or t.name = 'Real' or t.name = 'Integer' or t.name = 'Date' or t.name ='DateTime' or t.name ='Time') then true else false endif /]
 [query public isPrimitive(anElement: TypedElement): Boolean = anElement.type.isPrimitive() /]
 
 [query public isSKOSConceptClass(c: Classifier): Boolean = (c.name = 'SKOSConcept') /]

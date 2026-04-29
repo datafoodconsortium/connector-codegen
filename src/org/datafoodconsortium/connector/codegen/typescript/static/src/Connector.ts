@@ -24,7 +24,7 @@ import IAllergenCharacteristic from "./IAllergenCharacteristic.js";
 import ICatalog from "./ICatalog.js";
 import ICatalogItem from "./ICatalogItem.js";
 import ICustomerCategory from "./ICustomerCategory.js";
-import IEnterprise from "./IEnterprise.js";
+import IOrganization from "./IOrganization.js";
 import INutrientCharacteristic from "./INutrientCharacteristic.js";
 import IOffer from "./IOffer.js";
 import IOrder from "./IOrder.js";
@@ -77,9 +77,9 @@ export default class Connector implements IConnector {
         return this.factory.createAllergenCharacteristic(parameters);
     }
 
-    public createCatalog(parameters: {semanticId: string, maintainers?: IEnterprise[], items?: ICatalogItem[], doNotStore?: boolean}): ICatalog;
+    public createCatalog(parameters: {semanticId: string, maintainers?: IOrganization[], items?: ICatalogItem[], doNotStore?: boolean}): ICatalog;
     public createCatalog(parameters: {other: ICatalog, doNotStore?: boolean}): ICatalog;
-    public createCatalog(parameters: {doNotStore?: boolean, semanticId?: string, other?: ICatalog, maintainers?: IEnterprise[], items?: ICatalogItem[]}): ICatalog {
+    public createCatalog(parameters: {doNotStore?: boolean, semanticId?: string, other?: ICatalog, maintainers?: IOrganization[], items?: ICatalogItem[]}): ICatalog {
         return this.factory.createCatalog(parameters);
     }
 
@@ -95,10 +95,10 @@ export default class Connector implements IConnector {
         return this.factory.createCustomerCategory(parameters);
     }
 
-    public createEnterprise(parameters: {semanticId: string, localizations?: IAddress[], description?: string, vatNumber?: string, customerCategories?: ICustomerCategory[], catalogs?: ICatalog[], catalogItems?: ICatalogItem[], suppliedProducts?: ISuppliedProduct[], doNotStore?: boolean}): IEnterprise
-    public createEnterprise(parameters: {other: IEnterprise, doNotStore?: boolean}): IEnterprise
-    public createEnterprise(parameters: {doNotStore?: boolean, semanticId?: string, other?: IEnterprise, localizations?: IAddress[], description?: string, vatNumber?: string, customerCategories?: ICustomerCategory[], catalogs?: ICatalog[], catalogItems?: ICatalogItem[], suppliedProducts?: ISuppliedProduct[]}): IEnterprise {
-        return this.factory.createEnterprise(parameters);
+    public createOrganization(parameters: {semanticId: string, localizations?: IAddress[], description?: string, vatNumber?: string, customerCategories?: ICustomerCategory[], catalogs?: ICatalog[], catalogItems?: ICatalogItem[], suppliedProducts?: ISuppliedProduct[], doNotStore?: boolean}): IOrganization
+    public createOrganization(parameters: {other: IOrganization, doNotStore?: boolean}): IOrganization
+    public createOrganization(parameters: {doNotStore?: boolean, semanticId?: string, other?: IOrganization, localizations?: IAddress[], description?: string, vatNumber?: string, customerCategories?: ICustomerCategory[], catalogs?: ICatalog[], catalogItems?: ICatalogItem[], suppliedProducts?: ISuppliedProduct[]}): IOrganization {
+        return this.factory.createOrganization(parameters);
     }
 
     public createNutrientCharacteristic(parameters: {unit?: ISKOSConcept, value?: number, nutrientDimension?: ISKOSConcept}): INutrientCharacteristic
@@ -125,9 +125,9 @@ export default class Connector implements IConnector {
         return this.factory.createOrderLine(parameters);
     }
 
-    public createPerson(parameters: {semanticId: string, firstName?: string, lastName?: string, localizations?: IAddress[], organizations?: IEnterprise[], doNotStore?: boolean}): IPerson
+    public createPerson(parameters: {semanticId: string, firstName?: string, lastName?: string, localizations?: IAddress[], organizations?: IOrganization[], doNotStore?: boolean}): IPerson
     public createPerson(parameters: {other: IPerson, doNotStore?: boolean}): IPerson
-    public createPerson(parameters: {doNotStore?: boolean, semanticId?: string, other?: IPerson, firstName?: string, lastName?: string, localizations?: IAddress[], organizations?: IEnterprise[]}): IPerson {
+    public createPerson(parameters: {doNotStore?: boolean, semanticId?: string, other?: IPerson, firstName?: string, lastName?: string, localizations?: IAddress[], organizations?: IOrganization[]}): IPerson {
         return this.factory.createPerson(parameters);
     }
 

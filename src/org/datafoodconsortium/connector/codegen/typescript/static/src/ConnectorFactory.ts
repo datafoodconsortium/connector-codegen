@@ -13,7 +13,7 @@ import AllergenCharacteristic from "./AllergenCharacteristic.js";
 import Catalog from "./Catalog.js";
 import CatalogItem from "./CatalogItem.js";
 import CustomerCategory from "./CustomerCategory.js";
-import Enterprise from "./Enterprise.js";
+import Organization from "./Organization.js";
 import NutrientCharacteristic from "./NutrientCharacteristic.js";
 import Offer from "./Offer.js";
 import Order from "./Order.js";
@@ -36,7 +36,7 @@ import IAllergenCharacteristic from "./IAllergenCharacteristic.js";
 import ICatalog from "./ICatalog.js";
 import ICatalogItem from "./ICatalogItem.js";
 import ICustomerCategory from "./ICustomerCategory.js";
-import IEnterprise from "./IEnterprise.js";
+import IOrganization from "./IOrganization.js";
 import IPrice from "./IPrice.js";
 import ISuppliedProduct from "./ISuppliedProduct.js";
 import INutrientCharacteristic from "./INutrientCharacteristic.js";
@@ -75,7 +75,7 @@ export default class ConnectorFactory implements IConnectorFactory {
         return new AllergenCharacteristic({ connector: this.connector, ...parameters });
     }
 
-    public createCatalog(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, maintainers?: IEnterprise[], items?: ICatalogItem[]}): ICatalog {
+    public createCatalog(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, maintainers?: IOrganization[], items?: ICatalogItem[]}): ICatalog {
         return new Catalog({ connector: this.connector, ...parameters });
     }
 
@@ -87,8 +87,8 @@ export default class ConnectorFactory implements IConnectorFactory {
         return new CustomerCategory({ connector: this.connector, ...parameters });
     }
 
-    public createEnterprise(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, localizations?: IAddress[], description?: string, vatNumber?: string, customerCategories?: ICustomerCategory[], catalogs?: ICatalog[], catalogItems?: ICatalogItem[], suppliedProducts?: ISuppliedProduct[]}): IEnterprise {
-        return new Enterprise({ connector: this.connector, ...parameters });
+    public createOrganization(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, localizations?: IAddress[], description?: string, vatNumber?: string, customerCategories?: ICustomerCategory[], catalogs?: ICatalog[], catalogItems?: ICatalogItem[], suppliedProducts?: ISuppliedProduct[]}): IOrganization {
+        return new Organization({ connector: this.connector, ...parameters });
     }
 
     public createNutrientCharacteristic(parameters: {other?: Semanticable, unit?: ISKOSConcept, value?: number, nutrientDimension?: ISKOSConcept}): INutrientCharacteristic {
@@ -107,7 +107,7 @@ export default class ConnectorFactory implements IConnectorFactory {
         return new OrderLine({ connector: this.connector, ...parameters });
     }
 
-    public createPerson(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, firstName?: string, lastName?: string, localizations?: IAddress[], organizations?: IEnterprise[]}): IPerson {
+    public createPerson(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, firstName?: string, lastName?: string, localizations?: IAddress[], organizations?: IOrganization[]}): IPerson {
         return new Person({ connector: this.connector, ...parameters });
     }
 
@@ -147,8 +147,8 @@ export default class ConnectorFactory implements IConnectorFactory {
         let result: Semanticable | undefined = undefined;
         const prefix: string = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#";
         switch (type) {
-            case prefix + "Enterprise":
-                result = this.createEnterprise({ semanticId: "" });
+            case prefix + "Organization":
+                result = this.createOrganization({ semanticId: "" });
                 break;
             
             case prefix + "Address":

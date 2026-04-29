@@ -14,7 +14,7 @@ import IAllergenCharacteristic from "./IAllergenCharacteristic";
 import ICatalog from "./ICatalog";
 import ICatalogItem from "./ICatalogItem";
 import ICustomerCategory from "./ICustomerCategory";
-import IEnterprise from "./IEnterprise";
+import IOrganization from "./IOrganization";
 import INutrientCharacteristic from "./INutrientCharacteristic";
 import IOffer from "./IOffer";
 import IOrder from "./IOrder";
@@ -36,15 +36,15 @@ export default interface IConnector {
     
     createAddress(parameters: { doNotStore?: boolean, semanticId?: string, other?: Semanticable, street?: string, postalCode?: string, city?: string, country?: string }): IAddress;
     createAllergenCharacteristic(parameters: { other?: Semanticable, unit?: ISKOSConcept, value?: number, allergenDimension?: ISKOSConcept }): IAllergenCharacteristic;
-    createCatalog(parameters: { doNotStore?: boolean, semanticId?: string, other?: Semanticable, maintainers?: IEnterprise[], items?: ICatalogItem[] }): ICatalog;
+    createCatalog(parameters: { doNotStore?: boolean, semanticId?: string, other?: Semanticable, maintainers?: IOrganization[], items?: ICatalogItem[] }): ICatalog;
     createCatalogItem(parameters: { doNotStore?: boolean, semanticId?: string, other?: Semanticable, product?: ISuppliedProduct, sku?: string, stockLimitation?: number, offers?: IOffer[], catalogs?: ICatalog[] }): ICatalogItem;
     createCustomerCategory(parameters: { doNotStore?: boolean, semanticId?: string, other?: Semanticable, description?: string }): ICustomerCategory;
-    createEnterprise(parameters: { doNotStore?: boolean, semanticId?: string, other?: Semanticable, localizations?: IAddress[], description?: string, vatNumber?: string, customerCategories?: ICustomerCategory[], catalogs?: ICatalog[], catalogItems?: ICatalogItem[], suppliedProducts?: ISuppliedProduct[] }): IEnterprise;
+    createOrganization(parameters: { doNotStore?: boolean, semanticId?: string, other?: Semanticable, localizations?: IAddress[], description?: string, vatNumber?: string, customerCategories?: ICustomerCategory[], catalogs?: ICatalog[], catalogItems?: ICatalogItem[], suppliedProducts?: ISuppliedProduct[] }): IOrganization;
     createNutrientCharacteristic(parameters: { other?: Semanticable, unit?: ISKOSConcept, value?: number, nutrientDimension?: ISKOSConcept }): INutrientCharacteristic;
     createOffer(parameters: { doNotStore?: boolean, semanticId?: string, other?: Semanticable, offeredItem?: ICatalogItem, offeredTo?: ICustomerCategory, price?: IPrice, stockLimitation?: number }): IOffer;
     createOrder(parameters: { doNotStore?: boolean, semanticId?: string, other?: Semanticable, number?: string, date?: string, saleSession?: ISaleSession, client?: IAgent, lines?: IOrderLine[] }): IOrder;
     createOrderLine(parameters: { doNotStore?: boolean, semanticId?: string, other?: Semanticable, quantity?: number, price?: IPrice, offer?: IOffer, order?: IOrder }): IOrderLine;
-    createPerson(parameters: { doNotStore?: boolean, semanticId?: string, other?: Semanticable, firstName?: string, lastName?: string, localizations?: IAddress[], organizations?: IEnterprise[] }): IPerson;
+    createPerson(parameters: { doNotStore?: boolean, semanticId?: string, other?: Semanticable, firstName?: string, lastName?: string, localizations?: IAddress[], organizations?: IOrganization[] }): IPerson;
     createPhysicalCharacteristic(parameters: { other?: Semanticable, unit?: ISKOSConcept, value?: number, physicalDimension?: ISKOSConcept }): IPhysicalCharacteristic;
     createPrice(parameters: { other?: Semanticable, value?: number, vatRate?: number, unit?: ISKOSConcept }): IPrice;
     createQuantity(parameters: { other?: Semanticable, unit?: ISKOSConcept, value?: number }): IQuantity;
