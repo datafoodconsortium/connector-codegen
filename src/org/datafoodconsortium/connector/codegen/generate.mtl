@@ -4,10 +4,12 @@
 [import org::datafoodconsortium::connector::codegen::queries /]
 [import org::datafoodconsortium::connector::codegen::php::generate /]
 [import org::datafoodconsortium::connector::codegen::ruby::generate /]
+[import org::datafoodconsortium::connector::codegen::typescript::generate /]
 
 [template public generate(model: Model)]
 [comment @main /]
 [initResources()/]
 [generatePhp(model)/]
 [generateRuby(model)/]
+[generateTypeScript(model)/]
 [/template]

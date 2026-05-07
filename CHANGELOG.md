@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Queries for auto-importing (`getImportedClasses`, `getImportedInterfaces`, `getImportedClassifiers`, `getImportedClassifiersWithoutPrimitives` and `getImportedTypesOfOperations`).
+- Queries for operations to be implemented or declared by a class: 
+  - `getAllImplementedInterfacesWithoutParents`.
+  - `getOperationsToImplementOrDeclareFromInterfacesWithoutParents`.
+  - `getOperationsToImplementOrDeclare`.
+
+TypeScript:
+- Method Observers
+  - `connector.subscribe('export', observer: Observer<string>)`
+  - `connector.subscribe('import', observer: Observer<DatasetExt[]>)`
+- Released versions 1.0.0-alpha.10, 1.0.0-alpha-11
+
+### Changed
+TypeScript:
+- Ensure the entry point, `src/index.ts`, is always regenerated on fresh builds.
+
+### Fixed
+TypeScript:
+- Fix setters for array properties so that all items are replaced.
+
 ## [1.1.0] - 2024-10-22
 
 ### Added

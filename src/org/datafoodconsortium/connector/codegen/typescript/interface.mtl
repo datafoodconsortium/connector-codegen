@@ -1,0 +1,34 @@
+[comment encoding = UTF-8 /]
+[module interface('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::datafoodconsortium::connector::codegen::queries /]
+[import org::datafoodconsortium::connector::codegen::typescript::common /]
+[import org::datafoodconsortium::connector::codegen::typescript::operation /]
+
+[template public generateInterface(anInterface : Interface)]
+[file (getProperty('typescript_outputFolder_src') + anInterface.name.concat('.ts'), false, 'UTF-8')]
+[generateLicense()/]
+[generateImports(anInterface) /]
+
+export default interface [anInterface.name.toUpperFirst()/] [generateGeneralization(anInterface)/]{
+
+	[for (operation: Operation | anInterface.ownedOperation) separator('\n')]
+	[generateComments(operation)/][generateOperationSignature(operation)/];
+	[/for] 
+
+}
+[/file]
+[/template]
+
+[template public generateGeneralization(interface: Interface)]
+[if (not (interface.generalization->isEmpty()) or interface.isSemantic())]extends [if (interface.isSemantic())]Semanticable[if (not (interface.generalization->isEmpty()))], [/if][/if][for (generalization: Generalization | interface.generalization) separator(', ') after(' ')][generalization.general.name/][/for][/if]
+[/template]
+
+[template public generateComments(operation: Operation) post(trim())]
+[if (not operation.ownedComment->isEmpty())][for (c: Comment | operation.ownedComment) separator('\n') after('\n')]/* [c._body/] */[/for][/if]
+[/template]
+
+[template public generateOperationSignature(operation: Operation) post(trim())][operation.name/]([genOperationParameters(operation)/])[if not (operation.isConstructor())]: [generateOperationReturnType(operation)/][/if][/template]
+
+
+[comment][template public generateOperationSignatureTypeScript(operation: Operation)][operation.name/]([genOperationParameters(operation)/])[if not (operation.isConstructor())]: [generateOperationReturnType(operation)/][/if][/template][/comment]
