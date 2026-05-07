@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "datafoodconsortium-connector"
-  s.version     = "2.0.0-beta3"
+  s.version     = "2.0.0-beta4"
   s.summary     = "Data Food Consortium connector"
   s.description = "A library to easily integrate the DFC standard within your application."
   s.authors     = ["Maxime Lecoq", "Maikel Linke"]
