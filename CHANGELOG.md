@@ -16,6 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `getOperationsToImplementOrDeclare`.
 
 ### Changed
+- Add `data-model-uml` as a Git submodule (see [Issue
+  #30](https://github.com/datafoodconsortium/connector-codegen/issues/30))
+
 TypeScript:
 - Ensure the entry point, `src/index.ts`, is always regenerated on fresh builds.
 
