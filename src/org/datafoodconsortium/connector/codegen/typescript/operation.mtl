@@ -1,0 +1,200 @@
+[comment encoding = UTF-8 /]
+[module operation('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::datafoodconsortium::connector::codegen::queries /]
+[import org::datafoodconsortium::connector::codegen::typescript::common /]
+
+[template public generateOperationImplementation(aClass: Class, operation: Operation) post(trim())]
+[if (operation.isConstructor())][genConstructorSignatureImplementation(aClass, operation)/][else]public [generateOperationSignature(aClass, operation) /] {
+[if (isGetter(operation))]
+	[generateGetterBody(aClass, operation)/]
+[elseif (isSetter(operation))]
+	[generateSetterBody(aClass, operation)/]
+[elseif (isAdder(operation))]
+	[generateAdderBody(aClass, operation)/]
+[elseif (isRemover(operation))]
+	[generateRemoverBody(aClass, operation)/]
+[/if]
+}
+[/if]
+[/template]
+
+[template public generateOperationSignature(aClass: Class, operation: Operation)]
+[let isAsyncGetter: Boolean = (operation.isGetter() and getReturnParameter(operation).isAsyncParameter())]
+[if (operation.isConstructor())]constructor [else][if (operation.isAbstract)]abstract [/if][if (isAsyncGetter and not operation.isAbstract)]async [/if][operation.name/][/if]([if (isAsyncGetter)]options?: IGetterOptions[else][genOperationParameters(operation)/][/if])[if not (operation.isConstructor())]: [generateOperationReturnType(operation)/][/if][/let]
+[/template]
+
+[template public genConstructorSignatureImplementation(aClass: Class, operation: Operation)]
+[if (aClass.isAbstract)]protected[else]public[/if] constructor(parameters: {
+	connector: IConnector,
+	[if (aClass.isSemantic() or aClass.isAbstract)]
+	semanticId?: string,
+	[if (aClass.isAbstract or aClass.isBlankNode())]
+	semanticType?: string,
+	[/if]
+	other?: Semanticable,
+	[/if]
+	[if ((aClass.isSemantic() or aClass.isAbstract) and operation.hasInputParameter())]
+	[genConstructorParameters(aClass, operation)/],
+	[if (not (aClass.isBlankNode()))]
+	doNotStore?: boolean,
+[/if]}) {
+	[generateConstructorBody(aClass, operation)/]
+}[/if]
+[/template]
+
+[template public genConstructorParameters(aClass: Class, operation: Operation)]
+[for (parameter: Parameter | operation.getInputParameters()) separator(',\n')][parameter.name/]?: [generateType(parameter.type.name, parameter.upper) /][/for]
+[/template]
+
+[template public generateOperationReturnType(operation: Operation)]
+[if (hasReturnParameter(operation))]
+[let parameter: Parameter = getReturnParameter(operation)]
+[let resolved: OrderedSet(Parameter) = operation.getReturnParameters()]
+[let isAsyncGetter: Boolean = (operation.isGetter() and isAsyncParameter(parameter))]
+[if (isAsyncGetter)]Promise<[/if][resolved.genOperationParameter()/][if (parameter.upper = 1)] | undefined[/if][if (isAsyncGetter)]>[/if][/let][/let][/let]
+[else]void[/if]
+[/template]
+
+[template public generateConstructorBody(aClass: Class, operation: Operation)]
+['\n'/][if (aClass.isAbstract)]
+if (parameters.other) {
+	super({
+		[if (aClass.hasGeneralization())]
+		connector: parameters.connector,
+		[else]
+		semantizer: parameters.connector.getSemantizer(),
+		[/if]
+		semanticId: parameters.semanticId!,
+		other: parameters.other,
+	});
+}[else]
+const type: string = [if (aClass.isAbstract or aClass.isBlankNode())]parameters.semanticType ? parameters.semanticType : [/if][toSemanticTypeConst(aClass)/];
+
+if (parameters.other) {
+	super({
+		[if (aClass.hasGeneralization())]
+		connector: parameters.connector,
+		[else]
+		semantizer: parameters.connector.getSemantizer(),
+		[/if]
+		semanticId: parameters.semanticId!,
+		other: parameters.other,
+	});
+	if (!parameters.other.isSemanticTypeOf(type))
+		throw new Error("Can't create the semantic object of type " + type + " from a copy: the copy is of type " + parameters.other.getSemanticType() + ".");
+}[/if] else {
+	super({
+		[if (aClass.hasGeneralization())]
+		connector: parameters.connector,
+		[else]
+		semantizer: parameters.connector.getSemantizer(),
+		[/if]
+		semanticId: parameters.semanticId!,
+		semanticType: [if (aClass.isAbstract)]parameters.semanticType![else]type[/if],
+		[if (operation.hasInputParameter())]
+		[generateConstructorSuper(operation, aClass)/]
+	[/if]});
+}
+[if (not aClass.hasGeneralization())]this.connector = parameters.connector;['\n'/][/if]
+[if (not (aClass.isBlankNode() or aClass.isAbstract))]['\n'/]if (!parameters.doNotStore) {
+	this.connector.store(this);
+}[/if]
+
+[for (p: Parameter | operation.getUninitializedParentParameters()) separator('\n')]
+if (parameters.[p.name/][if (p.type.name = 'Integer' or p.type.name = 'Real')] || parameters.[p.name/] === 0[/if]) {
+	[if (p.upper = 1)]
+	this.[getSetter(p).name /](parameters.[p.name /]);
+	[else]
+	parameters.[p.name /].forEach(e => this.[getAdder(p).name /](e));
+	[/if]
+}
+[/for]
+[/template]
+
+[template public generateGetterBody(aClass: Class, operation: Operation)]
+[let property: Property = operation.getProperty(aClass)]
+[let returned: Parameter = getReturnParameter(operation)]
+[let map: String = property.getMapping()]
+[if (property.isPropertyMultiple())][if (not returned.type.isPrimitive())]const results = new [generateTypeWithDefaultUndefined(returned)/]();
+[if (returned.type.isBlankNode())]const blankNodesId = this.getSemanticPropertyAnonymousAll("[map/]");
+blankNodesId.forEach(blankNodeId => {
+	const blankNode = <[returned.type.name/]> this.connector.getDefaultFactory().createFromRdfDataset(blankNodeId);
+	results.push(blankNode);
+});
+[else]const properties = this.getSemanticPropertyAll("[map/]");
+for await (const semanticId of properties) {
+	const semanticObject: Semanticable | undefined = await this.connector.fetch(semanticId, options);
+	if (semanticObject) results.push([if (not returned.type.isPrimitive())]<[generateTypeName(returned.type)/]>[/if]semanticObject[if (returned.type.isPrimitive())] as unknown as [returned.type.generateTypeName()/][/if]);
+}
+[/if]return results;[else]return this.getSemanticPropertyAll("[map/]");[/if][elseif (returned.type.isBlankNode())]
+const blankNode: any = this.getSemanticPropertyAnonymous("[map/]");
+return <[returned.type.name /]> this.connector.getDefaultFactory().createFromRdfDataset(blankNode);[elseif (not returned.type.isPrimitive())]
+let result: [returned.type.name/] | undefined = undefined;
+const semanticId = this.getSemanticProperty("[map/]");
+if (semanticId) {
+	const semanticObject: Semanticable | undefined = await this.connector.fetch(semanticId, options);
+	if (semanticObject) result = <[returned.type.name/]> semanticObject;
+}
+return result;[else]
+return [if (returned.type.name = 'Real' or returned.type.name = 'Integer')]Number([/if]this.getSemanticProperty("[map/]")[if (returned.type.name = 'Real' or returned.type.name = 'Integer')])[/if];[/if][/let][/let][/let]
+[/template]
+
+[template public generateSetterBody(aClass: Class, operation: Operation)]
+[let parameter: Parameter = operation.getInputParameter()]
+[let property: Property = operation.getProperty(aClass)]
+[let map: String = property.getMapping()][if (parameter.type.isPrimitive())]
+this.setSemanticPropertyLiteral("[map/]", [parameter.name/]);[elseif (parameter.upper = -1)]
+this.getSemanticPropertyAll("[map/]").forEach((prop) => {
+	this.connector.removeFromStore(prop);
+});
+[let obj: String = aClass.name.toLowerFirst()][parameter.name/].forEach(([obj/]) => {
+	this.addSemanticPropertyReference("[map/]", [obj/], true);
+	this.connector.store([obj/]);
+});[/let][else]
+this.setSemanticProperty[if (parameter.type.isBlankNode())]Anonymous[else]Reference[/if]("[map/]", [parameter.name/]);
+[if (not parameter.type.isBlankNode())]['\n'/]this.connector.store([parameter.name/]);[/if][/if][/let][/let][/let]
+[/template]
+
+[template public generateAdderBody(aClass: Class, operation: Operation)]
+[let parameter: Parameter = operation.getInputParameter()]
+[let property: Property = operation.getProperty(aClass)]
+[let map: String = property.getMapping()]
+[if (parameter.type.isPrimitive())]this.addSemanticPropertyLiteral("[map/]", [parameter.name/]);[else]if ([parameter.name/].isSemanticObjectAnonymous()) {
+	this.addSemanticPropertyAnonymous("[map/]", [parameter.name/]);
+}
+else {
+	this.connector.store([parameter.name/]);
+	this.addSemanticPropertyReference("[map/]", [parameter.name/]);
+}[/if][/let][/let][/let]
+[/template]
+
+[template public generateRemoverBody(aClass: Class, operation: Operation)]
+throw new Error("Not yet implemented.");
+[/template]
+
+[template public generateTypeWithDefaultUndefined(p: Parameter)]
+[if (p.upper = -1)]Array<[/if][p.type.generateTypeName()/][if (isAsyncParameter(p) or (not (p.type.isPrimitive()) and p.upper = -1))][if (p.type.isPrimitive() and p.upper = -1)][/if][if (not (p.type.isPrimitive()) and p.upper = 1)] | undefined[/if]>[/if]
+[/template]
+
+[comment handle initializer / initializer parent /]
+[template public generateConstructorSuper(constructor: Operation, aClass: Class) post(trim())]
+[if (constructor.hasInitializedParentParameters())][/if][for (parameter: Parameter | constructor.getInitializedParentParameters()) separator(',\n')][parameter.name/]: parameters.[parameter.name/][/for]
+[/template]
+
+[template public genOperationParameters(anOperation: Operation)]
+[anOperation.ownedParameter->select(param : Parameter | (param.direction = ParameterDirectionKind::_in)).genOperationParameter()->sep(', ')/]
+[/template]
+
+[template public genOperationParameter(parameter: Parameter)]
+[if (parameter.direction = ParameterDirectionKind::_in)][parameter.name/]: [/if][generateType(parameter)/]
+[/template]
+
+[template public generateType(p: Parameter)][p.type.generateTypeName()/][if (p.upper = -1)]['[]'/][/if][/template]
+
+[template public generateType(name: String, upper: Integer)][if (name = 'String')]string[elseif (name = 'Real' or name = 'Integer' )]number[elseif (name = 'Boolean')]boolean[else][name/][/if][if (upper = 1)][elseif (upper = -1)]['[]'/][/if][/template]
+
+[template public generateTypeName(t: Type)][if (t.name = 'String')]string[elseif (name = 'Real' or name = 'Integer')]number[elseif (name = 'Boolean')]boolean[else][t.name/][/if][/template]
+
+[comment][query private isAsyncParameter(p: Parameter): Boolean = (not p.type.isBlankNode() and ((not p.type.isPrimitive()) or p.upper =-1)) /][/comment]
+[comment][query private isAsyncParameter(p: Parameter): Boolean = (p.upper = -1 or (not p.type.isBlankNode() and not p.type.isPrimitive())) /][/comment]

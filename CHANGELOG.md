@@ -11,6 +11,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 To generate Ruby and TypeScript version based on the UML model version 3.3.0.
 
+### Added
+
+- Queries for auto-importing (`getImportedClasses`, `getImportedInterfaces`, `getImportedClassifiers`, `getImportedClassifiersWithoutPrimitives` and `getImportedTypesOfOperations`).
+- Queries for operations to be implemented or declared by a class: 
+  - `getAllImplementedInterfacesWithoutParents`.
+  - `getOperationsToImplementOrDeclareFromInterfacesWithoutParents`.
+  - `getOperationsToImplementOrDeclare`.
+
+### Changed
+
+TypeScript:
+- Ensure the entry point, `src/index.ts`, is always regenerated on fresh builds.
+
+### Fixed
+
+TypeScript:
+- Fix setters for array properties so that all items are replaced.
+
 ## [1.1.0] - 2024-10-22
 
 ### Added
