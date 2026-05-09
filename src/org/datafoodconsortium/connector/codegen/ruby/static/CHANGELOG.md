@@ -7,6 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-04-24
+
+This is a legacy version kept for backward compatibility.
+
+In order to use it with newer versions, it has been published as a new package https://rubygems.org/gems/datafoodconsortium-connector-v1.
+
+The module name has been changed to DataFoodConsortium::ConnectorV1, the package files and folder were renamed to connector_v1.
+
+## [1.3.0] - 2025-12-17
+
+This version has been generated using:
+
+- [Connector code generator](https://github.com/datafoodconsortium/connector-codegen) [main](https://github.com/datafoodconsortium/connector-codegen/commit/e8e324dfc9952aa59f10a94edb8d33c3ef7f90f3).
+- [UML data model](https://github.com/datafoodconsortium/data-model-uml) [next](https://github.com/datafoodconsortium/data-model-uml/commit/945fb8edb4e29b78475414c6afdf87858a6a97ad).
+
+### Changed
+
+- Export valid empty JSON instead of invalid empty string
+- Lock context to version 1.16 to prevent upgrade to 2.0
+- Bump dev dependencies
+
 ## [1.2.0] - 2025-11-24
 
 This version has been generated using:
@@ -18,7 +39,6 @@ This version has been generated using:
 
 - Bump DFC context from 1.14.0 to 1.16.0
 - Bump dev dependencies
-
 
 ## [1.1.0] - 2025-01-14
 
@@ -179,7 +199,10 @@ This version has been generated using the [code generator](https://github.com/da
 
 - Initial version of this library.
 
-[unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.1.0...HEAD
+[unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.3.0...v1.4.0
+[1.3.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.13...v1.0.0
 [1.0.0-alpha.13]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0-alpha.12...v1.0.0-alpha.13

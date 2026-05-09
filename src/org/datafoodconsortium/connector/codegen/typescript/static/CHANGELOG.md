@@ -1,6 +1,3 @@
-<!-- TODO: Update this CHANGELOG before merging into connector-codegen#main -->
-<!-- TODO: Also update semver values here and in package.json etc -->
-
 # Changelog
 
 All notable changes to this project will be documented in this file.
@@ -11,6 +8,51 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - None
+
+## [1.0.0-alpha.13] 2026-05-08
+
+Generated from [UML model 3.3.0](https://github.com/datafoodconsortium/data-model-uml/releases/tag/v3.3.0) using the [Connector codegen 1.2.0](https://github.com/datafoodconsortium/connector-codegen/releases/tag/v1.2.0).
+
+The commits were mainly cherry-picked from release 4.0.0 ([see PR#29](https://github.com/datafoodconsortium/data-model-uml/pull/29)).
+
+### Added
+
+- Add `SuppliedProduct:referenceOf`.
+
+### Fixed
+
+- Fix Agent setters for localizations and phone numbers.
+- Fix ILocalizedProduct consumptionFlow -> localConsumptionFlow.
+- Exhibitable now has adder and remover, image -> images.
+- LocalizedProduct is now Exhibitable.
+- DefinedProduct and subclasses are now Exhibitable.
+- Fix Order paymentMethod.
+- Fix PlannedLocalTransformation bad outcome and associated constructor param types.
+- Fix RealStock quantity (remove Quantifiable).
+- Fix DeliveryOption wrong interface realization.
+- Fix LocalizedProduct quantity getter and setter.
+- Fix PaymentMethod price getter and setter.
+- Fix PhysicalPlace.
+- Fix PhysicalProduct quantity and images properties.
+- Fix PlannedLocalConsumptionFlow wrong method bindings.
+- Fix PlannedLocalProductionFlow wrong method bindings.
+- Fix ProductBatch wrong method bindings.
+- Fix RealizedConsumptionFlow wrong method bindings.
+- Fix RealizedProductionFlow wrong method bindings.
+- Fix IOpeningHoursSpecification: Add semantic stereotype.
+- Fix IPlace: add Nameable and Describable generalization.
+
+## [1.0.0-alpha.12] 2026-05-06
+
+### Fixed
+
+- Rename `hasIncome` -> `hasInput` and `hasOutcome` -> `hasOutput` in `AsPlannedTransformation`.
+- Rename `incomeOf` > `inputOf` in `AsPlannedConsumptionFlow`.
+- Rename `outcomeOf` -> `outpufOf` in `AsPlannedProductionFlow`.
+
+## [1.0.0-alpha.11] 2025-05-27
+
+NPM alignment release (same as 1.0.0-alpha.10).
 
 ## [1.0.0-alpha.10] - 2025-04-28
 
@@ -178,7 +220,10 @@ See the SUPPORTED.md file [comparison from main to next](https://github.com/data
 
 - Initial release.
 
-[unreleased]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.10...HEAD
+[unreleased]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.13...HEAD
+[1.0.0-alpha.13]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.12...v1.0.0-alpha.13
+[1.0.0-alpha.12]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.11...v1.0.0-alpha.12
+[1.0.0-alpha.11]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.10...v1.0.0-alpha.11
 [1.0.0-alpha.10]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.9...v1.0.0-alpha.10
 [1.0.0-alpha.9]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.8...v1.0.0-alpha.9
 [1.0.0-alpha.8]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.7...v1.0.0-alpha.8
