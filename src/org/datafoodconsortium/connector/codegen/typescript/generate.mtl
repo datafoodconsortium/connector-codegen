@@ -11,7 +11,7 @@
 
 [for (anInterface: Interface | model.getInterfaces())][generateInterface(anInterface)/][/for]
 
-[for (aClass: Class | model.getConcreateClasses())][generateClassTest(model, aClass)/][/for]
+[comment][for (aClass: Class | model.getConcreateClasses())][generateClassTest(model, aClass)/][/for][/comment]
 
 [generateIndex(model) /]
 

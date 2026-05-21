@@ -1,14 +1,9 @@
-<!-- TODO: Update this README before merging into connector-codegen#main -->
-
 # Data Food Consortium Connector
 
-The Data Food Consortium (DFC) Connector is a tool to help you to integrate the DFC standard within you application.
+The [Data Food Consortium](https://dfc-standard.org) project (DFC) aims to provide interoperability between food supply chain platforms. Documentation is available on [GitBook](https://docs.dfc-standard.org/) and on [GitHub](https://github.com/datafoodconsortium/).
 
-Each concept of the DFC ontology can be manipulated with the help of the corresponding class supplied by the connector.
-
-This connector will also help you to import and export data so you can exchange information with other DFC standard compliant platforms.
-
-The [Data Food Consortium](https://datafoodconsortium.org) project (DFC) aims to provide interoperability between food supply chain platforms.
+This DFC Connector is a tool to help developers to integrate the DFC standard within an application. Each concept of the DFC standard can be manipulated with the help of the corresponding class supplied by the connector. 
+This connector will also help to import and export data so one can exchange information with other DFC standard compliant platforms.
 
 ## Get started
 
@@ -28,10 +23,10 @@ const connector = new Connector();
 
 You can then load our different SKOS taxonomies providing the corresponding JSON-LD files:
 ```JS
-connector.loadMeasures(File.read("/path/to/measures.json"));
-connector.loadFacets(File.read("/path/to/facets.json"));
-connector.loadProductTypes(File.read("/path/to/productTypes.json"));
-connector.loadVocabulary(File.read("/path/to/vocabulary.json"));
+connector.loadMeasures(File.read("/path/to/measures.jsonld"));
+connector.loadFacets(File.read("/path/to/facets.jsonld"));
+connector.loadProductTypes(File.read("/path/to/productTypes.jsonld"));
+connector.loadVocabulary(File.read("/path/to/vocabulary.jsonld"));
 ```
 
 These taxonomies are accessible directly from the connector, like:
@@ -48,6 +43,8 @@ const tomato = connector.PRODUCT_TYPES.VEGETABLE.TOMATO.ROUND_TOMATO;
 // Example of a transformation type
 const combines = connector.VOCABULARY.TRANSFORMATIONTYPE.COMBINES;
 ```
+
+You can discover all the available taxons on our [ShowVoc instance](https://showvoc.dfc-standard.org/).
 
 ## Object creation
 
@@ -108,25 +105,49 @@ let suppliedProduct = connector.createSuppliedProduct({
 _Remark: Except for anonymous objects (blank nodes), the `semanticId` constructor parameter is mandatory. All the other parameters are optional._
 
 **Available creation methods:**
-- `IConnector:createAddress(parameters): IAddress;`
-- `IConnector:createAllergenCharacteristic(parameters): IAllergenCharacteristic;`
-- `IConnector:createCatalog(parameters): ICatalog;`
-- `IConnector:createCatalogItem(parameters): ICatalogItem;`
-- `IConnector:createCustomerCategory(parameters): ICustomerCategory;`
-- `IConnector:createEnterprise(parameters): IEnterprise;`
-- `IConnector:createNutrientCharacteristic(parameters): INutrientCharacteristic;`
-- `IConnector:createOffer(parameters): IOffer;`
-- `IConnector:createOrder(parameters): IOrder;`
-- `IConnector:createOrderLine(parameters): IOrderLine;`
-- `IConnector:createPerson(parameters): IPerson;`
-- `IConnector:createPhysicalCharacteristic(parameters): IPhysicalCharacteristic;`
-- `IConnector:createPrice(parameters): IPrice;`
-- `IConnector:createQuantity(parameters): IQuantity;`
-- `IConnector:createSaleSession(parameters): ISaleSession;`
-- `IConnector:createSuppliedProduct(parameters): ISuppliedProduct;`
-- `IConnector:createPlannedTransformation(parameters);`
-- `IConnector:createPlannedConsumptionFlow(parameters);`
-- `IConnector:createPlannedProductionFlow(parameters);`
+
+The available creation methods are listed in the `IConnectorFactory` interface which also contains the types of expected parameters:
+```ts
+createAddress(parameters: IConnectorFactoryAddressCreateParams): IAddress;
+createAllergenCharacteristic(parameters: IConnectorFactoryAllergenCharacteristicCreateParams): IAllergenCharacteristic;
+createCatalog(parameters: IConnectorFactoryCatalogCreateParams): ICatalog;
+createCatalogItem(parameters: IConnectorFactoryCatalogItemCreateParams): ICatalogItem;
+createCustomerCategory(parameters: IConnectorFactoryCustomerCategoryCreateParams): ICustomerCategory;
+createDeliveryOption(parameters: IConnectorFactoryDeliveryOptionCreateParams): IDeliveryOption;
+createEnterprise(parameters: IConnectorFactoryEnterpriseCreateParams): IEnterprise;
+createLocalizedProduct(parameters: IConnectorFactoryLocalizedProductCreateParams): ILocalizedProduct;
+createNutrientCharacteristic(parameters: IConnectorFactoryNutrientCharacteristicCreateParams): INutrientCharacteristic;
+createOffer(parameters: IConnectorFactoryOfferCreateParams): IOffer;
+createOpeningHoursSpecification(parameters: IConnectorFactoryOpeningHoursSpecificationCreateParams): IOpeningHoursSpecification;
+createOrder(parameters: IConnectorFactoryOrderCreateParams): IOrder;
+createOrderLine(parameters: IConnectorFactoryOrderLineCreateParams): IOrderLine;
+createPaymentMethod(parameters: IConnectorFactoryPaymentMethodCreateParams): IPaymentMethod;
+createPerson(parameters: IConnectorFactoryPersonCreateParams): IPerson;
+createPhoneNumber(parameters: IConnectorFactoryPhoneNumberCreateParams): IPhoneNumber;
+createPhysicalCharacteristic(parameters: IConnectorFactoryPhysicalCharacteristicCreateParams): IPhysicalCharacteristic;
+createPhysicalPlace(parameters: IConnectorFactoryPhysicalPlaceCreateParams): IPhysicalPlace;
+createPhysicalProduct(parameters: IConnectorFactoryPhysicalProductCreateParams): IPhysicalProduct;
+createPickupOption(parameters: IConnectorFactoryPickupOptionCreateParams): IPickupOption;
+createPlannedConsumptionFlow(parameters: IConnectorFactoryPlannedConsumptionFlowCreateParams): IPlannedConsumptionFlow;
+createPlannedLocalConsumptionFlow(parameters: IConnectorFactoryPlannedLocalConsumptionFlowCreateParams): IPlannedLocalConsumptionFlow;
+createPlannedLocalProductionFlow(parameters: IConnectorFactoryPlannedLocalProductionFlowCreateParams): IPlannedLocalProductionFlow;
+createPlannedLocalTransformation(parameters: IConnectorFactoryPlannedLocalTransformationCreateParams): IPlannedLocalTransformation;
+createPlannedProductionFlow(parameters: IConnectorFactoryPlannedProductionFlowCreateParams): IPlannedProductionFlow;
+createPlannedTransformation(parameters: IConnectorFactoryPlannedTransformationCreateParams): IPlannedTransformation;
+createPrice(parameters: IConnectorFactoryPriceCreateParams): IPrice;
+createProductBatch(parameters: IConnectorFactoryProductBatchCreateParams): IProductBatch;
+createQuantity(parameters: IConnectorFactoryQuantityCreateParams): IQuantity;
+createRealizedConsumptionFlow(parameters: IConnectorFactoryRealizedConsumptionFlowCreateParams): IRealizedConsumptionFlow;
+createRealizedProductionFlow(parameters: IConnectorFactoryRealizedProductionFlowCreateParams): IRealizedProductionFlow;
+createRealizedTransformation(parameters: IConnectorFactoryRealizedTransformationCreateParams): IRealizedTransformation;
+createRealStock(parameters: IConnectorFactoryRealStockCreateParams): IRealStock;
+createSaleSession(parameters: IConnectorFactorySaleSessionCreateParams): ISaleSession;
+createSocialMedia(parameters: IConnectorFactorySocialMediaCreateParams): ISocialMedia;
+createSuppliedProduct(parameters: IConnectorFactorySuppliedProductCreateParams): ISuppliedProduct;
+createTechnicalProduct(parameters: IConnectorFactoryTechnicalProductCreateParams): ITechnicalProduct;
+createTheoreticalStock(parameters: IConnectorFactoryTheoreticalStockCreateParams): ITheoreticalStock;
+createVirtualPlace(parameters: IConnectorFactoryVirtualPlaceCreateParams): IVirtualPlace;
+```
 
 ## Object accessors and mutators
 
@@ -262,7 +283,7 @@ The DFC Connector provides method to import data. The default importer imports J
 
 To import objects from JSON-LD, use:
 ```JS
-const objects: Semanticable[] = await connector.import(jsonAsAString));
+const objects: Semanticable[] = await connector.import(jsonLdAsAString));
 ```
 
 _Remark: the import function accepts an "options" parameter that can be use to fit to your needs_:
@@ -278,18 +299,18 @@ options?: {
 
 For example, to get the first 3 `Order` of some imported data use:
 ```JS
-await connector.import(jsonAsAString, { only: connector.TERMS.ORDER, limit: 3 });
+await connector.import(jsonLdAsAString, { only: connector.TERMS.ORDER, limit: 3 });
 ```
 
 You can also get a single element using the `importOne` helper method:
 ```JS
-const Semanticable | undefined = await connector.importOne(jsonAsAString);
+const Semanticable | undefined = await connector.importOne(jsonLdAsAString);
 ```
 
 You can pass the `only` option to target one type using the `importOneTyped` method:
 ```JS
 const order: string = "http://www.datafoodconsortium.org/ontologies/DFC_BusinessOntology.owl#Order";
-const IOrder | undefined = await connector.importOneTyped<IOrder>(jsonAsAString, { only: order });
+const IOrder | undefined = await connector.importOneTyped<IOrder>(jsonLdAsAString, { only: order });
 ```
 
 ## Configure
@@ -311,428 +332,6 @@ Connector:setDefaultImporter(importer: IConnectorImporter);
 
 // Set the object used to create new instances.
 Connector:setDefaultFactory(factory: IConnectorFactory);
-```
-
-## Reference
-
-### Address
-
-`IConnector:createAddress(parameters): IAddress`
-
-```JS
-parameters: {
-  semanticId: string, 
-  street?: string, 
-  postalCode?: string, 
-  city?: string, 
-  country?: string,
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-`IConnector:createAddress(parameters): IAddress`
-
-```JS
-parameters: {
-  other: IAddress,
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-### AllergenCharacteristic
-
-`IConnector:createAllergenCharacteristic(parameters): IAllergenCharacteristic`
-
-```JS
-parameters: {
-  unit?: IUnit, 
-  value?: number, 
-  allergenDimension?: IAllergenDimension,
-}
-```
-
-`IConnector:createAllergenCharacteristic(parameters): IAllergenCharacteristic`
-
-```JS
-parameters: {
-  other: IAllergenCharacteristic // construct the object by copy
-}
-```
-
-### Catalog
-
-`IConnector:createCatalog(parameters): ICatalog`
-  
-```JS
-parameters: {
-  semanticId: string, 
-  maintainers?: IEnterprise[], 
-  items?: ICatalogItem[],
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-`IConnector:createCatalog(parameters): ICatalog`
-  
-```JS
-parameters: {
-  other: ICatalog, // construct the object by copy
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-### CatalogItem
-
-`IConnector:createCatalogItem(parameters): ICatalogItem`
-  
-```JS
-parameters: {
-  semanticId: string, 
-  product?: ISuppliedProduct, 
-  sku?: string, 
-  stockLimitation?: number, 
-  offers?: IOffer[], 
-  catalogs?: ICatalog[],
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-`IConnector:createCatalogItem(parameters): ICatalogItem`
-  
-```JS
-parameters: {
-  other: ICatalogItem, // construct the object by copy
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-### CustomerCategory
-
-`IConnector:createCustomerCategory(parameters): ICustomerCategory`
-  
-```JS
-parameters: {
-  semanticId: string, 
-  description?: string,
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-`IConnector:createCustomerCategory(parameters): ICustomerCategory`
-  
-```JS
-parameters: {
-  other: ICustomerCategory, // construct the object by copy
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-### Enterprise
-
-`IConnector:createEnterprise(parameters): IEnterprise`
-  
-```JS
-parameters: {
-  semanticId: string, 
-  localizations?: IAddress[], 
-  description?: string, 
-  vatNumber?: string, 
-  customerCategories?: ICustomerCategory[], 
-  catalogs?: ICatalog[], 
-  catalogItems?: ICatalogItem[], 
-  suppliedProducts?: ISuppliedProduct[],
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-`IConnector:createEnterprise(parameters): IEnterprise`
-  
-```JS
-parameters: {
-  other: IEnterprise, // construct the object by copy
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-### NutrientCharacteristic
-
-`IConnector:createNutrientCharacteristic(parameters): INutrientCharacteristic`
-  
-```JS
-parameters: {
-  unit?: IUnit, 
-  value?: number, 
-  nutrientDimension?: INutrientDimension
-}
-```
-
-`IConnector:createNutrientCharacteristic(parameters): INutrientCharacteristic`
-  
-```JS
-parameters: {
-  other: INutrientCharacteristic // construct the object by copy
-}
-```
-
-### Offer
-
-`IConnector:createOffer(parameters): IOffer`
-  
-```JS
-parameters: {
-  semanticId: string, 
-  offeredItem?: ICatalogItem, 
-  offeredTo?: ICustomerCategory, 
-  price?: IPrice, 
-  stockLimitation?: number,
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-`IConnector:createOffer(parameters): IOffer`
-  
-```JS
-parameters: {
-  other: IOffer, // construct the object by copy
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-### Order
-
-`IConnector:createOrder(parameters): IOrder`
-  
-```JS
-parameters: {
-  semanticId: string, 
-  number?: string, 
-  date?: string, 
-  saleSession?: ISaleSession, 
-  client?: IAgent, 
-  lines?: IOrderLine[],
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-`IConnector:createOrder(parameters): IOrder`
-  
-```JS
-parameters: {
-  other: IOrder, // construct the object by copy
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-### OrderLine
-
-`IConnector:createOrderLine(parameters): IOrderLine`
-  
-```JS
-parameters: {
-  semanticId: string, 
-  quantity?: number, 
-  price?: IPrice, 
-  offer?: IOffer, 
-  order?: IOrder,
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-`IConnector:createOrderLine(parameters): IOrderLine`
-  
-```JS
-parameters: {
-  other: IOrderLine, // construct the object by copy
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-### Person
-
-`IConnector:createPerson(parameters): IPerson`
-  
-```JS
-parameters: {
-  semanticId: string, 
-  firstName?: string, 
-  lastName?: string, 
-  localizations?: IAddress[], 
-  organizations?: IEnterprise[],
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-`IConnector:createPerson(parameters): IPerson`
-  
-```JS
-parameters: {
-  other: IPerson, // construct the object by copy
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-### PhysicalCharacteristic
-
-`IConnector:createPhysicalCharacteristic(parameters): IPhysicalCharacteristic`
-  
-```JS
-parameters: {
-  unit?: IUnit, 
-  value?: number, 
-  physicalDimension?: IPhysicalDimension
-}
-```
-
-`IConnector:createPhysicalCharacteristic(parameters): IPhysicalCharacteristic`
-  
-```JS
-parameters: {
-  other: IPhysicalCharacteristic // construct the object by copy
-}
-```
-
-### PlannedConsumptionFlow
-
-`IConnector:createPlannedConsumptionFlow(parameters);`
-
-```ts
-parameters: {
-  doNotStore?: boolean, 
-  semanticId?: string, 
-  other?: Semanticable, 
-  quantity?: IQuantity, 
-  transformation?: IPlannedTransformation, 
-  product?: IDefinedProduct
-}
-```
-
-### PlannedProductionFlow
-`IConnector:createPlannedProductionFlow(parameters);`
-
-```ts
-parameters: {
-  doNotStore?: boolean, 
-  semanticId?: string, 
-  other?: Semanticable, 
-  quantity?: IQuantity, 
-  transformation?: IPlannedTransformation, 
-  product?: ISuppliedProduct
-}
-```
-
-### PlannedTransformation
-
-`IConnector:createPlannedTransformation(parameters);`
-
-```ts
-parameters: {
-  doNotStore?: boolean, 
-  semanticId?: string,
-  other?: Semanticable, 
-  transformationType?: ISKOSConcept, 
-  consumptionFlow?: IPlannedConsumptionFlow, 
-  productionFlow?: IPlannedProductionFlow
-}
-```
-
-### Price
-
-`IConnector:createPrice(parameters): IPrice`
-  
-```JS
-parameters: {
-  value?: number, 
-  vatRate?: number, 
-  unit?: IUnit
-}
-```
-
-`IConnector:createPrice(parameters): IPrice`
-  
-```JS
-parameters: {
-  other: IPrice // construct the object by copy
-}
-```
-
-### Quantity
-
-`IConnector:createQuantity(parameters): IQuantity`
-  
-```JS
-parameters: {
-  unit?: IUnit, 
-  value?: number
-}
-```
-
-`IConnector:createQuantity(parameters): IQuantity`
-  
-```JS
-parameters: {
-  other: IQuantity // construct the object by copy
-}
-```
-
-### SaleSession
-
-`IConnector:createSaleSession(parameters): ISaleSession`
-  
-```JS
-parameters: {
-  semanticId: string, 
-  beginDate?: string, 
-  endDate?: string, 
-  quantity?: number, 
-  offers?: IOffer[],
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-`IConnector:createSaleSession(parameters): ISaleSession`
-  
-```JS
-parameters: {
-  other: ISaleSession, // construct the object by copy
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-### SuppliedProduct
-
-`IConnector:createSuppliedProduct(parameters): ISuppliedProduct`
-  
-```JS
-parameters: {
-  semanticId: string, 
-  name?: string, 
-  description?: string, 
-  productType?: IProductType, 
-  quantity?: IQuantity, 
-  alcoholPercentage?: number, 
-  lifetime?: string, 
-  claims?: IClaim[], 
-  usageOrStorageConditions?: string, 
-  allergenCharacteristics?: IAllergenCharacteristic[], 
-  nutrientCharacteristics?: INutrientCharacteristic[], 
-  physicalCharacteristics?: IPhysicalCharacteristic[], 
-  geographicalOrigin?: IGeographicalOrigin, 
-  catalogItems?: ICatalogItem[], 
-  certifications?: ICertification[], 
-  natureOrigin?: INatureOrigin[], 
-  partOrigin?: IPartOrigin[], 
-  totalTheoreticalStock?: number,
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
-```
-
-`IConnector:createSuppliedProduct(parameters): ISuppliedProduct`
-  
-```JS
-parameters: {
-  other: ISuppliedProduct, // construct the object by copy 
-  doNotStore?: boolean // if true, do not save the object into the connector store
-}
 ```
 
 ## Examples

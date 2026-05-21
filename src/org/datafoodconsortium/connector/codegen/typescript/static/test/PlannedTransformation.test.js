@@ -52,7 +52,7 @@ const plannedTransformation = connector.createPlannedTransformation({
 
 const json = '{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@graph":[{"@id":"_:b1","@type":"dfc-b:QuantitativeValue","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1.2"},{"@id":"_:b2","@type":"dfc-b:QuantitativeValue","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1"},{"@id":"http://myplatform.com/plannedConsumptionFlow","@type":"dfc-b:AsPlannedConsumptionFlow","dfc-b:consumes":"http://myplatform.com/inputProduct","dfc-b:hasQuantity":"_:b1"},{"@id":"http://myplatform.com/plannedProductionFlow","@type":"dfc-b:AsPlannedProductionFlow","dfc-b:hasQuantity":"_:b2","dfc-b:produces":"http://myplatform.com/outputProduct"},{"@id":"http://myplatform.com/transformation","@type":"dfc-b:AsPlannedTransformation","dfc-b:hasInput":"http://myplatform.com/plannedConsumptionFlow","dfc-b:hasOutput":"http://myplatform.com/plannedProductionFlow","dfc-b:hasTransformationType":"dfc-v:modify"}]}';
 
-test('PlannedTransformationLoop:import', async () => {
+test('PlannedTransformation:import', async () => {
     const imported = await connector.import(json);
     const expectedPlannedConsumptionFlow = imported[0];
     const expectedPlannedProductionFlow = imported[1];
@@ -63,7 +63,7 @@ test('PlannedTransformationLoop:import', async () => {
     expect.strictEqual(expectedPlannedProductionFlow.equals(plannedProductionFlow), true);
 });
 
-test('PlannedTransformationLoop:export', async () => {
+test('PlannedTransformation:export', async () => {
     const serialized = await connector.export([plannedTransformation, plannedConsumptionFlow, plannedProductionFlow]);
     expect.strictEqual(serialized, json);
 });

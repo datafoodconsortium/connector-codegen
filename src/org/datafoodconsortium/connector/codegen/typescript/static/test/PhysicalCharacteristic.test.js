@@ -20,7 +20,7 @@ const physicalCharacteristic = connector.createPhysicalCharacteristic({
     physicalDimension: physicalDimension
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org","@id":"_:b1","@type":"dfc-b:PhysicalCharacteristic","dfc-b:hasPhysicalDimension":"dfc-m:Weight","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"100"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@id":"_:b1","@type":"dfc-b:PhysicalCharacteristic","dfc-b:hasPhysicalDimension":"dfc-m:Weight","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"100"}`;
 
 test('PhysicalCharacteristic:import', async () => {
     const imported = await connector.import(json);

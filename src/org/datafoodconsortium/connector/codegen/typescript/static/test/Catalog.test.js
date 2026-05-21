@@ -4,7 +4,7 @@ import Connector from "../lib/Connector.js";
 
 const connector = new Connector();
 
-const json = `{"@context":"https://www.datafoodconsortium.org","@id":"http://myplatform.com/catalog1","@type":"dfc-b:Catalog","dfc-b:lists":{"@id":"http://myplatform.com/catalogItem1"},"dfc-b:maintainedBy":{"@id":"http://myplatform.com/enterprise1"}}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@id":"http://myplatform.com/catalog1","@type":"dfc-b:Catalog","dfc-b:lists":"http://myplatform.com/catalogItem1","dfc-b:maintainedBy":"http://myplatform.com/enterprise1"}`;
 
 const enterprise = connector.createEnterprise({
     semanticId: "http://myplatform.com/enterprise1"
@@ -70,6 +70,17 @@ test('Catalog:addItem', async () => {
     expect.strictEqual(items.length, 2);
     expect.strictEqual(items[0].equals(catalogItem), true);
     expect.strictEqual(items[1].equals(catalogItem2), true);
+});
+
+test('Catalog:setItems', async () => {
+    const catalogItem3 = connector.createCatalogItem({
+        semanticId: "http://myplatform.com/catalogItem3"
+    });
+    expect.strictEqual((await catalog.getItems()).length, 2);
+    catalog.setItems([catalogItem3]);
+    const items = await catalog.getItems();
+    expect.strictEqual(items.length, 1);
+    expect.strictEqual(items[0].equals(catalogItem3), true);
 });
 
 /*
