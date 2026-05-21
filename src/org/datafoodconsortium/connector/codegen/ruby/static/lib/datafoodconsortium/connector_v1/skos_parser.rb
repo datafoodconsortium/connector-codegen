@@ -22,12 +22,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-require 'datafoodconsortium/connector/skos_helper'
-require 'datafoodconsortium/connector/skos_concept'
-require 'datafoodconsortium/connector/skos_parser_element'
+require 'datafoodconsortium/connector_v1/skos_helper'
+require 'datafoodconsortium/connector_v1/skos_concept'
+require 'datafoodconsortium/connector_v1/skos_parser_element'
 
-class DataFoodConsortium::Connector::SKOSInstance
-  include DataFoodConsortium::Connector::SKOSHelper
+class DataFoodConsortium::ConnectorV1::SKOSInstance
+  include DataFoodConsortium::ConnectorV1::SKOSHelper
 
   # Return a list of singelton methods, ie the list of Concept available
   def topConcepts
@@ -35,7 +35,7 @@ class DataFoodConsortium::Connector::SKOSInstance
   end
 end
 
-class DataFoodConsortium::Connector::SKOSParser
+class DataFoodConsortium::ConnectorV1::SKOSParser
   CONCEPT_SCHEMES = ["Facet", "productTypes"].freeze
 
   def self.concepts
@@ -43,7 +43,7 @@ class DataFoodConsortium::Connector::SKOSParser
   end
 
   def initialize
-    @results = DataFoodConsortium::Connector::SKOSInstance.new
+    @results = DataFoodConsortium::ConnectorV1::SKOSInstance.new
     @skosConcepts = {}
     @rootElements = []
     @broaders = {}
@@ -56,7 +56,7 @@ class DataFoodConsortium::Connector::SKOSParser
     init
 
     data.each do |element|
-      current = DataFoodConsortium::Connector::SKOSParserElement.new(element)
+      current = DataFoodConsortium::ConnectorV1::SKOSParserElement.new(element)
 
       setSkosConceptFlag(current)
 
@@ -91,7 +91,7 @@ class DataFoodConsortium::Connector::SKOSParser
   protected
 
   def createSKOSConcept(element)
-    skosConcept = DataFoodConsortium::Connector::SKOSConcept.new(
+    skosConcept = DataFoodConsortium::ConnectorV1::SKOSConcept.new(
       element.id, broaders: element.broader, narrowers: element.narrower, prefLabels: element.label
     )
     skosConcept.semanticType = element.type
@@ -123,7 +123,7 @@ class DataFoodConsortium::Connector::SKOSParser
   private
 
   def init
-    @results = DataFoodConsortium::Connector::SKOSInstance.new
+    @results = DataFoodConsortium::ConnectorV1::SKOSInstance.new
     @skosConcepts = {}
     @rootElements = []
     @broaders = {}
@@ -137,7 +137,7 @@ class DataFoodConsortium::Connector::SKOSParser
       if @useSkosConcept && @skosConcepts[id]
         parent.addAttribute(name, @skosConcepts[id])
       else
-        parent.addAttribute(name, DataFoodConsortium::Connector::SKOSInstance.new)
+        parent.addAttribute(name, DataFoodConsortium::ConnectorV1::SKOSInstance.new)
       end
     end
 

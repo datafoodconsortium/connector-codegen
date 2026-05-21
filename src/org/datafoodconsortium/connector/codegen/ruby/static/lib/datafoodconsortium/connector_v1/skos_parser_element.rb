@@ -22,7 +22,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-class DataFoodConsortium::Connector::SKOSParserElement
+class DataFoodConsortium::ConnectorV1::SKOSParserElement
 
   attr_reader :id
   attr_reader :type
