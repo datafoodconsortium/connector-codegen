@@ -13,9 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Generated from [UML model 3.4.0](https://github.com/datafoodconsortium/data-model-uml/releases/tag/v3.4.0) using the [Connector codegen 1.2.0](https://github.com/datafoodconsortium/connector-codegen/releases/tag/v1.2.0).
 
+**This version contains breaking changes introduced by the ontology, see below.**
+
 ### Added
 
-- Add `SuppliedProduct:referenceOf`.
 - Add the *prepare* script to *package.json*.
 
 Accessors and mutators:
@@ -43,6 +44,7 @@ Accessors and mutators:
 - Add `Order:lines` setter and remover.
 - Add `Person:affiliatedOrgs` setter.
 - Add `SaleSession:offers` setter and remover.
+- Add `SuppliedProduct:localizedProducts` accessors and mutators.
 
 Creation methods:
 - Add `createDeliveryOption`.
@@ -70,19 +72,25 @@ Creation methods:
 
 ### Changed
 
+- `Address:country` is now a `ISKOSConcept` to reflect ontology v1.16 state (**breaking change**).
 - Rename `image` property to `images` (should not break as properties should not be directly accessed).
+- Rename `PhysicalPlace:addresses` to `PhysicalPlace:address` (singular) to support correct cardinatility (should not break as properties should not be directly accessed).
+- Rename `PhysicalPlace:mainContact` to `PhysicalPlace:mainContacts` (plural) to support correct cardinatility (should not break as properties should not be directly accessed).
 
 ### Removed
 
-- Remove the `Quantity` class as there is no such class in the ontology. We should use `QuantitativeValue`.
+- Remove the `Quantity` class as there is no such class in the ontology. We should use `QuantitativeValue` (should not break as objects should be created using the connector's factory, here `connector.createQuantity(...)`).
 
 ## [1.0.0-alpha.12] 2026-05-06
 
-### Fixed
+### Changed
 
+**Breaking changes**:
 - Rename `hasIncome` -> `hasInput` and `hasOutcome` -> `hasOutput` in `AsPlannedTransformation`.
 - Rename `incomeOf` > `inputOf` in `AsPlannedConsumptionFlow`.
 - Rename `outcomeOf` -> `outpufOf` in `AsPlannedProductionFlow`.
+
+See this issue: https://github.com/datafoodconsortium/data-model-uml/issues/30.
 
 ## [1.0.0-alpha.11] 2025-05-27
 

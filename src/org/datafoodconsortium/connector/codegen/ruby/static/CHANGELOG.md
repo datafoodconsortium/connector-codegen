@@ -15,6 +15,8 @@ To avoid name conflict with newer major versions, this version has been publishe
 
 The module name has been changed to DataFoodConsortium::ConnectorV1, the package files and folder were renamed to connector_v1.
 
+**This version contains breaking changes introduced by the ontology, see below.**
+
 ### Added
 
 Accessors and mutators:
@@ -52,16 +54,15 @@ New objects:
 
 - Fix `Agent:localizations` setter.
 - Fix `Agent:phoneNumbers` setter.
-- Rename `PhysicalPlace:addresses` to `PhysicalPlace:address` (singular) to support correct cardinatility.
-- Rename `PhysicalPlace:mainContact` to `PhysicalPlace:mainContacts` (plural) to support correct cardinatility.
-- Rename `hasIncome` -> `hasInput` and `hasOutcome` -> `hasOutput` in `PlannedTransformation`.
-- Rename `incomeOf` > `inputOf` in `PlannedConsumptionFlow`.
-- Rename `outcomeOf` -> `outpufOf` in `PlannedProductionFlow`.
 
 ### Changed
 
 - `Address:country` is now a `ISKOSConcept` to reflect ontology v1.16 state (**breaking change**).
-- Rename `image` property to `images` (should not break as properties should not be directly accessed).
+- Rename `hasIncome` -> `hasInput` and `hasOutcome` -> `hasOutput` in `PlannedTransformation` (**breaking change**).
+- Rename `incomeOf` > `inputOf` in `PlannedConsumptionFlow` (**breaking change**).
+- Rename `outcomeOf` -> `outpufOf` in `PlannedProductionFlow` (**breaking change**).
+- Rename `PhysicalPlace:addresses` to `PhysicalPlace:address` (singular) to support correct cardinatility (**breaking change**).
+- Rename `PhysicalPlace:mainContact` to `PhysicalPlace:mainContacts` (plural) to support correct cardinatility (**breaking change**).
 
 ### Removed
 
