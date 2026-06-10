@@ -1,0 +1,31 @@
+[comment encoding = UTF-8 /]
+[module common('http://www.eclipse.org/uml2/5.0.0/UML')]
+
+[import org::datafoodconsortium::connector::codegen::queries /]
+[import org::datafoodconsortium::connector::codegen::php::common /]
+
+[template public generateLicense(traceabilityContext: OclAny)][generateLicence()/][/template]
+
+[template public generateImports(classifier: Classifier)]
+[for (c: Classifier | classifier.getImportedClassifiersWithoutPrimitives()) separator('\n')][generateImport(c)/][/for]
+[if (classifier.oclIsTypeOf(Class))]import { SemanticObject[if (classifier.isBlankNode())]Anonymous[/if] } from "@virtual-assembly/semantizer"[/if]
+import { Semanticable } from "@virtual-assembly/semantizer"
+[/template]
+
+[template public generateTestImports(class: Class, model: Model) post(trim())]
+[for (c: Classifier | class.getImportedClassifiersWithoutPrimitives())]
+[let imp : Class = c.getImplementation(model)]
+import [imp.name/] from "../../lib/[imp.name/].js"
+[/let]
+[/for]
+[/template]
+
+[template public generateImport(c: Classifier)]
+import [c.name/] from "./[c.name/].js"
+[/template]
+
+[template public toSemanticTypeConst(classifier: Classifier) post(trim())]
+[classifier.name.replaceAll('(.)([A-Z]+)', '$1_$2').toUpper()/]_SEM_TYPE
+[/template]
+
+[query public isAsyncParameter(p: Parameter): Boolean = ((p.upper = -1 and not p.type.isPrimitive()) or (not p.type.isBlankNode() and not p.type.isPrimitive())) /]

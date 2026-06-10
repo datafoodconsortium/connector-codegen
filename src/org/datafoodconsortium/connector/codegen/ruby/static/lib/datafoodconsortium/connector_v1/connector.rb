@@ -21,11 +21,11 @@
 # SOFTWARE.
 
 require 'singleton'
-require 'datafoodconsortium/connector/context'
-require 'datafoodconsortium/connector/importer'
-require 'datafoodconsortium/connector/json_ld_serializer'
+require 'datafoodconsortium/connector_v1/context'
+require 'datafoodconsortium/connector_v1/importer'
+require 'datafoodconsortium/connector_v1/json_ld_serializer'
 
-module DataFoodConsortium::Connector
+module DataFoodConsortium::ConnectorV1
   class Connector
     include Singleton
 
@@ -35,8 +35,8 @@ module DataFoodConsortium::Connector
     attr_reader :MEASURES
     attr_reader :PRODUCT_TYPES
 
-    def export(subject, *subjects)
-        return @exporter.process(subject, *subjects)
+    def export(*subjects)
+        @exporter.process(*subjects)
     end
 
     def import(json_string_or_io)

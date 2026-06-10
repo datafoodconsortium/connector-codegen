@@ -23,7 +23,7 @@
 require 'virtual_assembly/semantizer'
 require 'json/ld'
 
-class DataFoodConsortium::Connector::JsonLdSerializer
+class DataFoodConsortium::ConnectorV1::JsonLdSerializer
 
     def initialize(outputContext = nil, inputContext = nil)
         @outputContext = outputContext
@@ -31,8 +31,6 @@ class DataFoodConsortium::Connector::JsonLdSerializer
     end
 
     def process(*subjects)
-        return "" if subjects.empty?
-
         # Insert an input context on each subject so the properties could be prefixed. This way,
         # the DFC's context can be used.
         # See https://github.com/datafoodconsortium/connector-ruby/issues/11.

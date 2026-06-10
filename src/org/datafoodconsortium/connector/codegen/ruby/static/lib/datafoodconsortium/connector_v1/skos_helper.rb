@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module DataFoodConsortium::Connector::SKOSHelper
+module DataFoodConsortium::ConnectorV1::SKOSHelper
   def addAttribute(name, value)
     self.instance_variable_set("@#{name}", value)
     self.define_singleton_method(name) do

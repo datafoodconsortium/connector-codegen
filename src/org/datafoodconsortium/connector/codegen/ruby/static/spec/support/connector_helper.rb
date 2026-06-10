@@ -1,8 +1,8 @@
-require 'datafoodconsortium/connector'
+require 'datafoodconsortium/connector_v1'
 
 module ConnectorHelper
   def connector
-    @connector ||= DataFoodConsortium::Connector::Connector.instance.tap do |c|
+    @connector ||= DataFoodConsortium::ConnectorV1::Connector.instance.tap do |c|
       c.loadMeasures(parse_json_file("measures.json"))
       c.loadFacets(parse_json_file("facets.json"))
       c.loadProductTypes(parse_json_file("productTypes.json"))

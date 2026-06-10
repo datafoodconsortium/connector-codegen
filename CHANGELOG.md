@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-06-10
+
+To generate Ruby and TypeScript version based on the UML model version 3.4.0.
+
+### Added
+
+- Queries for auto-importing (`getImportedClasses`, `getImportedInterfaces`, `getImportedClassifiers`, `getImportedClassifiersWithoutPrimitives` and `getImportedTypesOfOperations`).
+- Queries for operations to be implemented or declared by a class: 
+  - `getAllImplementedInterfacesWithoutParents`.
+  - `getOperationsToImplementOrDeclareFromInterfacesWithoutParents`.
+  - `getOperationsToImplementOrDeclare`.
+
+### Changed
+
+TypeScript:
+- Ensure the entry point, `src/index.ts`, is always regenerated on fresh builds.
+
+### Fixed
+
+TypeScript:
+- Fix setters for array properties so that all items are replaced.
+
 ## [1.1.0] - 2024-10-22
 
 ### Added
@@ -68,7 +90,8 @@ This release requires [data-model-uml version 2.1.0](https://github.com/datafood
   - Update dfc prefix in skos_parser and change dfc-b:hasName.
   - Change dfc-b:hasName to dfc-b:name in tests.
 
-[unreleased]: https://github.com/datafoodconsortium/connector-codegen/compare/v1.1.0...HEAD
+[unreleased]: https://github.com/datafoodconsortium/connector-codegen/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/datafoodconsortium/connector-codegen/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/datafoodconsortium/connector-codegen/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/datafoodconsortium/connector-codegen/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/datafoodconsortium/connector-codegen/releases/tag/v1.0.0
