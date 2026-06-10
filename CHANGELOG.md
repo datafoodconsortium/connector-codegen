@@ -7,9 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.2.0]
+## [1.2.0] - 2026-06-10
 
-To generate Ruby and TypeScript version based on the UML model version 3.3.0.
+To generate Ruby and TypeScript version based on the UML model version 3.4.0.
 
 ### Added
 
