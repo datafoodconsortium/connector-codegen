@@ -1,6 +1,6 @@
 RSpec.describe DataFoodConsortium::Connector::Importer do
-  let(:enterprise) do
-    DataFoodConsortium::Connector::Enterprise.new(
+  let(:organization) do
+    DataFoodConsortium::Connector::Organization.new(
       "https://example.net/foo-food-inc",
       suppliedProducts: [product, second_product],
     )
@@ -22,7 +22,7 @@ RSpec.describe DataFoodConsortium::Connector::Importer do
   let(:product_data) do
     <<~JSON
       {
-        "@context":"http://static.datafoodconsortium.org/ontologies/context.json",
+        "@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld",
         "@id":"https://example.net/tomato",
         "@type":"dfc-b:SuppliedProduct",
         "dfc-b:name":"Tomato",
@@ -38,9 +38,9 @@ RSpec.describe DataFoodConsortium::Connector::Importer do
     <<~JSON
       {
         "@context": {
-          "dfc-b": "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#",
-          "dfc-m": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/measures.rdf#",
-          "dfc-pt": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/productTypes.rdf#",
+          "dfc-b": "http://w3id.org/dfc/ontology/v2.0.0/src/DFC_BusinessOntology.owl#",
+          "dfc-m": "http://w3id.org/dfc/taxonomies/v2.0.0/measures.rdf#",
+          "dfc-pt": "http://w3id.org/dfc/taxonomies/v2.0.0/productTypes.rdf#",
           "dfc-b:hasType":{"@type":"@id"}
         },
         "@id":"https://example.net/tomato",
@@ -65,6 +65,33 @@ RSpec.describe DataFoodConsortium::Connector::Importer do
       unit: connector.MEASURES.PIECE,
       value: 5,
     )
+  end
+
+  it "imports an empty DFC document" do
+    result = import # nothing
+    expect(result).to eq nil
+  end
+
+  it "imports with the default context URL" do
+    result = connector.import <<~JSON
+      {
+        "@context":"https://www.datafoodconsortium.org",
+        "@id":"https://example.net/tomato",
+        "@type":"dfc-b:SuppliedProduct"
+      }
+    JSON
+    expect(result.semanticType).to eq "dfc-b:SuppliedProduct"
+  end
+
+  it "imports with another context URL" do
+    result = connector.import <<~JSON
+      {
+        "@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld",
+        "@id":"https://example.net/tomato",
+        "@type":"dfc-b:SuppliedProduct"
+      }
+    JSON
+    expect(result.semanticType).to eq "dfc-b:SuppliedProduct"
   end
 
   it "imports a single object with simple properties" do
@@ -128,13 +155,13 @@ RSpec.describe DataFoodConsortium::Connector::Importer do
   end
 
   it "imports properties with lists" do
-    result = import(enterprise, product, second_product)
+    result = import(organization, product, second_product)
 
     expect(result.size).to eq 3
 
-    enterprise, tomato, ocra = result
+    organization, tomato, ocra = result
 
-    expect(enterprise.suppliedProducts).to eq [tomato, ocra]
+    expect(organization.suppliedProducts).to eq [tomato, ocra]
   end
 
   def import(*args)

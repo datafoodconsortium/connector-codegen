@@ -15,7 +15,7 @@ const price = connector.createPrice({
     unit: euro
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org","@id":"_:b1","@type":"dfc-b:Price","dfc-b:VATrate":"8","dfc-b:hasUnit":"dfc-m:Euro","dfc-b:value":"2.54"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@id":"_:b1","@type":"dfc-b:Price","dfc-b:VATrate":"8","dfc-b:hasUnit":"dfc-m:Euro","dfc-b:value":"2.54"}`;
 
 test('Price:import', async () => {
     const imported = await connector.import(json);

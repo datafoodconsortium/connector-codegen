@@ -4,9 +4,8 @@ RSpec.describe DataFoodConsortium::Connector::CatalogItem do
       "https://myplatform.com/ci"
     )
     result = exported_json(subject)
-    expect(result).to eq(
+    expect(result).to include(
       {
-        "@context" => "https://www.datafoodconsortium.org",
         "@id" => "https://myplatform.com/ci",
         "@type" => "dfc-b:CatalogItem",
       }
@@ -24,9 +23,8 @@ RSpec.describe DataFoodConsortium::Connector::CatalogItem do
       offers: [offer]
     )
     result = exported_json(subject)
-    expect(result).to eq(
+    expect(result).to include(
       {
-        "@context" => "https://www.datafoodconsortium.org",
         "@id" => "https://myplatform.com/ci",
         "@type" => "dfc-b:CatalogItem",
         "dfc-b:offeredThrough" => "https://myplatform.com/o",

@@ -5,7 +5,7 @@ import { DatasetCore } from '@rdfjs/types';
 
 // Static
 import IConnector from "./IConnector.js";
-import IConnectorFactory from "./IConnectorFactory.js";
+import IConnectorFactory, { IConnectorFactoryAddressCreateParams, IConnectorFactoryAllergenCharacteristicCreateParams, IConnectorFactoryCatalogCreateParams, IConnectorFactoryCatalogItemCreateParams, IConnectorFactoryCustomerCategoryCreateParams, IConnectorFactoryDeliveryOptionCreateParams, IConnectorFactoryOrganizationCreateParams, IConnectorFactoryLocalizedProductCreateParams, IConnectorFactoryNutrientCharacteristicCreateParams, IConnectorFactoryOfferCreateParams, IConnectorFactoryOpeningHoursSpecificationCreateParams, IConnectorFactoryOrderCreateParams, IConnectorFactoryOrderLineCreateParams, IConnectorFactoryPaymentMethodCreateParams, IConnectorFactoryPersonCreateParams, IConnectorFactoryPhoneNumberCreateParams, IConnectorFactoryPhysicalCharacteristicCreateParams, IConnectorFactoryPhysicalPlaceCreateParams, IConnectorFactoryPhysicalProductCreateParams, IConnectorFactoryPickupOptionCreateParams, IConnectorFactoryPlannedConsumptionFlowCreateParams, IConnectorFactoryPlannedLocalConsumptionFlowCreateParams, IConnectorFactoryPlannedLocalProductionFlowCreateParams, IConnectorFactoryPlannedLocalTransformationCreateParams, IConnectorFactoryPlannedProductionFlowCreateParams, IConnectorFactoryPlannedTransformationCreateParams, IConnectorFactoryPriceCreateParams, IConnectorFactoryProductBatchCreateParams, IConnectorFactoryQuantityCreateParams, IConnectorFactoryRealizedConsumptionFlowCreateParams, IConnectorFactoryRealizedProductionFlowCreateParams, IConnectorFactoryRealizedTransformationCreateParams, IConnectorFactoryRealStockCreateParams, IConnectorFactorySaleSessionCreateParams, IConnectorFactorySocialMediaCreateParams, IConnectorFactorySuppliedProductCreateParams, IConnectorFactoryTechnicalProductCreateParams, IConnectorFactoryTheoreticalStockCreateParams, IConnectorFactoryVirtualPlaceCreateParams, IConnectorFactoryCertificationCreateParams, IConnectorFactoryDeliveryStepCreateParams, IConnectorFactoryPickUpStepCreateParams, IConnectorFactoryRouteCreateParams, IConnectorFactoryTemplateSaleSessionCreateParams, IConnectorFactoryProductOptionCreateParams, IConnectorFactoryProductOptionValueCreateParams, IConnectorFactoryVariantCreateParams, IConnectorFactoryVariantCharacteristicCreateParams } from "./IConnectorFactory.js";
 
 // Generated Classes
 import Address from "./Address.js";
@@ -14,6 +14,7 @@ import Catalog from "./Catalog.js";
 import CatalogItem from "./CatalogItem.js";
 import CustomerCategory from "./CustomerCategory.js";
 import Organization from "./Organization.js";
+import DeliveryOption from "./DeliveryOption.js";
 import NutrientCharacteristic from "./NutrientCharacteristic.js";
 import Offer from "./Offer.js";
 import Order from "./Order.js";
@@ -28,6 +29,24 @@ import SuppliedProduct from "./SuppliedProduct.js";
 import PlannedTransformation from "./PlannedTransformation.js";
 import PlannedConsumptionFlow from "./PlannedConsumptionFlow.js";
 import PlannedProductionFlow from "./PlannedProductionFlow.js";
+import LocalizedProduct from "./LocalizedProduct.js";
+import PaymentMethod from "./PaymentMethod.js";
+import PhoneNumber from "./PhoneNumber.js";
+import PhysicalProduct from "./PhysicalProduct.js";
+import PickupOption from "./PickupOption.js";
+import PlannedLocalConsumptionFlow from "./PlannedLocalConsumptionFlow.js";
+import PlannedLocalProductionFlow from "./PlannedLocalProductionFlow.js";
+import PlannedLocalTransformation from "./PlannedLocalTransformation.js";
+import ProductBatch from "./ProductBatch.js";
+import RealizedConsumptionFlow from "./RealizedConsumptionFlow.js";
+import RealizedProductionFlow from "./RealizedProductionFlow.js";
+import RealizedTransformation from "./RealizedTransformation.js";
+import RealStock from "./RealStock.js";
+import SocialMedia from "./SocialMedia.js";
+import TechnicalProduct from "./TechnicalProduct.js";
+import TheoreticalStock from "./TheoreticalStock.js";
+import VirtualPlace from "./VirtualPlace.js";
+import PhysicalPlace from "./PhysicalPlace.js";
 
 // Generated Interfaces
 import IAgent from "./IAgent.js";
@@ -52,6 +71,45 @@ import IPlannedConsumptionFlow from "./IPlannedConsumptionFlow.js";
 import IPlannedProductionFlow from "./IPlannedProductionFlow.js";
 import IPlannedTransformation from "./IPlannedTransformation.js";
 import IDefinedProduct from "./IDefinedProduct.js";
+import IDeliveryOption from "./IDeliveryOption.js";
+import IPhysicalPlace from "./IPhysicalPlace.js";
+import ITechnicalProduct from "./ITechnicalProduct.js";
+import IRealStock from "./IRealStock.js";
+import ITheoreticalStock from "./ITheoreticalStock.js";
+import IOpeningHoursSpecification from "./IOpeningHoursSpecification.js";
+import IPhoneNumber from "./IPhoneNumber.js";
+import ILocalizedProduct from "./ILocalizedProduct.js";
+import IPaymentMethod from "./IPaymentMethod.js";
+import IPhysicalProduct from "./IPhysicalProduct.js";
+import IPickupOption from "./IPickupOption.js";
+import IPlannedLocalConsumptionFlow from "./IPlannedLocalConsumptionFlow.js";
+import IPlannedLocalProductionFlow from "./IPlannedLocalProductionFlow.js";
+import IPlannedLocalTransformation from "./IPlannedLocalTransformation.js";
+import IProductBatch from "./IProductBatch.js";
+import IRealizedConsumptionFlow from "./IRealizedConsumptionFlow.js";
+import IRealizedProductionFlow from "./IRealizedProductionFlow.js";
+import IRealizedTransformation from "./IRealizedTransformation.js";
+import ISocialMedia from "./ISocialMedia.js";
+import IVirtualPlace from "./IVirtualPlace.js";
+import OpeningHoursSpecification from "./OpeningHoursSpecification.js";
+import ICertification from "./ICertification.js";
+import Certification from "./Certification.js";
+import IDeliveryStep from "./IDeliveryStep.js";
+import DeliveryStep from "./DeliveryStep.js";
+import IPickUpStep from "./IPickUpStep.js";
+import PickupStep from "./PickupStep.js";
+import IRoute from "./IRoute.js";
+import Route from "./Route.js";
+import ITemplateSaleSession from "./ITemplateSaleSession.js";
+import TemplateSaleSession from "./TemplateSaleSession.js";
+import IProductOption from "./IProductOption.js";
+import ProductOption from "./ProductOption.js";
+import IProductOptionValue from "./IProductOptionValue.js";
+import ProductOptionValue from "./ProductOptionValue.js";
+import IVariant from "./IVariant.js";
+import Variant from "./Variant.js";
+import IVariantCharacteristic from "./IVariantCharacteristic.js";
+import VariantCharacteristic from "./VariantCharacteristic.js";
 
 export default class ConnectorFactory implements IConnectorFactory {
 
@@ -66,125 +124,245 @@ export default class ConnectorFactory implements IConnectorFactory {
         datasetExt.addAll(dataset);
         return this.createFromRdfDataset(datasetExt);
     }
-    
-    public createAddress(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, street?: string, postalCode?: string, city?: string, country?: string}): IAddress {
+
+    public createAddress(parameters: IConnectorFactoryAddressCreateParams): IAddress {
         return new Address({ connector: this.connector, ...parameters });
     }
 
-    public createAllergenCharacteristic(parameters: {other?: Semanticable, unit?: ISKOSConcept, value?: number, allergenDimension?: ISKOSConcept}): IAllergenCharacteristic {
+    public createAllergenCharacteristic(parameters: IConnectorFactoryAllergenCharacteristicCreateParams): IAllergenCharacteristic {
         return new AllergenCharacteristic({ connector: this.connector, ...parameters });
     }
 
-    public createCatalog(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, maintainers?: IOrganization[], items?: ICatalogItem[]}): ICatalog {
+    public createCatalog(parameters: IConnectorFactoryCatalogCreateParams): ICatalog {
         return new Catalog({ connector: this.connector, ...parameters });
     }
 
-    public createCatalogItem(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, product?: ISuppliedProduct, sku?: string, stockLimitation?: number, offers?: IOffer[], catalogs?: ICatalog[]}): ICatalogItem {
+    public createCatalogItem(parameters: IConnectorFactoryCatalogItemCreateParams): ICatalogItem {
         return new CatalogItem({ connector: this.connector, ...parameters });
     }
 
-    public createCustomerCategory(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, description?: string}): ICustomerCategory {
+    public createCertification(parameters: IConnectorFactoryCertificationCreateParams): ICertification {
+        return new Certification({ connector: this.connector, ...parameters });
+    }
+
+    public createCustomerCategory(parameters: IConnectorFactoryCustomerCategoryCreateParams): ICustomerCategory {
         return new CustomerCategory({ connector: this.connector, ...parameters });
     }
 
-    public createOrganization(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, localizations?: IAddress[], description?: string, vatNumber?: string, customerCategories?: ICustomerCategory[], catalogs?: ICatalog[], catalogItems?: ICatalogItem[], suppliedProducts?: ISuppliedProduct[]}): IOrganization {
-        return new Organization({ connector: this.connector, ...parameters });
+    public createDeliveryOption(parameters: IConnectorFactoryDeliveryOptionCreateParams): IDeliveryOption {
+        return new DeliveryOption({ connector: this.connector, ...parameters });
     }
 
-    public createNutrientCharacteristic(parameters: {other?: Semanticable, unit?: ISKOSConcept, value?: number, nutrientDimension?: ISKOSConcept}): INutrientCharacteristic {
+    public createDeliveryStep(parameters: IConnectorFactoryDeliveryStepCreateParams): IDeliveryStep {
+        return new DeliveryStep({ connector: this.connector, ...parameters });
+    }
+
+    public createLocalizedProduct(parameters: IConnectorFactoryLocalizedProductCreateParams): ILocalizedProduct {
+        return new LocalizedProduct({ connector: this.connector, ...parameters });
+    }
+
+    public createNutrientCharacteristic(parameters: IConnectorFactoryNutrientCharacteristicCreateParams): INutrientCharacteristic {
         return new NutrientCharacteristic({ connector: this.connector, ...parameters });
     }
 
-    public createOffer(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, offeredItem?: ICatalogItem, offeredTo?: ICustomerCategory, price?: IPrice, stockLimitation?: number}): IOffer {
+    public createOffer(parameters: IConnectorFactoryOfferCreateParams): IOffer {
         return new Offer({ connector: this.connector, ...parameters });
     }
 
-    public createOrder(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, number?: string, date?: string, saleSession?: ISaleSession, client?: IAgent, lines?: IOrderLine[]}): IOrder {
+    public createOpeningHoursSpecification(parameters: IConnectorFactoryOpeningHoursSpecificationCreateParams): IOpeningHoursSpecification {
+        return new OpeningHoursSpecification({ connector: this.connector, ...parameters });
+    }
+
+    public createOrder(parameters: IConnectorFactoryOrderCreateParams): IOrder {
         return new Order({ connector: this.connector, ...parameters });
     }
 
-    public createOrderLine(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, quantity?: number, price?: IPrice, offer?: IOffer, order?: IOrder}): IOrderLine {
+    public createOrderLine(parameters: IConnectorFactoryOrderLineCreateParams): IOrderLine {
         return new OrderLine({ connector: this.connector, ...parameters });
     }
 
-    public createPerson(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, firstName?: string, lastName?: string, localizations?: IAddress[], organizations?: IOrganization[]}): IPerson {
+    public createOrganization(parameters: IConnectorFactoryOrganizationCreateParams): IOrganization {
+        return new Organization({ connector: this.connector, ...parameters });
+    }
+
+    public createPaymentMethod(parameters: IConnectorFactoryPaymentMethodCreateParams): IPaymentMethod {
+        return new PaymentMethod({ connector: this.connector, ...parameters });
+    }
+
+    public createPerson(parameters: IConnectorFactoryPersonCreateParams): IPerson {
         return new Person({ connector: this.connector, ...parameters });
     }
 
-    public createPhysicalCharacteristic(parameters: {other?: Semanticable, unit?: ISKOSConcept, value?: number, physicalDimension?: ISKOSConcept }): IPhysicalCharacteristic {
+    public createPhoneNumber(parameters: IConnectorFactoryPhoneNumberCreateParams): IPhoneNumber {
+        return new PhoneNumber({ connector: this.connector, ...parameters });
+    }
+
+    public createPhysicalCharacteristic(parameters: IConnectorFactoryPhysicalCharacteristicCreateParams): IPhysicalCharacteristic {
         return new PhysicalCharacteristic({ connector: this.connector, ...parameters });
     }
 
-    public createPrice(parameters: {other?: Semanticable, value?: number, vatRate?: number, unit?: ISKOSConcept}): IPrice {
-        return new Price({ connector: this.connector, ...parameters });
+    public createPhysicalPlace(parameters: IConnectorFactoryPhysicalPlaceCreateParams): IPhysicalPlace {
+        return new PhysicalPlace({ connector: this.connector, ...parameters });
     }
 
-    public createQuantity(parameters: {other?: Semanticable, unit?: ISKOSConcept, value?: number}): IQuantity {
-        return new QuantitativeValue({ connector: this.connector, ...parameters });
+    public createPhysicalProduct(parameters: IConnectorFactoryPhysicalProductCreateParams): IPhysicalProduct {
+        return new PhysicalProduct({ connector: this.connector, ...parameters });
     }
 
-    public createSaleSession(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, beginDate?: string, endDate?: string, quantity?: number, offers?: IOffer[]}): ISaleSession {
-        return new SaleSession({ connector: this.connector, ...parameters });
+    public createPickupOption(parameters: IConnectorFactoryPickupOptionCreateParams): IPickupOption {
+        return new PickupOption({ connector: this.connector, ...parameters });
     }
 
-    public createSuppliedProduct(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, name?: string, description?: string, productType?: ISKOSConcept, quantity?: IQuantity, alcoholPercentage?: number, lifetime?: string, claims?: ISKOSConcept[], usageOrStorageConditions?: string, allergenCharacteristics?: IAllergenCharacteristic[], nutrientCharacteristics?: INutrientCharacteristic[], physicalCharacteristics?: IPhysicalCharacteristic[], geographicalOrigin?: ISKOSConcept, catalogItems?: ICatalogItem[], certifications?: ISKOSConcept[], natureOrigin?: ISKOSConcept[], partOrigin?: ISKOSConcept[], totalTheoreticalStock?: number}): ISuppliedProduct {
-        return new SuppliedProduct({ connector: this.connector, ...parameters });
+    public createPickUpStep(parameters: IConnectorFactoryPickUpStepCreateParams): IPickUpStep {
+        return new PickupStep({ connector: this.connector, ...parameters });
     }
 
-    public createPlannedTransformation(parameters: {doNotStore?: boolean, semanticId?: string,other?: Semanticable, transformationType?: ISKOSConcept, consumptionFlow?: IPlannedConsumptionFlow, productionFlow?: IPlannedProductionFlow}): IPlannedTransformation {
-        return new PlannedTransformation({ connector: this.connector, ...parameters });
-    }
-
-    public createPlannedConsumptionFlow(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, quantity?: IQuantity, transformation?: IPlannedTransformation, product?: IDefinedProduct}): IPlannedConsumptionFlow {
+    public createPlannedConsumptionFlow(parameters: IConnectorFactoryPlannedConsumptionFlowCreateParams): IPlannedConsumptionFlow {
         return new PlannedConsumptionFlow({ connector: this.connector, ...parameters });
     }
 
-    public createPlannedProductionFlow(parameters: {doNotStore?: boolean, semanticId?: string, other?: Semanticable, quantity?: IQuantity, transformation?: IPlannedTransformation, product?: ISuppliedProduct}): IPlannedProductionFlow {
+    public createPlannedLocalConsumptionFlow(parameters: IConnectorFactoryPlannedLocalConsumptionFlowCreateParams): IPlannedLocalConsumptionFlow {
+        return new PlannedLocalConsumptionFlow({ connector: this.connector, ...parameters });
+    }
+
+    public createPlannedLocalProductionFlow(parameters: IConnectorFactoryPlannedLocalProductionFlowCreateParams): IPlannedLocalProductionFlow {
+        return new PlannedLocalProductionFlow({ connector: this.connector, ...parameters });
+    }
+
+    public createPlannedLocalTransformation(parameters: IConnectorFactoryPlannedLocalTransformationCreateParams): IPlannedLocalTransformation {
+        return new PlannedLocalTransformation({ connector: this.connector, ...parameters });
+    }
+
+    public createPlannedProductionFlow(parameters: IConnectorFactoryPlannedProductionFlowCreateParams): IPlannedProductionFlow {
         return new PlannedProductionFlow({ connector: this.connector, ...parameters });
+    }
+
+    public createPlannedTransformation(parameters: IConnectorFactoryPlannedTransformationCreateParams): IPlannedTransformation {
+        return new PlannedTransformation({ connector: this.connector, ...parameters });
+    }
+
+    public createPrice(parameters: IConnectorFactoryPriceCreateParams): IPrice {
+        return new Price({ connector: this.connector, ...parameters });
+    }
+
+    public createProductBatch(parameters: IConnectorFactoryProductBatchCreateParams): IProductBatch {
+        return new ProductBatch({ connector: this.connector, ...parameters });
+    }
+
+    public createProductOption(parameters: IConnectorFactoryProductOptionCreateParams): IProductOption {
+        return new ProductOption({ connector: this.connector, ...parameters });
+    }
+
+    public createProductOptionValue(parameters: IConnectorFactoryProductOptionValueCreateParams): IProductOptionValue {
+        return new ProductOptionValue({ connector: this.connector, ...parameters });
+    }
+
+    public createQuantity(parameters: IConnectorFactoryQuantityCreateParams): IQuantity {
+        return new QuantitativeValue({ connector: this.connector, ...parameters });
+    }
+
+    public createRealizedConsumptionFlow(parameters: IConnectorFactoryRealizedConsumptionFlowCreateParams): IRealizedConsumptionFlow {
+        return new RealizedConsumptionFlow({ connector: this.connector, ...parameters });
+    }
+
+    public createRealizedProductionFlow(parameters: IConnectorFactoryRealizedProductionFlowCreateParams): IRealizedProductionFlow {
+        return new RealizedProductionFlow({ connector: this.connector, ...parameters });
+    }
+
+    public createRealizedTransformation(parameters: IConnectorFactoryRealizedTransformationCreateParams): IRealizedTransformation {
+        return new RealizedTransformation({ connector: this.connector, ...parameters });
+    }
+
+    public createRealStock(parameters: IConnectorFactoryRealStockCreateParams): IRealStock {
+        return new RealStock({ connector: this.connector, ...parameters });
+    }
+
+    public createRoute(parameters: IConnectorFactoryRouteCreateParams): IRoute {
+        return new Route({ connector: this.connector, ...parameters });
+    }
+
+    public createSaleSession(parameters: IConnectorFactorySaleSessionCreateParams): ISaleSession {
+        return new SaleSession({ connector: this.connector, ...parameters });
+    }
+
+    public createSocialMedia(parameters: IConnectorFactorySocialMediaCreateParams): ISocialMedia {
+        return new SocialMedia({ connector: this.connector, ...parameters });
+    }
+
+    public createSuppliedProduct(parameters: IConnectorFactorySuppliedProductCreateParams): ISuppliedProduct {
+        return new SuppliedProduct({ connector: this.connector, ...parameters });
+    }
+
+    public createTechnicalProduct(parameters: IConnectorFactoryTechnicalProductCreateParams): ITechnicalProduct {
+        return new TechnicalProduct({ connector: this.connector, ...parameters });
+    }
+
+    public createTemplateSaleSession(parameters: IConnectorFactoryTemplateSaleSessionCreateParams): ITemplateSaleSession {
+        return new TemplateSaleSession({ connector: this.connector, ...parameters });
+    }
+
+    public createTheoreticalStock(parameters: IConnectorFactoryTheoreticalStockCreateParams): ITheoreticalStock {
+        return new TheoreticalStock({ connector: this.connector, ...parameters });
+    }
+
+    public createVariant(parameters: IConnectorFactoryVariantCreateParams): IVariant {
+        return new Variant({ connector: this.connector, ...parameters });
+    }
+
+    public createVariantCharacteristic(parameters: IConnectorFactoryVariantCharacteristicCreateParams): IVariantCharacteristic {
+        return new VariantCharacteristic({ connector: this.connector, ...parameters });
+    }
+
+    public createVirtualPlace(parameters: IConnectorFactoryVirtualPlaceCreateParams): IVirtualPlace {
+        return new VirtualPlace({ connector: this.connector, ...parameters });
     }
 
     public createFromType(type: string): Semanticable | undefined {
         let result: Semanticable | undefined = undefined;
-        const prefix: string = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#";
+        const prefix: string = "http://w3id.org/dfc/ontology/v2.0.0/src/DFC_BusinessOntology.owl#";
         switch (type) {
-            case prefix + "Organization":
-                result = this.createOrganization({ semanticId: "" });
-                break;
-            
             case prefix + "Address":
                 result = this.createAddress({ semanticId: "" });
                 break;
 
-            case prefix + "Person":
-                result = this.createPerson({ semanticId: "" });
-                break;
-            
-            case prefix + "CustomerCategory":
-                result = this.createCustomerCategory({ semanticId: "" });
-                break;
-
-            case prefix + "QuantitativeValue":
-                result = this.createQuantity({});
-                break;
-            
             case prefix + "AllergenCharacteristic":
                 result = this.createAllergenCharacteristic({});
                 break;
 
-            case prefix + "NutrientCharacteristic":
-                result = this.createNutrientCharacteristic({});
-                break;
-            
-            case prefix + "PhysicalCharacteristic":
-                result = this.createPhysicalCharacteristic({});
+            case prefix + "AsPlannedConsumptionFlow":
+                result = this.createPlannedConsumptionFlow({ semanticId: "" });
                 break;
 
-            case prefix + "SuppliedProduct":
-                result = this.createSuppliedProduct({ semanticId: "" });
+            case prefix + "AsPlannedLocalConsumptionFlow":
+                result = this.createPlannedLocalConsumptionFlow({ semanticId: "" });
                 break;
-            
-            case prefix + "Price":
-                result = this.createPrice({});
+
+            case prefix + "AsPlannedLocalProductionFlow":
+                result = this.createPlannedLocalProductionFlow({ semanticId: "" });
+                break;
+
+            case prefix + "AsPlannedLocalTransformation":
+                result = this.createPlannedLocalTransformation({ semanticId: "" });
+                break;
+
+            case prefix + "AsPlannedProductionFlow":
+                result = this.createPlannedProductionFlow({ semanticId: "" });
+                break;
+
+            case prefix + "AsPlannedTransformation":
+                result = this.createPlannedTransformation({ semanticId: "" });
+                break;
+
+            case prefix + "AsRealizedConsumptionFlow":
+                result = this.createRealizedConsumptionFlow({ semanticId: "" });
+                break;
+
+            case prefix + "AsRealizedProductionFlow":
+                result = this.createRealizedProductionFlow({ semanticId: "" });
+                break;
+
+            case prefix + "AsRealizedTransformation":
+                result = this.createRealizedTransformation({ semanticId: "" });
                 break;
 
             case prefix + "Catalog":
@@ -194,9 +372,38 @@ export default class ConnectorFactory implements IConnectorFactory {
             case prefix + "CatalogItem":
                 result = this.createCatalogItem({ semanticId: "" });
                 break;
-            
+
+            // There is a typo in the ontology, see https://github.com/datafoodconsortium/ontology/issues/217.
+            case prefix + "Certfication":
+                result = this.createCertification({ semanticId: "" });
+                break;
+
+            case prefix + "CustomerCategory":
+                result = this.createCustomerCategory({ semanticId: "" });
+                break;
+
+            case prefix + "DeliveryOption":
+                result = this.createDeliveryOption({ semanticId: "" });
+                break;
+
+            case prefix + "DeliveryStep":
+                result = this.createDeliveryStep({ semanticId: "" });
+                break;
+
+            case prefix + "LocalizedProduct":
+                result = this.createLocalizedProduct({ semanticId: "" });
+                break;
+
+            case prefix + "NutrientCharacteristic":
+                result = this.createNutrientCharacteristic({});
+                break;
+
             case prefix + "Offer":
                 result = this.createOffer({ semanticId: "" });
+                break;
+
+            case "https://schema.org/OpeningHoursSpecification":
+                result = this.createOpeningHoursSpecification({ semanticId: "" });
                 break;
 
             case prefix + "Order":
@@ -206,21 +413,114 @@ export default class ConnectorFactory implements IConnectorFactory {
             case prefix + "OrderLine":
                 result = this.createOrderLine({ semanticId: "" });
                 break;
+            
+            case prefix + "Organization":
+                result = this.createOrganization({ semanticId: "" });
+                break;
 
-            case prefix + "AsPlannedTransformation":
-                result = this.createPlannedTransformation({ semanticId: "" });
+            case prefix + "PaymentMethod":
+                result = this.createPaymentMethod({ semanticId: "" });
                 break;
-            
-            case prefix + "AsPlannedConsumptionFlow":
-                result = this.createPlannedConsumptionFlow({ semanticId: "" });
+
+            case prefix + "Person":
+                result = this.createPerson({ semanticId: "" });
                 break;
-            
-            case prefix + "AsPlannedProductionFlow":
-                result = this.createPlannedProductionFlow({ semanticId: "" });
+
+            case prefix + "PhoneNumber":
+                result = this.createPhoneNumber({ semanticId: "" });
+                break;
+
+            case prefix + "PhysicalCharacteristic":
+                result = this.createPhysicalCharacteristic({});
+                break;
+
+            case prefix + "PhysicalPlace":
+                result = this.createPhysicalPlace({ semanticId: "" });
+                break;
+
+            case prefix + "PhysicalProduct":
+                result = this.createPhysicalProduct({ semanticId: "" });
+                break;
+
+            case prefix + "PickupOption":
+                result = this.createPickupOption({ semanticId: "" });
+                break;
+
+            case prefix + "PickUpStep":
+                result = this.createPickUpStep({ semanticId: "" });
+                break;
+
+            case prefix + "Price":
+                result = this.createPrice({});
+                break;
+
+            case prefix + "ProductBatch":
+                result = this.createProductBatch({ semanticId: "" });
+                break;
+
+            case prefix + "ProductOption":
+                result = this.createProductOption({ semanticId: "" });
+                break;
+
+            case prefix + "ProductOptionValue":
+                result = this.createProductOptionValue({ semanticId: "" });
+                break;
+
+            case prefix + "QuantitativeValue":
+                result = this.createQuantity({});
+                break;
+
+            case prefix + "RealStock":
+                result = this.createRealStock({ semanticId: "" });
+                break;
+
+            case prefix + "Route":
+                result = this.createRoute({ semanticId: "" });
                 break;
 
             case prefix + "SaleSession":
                 result = this.createSaleSession({ semanticId: "" });
+                break;
+
+            case prefix + "SocialMedia":
+                result = this.createSocialMedia({ semanticId: "" });
+                break;
+
+            case prefix + "SuppliedProduct":
+                result = this.createSuppliedProduct({ semanticId: "" });
+                break;
+
+            case prefix + "TechnicalProduct":
+                result = this.createTechnicalProduct({ semanticId: "" });
+                break;
+
+            case prefix + "TemplateSaleSession":
+                result = this.createTemplateSaleSession({ semanticId: "" });
+                break;
+
+            case prefix + "TheoreticalStock":
+                result = this.createTheoreticalStock({ semanticId: "" });
+                break;
+
+            case prefix + "Variant":
+                result = this.createVariant({ semanticId: "" });
+                break;
+
+            // There is a typo in the ontology, see https://github.com/datafoodconsortium/ontology/issues/215.
+            case prefix + "VariantCaracteristic":
+                result = this.createVariantCharacteristic({ semanticId: "" });
+                break;
+
+            case prefix + "VirtualPlace":
+                result = this.createVirtualPlace({ semanticId: "" });
+                break;
+
+            case "http://www.w3.org/2002/07/owl#Ontology":
+                result = undefined;
+                break;
+
+            case "http://www.w3.org/2002/07/owl#Class":
+                result = undefined;
                 break;
 
             case "http://www.w3.org/2004/02/skos/core#Concept":
@@ -232,11 +532,11 @@ export default class ConnectorFactory implements IConnectorFactory {
                 // @ts-ignore
                 result._semanticType = "http://www.w3.org/2004/02/skos/core#ConceptScheme";
                 break;
-        
+
             default:
                 throw new Error(`Unknown type "${type}"`);
         }
-    
+
         return result;
     }
 
@@ -245,9 +545,9 @@ export default class ConnectorFactory implements IConnectorFactory {
         const quad = Array.from(dataset.filter((quad: any) => quad.predicate.value === rdfType))[0];
         const type = quad.object.value;
         const semanticObject: Semanticable | undefined = this.createFromType(type);
-        if (semanticObject) 
+        if (semanticObject)
             semanticObject.setSemanticPropertyAllFromRdfDataset(dataset);
         return semanticObject;
     }
-    
+
 }

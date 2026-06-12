@@ -4,14 +4,14 @@ import Connector from "../lib/Connector.js";
 
 const connector = new Connector();
 
-const json = `{"@context":"https://www.datafoodconsortium.org","@id":"http://myplatform.com/catalog1","@type":"dfc-b:Catalog","dfc-b:lists":{"@id":"http://myplatform.com/catalogItem1"},"dfc-b:maintainedBy":{"@id":"http://myplatform.com/enterprise1"}}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@id":"http://myplatform.com/catalog1","@type":"dfc-b:Catalog","dfc-b:lists":"http://myplatform.com/catalogItem1","dfc-b:maintainedBy":"http://myplatform.com/organization1"}`;
 
-const enterprise = connector.createEnterprise({
-    semanticId: "http://myplatform.com/enterprise1"
+const organization = connector.createOrganization({
+    semanticId: "http://myplatform.com/organization1"
 });
 
-const enterprise2 = connector.createEnterprise({
-    semanticId: "http://myplatform.com/enterprise2"
+const organization2 = connector.createOrganization({
+    semanticId: "http://myplatform.com/organization2"
 });
 
 const catalogItem = connector.createCatalogItem({
@@ -24,7 +24,7 @@ const catalogItem2 = connector.createCatalogItem({
 
 const catalog = connector.createCatalog({
     semanticId: "http://myplatform.com/catalog1",
-    maintainers: [enterprise],
+    maintainers: [organization],
     items: [catalogItem]
 });
 
@@ -47,7 +47,7 @@ test('Catalog:getSemanticId', () => {
 test('Catalog:getMaintainers', async () => {
     const maintainers = await catalog.getMaintainers();
     expect.strictEqual(maintainers.length, 1);
-    expect.strictEqual(maintainers[0].equals(enterprise), true);
+    expect.strictEqual(maintainers[0].equals(organization), true);
 });
 
 test('Catalog:getItems', async () => {
@@ -57,11 +57,11 @@ test('Catalog:getItems', async () => {
 });
 
 test('Catalog:addMaintainer', async () => {
-    catalog.addMaintainer(enterprise2);
+    catalog.addMaintainer(organization2);
     const maintainers = await catalog.getMaintainers();
     expect.strictEqual(maintainers.length, 2);
-    expect.strictEqual(maintainers[0].equals(enterprise), true);
-    expect.strictEqual(maintainers[1].equals(enterprise2), true);
+    expect.strictEqual(maintainers[0].equals(organization), true);
+    expect.strictEqual(maintainers[1].equals(organization2), true);
 });
 
 test('Catalog:addItem', async () => {
@@ -72,12 +72,23 @@ test('Catalog:addItem', async () => {
     expect.strictEqual(items[1].equals(catalogItem2), true);
 });
 
+test('Catalog:setItems', async () => {
+    const catalogItem3 = connector.createCatalogItem({
+        semanticId: "http://myplatform.com/catalogItem3"
+    });
+    expect.strictEqual((await catalog.getItems()).length, 2);
+    catalog.setItems([catalogItem3]);
+    const items = await catalog.getItems();
+    expect.strictEqual(items.length, 1);
+    expect.strictEqual(items[0].equals(catalogItem3), true);
+});
+
 /*
 test('Catalog:removeMaintainer', async () => {
     catalog.removeMaintainer(enterprise);
     const maintainers = await catalog.getMaintainers();
     expect.strictEqual(maintainers.length, 1);
-    expect.strictEqual(maintainers[0].equals(enterprise2), true);
+    expect.strictEqual(maintainers[0].equals(organization2), true);
 });
 
 test('Catalog:removeItem', async () => {

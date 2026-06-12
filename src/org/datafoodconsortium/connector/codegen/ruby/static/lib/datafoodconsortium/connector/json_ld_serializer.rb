@@ -31,8 +31,6 @@ class DataFoodConsortium::Connector::JsonLdSerializer
     end
 
     def process(*subjects)
-        return "" if subjects.empty?
-
         # Insert an input context on each subject so the properties could be prefixed. This way,
         # the DFC's context can be used.
         # See https://github.com/datafoodconsortium/connector-ruby/issues/11.

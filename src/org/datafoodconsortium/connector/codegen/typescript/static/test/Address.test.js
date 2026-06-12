@@ -1,18 +1,24 @@
 import expect from 'node:assert';
 import { test } from 'node:test';
 import Connector from "../lib/Connector.js";
+import SKOSConcept from "../lib/SKOSConcept.js";
 
 const connector = new Connector();
+
+const france = new SKOSConcept({ connector, semanticId: "http://publications.europa.eu/resource/authority/country/FRA" });
 
 const address = connector.createAddress({
     semanticId: "http://myplatform.com/address/address1",
     street: "1, place or Europe",
     postalCode: "00001",
     city: "Brussels",
-    country: "Belgium",
+    country: france,
+    latitude: 0.123,
+    longitude: 3.456,
+    region: "region"
 });
 
-const json = '{"@context":"https://www.datafoodconsortium.org","@id":"http://myplatform.com/address/address1","@type":"dfc-b:Address","dfc-b:hasCity":"Brussels","dfc-b:hasCountry":"Belgium","dfc-b:hasPostalCode":"00001","dfc-b:hasStreet":"1, place or Europe"}';
+const json = '{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@id":"http://myplatform.com/address/address1","@type":"dfc-b:Address","dfc-b:hasCity":"Brussels","dfc-b:hasCountry":"http://publications.europa.eu/resource/authority/country/FRA","dfc-b:hasPostalCode":"00001","dfc-b:hasStreet":"1, place or Europe","dfc-b:latitude":"0.123","dfc-b:longitude":"3.456","dfc-b:region":"region"}';
 
 test('Address:import', async () => {
     const imported = await connector.import(json);
@@ -42,8 +48,20 @@ test('Address:getCity', () => {
     expect.strictEqual(address.getCity(), "Brussels");
 });
 
-test('Address:getCountry', () => {
-    expect.strictEqual(address.getCountry(), "Belgium");
+test('Address:getCountry', async () => {
+    expect.strictEqual(await address.getCountry(), france);
+});
+
+test('Address:getLatitude', () => {
+    expect.strictEqual(address.getLatitude(), 0.123);
+});
+
+test('Address:getLongitude', () => {
+    expect.strictEqual(address.getLongitude(), 3.456);
+});
+
+test('Address:getRegion', () => {
+    expect.strictEqual(address.getRegion(), "region");
 });
 
 test('Address:setStreet', () => {
@@ -61,7 +79,22 @@ test('Address:setCity', () => {
     expect.strictEqual(address.getCity(), "Paris");
 });
 
-test('Address:setCountry', () => {
-    address.setCountry("France");
-    expect.strictEqual(address.getCountry(), "France");
+test('Address:setCountry', async () => {
+    address.setCountry(france);
+    expect.strictEqual(await address.getCountry(), france);
+});
+
+test('Address:setLatitude', () => {
+    address.setLatitude(1.234);
+    expect.strictEqual(address.getLatitude(), 1.234);
+});
+
+test('Address:setLongitude', () => {
+    address.setLongitude(2.345);
+    expect.strictEqual(address.getLongitude(), 2.345);
+});
+
+test('Address:setRegion', () => {
+    address.setRegion("region2");
+    expect.strictEqual(address.getRegion(), "region2");
 });

@@ -144,7 +144,7 @@ return [if (returned.type.name = 'Real' or returned.type.name = 'Integer')]Numbe
 [let parameter: Parameter = operation.getInputParameter()]
 [let property: Property = operation.getProperty(aClass)]
 [let map: String = property.getMapping()][if (parameter.type.isPrimitive())]
-this.setSemanticPropertyLiteral("[map/]", [parameter.name/]);[elseif (parameter.upper = -1)]
+this.setSemanticPropertyLiteral[if (parameter.upper = *)]All[/if]("[map/]", [parameter.name/]);[elseif (parameter.upper = -1)]
 this.getSemanticPropertyAll("[map/]").forEach((prop) => {
 	this.connector.removeFromStore(prop);
 });

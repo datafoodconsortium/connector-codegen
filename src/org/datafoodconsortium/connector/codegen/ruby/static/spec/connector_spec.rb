@@ -36,4 +36,10 @@ RSpec.describe DataFoodConsortium::Connector::Connector do
     expect(result.semanticId).to eq "https://example.net/tomato"
     expect(result.name).to eq "Tomato"
   end
+
+  it "imports valid but empty documents" do
+    json = "{}"
+    result = connector.import(json)
+    expect(result).to eq nil
+  end
 end

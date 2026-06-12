@@ -7,12 +7,114 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.0.0]
+## [2.0.0] - 2026-06-10
 
 This version has been generated using:
 
 - [Connector code generator v1.2.0 branch](https://github.com/datafoodconsortium/connector-codegen/tree/v1.2.0).
 - [UML data model PR 29](https://github.com/datafoodconsortium/data-model-uml/pull/29).
+
+**This version contains breaking changes introduced by the ontology, see below.**
+
+### Added
+
+Classes:
+- Add `ical:Vevent`
+- Add `ical:Value_RECUR`
+- Add `geo:Feature`
+- Add `geo:Properties`
+- Add `geo:Geometry`
+- Add `geo:Point`
+- Add `geo:Polygon`
+- Add `Certification`
+- Add `DeliveryStep`
+- Add `Organization`
+- Add `PickUpStep`
+- Add `ProductOption`
+- Add `ProductOptionValue`
+- Add `Route`
+- Add `TemplateSaleSession`
+- Add `Variant`
+- Add `VariantCaracteristic`
+
+Properties:
+- Add `Catalog:startDate`
+- Add `PlannedLocalTransformation:startDate`
+- Add `RealizedTransformation:startDate`
+- Add `SuppliedProduct:referenceOf`.
+- Add `TechnicalProduct:referenceOf`.
+
+### Changed
+
+- `Stock:availabilityDate` is now a 1-1 property (**BREAKING CHANGE**)
+- `PaymentMethod:paymentMethodProvider` is now a 1-1 property (**BREAKING CHANGE**)
+- `PaymentMethod:paymentMethodType` is now a 1-1 property (**BREAKING CHANGE**)
+- `Variant:isVariantOf is now a `Variant` instead of `DefinedProduct` (**BREAKING CHANGE**)
+
+### Removed
+
+- Removed the `Enterprise` class. It was renamed to `Organization` (**BREAKING CHANGE**)
+
+## [1.4.0] - 2026-05-21
+
+Generated from [UML model 3.4.0](https://github.com/datafoodconsortium/data-model-uml/releases/tag/v3.4.0) using the [Connector codegen 1.2.0](https://github.com/datafoodconsortium/connector-codegen/releases/tag/v1.2.0).
+
+To avoid name conflict with newer major versions, this version has been published as a new package https://rubygems.org/gems/datafoodconsortium-connector-v1.
+
+The module name has been changed to DataFoodConsortium::ConnectorV1, the package files and folder were renamed to connector_v1.
+
+**This version contains breaking changes introduced by the ontology, see below.**
+
+### Added
+
+Accessors and mutators:
+- Add `Agent:socialMedias` setter.
+- Add `Agent:websites` setter.
+- Add `Agent:emails` setter.
+- Add `Catalog:maintainers` setter and remover.
+- Add `Catalog:items` setter.
+- Add `CatalogItem:catalogs` setter and wrong remover.
+- Add `CatalogItem:offers` setter and remover.
+- Add `CustomerCategory:name` getter and setter.
+- Add `DefinedProduct:partOrigin` setter.
+- Add `DefinedProduct:natureOrigin` setter.
+- Add `DefinedProduct:certifications` setter.
+- Add `DefinedProduct:localizedProducts` accessors and mutators.
+- Add `DefinedProduct:catalogItems` setter and remover.
+- Add `DefinedProduct:images` adder, getter, setter and remover.
+- Add `DefinedProduct:physicalCharacteristics` setter.
+- Add `DefinedProduct:nutrientCharacteristics` setter.
+- Add `DefinedProduct:allergenCharacteristics` setter.
+- Add `DefinedProduct:claims` setter.
+- Add `Enterprise:technicalProducts` setter and remover.
+- Add `Enterprise:catalogItems` setter and remover.
+- Add `Enterprise:customerCategories` setter and remover.
+- Add `Enterprise:suppliedProducts` setter and remover.
+- Add `Order:lines` setter and remover.
+- Add `Order:paymentMethod` getter and setter.
+- Add `Person:affiliatedOrgs` setter.
+- Add `SaleSession:offers` setter and remover.
+
+New objects:
+- Add `OpeningHoursSpecification`.
+
+### Fixed
+
+- Fix `Agent:localizations` setter.
+- Fix `Agent:phoneNumbers` setter.
+
+### Changed
+
+- `Address:country` is now a `ISKOSConcept` to reflect ontology v1.16 state (**BREAKING CHANGE**).
+- Rename `hasIncome` -> `hasInput` and `hasOutcome` -> `hasOutput` in `PlannedTransformation` (**BREAKING CHANGE**).
+- Rename `incomeOf` > `inputOf` in `PlannedConsumptionFlow` (**BREAKING CHANGE**).
+- Rename `outcomeOf` -> `outpufOf` in `PlannedProductionFlow` (**BREAKING CHANGE**).
+- Rename `PhysicalPlace:addresses` to `PhysicalPlace:address` (singular) to support correct cardinatility (**BREAKING CHANGE**).
+- Rename `PhysicalPlace:mainContact` to `PhysicalPlace:mainContacts` (plural) to support correct cardinatility (**BREAKING CHANGE**).
+
+### Removed
+
+- Remove the `Quantity` class as there is no such class in the ontology. We should use `QuantitativeValue` (**BREAKING CHANGE**).
 
 ## [1.3.0] - 2025-12-17
 
@@ -38,7 +140,6 @@ This version has been generated using:
 
 - Bump DFC context from 1.14.0 to 1.16.0
 - Bump dev dependencies
-
 
 ## [1.1.0] - 2025-01-14
 
@@ -199,8 +300,9 @@ This version has been generated using the [code generator](https://github.com/da
 
 - Initial version of this library.
 
-[unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.3.0...HEAD
-[2.0.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.3.0...HEAD
+[unreleased]: https://github.com/datafoodconsortium/connector-ruby/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.4.0...v2.0.0
+[1.4.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/datafoodconsortium/connector-ruby/compare/v1.0.0...v1.1.0

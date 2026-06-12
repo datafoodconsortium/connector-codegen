@@ -7,9 +7,10 @@ RSpec.describe DataFoodConsortium::Connector::Offer do
     subject = DataFoodConsortium::Connector::Offer.new(
       "https://myplatform.com/o"
     )
-    result = connector.export(subject)
-    expect(result).to eq(
-      '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/o","@type":"dfc-b:Offer"}'
+    result = exported_json(subject)
+    expect(result).to include(
+      "@id" => "https://myplatform.com/o",
+      "@type" => "dfc-b:Offer",
     )
   end
 
@@ -27,9 +28,19 @@ RSpec.describe DataFoodConsortium::Connector::Offer do
       offeredItem: ci,
       offeredTo: cc
     )
-    result = connector.export(subject)
-    expect(result).to eq(
-      '{"@context":"https://www.datafoodconsortium.org","@id":"https://myplatform.com/o","@type":"dfc-b:Offer","dfc-b:hasPrice":{"@type":"dfc-b:Price","dfc-b:value":12.78,"dfc-b:VATrate":5.22,"dfc-b:hasUnit":"dfc-m:Euro"},"dfc-b:stockLimitation":52,"dfc-b:offeredItem":"https://myplatform.com/ci","dfc-b:offeredTo":"https://myplatform.com/cc"}'
+    result = exported_json(subject)
+    expect(result).to include(
+      "@id" => "https://myplatform.com/o",
+      "@type" => "dfc-b:Offer",
+      "dfc-b:hasPrice" => {
+        "@type" => "dfc-b:Price",
+        "dfc-b:value" => 12.78,
+        "dfc-b:VATrate" => 5.22,
+        "dfc-b:hasUnit" => "dfc-m:Euro"
+      },
+      "dfc-b:stockLimitation" => 52,
+      "dfc-b:offeredItem" => "https://myplatform.com/ci",
+      "dfc-b:offeredTo" => "https://myplatform.com/cc",
     )
   end
 end

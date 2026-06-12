@@ -14,7 +14,7 @@ const quantitativeValue = connector.createQuantity({
     unit: kilogram 
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org","@id":"_:b1","@type":"dfc-b:QuantitativeValue","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@id":"_:b1","@type":"dfc-b:QuantitativeValue","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1"}`;
 
 test('QuantitativeValue:import', async () => {
     const importedAll = await connector.import(json);

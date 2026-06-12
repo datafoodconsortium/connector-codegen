@@ -29,7 +29,7 @@ const orderLine = connector.createOrderLine({
     quantity: 2
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org","@graph":[{"@id":"_:b1","@type":"dfc-b:Price","dfc-b:VATrate":"19.9","dfc-b:hasUnit":"dfc-m:Euro","dfc-b:value":"5.42"},{"@id":"http://myplatform.com/orderLine1","@type":"dfc-b:OrderLine","dfc-b:concerns":{"@id":"http://myplatform.com/offer1"},"dfc-b:hasPrice":{"@id":"_:b1"},"dfc-b:partOf":{"@id":"http://myplatform.com/order1"},"dfc-b:quantity":"2"}]}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@graph":[{"@id":"_:b1","@type":"dfc-b:Price","dfc-b:VATrate":"19.9","dfc-b:hasUnit":"dfc-m:Euro","dfc-b:value":"5.42"},{"@id":"http://myplatform.com/orderLine1","@type":"dfc-b:OrderLine","dfc-b:concerns":"http://myplatform.com/offer1","dfc-b:hasPrice":"_:b1","dfc-b:partOf":"http://myplatform.com/order1","dfc-b:quantity":"2"}]}`;
 
 test('OrderLine:import', async () => {
     const imported = await connector.import(json);
