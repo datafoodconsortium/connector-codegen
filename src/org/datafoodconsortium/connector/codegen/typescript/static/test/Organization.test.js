@@ -61,8 +61,8 @@ const catalogItem2 = connector.createCatalogItem({
     semanticId: "http://myplatform.com/catalogItem2"
 });
 
-const enterprise = connector.createEnterprise({
-    semanticId: "http://myplatform.com/enterprise1",
+const organization = connector.createOrganization({
+    semanticId: "http://myplatform.com/organization1",
     name: "name",
     description: "description",
     localizations: [address],
@@ -76,168 +76,168 @@ const enterprise = connector.createEnterprise({
     logo: "logo"
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@id":"http://myplatform.com/enterprise1","@type":"dfc-b:Enterprise","dfc-b:VATnumber":"vatNumber","dfc-b:defines":"http://myplatform.com/customerCategory1","dfc-b:hasAddress":"http://myplatform.com/address1","dfc-b:hasDescription":"description","dfc-b:hasMainContact":"http://myplatform.com/mainContact","dfc-b:logo":"logo","dfc-b:maintains":"http://myplatform.com/catalog1","dfc-b:manages":"http://myplatform.com/catalogItem1","dfc-b:name":"name","dfc-b:proposes":"http://myplatform.com/technicalProduct","dfc-b:supplies":"http://myplatform.com/suppliedProduct1"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@id":"http://myplatform.com/organization1","@type":"dfc-b:Organization","dfc-b:VATnumber":"vatNumber","dfc-b:defines":"http://myplatform.com/customerCategory1","dfc-b:hasAddress":"http://myplatform.com/address1","dfc-b:hasDescription":"description","dfc-b:hasMainContact":"http://myplatform.com/mainContact","dfc-b:logo":"logo","dfc-b:maintains":"http://myplatform.com/catalog1","dfc-b:manages":"http://myplatform.com/catalogItem1","dfc-b:name":"name","dfc-b:proposes":"http://myplatform.com/technicalProduct","dfc-b:supplies":"http://myplatform.com/suppliedProduct1"}`;
 
-test('Enterprise:import', async () => {
+test('Organization:import', async () => {
     const imported = await connector.import(json);
-    const importedEnterprise = imported[0];
+    const importedOrganization = imported[0];
     expect.strictEqual(imported.length, 1);
-    expect.strictEqual(importedEnterprise.equals(enterprise), true);
+    expect.strictEqual(importedOrganization.equals(organization), true);
 });
 
-test('Enterprise:export', async () => {
-    const serialized = await connector.export([enterprise]);
+test('Organization:export', async () => {
+    const serialized = await connector.export([organization]);
     expect.strictEqual(serialized, json);
 });
 
-test('Enterprise:getSemanticId', () => {
-    expect.strictEqual(enterprise.getSemanticId(), "http://myplatform.com/enterprise1");
+test('Organization:getSemanticId', () => {
+    expect.strictEqual(organization.getSemanticId(), "http://myplatform.com/organization1");
 });
 
-test('Enterprise:getName', () => {
-    expect.strictEqual(enterprise.getName(), "name");
+test('Organization:getName', () => {
+    expect.strictEqual(organization.getName(), "name");
 });
 
-test('Enterprise:getDescription', () => {
-    expect.strictEqual(enterprise.getDescription(), "description");
+test('Organization:getDescription', () => {
+    expect.strictEqual(organization.getDescription(), "description");
 });
 
-test('Enterprise:getLocalizations', async () => {
-    const localizations = await enterprise.getLocalizations();
+test('Organization:getLocalizations', async () => {
+    const localizations = await organization.getLocalizations();
     expect.strictEqual(localizations.length, 1);
     expect.strictEqual(localizations[0].equals(address), true);
 });
 
-test('Enterprise:getVatNumber', () => {
-    expect.strictEqual(enterprise.getVatNumber(), "vatNumber");
+test('Organization:getVatNumber', () => {
+    expect.strictEqual(organization.getVatNumber(), "vatNumber");
 });
 
-test('Enterprise:getCustomerCategories', async () => {
-    const customerCategories = await enterprise.getCustomerCategories();
+test('Organization:getCustomerCategories', async () => {
+    const customerCategories = await organization.getCustomerCategories();
     expect.strictEqual(customerCategories.length, 1);
     expect.strictEqual(customerCategories[0].equals(customerCategory), true);
 });
 
-test('Enterprise:getSuppliedProducts', async () => {
-    const suppliedProducts = await enterprise.getSuppliedProducts();
+test('Organization:getSuppliedProducts', async () => {
+    const suppliedProducts = await organization.getSuppliedProducts();
     expect.strictEqual(suppliedProducts.length, 1);
     expect.strictEqual(suppliedProducts[0].equals(suppliedProduct), true);
 });
 
-test('Enterprise:getProposedTechnicalProducts', async () => {
-    const technicalProducts = await enterprise.getProposedTechnicalProducts();
+test('Organization:getProposedTechnicalProducts', async () => {
+    const technicalProducts = await organization.getProposedTechnicalProducts();
     expect.strictEqual(technicalProducts.length, 1);
     expect.strictEqual(technicalProducts[0].equals(technicalProduct), true);
 });
 
-test('Enterprise:getMainContact', async () => {
-    expect.strictEqual(await enterprise.getMainContact(), mainContact);
+test('Organization:getMainContact', async () => {
+    expect.strictEqual(await organization.getMainContact(), mainContact);
 });
 
-test('Enterprise:getDescription', () => {
-    expect.strictEqual(enterprise.getLogo(), "logo");
+test('Organization:getDescription', () => {
+    expect.strictEqual(organization.getLogo(), "logo");
 });
 
-test('Enterprise:getMaintainedCatalogs', async () => {
-    const catalogs = await enterprise.getMaintainedCatalogs();
+test('Organization:getMaintainedCatalogs', async () => {
+    const catalogs = await organization.getMaintainedCatalogs();
     expect.strictEqual(catalogs.length, 1);
     expect.strictEqual(catalogs[0].equals(catalog), true);
 });
 
-test('Enterprise:getManagedCatalogItems', async () => {
-    const catalogItems = await enterprise.getManagedCatalogItems();
+test('Organization:getManagedCatalogItems', async () => {
+    const catalogItems = await organization.getManagedCatalogItems();
     expect.strictEqual(catalogItems.length, 1);
     expect.strictEqual(catalogItems[0].equals(catalogItem), true);
 });
 
-test('Enterprise:setName', () => {
-    enterprise.setName("name2");
-    expect.strictEqual(enterprise.getName(), "name2");
+test('Organization:setName', () => {
+    organization.setName("name2");
+    expect.strictEqual(organization.getName(), "name2");
 });
 
-test('Enterprise:setDescription', () => {
-    enterprise.setDescription("description2");
-    expect.strictEqual(enterprise.getDescription(), "description2");
+test('Organization:setDescription', () => {
+    organization.setDescription("description2");
+    expect.strictEqual(organization.getDescription(), "description2");
 });
 
-test('Enterprise:addLocalization', async () => {
-    enterprise.addLocalization(address2);
-    const localizations = await enterprise.getLocalizations();
+test('Organization:addLocalization', async () => {
+    organization.addLocalization(address2);
+    const localizations = await organization.getLocalizations();
     expect.strictEqual(localizations.length, 2);
     expect.strictEqual(localizations[1].equals(address2), true);
 });
 
-test('Enterprise:setVatNumber', () => {
-    enterprise.setVatNumber("vatNumber2")
-    expect.strictEqual(enterprise.getVatNumber(), "vatNumber2");
+test('Organization:setVatNumber', () => {
+    organization.setVatNumber("vatNumber2")
+    expect.strictEqual(organization.getVatNumber(), "vatNumber2");
 });
 
-test('Enterprise:addCustomerCategory', async () => {
-    enterprise.addCustomerCategory(customerCategory2);
-    const customerCategories = await enterprise.getCustomerCategories();
+test('Organization:addCustomerCategory', async () => {
+    organization.addCustomerCategory(customerCategory2);
+    const customerCategories = await organization.getCustomerCategories();
     expect.strictEqual(customerCategories.length, 2);
     expect.strictEqual(customerCategories[1].equals(customerCategory2), true);
 });
 
-test('Enterprise:supplyProduct', async () => {
-    enterprise.supplyProduct(suppliedProduct2);
-    const suppliedProducts = await enterprise.getSuppliedProducts();
+test('Organization:supplyProduct', async () => {
+    organization.supplyProduct(suppliedProduct2);
+    const suppliedProducts = await organization.getSuppliedProducts();
     expect.strictEqual(suppliedProducts.length, 2);
     expect.strictEqual(suppliedProducts[0].equals(suppliedProduct), true);
     expect.strictEqual(suppliedProducts[1].equals(suppliedProduct2), true);
 });
 
-test('Enterprise:proposeTechnicalProducts', async () => {
-    enterprise.proposeTechnicalProducts(technicalProduct2);
-    const technicalProducts = await enterprise.getProposedTechnicalProducts();
+test('Organization:proposeTechnicalProducts', async () => {
+    organization.proposeTechnicalProducts(technicalProduct2);
+    const technicalProducts = await organization.getProposedTechnicalProducts();
     expect.strictEqual(technicalProducts.length, 2);
     expect.strictEqual(technicalProducts[0].equals(technicalProduct), true);
     expect.strictEqual(technicalProducts[1].equals(technicalProduct2), true);
 });
 
-test('Enterprise:setMainContact', async () => {
-    enterprise.setMainContact(mainContact2)
-    expect.strictEqual(await enterprise.getMainContact(), mainContact2);
+test('Organization:setMainContact', async () => {
+    organization.setMainContact(mainContact2)
+    expect.strictEqual(await organization.getMainContact(), mainContact2);
 });
 
-test('Enterprise:setLogo', () => {
-    enterprise.setLogo("logo2");
-    expect.strictEqual(enterprise.getLogo(), "logo2");
+test('Organization:setLogo', () => {
+    organization.setLogo("logo2");
+    expect.strictEqual(organization.getLogo(), "logo2");
 });
 
 /*
-test('Enterprise:unsupplyProduct', async () => {
+test('Organization:unsupplyProduct', async () => {
     enterprise.unsupplyProduct(suppliedProduct);
     const suppliedProducts = await enterprise.getSuppliedProducts();
     expect.strictEqual(suppliedProducts.length, 1);
     expect.strictEqual(suppliedProducts[0].equals(suppliedProduct2), true);
 });*/
 
-test('Enterprise:maintainCatalog', async () => {
-    enterprise.maintainCatalog(catalog2);
-    const catalogs = await enterprise.getMaintainedCatalogs();
+test('Organization:maintainCatalog', async () => {
+    organization.maintainCatalog(catalog2);
+    const catalogs = await organization.getMaintainedCatalogs();
     expect.strictEqual(catalogs.length, 2);
     expect.strictEqual(catalogs[0].equals(catalog), true);
     expect.strictEqual(catalogs[1].equals(catalog2), true);
 });
 
 /*
-test('Enterprise:unmaintainCatalog', async () => {
+test('Organization:unmaintainCatalog', async () => {
     enterprise.unmaintainCatalog(catalog);
     const catalogs = await enterprise.getMaintainedCatalogs();
     expect(catalogs.length).strictEqual();
     expect.strictEqual(catalogs[0].equals(catalog2), true);
 });*/
 
-test('Enterprise:manageCatalogItem', async () => {
-    enterprise.manageCatalogItem(catalogItem2);
-    const catalogItems = await enterprise.getManagedCatalogItems();
+test('Organization:manageCatalogItem', async () => {
+    organization.manageCatalogItem(catalogItem2);
+    const catalogItems = await organization.getManagedCatalogItems();
     expect.strictEqual(catalogItems.length, 2);
     expect.strictEqual(catalogItems[1].equals(catalogItem2), true);
 });
 
 /*
-test('Enterprise:unmanageCatalogItem', async () => {
+test('Organization:unmanageCatalogItem', async () => {
     enterprise.unmanageCatalogItem(catalogItem);
     const catalogItems = await enterprise.getManagedCatalogItems();
     expect.strictEqual(catalogItems.length, 1);

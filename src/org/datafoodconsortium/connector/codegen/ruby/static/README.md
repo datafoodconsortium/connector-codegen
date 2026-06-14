@@ -237,6 +237,6 @@ The Pull Requests should be made on our [source code generator repository](https
 
 To make the lockfile (*Gemfile.lock*), type `bundler lock`.
 
-To generate the *.gem*, type `gem build connector_v1.gemspec`.
+To generate the *.gem*, type `gem build connector.gemspec`.
 
 To push the generated gem to rubygem.org, type `gem push -k dfc datafoodconsortium-connector-<...>.gem` where *dfc* is your credential key.

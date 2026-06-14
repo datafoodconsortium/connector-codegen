@@ -7,16 +7,16 @@
 [import org::datafoodconsortium::connector::codegen::ruby::classifier /]
 
 [template public generateClass(model: Model, aClass : Class)]
-[file (getProperty('ruby_outputFolder_src') + 'connector_v1/' + generateFileName(aClass.name).concat('.rb'), false, 'UTF-8')]
+[file (getProperty('ruby_outputFolder_src') + 'connector/' + generateFileName(aClass.name).concat('.rb'), false, 'UTF-8')]
 [generateLicence()/]
 
 [generateImports(aClass)/]
-class DataFoodConsortium::ConnectorV1::[aClass.name.toUpperFirst()/][generateGeneralization(aClass)/]
+class DataFoodConsortium::Connector::[aClass.name.toUpperFirst()/][generateGeneralization(aClass)/]
 [if (aClass.isSemantic() and aClass.generalization->isEmpty())]
     include VirtualAssembly::Semantizer::SemanticObject
 [/if]
 [if (aClass.isSKOSConceptClass())]
-    include DataFoodConsortium::ConnectorV1::SKOSHelper
+    include DataFoodConsortium::Connector::SKOSHelper
 [/if]
 [if (aClass.isSemantic())]
 
@@ -41,5 +41,5 @@ end
 [/template]
 
 [template public generateGeneralization(classifier: Classifier)]
-[if (not (classifier.generalization->isEmpty()))] < [for (generalization: Generalization | classifier.generalization) separator(', ')]DataFoodConsortium::ConnectorV1::[generalization.general.name/][/for][/if]
+[if (not (classifier.generalization->isEmpty()))] < [for (generalization: Generalization | classifier.generalization) separator(', ')]DataFoodConsortium::Connector::[generalization.general.name/][/for][/if]
 [/template]

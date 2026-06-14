@@ -11,12 +11,40 @@ This connector will also help to import and export data so one can exchange info
 
 You can install the connector with the following command: `npm i @datafoodconsortium/connector`.
 
+From NPM version 6 you can use different versions of a same package using *package-aliasing* with the following syntax : `npm install <alias>@npm:<package-name>@<version>`.
+
+For instance you can install the connector v1 and v2 versions using:
+```bash
+npm install dfc-connector-v1@npm:@datafoodconsortium/connector@1.0.0;
+npm install dfc-connector-v2@npm:@datafoodconsortium/connector@2.0.0;
+```
+
+Or in your *package.json*:
+```json
+  "dependencies": {
+    "dfc-connector-v1": "npm:@datafoodconsortium/connector@1.0.0",
+    "dfc-connector-v2": "npm:@datafoodconsortium/connector@2.0.0"
+  }
+```
+
 ### Import and use the connector
 Then in you JS file, import the newly installed connector:
 ```JS
 import { Connector } from '@datafoodconsortium/connector';
 
 const connector = new Connector();
+```
+
+Or with *package-aliasing* (see below):
+```TS
+import { Connector as ConnectorV1 } from 'dfc-connector-v1';
+import { Connector as ConnectorV2 } from 'dfc-connector-v2';
+
+const connectorV1 = new ConnectorV1();
+const connectorV2 = new ConnectorV2();
+
+connectorV1.someMethod();
+connectorV2.someMethod();
 ```
 
 ### Load the taxonomies
@@ -112,15 +140,17 @@ createAddress(parameters: IConnectorFactoryAddressCreateParams): IAddress;
 createAllergenCharacteristic(parameters: IConnectorFactoryAllergenCharacteristicCreateParams): IAllergenCharacteristic;
 createCatalog(parameters: IConnectorFactoryCatalogCreateParams): ICatalog;
 createCatalogItem(parameters: IConnectorFactoryCatalogItemCreateParams): ICatalogItem;
+createCertification(parameters: IConnectorFactoryCertificationCreateParams): ICertification;
 createCustomerCategory(parameters: IConnectorFactoryCustomerCategoryCreateParams): ICustomerCategory;
 createDeliveryOption(parameters: IConnectorFactoryDeliveryOptionCreateParams): IDeliveryOption;
-createEnterprise(parameters: IConnectorFactoryEnterpriseCreateParams): IEnterprise;
+createDeliveryStep(parameters: IConnectorFactoryDeliveryStepCreateParams): IDeliveryStep;
 createLocalizedProduct(parameters: IConnectorFactoryLocalizedProductCreateParams): ILocalizedProduct;
 createNutrientCharacteristic(parameters: IConnectorFactoryNutrientCharacteristicCreateParams): INutrientCharacteristic;
 createOffer(parameters: IConnectorFactoryOfferCreateParams): IOffer;
 createOpeningHoursSpecification(parameters: IConnectorFactoryOpeningHoursSpecificationCreateParams): IOpeningHoursSpecification;
 createOrder(parameters: IConnectorFactoryOrderCreateParams): IOrder;
 createOrderLine(parameters: IConnectorFactoryOrderLineCreateParams): IOrderLine;
+createOrganization(parameters: IConnectorFactoryOrganizationCreateParams): IOrganization;
 createPaymentMethod(parameters: IConnectorFactoryPaymentMethodCreateParams): IPaymentMethod;
 createPerson(parameters: IConnectorFactoryPersonCreateParams): IPerson;
 createPhoneNumber(parameters: IConnectorFactoryPhoneNumberCreateParams): IPhoneNumber;
@@ -128,6 +158,7 @@ createPhysicalCharacteristic(parameters: IConnectorFactoryPhysicalCharacteristic
 createPhysicalPlace(parameters: IConnectorFactoryPhysicalPlaceCreateParams): IPhysicalPlace;
 createPhysicalProduct(parameters: IConnectorFactoryPhysicalProductCreateParams): IPhysicalProduct;
 createPickupOption(parameters: IConnectorFactoryPickupOptionCreateParams): IPickupOption;
+createPickUpStep(parameters: IConnectorFactoryPickUpStepCreateParams): IPickUpStep;
 createPlannedConsumptionFlow(parameters: IConnectorFactoryPlannedConsumptionFlowCreateParams): IPlannedConsumptionFlow;
 createPlannedLocalConsumptionFlow(parameters: IConnectorFactoryPlannedLocalConsumptionFlowCreateParams): IPlannedLocalConsumptionFlow;
 createPlannedLocalProductionFlow(parameters: IConnectorFactoryPlannedLocalProductionFlowCreateParams): IPlannedLocalProductionFlow;
@@ -136,16 +167,22 @@ createPlannedProductionFlow(parameters: IConnectorFactoryPlannedProductionFlowCr
 createPlannedTransformation(parameters: IConnectorFactoryPlannedTransformationCreateParams): IPlannedTransformation;
 createPrice(parameters: IConnectorFactoryPriceCreateParams): IPrice;
 createProductBatch(parameters: IConnectorFactoryProductBatchCreateParams): IProductBatch;
+createProductOption(parameters: IConnectorFactoryProductOptionCreateParams): IProductOption;
+createProductOptionValue(parameters: IConnectorFactoryProductOptionValueCreateParams): IProductOptionValue;
 createQuantity(parameters: IConnectorFactoryQuantityCreateParams): IQuantity;
 createRealizedConsumptionFlow(parameters: IConnectorFactoryRealizedConsumptionFlowCreateParams): IRealizedConsumptionFlow;
 createRealizedProductionFlow(parameters: IConnectorFactoryRealizedProductionFlowCreateParams): IRealizedProductionFlow;
 createRealizedTransformation(parameters: IConnectorFactoryRealizedTransformationCreateParams): IRealizedTransformation;
 createRealStock(parameters: IConnectorFactoryRealStockCreateParams): IRealStock;
+createRoute(parameters: IConnectorFactoryRouteCreateParams): IRoute;
 createSaleSession(parameters: IConnectorFactorySaleSessionCreateParams): ISaleSession;
 createSocialMedia(parameters: IConnectorFactorySocialMediaCreateParams): ISocialMedia;
 createSuppliedProduct(parameters: IConnectorFactorySuppliedProductCreateParams): ISuppliedProduct;
 createTechnicalProduct(parameters: IConnectorFactoryTechnicalProductCreateParams): ITechnicalProduct;
+createTemplateSaleSession(parameters: IConnectorFactoryTemplateSaleSessionCreateParams): ITemplateSaleSession;
 createTheoreticalStock(parameters: IConnectorFactoryTheoreticalStockCreateParams): ITheoreticalStock;
+createVariant(parameters: IConnectorFactoryVariantCreateParams): IVariant;
+createVariantCharacteristic(parameters: IConnectorFactoryVariantCharacteristicCreateParams): IVariantCharacteristic;
 createVirtualPlace(parameters: IConnectorFactoryVirtualPlaceCreateParams): IVirtualPlace;
 ```
 
@@ -382,3 +419,7 @@ const plannedTransformation = connector.createPlannedTransformation({
     productionFlows: [plannedProductionFlow]
 });
 ```
+
+## Contributing
+
+To publish the package use `npm publish --access public --tag latest`;

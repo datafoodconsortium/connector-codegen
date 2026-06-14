@@ -10,7 +10,7 @@ import IAllergenCharacteristic from "./IAllergenCharacteristic";
 import ICatalog from "./ICatalog";
 import ICatalogItem from "./ICatalogItem";
 import ICustomerCategory from "./ICustomerCategory";
-import IEnterprise from "./IEnterprise";
+import IOrganization from "./IOrganization";
 import INutrientCharacteristic from "./INutrientCharacteristic";
 import IOffer from "./IOffer";
 import IOrder from "./IOrder";
@@ -46,6 +46,19 @@ import IPlannedLocalTransformation from "./IPlannedLocalTransformation";
 import IRealizedTransformation from "./IRealizedTransformation";
 import ISocialMedia from "./ISocialMedia";
 import IVirtualPlace from "./IVirtualPlace";
+import IProductOptionValue from "./IProductOptionValue";
+import IVariantCharacteristic from "./IVariantCharacteristic";
+import IProductOption from "./IProductOption";
+import IPlace from "./IPlace";
+import IStep from "./IStep";
+import IGeoJsonFeature from "./IGeoJsonFeature";
+import IRoute from "./IRoute";
+import IShipment from "./IShipment";
+import IVariant from "./IVariant";
+import ITemplateSaleSession from "./ITemplateSaleSession";
+import IPickUpStep from "./IPickUpStep";
+import IDeliveryStep from "./IDeliveryStep";
+import ICertification from "./ICertification";
 
 export default interface IConnectorFactory {
     createFromRdfDataset(dataset: DatasetExt): Semanticable | undefined;
@@ -56,15 +69,17 @@ export default interface IConnectorFactory {
     createAllergenCharacteristic(parameters: IConnectorFactoryAllergenCharacteristicCreateParams): IAllergenCharacteristic;
     createCatalog(parameters: IConnectorFactoryCatalogCreateParams): ICatalog;
     createCatalogItem(parameters: IConnectorFactoryCatalogItemCreateParams): ICatalogItem;
+    createCertification(parameters: IConnectorFactoryCertificationCreateParams): ICertification;
     createCustomerCategory(parameters: IConnectorFactoryCustomerCategoryCreateParams): ICustomerCategory;
     createDeliveryOption(parameters: IConnectorFactoryDeliveryOptionCreateParams): IDeliveryOption;
-    createEnterprise(parameters: IConnectorFactoryEnterpriseCreateParams): IEnterprise;
+    createDeliveryStep(parameters: IConnectorFactoryDeliveryStepCreateParams): IDeliveryStep;
     createLocalizedProduct(parameters: IConnectorFactoryLocalizedProductCreateParams): ILocalizedProduct;
     createNutrientCharacteristic(parameters: IConnectorFactoryNutrientCharacteristicCreateParams): INutrientCharacteristic;
     createOffer(parameters: IConnectorFactoryOfferCreateParams): IOffer;
     createOpeningHoursSpecification(parameters: IConnectorFactoryOpeningHoursSpecificationCreateParams): IOpeningHoursSpecification;
     createOrder(parameters: IConnectorFactoryOrderCreateParams): IOrder;
     createOrderLine(parameters: IConnectorFactoryOrderLineCreateParams): IOrderLine;
+    createOrganization(parameters: IConnectorFactoryOrganizationCreateParams): IOrganization;
     createPaymentMethod(parameters: IConnectorFactoryPaymentMethodCreateParams): IPaymentMethod;
     createPerson(parameters: IConnectorFactoryPersonCreateParams): IPerson;
     createPhoneNumber(parameters: IConnectorFactoryPhoneNumberCreateParams): IPhoneNumber;
@@ -72,6 +87,7 @@ export default interface IConnectorFactory {
     createPhysicalPlace(parameters: IConnectorFactoryPhysicalPlaceCreateParams): IPhysicalPlace;
     createPhysicalProduct(parameters: IConnectorFactoryPhysicalProductCreateParams): IPhysicalProduct;
     createPickupOption(parameters: IConnectorFactoryPickupOptionCreateParams): IPickupOption;
+    createPickUpStep(parameters: IConnectorFactoryPickUpStepCreateParams): IPickUpStep;
     createPlannedConsumptionFlow(parameters: IConnectorFactoryPlannedConsumptionFlowCreateParams): IPlannedConsumptionFlow;
     createPlannedLocalConsumptionFlow(parameters: IConnectorFactoryPlannedLocalConsumptionFlowCreateParams): IPlannedLocalConsumptionFlow;
     createPlannedLocalProductionFlow(parameters: IConnectorFactoryPlannedLocalProductionFlowCreateParams): IPlannedLocalProductionFlow;
@@ -80,16 +96,22 @@ export default interface IConnectorFactory {
     createPlannedTransformation(parameters: IConnectorFactoryPlannedTransformationCreateParams): IPlannedTransformation;
     createPrice(parameters: IConnectorFactoryPriceCreateParams): IPrice;
     createProductBatch(parameters: IConnectorFactoryProductBatchCreateParams): IProductBatch;
+    createProductOption(parameters: IConnectorFactoryProductOptionCreateParams): IProductOption;
+    createProductOptionValue(parameters: IConnectorFactoryProductOptionValueCreateParams): IProductOptionValue;
     createQuantity(parameters: IConnectorFactoryQuantityCreateParams): IQuantity;
     createRealizedConsumptionFlow(parameters: IConnectorFactoryRealizedConsumptionFlowCreateParams): IRealizedConsumptionFlow;
     createRealizedProductionFlow(parameters: IConnectorFactoryRealizedProductionFlowCreateParams): IRealizedProductionFlow;
     createRealizedTransformation(parameters: IConnectorFactoryRealizedTransformationCreateParams): IRealizedTransformation;
     createRealStock(parameters: IConnectorFactoryRealStockCreateParams): IRealStock;
+    createRoute(parameters: IConnectorFactoryRouteCreateParams): IRoute;
     createSaleSession(parameters: IConnectorFactorySaleSessionCreateParams): ISaleSession;
     createSocialMedia(parameters: IConnectorFactorySocialMediaCreateParams): ISocialMedia;
     createSuppliedProduct(parameters: IConnectorFactorySuppliedProductCreateParams): ISuppliedProduct;
     createTechnicalProduct(parameters: IConnectorFactoryTechnicalProductCreateParams): ITechnicalProduct;
+    createTemplateSaleSession(parameters: IConnectorFactoryTemplateSaleSessionCreateParams): ITemplateSaleSession;
     createTheoreticalStock(parameters: IConnectorFactoryTheoreticalStockCreateParams): ITheoreticalStock;
+    createVariant(parameters: IConnectorFactoryVariantCreateParams): IVariant;
+    createVariantCharacteristic(parameters: IConnectorFactoryVariantCharacteristicCreateParams): IVariantCharacteristic;
     createVirtualPlace(parameters: IConnectorFactoryVirtualPlaceCreateParams): IVirtualPlace;
 }
 
@@ -97,15 +119,17 @@ export type IConnectorFactoryAddressCreateParams = IConnectorFactoryCreateParams
 export type IConnectorFactoryAllergenCharacteristicCreateParams = IConnectorFactoryCreateParamsBlankNode & AllergenCharacteristicCreateParams;
 export type IConnectorFactoryCatalogCreateParams = IConnectorFactoryCreateParams & CatalogCreateParams;
 export type IConnectorFactoryCatalogItemCreateParams = IConnectorFactoryCreateParams & CatalogItemCreateParams;
+export type IConnectorFactoryCertificationCreateParams = IConnectorFactoryCreateParams & CertificationCreateParams;
 export type IConnectorFactoryCustomerCategoryCreateParams = IConnectorFactoryCreateParams & CustomerCategoryCreateParams;
 export type IConnectorFactoryDeliveryOptionCreateParams = IConnectorFactoryCreateParams & DeliveryOptionCreateParams;
-export type IConnectorFactoryEnterpriseCreateParams = IConnectorFactoryCreateParams & EnterpriseCreateParams;
+export type IConnectorFactoryDeliveryStepCreateParams = IConnectorFactoryCreateParams & DeliveryStepCreateParams;
 export type IConnectorFactoryLocalizedProductCreateParams = IConnectorFactoryCreateParams & LocalizedProductCreateParams;
 export type IConnectorFactoryNutrientCharacteristicCreateParams = IConnectorFactoryCreateParams & NutrientCharacteristicCreateParams;
 export type IConnectorFactoryOfferCreateParams = IConnectorFactoryCreateParams & OfferCreateParams;
 export type IConnectorFactoryOpeningHoursSpecificationCreateParams = IConnectorFactoryCreateParams & OpeningHoursSpecificationCreateParams;
 export type IConnectorFactoryOrderCreateParams = IConnectorFactoryCreateParams & OrderCreateParams;
 export type IConnectorFactoryOrderLineCreateParams = IConnectorFactoryCreateParams & OrderLineCreateParams;
+export type IConnectorFactoryOrganizationCreateParams = IConnectorFactoryCreateParams & OrganizationCreateParams;
 export type IConnectorFactoryPaymentMethodCreateParams = IConnectorFactoryCreateParams & PaymentMethodCreateParams;
 export type IConnectorFactoryPersonCreateParams = IConnectorFactoryCreateParams & PersonCreateParams;
 export type IConnectorFactoryPhoneNumberCreateParams = IConnectorFactoryCreateParams & PhoneNumberCreateParams;
@@ -113,6 +137,7 @@ export type IConnectorFactoryPhysicalCharacteristicCreateParams = IConnectorFact
 export type IConnectorFactoryPhysicalPlaceCreateParams = IConnectorFactoryCreateParams & PhysicalPlaceCreateParams;
 export type IConnectorFactoryPhysicalProductCreateParams = IConnectorFactoryCreateParams & PhysicalProductCreateParams;
 export type IConnectorFactoryPickupOptionCreateParams = IConnectorFactoryCreateParams & PickupOptionCreateParams;
+export type IConnectorFactoryPickUpStepCreateParams = IConnectorFactoryCreateParams & PickUpStepCreateParams;
 export type IConnectorFactoryPlannedConsumptionFlowCreateParams = IConnectorFactoryCreateParams & PlannedConsumptionFlowCreateParams;
 export type IConnectorFactoryPlannedLocalConsumptionFlowCreateParams = IConnectorFactoryCreateParams & PlannedLocalConsumptionFlowCreateParams;
 export type IConnectorFactoryPlannedLocalProductionFlowCreateParams = IConnectorFactoryCreateParams & PlannedLocalProductionFlowCreateParams;
@@ -121,16 +146,22 @@ export type IConnectorFactoryPlannedProductionFlowCreateParams = IConnectorFacto
 export type IConnectorFactoryPlannedTransformationCreateParams = IConnectorFactoryCreateParams & PlannedTransformationCreateParams;
 export type IConnectorFactoryPriceCreateParams = IConnectorFactoryCreateParamsBlankNode & PriceCreateParams;
 export type IConnectorFactoryProductBatchCreateParams = IConnectorFactoryCreateParams & ProductBatchCreateParams;
+export type IConnectorFactoryProductOptionCreateParams = IConnectorFactoryCreateParams & ProductOptionCreateParams;
+export type IConnectorFactoryProductOptionValueCreateParams = IConnectorFactoryCreateParams & ProductOptionValueCreateParams;
 export type IConnectorFactoryQuantityCreateParams = IConnectorFactoryCreateParamsBlankNode & QuantityCreateParams;
 export type IConnectorFactoryRealizedConsumptionFlowCreateParams = IConnectorFactoryCreateParams & RealizedConsumptionFlowCreateParams;
 export type IConnectorFactoryRealizedProductionFlowCreateParams = IConnectorFactoryCreateParams & RealizedProductionFlowCreateParams;
 export type IConnectorFactoryRealizedTransformationCreateParams = IConnectorFactoryCreateParams & RealizedTransformationCreateParams;
 export type IConnectorFactoryRealStockCreateParams = IConnectorFactoryCreateParams & RealStockCreateParams;
+export type IConnectorFactoryRouteCreateParams = IConnectorFactoryCreateParams & RouteCreateParams;
 export type IConnectorFactorySaleSessionCreateParams = IConnectorFactoryCreateParams & SaleSessionCreateParams;
 export type IConnectorFactorySocialMediaCreateParams = IConnectorFactoryCreateParams & SocialMediaCreateParams;
 export type IConnectorFactorySuppliedProductCreateParams = IConnectorFactoryCreateParams & SuppliedProductCreateParams;
 export type IConnectorFactoryTechnicalProductCreateParams = IConnectorFactoryCreateParams & TechnicalProductCreateParams;
+export type IConnectorFactoryTemplateSaleSessionCreateParams = IConnectorFactoryCreateParams & TemplateSaleSessionCreateParams;
 export type IConnectorFactoryTheoreticalStockCreateParams = IConnectorFactoryCreateParams & TheoreticalStockCreateParams;
+export type IConnectorFactoryVariantCreateParams = IConnectorFactoryCreateParams & VariantCreateParams;
+export type IConnectorFactoryVariantCharacteristicCreateParams = IConnectorFactoryCreateParams & VariantCharacteristicCreateParams;
 export type IConnectorFactoryVirtualPlaceCreateParams = IConnectorFactoryCreateParams & VirtualPlaceCreateParams;
 
 export interface IConnectorFactoryCreateParamsBlankNode {
@@ -160,7 +191,7 @@ export interface AllergenCharacteristicCreateParams {
 }
 
 export interface CatalogCreateParams {
-    maintainers?: IEnterprise[];
+    maintainers?: IOrganization[];
     items?: ICatalogItem[];
 }
 
@@ -170,6 +201,15 @@ export interface CatalogItemCreateParams {
     stockLimitation?: number;
     offers?: IOffer[];
     catalogs?: ICatalog[];
+}
+
+export interface CertificationCreateParams {
+    name?: string,
+    description?: string,
+    certificationReferences?: string[],
+    certificationScores?: string[],
+    operatorIds?: string[],
+    certifiedOrganizations?: IOrganization[],
 }
 
 export interface CustomerCategoryCreateParams {
@@ -190,18 +230,14 @@ export interface DeliveryOptionCreateParams {
     endDate?: string;
 }
 
-export interface EnterpriseCreateParams {
-    name?: string;
-    localizations?: IAddress[];
-    description?: string;
-    vatNumber?: string;
-    customerCategories?: ICustomerCategory[];
-    catalogs?: ICatalog[];
-    catalogItems?: ICatalogItem[];
-    suppliedProducts?: ISuppliedProduct[];
-    technicalProducts?: ITechnicalProduct[];
-    mainContact?: IPerson;
-    logo?: string;
+export interface DeliveryStepCreateParams {
+    name?: string,
+    description?: string,
+    routes?: IRoute[],
+    deliveredShipments?: IShipment[],
+    pickedUpShipments?: IShipment[],
+    duration?: string,
+    arrivalDate?: string,
 }
 
 export interface LocalizedProductCreateParams {
@@ -256,6 +292,20 @@ export interface OrderLineCreateParams {
     order?: IOrder;
 }
 
+export interface OrganizationCreateParams {
+    name?: string;
+    localizations?: IAddress[];
+    description?: string;
+    vatNumber?: string;
+    customerCategories?: ICustomerCategory[];
+    catalogs?: ICatalog[];
+    catalogItems?: ICatalogItem[];
+    suppliedProducts?: ISuppliedProduct[];
+    technicalProducts?: ITechnicalProduct[];
+    mainContact?: IPerson;
+    logo?: string;
+}
+
 export interface PaymentMethodCreateParams {
     name?: string;
     description?: string;
@@ -268,7 +318,7 @@ export interface PersonCreateParams {
     firstName?: string;
     lastName?: string;
     localizations?: IAddress[];
-    organizations?: IEnterprise[];
+    organizations?: IOrganization[];
     logo?: string;
 }
 
@@ -317,6 +367,16 @@ export interface PickupOptionCreateParams {
     pickupPlace?: IPhysicalPlace;
     beginDate?: string;
     endDate?: string;
+}
+
+export interface PickUpStepCreateParams {
+    name?: string,
+    description?: string,
+    routes?: IRoute[],
+    deliveredShipments?: IShipment[],
+    pickedUpShipments?: IShipment[],
+    duration?: string,
+    arrivalDate?: string,
 }
 
 export interface PlannedConsumptionFlowCreateParams {
@@ -375,6 +435,19 @@ export interface ProductBatchCreateParams {
     productionDate?: string;
 }
 
+export interface ProductOptionCreateParams {
+    name?: string,
+    description?: string,
+    date?: string,
+    referenceProductionOptionValue?: IProductOptionValue[],
+}
+
+export interface ProductOptionValueCreateParams {
+    name?: string,
+    description?: string,
+    date?: string,
+}
+
 export interface QuantityCreateParams {
     unit?: ISKOSConcept;
     value?: number;
@@ -406,6 +479,13 @@ export interface RealStockCreateParams {
     physicalPlace?: IPhysicalPlace;
     availabilityDate?: string;
     productBatches?: IProductBatch[];
+}
+
+export interface RouteCreateParams {
+    name?: string,
+    description?: string,
+    steps?: IStep[],
+    features?: IGeoJsonFeature[],
 }
 
 export interface SaleSessionCreateParams {
@@ -462,6 +542,11 @@ export interface TechnicalProductCreateParams {
     images?: string[];
 }
 
+export interface TemplateSaleSessionCreateParams {
+    hostingPlaces?: IPlace[],
+    organizations?: IOrganization[],
+}
+
 export interface TheoreticalStockCreateParams {
     localizedProduct?: ILocalizedProduct;
     quantity?: IQuantity;
@@ -469,6 +554,36 @@ export interface TheoreticalStockCreateParams {
     availabilityDate?: string;
 }
 
+export interface VariantCreateParams {
+    name?: string,
+    description?: string,
+    productType?: ISKOSConcept,
+    quantity?: IQuantity,
+    alcoholPercentage?: number,
+    lifetime?: string,
+    claims?: ISKOSConcept[],
+    usageOrStorageConditions?: string,
+    allergenCharacteristics?: IAllergenCharacteristic[],
+    nutrientCharacteristics?: INutrientCharacteristic[],
+    physicalCharacteristics?: IPhysicalCharacteristic[],
+    geographicalOrigin?: ISKOSConcept,
+    catalogItems?: ICatalogItem[],
+    certifications?: ISKOSConcept[],
+    natureOrigin?: ISKOSConcept[],
+    partOrigin?: ISKOSConcept[],
+    images?: string[],
+    variants?: IDefinedProduct[],
+    isVariantOf?: IDefinedProduct[],
+    variantCharacteristics?: IVariantCharacteristic[],
+    referenceProductOptions?: IProductOption[],
+}
+
+export interface VariantCharacteristicCreateParams {
+    name?: string,
+    description?: string,
+    date?: string,
+    productOption?: IProductOption,
+}
 export interface VirtualPlaceCreateParams {
     name?: string;
     description?: string;

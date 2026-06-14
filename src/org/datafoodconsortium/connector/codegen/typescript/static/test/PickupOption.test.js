@@ -36,7 +36,7 @@ let pickupOption = connector.createPickupOption({
     endDate: "endDate",
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@graph":[{"@id":"_:b1","@type":"dfc-b:QuantitativeValue","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1.2"},{"@id":"http://myplatform.com/pickupOption","@type":"dfc-b:PickupOption","dfc-b:description":"description","dfc-b:endDate":"endDate","dfc-b:fee":"123","dfc-b:hasQuantity":"_:b1","dfc-b:name":"name","dfc-b:optionOf":"http://myplatform.com/saleSession","dfc-b:pickedUpAt":"http://myplatform.com/pickupPlace","dfc-b:selectedBy":"http://myplatform.com/order","dfc-b:startDate":"beginDate"}]}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@graph":[{"@id":"_:b1","@type":"dfc-b:QuantitativeValue","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1.2"},{"@id":"http://myplatform.com/pickupOption","@type":"dfc-b:PickupOption","dfc-b:description":"description","dfc-b:endDate":"endDate","dfc-b:fee":"123","dfc-b:hasQuantity":"_:b1","dfc-b:name":"name","dfc-b:optionOf":"http://myplatform.com/saleSession","dfc-b:pickedUpAt":"http://myplatform.com/pickupPlace","dfc-b:selectedBy":"http://myplatform.com/order","dfc-b:startDate":"beginDate"}]}`;
 
 test('PickupOption:import', async () => {
     const importedAll = await connector.import(json);

@@ -24,7 +24,7 @@ RSpec.describe "parse with skos concept" do
     it "parses the first level" do
       drink_type = connector.PRODUCT_TYPES.DRINK
 
-      expect(drink_type).to be_a DataFoodConsortium::ConnectorV1::SKOSConcept
+      expect(drink_type).to be_a DataFoodConsortium::Connector::SKOSConcept
       expect(drink_type.broaders).to eq([])
       expect(drink_type.narrowers).to include(/alcoholic-beverage/, /soft-drink/)
     end
@@ -32,7 +32,7 @@ RSpec.describe "parse with skos concept" do
     it "parses the second level" do
       drink_type = connector.PRODUCT_TYPES.DRINK.SOFT_DRINK
 
-      expect(drink_type).to be_a DataFoodConsortium::ConnectorV1::SKOSConcept
+      expect(drink_type).to be_a DataFoodConsortium::Connector::SKOSConcept
       expect(drink_type.broaders).to include(/drink/)
       expect(drink_type.narrowers).to include(/fruit-juice/, /lemonade/, /smoothie/)
     end
@@ -40,7 +40,7 @@ RSpec.describe "parse with skos concept" do
     it "parses leaf level" do
       drink_type = connector.PRODUCT_TYPES.DRINK.SOFT_DRINK.LEMONADE
 
-      expect(drink_type).to be_a DataFoodConsortium::ConnectorV1::SKOSConcept
+      expect(drink_type).to be_a DataFoodConsortium::Connector::SKOSConcept
       expect(drink_type.broaders).to include(/soft-drink/)
       expect(drink_type.narrowers).to eq([])
     end
@@ -61,7 +61,7 @@ RSpec.describe "parse with skos concept" do
     it "parses the first level" do
       facet = connector.FACETS.CERTIFICATION
 
-      expect(facet).to be_a DataFoodConsortium::ConnectorV1::SKOSConcept
+      expect(facet).to be_a DataFoodConsortium::Connector::SKOSConcept
       expect(facet.broaders).to eq([])
       expect(facet.narrowers).to include(
         /OrganicLabel/, /LocalLabel/, /BiodynamicLabel/, /EthicalLabel/, /MarketingLabel/

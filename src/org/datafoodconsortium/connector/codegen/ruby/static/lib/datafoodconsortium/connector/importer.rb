@@ -3,12 +3,12 @@
 require_relative "skos_parser"
 
 module DataFoodConsortium
-  module ConnectorV1
+  module Connector
     class Importer
       def self.type_map
         unless @type_map
           @type_map = {}
-          DataFoodConsortium::ConnectorV1.semantic_types.each do |type|
+          DataFoodConsortium::Connector.semantic_types.each do |type|
             register_type(type)
           end
         end

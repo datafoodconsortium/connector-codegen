@@ -9,6 +9,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - None
 
+## [2.0.0-beta.1] - 2026-06-12
+
+Ontology v2 update.
+
+Generated from [UML model 4.0.0](https://github.com/datafoodconsortium/data-model-uml/releases/tag/v4.0.0) using the [Connector codegen 1.3.0](https://github.com/datafoodconsortium/connector-codegen/releases/tag/v1.3.0).
+
+**This version contains breaking changes introduced by the ontology, see below.**
+
+### Added
+
+Classes:
+- Add `ical:Vevent`
+- Add `ical:Value_RECUR`
+- Add `geo:Feature`
+- Add `geo:Properties`
+- Add `geo:Geometry`
+- Add `geo:Point`
+- Add `geo:Polygon`
+- Add `Certification`
+- Add `DeliveryStep`
+- Add `Organization`
+- Add `PickUpStep`
+- Add `ProductOption`
+- Add `ProductOptionValue`
+- Add `Route`
+- Add `TemplateSaleSession`
+- Add `Variant`
+- Add `VariantCaracteristic`
+
+Properties:
+- Add `Catalog:startDate`
+- Add `PlannedLocalTransformation:startDate`
+- Add `RealizedTransformation:startDate`
+- Add `SuppliedProduct:referenceOf`.
+- Add `TechnicalProduct:referenceOf`.
+
+### Changed
+
+- `Stock:availabilityDate` is now a 1-1 property (**BREAKING CHANGE**)
+- `PaymentMethod:paymentMethodProvider` is now a 1-1 property (**BREAKING CHANGE**)
+- `PaymentMethod:paymentMethodType` is now a 1-1 property (**BREAKING CHANGE**)
+- `Variant:isVariantOf is now a `Variant` instead of `DefinedProduct` (**BREAKING CHANGE**)
+
+### Removed
+
+- Removed the `Enterprise` class. It was renamed to `Organization` (**BREAKING CHANGE**)
+
 ## [1.0.0-beta.1] 2026-05-21
 
 Generated from [UML model 3.4.0](https://github.com/datafoodconsortium/data-model-uml/releases/tag/v3.4.0) using the [Connector codegen 1.2.0](https://github.com/datafoodconsortium/connector-codegen/releases/tag/v1.2.0).
@@ -262,7 +309,8 @@ See the SUPPORTED.md file [comparison from main to next](https://github.com/data
 
 - Initial release.
 
-[unreleased]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-beta.1...HEAD
+[unreleased]: https://github.com/datafoodconsortium/connector-typescript/compare/v2.0.0-beta.1...HEAD
+[2.0.0-beta.1]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-beta.1...v2.0.0-beta.1
 [1.0.0-beta.1]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.12...v1.0.0-beta.1
 [1.0.0-alpha.12]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.11...v1.0.0-alpha.12
 [1.0.0-alpha.11]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.10...v1.0.0-alpha.11

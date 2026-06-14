@@ -24,7 +24,7 @@ let physicalPlace = connector.createPhysicalPlace({
     realStocks: [realStock],
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@id":"http://myplatform.com/physicalPlace","@type":"dfc-b:PhysicalPlace","dfc-b:description":"description","dfc-b:hasAddress":"http://myplatform.com/address","dfc-b:hasMainContact":"http://myplatform.com/mainContact","dfc-b:hasPhoneNumber":"http://myplatform.com/phoneNumber","dfc-b:hosts":"http://myplatform.com/saleSession","dfc-b:localizes":"http://myplatform.com/theoreticalStock","dfc-b:name":"name","dfc-b:stores":"http://myplatform.com/realStock"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@id":"http://myplatform.com/physicalPlace","@type":"dfc-b:PhysicalPlace","dfc-b:description":"description","dfc-b:hasAddress":"http://myplatform.com/address","dfc-b:hasMainContact":"http://myplatform.com/mainContact","dfc-b:hasPhoneNumber":"http://myplatform.com/phoneNumber","dfc-b:hosts":"http://myplatform.com/saleSession","dfc-b:localizes":"http://myplatform.com/theoreticalStock","dfc-b:name":"name","dfc-b:stores":"http://myplatform.com/realStock"}`;
 
 test('PhysicalPlace:import', async () => {
     const importedAll = await connector.import(json);

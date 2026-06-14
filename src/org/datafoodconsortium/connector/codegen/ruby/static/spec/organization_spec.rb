@@ -1,31 +1,31 @@
-RSpec.describe DataFoodConsortium::ConnectorV1::Enterprise do
+RSpec.describe DataFoodConsortium::Connector::Organization do
   it "can be empty when exported" do
-    subject = DataFoodConsortium::ConnectorV1::Enterprise.new(
+    subject = DataFoodConsortium::Connector::Organization.new(
       "https://myplatform.com/e"
     )
     result = exported_json(subject)
     expect(result).to include(
       {
         "@id" => "https://myplatform.com/e",
-        "@type" => "dfc-b:Enterprise",
+        "@type" => "dfc-b:Organization",
       }
     )
   end
 
   it "contains all fields when exported" do
-    subject = DataFoodConsortium::ConnectorV1::Enterprise.new(
+    subject = DataFoodConsortium::Connector::Organization.new(
       "https://myplatform.com/e",
       name: "name",
       description: "description",
       vatNumber: "vatNumber",
       customerCategories: [
-        DataFoodConsortium::ConnectorV1::CustomerCategory.new("https://myplatform.com/cc")
+        DataFoodConsortium::Connector::CustomerCategory.new("https://myplatform.com/cc")
       ],
       suppliedProducts: [
-        DataFoodConsortium::ConnectorV1::SuppliedProduct.new("https://myplatform.com/sp")
+        DataFoodConsortium::Connector::SuppliedProduct.new("https://myplatform.com/sp")
       ],
       catalogItems: [
-        DataFoodConsortium::ConnectorV1::CatalogItem.new("https://myplatform.com/ci")
+        DataFoodConsortium::Connector::CatalogItem.new("https://myplatform.com/ci")
       ],
       localizations: []
     )
@@ -33,7 +33,7 @@ RSpec.describe DataFoodConsortium::ConnectorV1::Enterprise do
     expect(result).to include(
       {
         "@id" => "https://myplatform.com/e",
-        "@type" => "dfc-b:Enterprise",
+        "@type" => "dfc-b:Organization",
         "dfc-b:VATnumber" => "vatNumber",
         "dfc-b:defines" => "https://myplatform.com/cc",
         "dfc-b:hasDescription" => "description",
@@ -45,22 +45,22 @@ RSpec.describe DataFoodConsortium::ConnectorV1::Enterprise do
   end
 
   it "contains collections as arrays when exported" do
-    subject = DataFoodConsortium::ConnectorV1::Enterprise.new(
+    subject = DataFoodConsortium::Connector::Organization.new(
       "https://myplatform.com/e",
       name: "name",
       description: "description",
       vatNumber: "vatNumber",
       customerCategories: [
-        DataFoodConsortium::ConnectorV1::CustomerCategory.new("https://myplatform.com/cc"),
-        DataFoodConsortium::ConnectorV1::CustomerCategory.new("https://myplatform.com/cc2")
+        DataFoodConsortium::Connector::CustomerCategory.new("https://myplatform.com/cc"),
+        DataFoodConsortium::Connector::CustomerCategory.new("https://myplatform.com/cc2")
       ],
       suppliedProducts: [
-        DataFoodConsortium::ConnectorV1::SuppliedProduct.new("https://myplatform.com/sp"),
-        DataFoodConsortium::ConnectorV1::SuppliedProduct.new("https://myplatform.com/sp2")
+        DataFoodConsortium::Connector::SuppliedProduct.new("https://myplatform.com/sp"),
+        DataFoodConsortium::Connector::SuppliedProduct.new("https://myplatform.com/sp2")
       ],
       catalogItems: [
-        DataFoodConsortium::ConnectorV1::CatalogItem.new("https://myplatform.com/ci"),
-        DataFoodConsortium::ConnectorV1::CatalogItem.new("https://myplatform.com/ci2")
+        DataFoodConsortium::Connector::CatalogItem.new("https://myplatform.com/ci"),
+        DataFoodConsortium::Connector::CatalogItem.new("https://myplatform.com/ci2")
       ],
       localizations: []
     )
@@ -68,7 +68,7 @@ RSpec.describe DataFoodConsortium::ConnectorV1::Enterprise do
     expect(result).to include(
       {
         "@id" => "https://myplatform.com/e",
-        "@type" => "dfc-b:Enterprise",
+        "@type" => "dfc-b:Organization",
         "dfc-b:VATnumber" => "vatNumber",
         "dfc-b:defines" => ["https://myplatform.com/cc", "https://myplatform.com/cc2"],
         "dfc-b:hasDescription" => "description",

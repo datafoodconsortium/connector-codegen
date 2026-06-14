@@ -3,15 +3,15 @@
 require 'json/ld'
 
 module DataFoodConsortium
-  module ConnectorV1
+  module Connector
     # Preload the DFC context.
     #
     # Similar to: https://github.com/ruby-rdf/json-ld-preloaded/
     class Context < JSON::LD::Context
-      URL = "https://w3id.org/dfc/ontology/context/context_1.16.0.json"
-      URL_NORMALISED = "http://w3id.org/dfc/ontology/context/context_1.16.0.json"
+      URL = "https://w3id.org/dfc/ontology/context/context_2.0.0.json"
+      URL_NORMALISED = "http://w3id.org/dfc/ontology/context/context_2.0.0.json"
 
-      # All context URIs have to use http because https is normalised to http
+       # All context URIs have to use http because https is normalised to http
       # during the lookup of preloaded contexts.
       # And if the URI doesn't have a path, it must end with `/`.
       add_preloaded(URL_NORMALISED) { parse(json) }
@@ -21,13 +21,13 @@ module DataFoodConsortium
 
       # This is the current file the DFC website refers to in a link header.
       alias_preloaded(
-        "http://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld",
+        "http://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld",
         URL_NORMALISED
       )
 
       # This was the file the DFC website refers to in a link header.
       alias_preloaded(
-        "http://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context.jsonld",
+        "http://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld",
         URL_NORMALISED
       )
 
@@ -44,7 +44,7 @@ module DataFoodConsortium
       end
 
       def self.json
-        @json ||= JSON.parse(File.read("#{__dir__}/context_1.16.0.json"))["@context"]
+        @json ||= JSON.parse(File.read("#{__dir__}/context_2.0.0.json"))["@context"]
       end
     end
   end

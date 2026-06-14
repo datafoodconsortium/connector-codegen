@@ -15,7 +15,7 @@ let paymentMethod = connector.createPaymentMethod({
     type: "type"
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@graph":[{"@id":"_:b1","@type":"dfc-b:Price"},{"@id":"http://myplatform.com/paymentMethod","@type":"dfc-b:PaymentMethod","dfc-b:description":"description","dfc-b:hasPrice":"_:b1","dfc-b:name":"name","dfc-b:paymentMethodProvider":"provider","dfc-b:paymentMethodType":"type"}]}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@graph":[{"@id":"_:b1","@type":"dfc-b:Price"},{"@id":"http://myplatform.com/paymentMethod","@type":"dfc-b:PaymentMethod","dfc-b:description":"description","dfc-b:hasPrice":"_:b1","dfc-b:name":"name","dfc-b:paymentMethodProvider":"provider","dfc-b:paymentMethodType":"type"}]}`;
 
 test('PaymentMethod:import', async () => {
     const importedAll = await connector.import(json);

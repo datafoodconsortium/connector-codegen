@@ -19,7 +19,7 @@ let productBatch = connector.createProductBatch({
     productionDate: "productionDate",
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@id":"http://myplatform.com/productBatch","@type":"dfc-b:ProductBatch","dfc-b:batchNumber":"123","dfc-b:bestBeforeDate":"bestBeforeDate","dfc-b:contains":{"@id":"http://myplatform.com/physicalProduct"},"dfc-b:description":"description","dfc-b:expirationDate":"expirationDate","dfc-b:identifiedBy":"http://myplatform.com/realStock","dfc-b:name":"name","dfc-b:productionDate":"productionDate"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@id":"http://myplatform.com/productBatch","@type":"dfc-b:ProductBatch","dfc-b:batchNumber":"123","dfc-b:bestBeforeDate":"bestBeforeDate","dfc-b:contains":{"@id":"http://myplatform.com/physicalProduct"},"dfc-b:description":"description","dfc-b:expirationDate":"expirationDate","dfc-b:identifiedBy":"http://myplatform.com/realStock","dfc-b:name":"name","dfc-b:productionDate":"productionDate"}`;
 
 test('ProductBatch:import', async () => {
     const importedAll = await connector.import(json);

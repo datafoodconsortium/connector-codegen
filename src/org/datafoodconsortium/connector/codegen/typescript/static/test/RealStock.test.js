@@ -18,7 +18,7 @@ let realStock = connector.createRealStock({
     productBatches: [productBatch],
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@graph":[{"@id":"_:b1","@type":"dfc-b:QuantitativeValue"},{"@id":"http://myplatform.com/realStock","@type":"dfc-b:RealStock","dfc-b:availabilityDate":"availabilityDate","dfc-b:constitutes":"http://myplatform.com/physicalProduct","dfc-b:hasQuantity":"_:b1","dfc-b:identifies":"http://myplatform.com/productBatch","dfc-b:isStoredIn":{"@id":"http://myplatform.com/physicalPlace"}}]}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@graph":[{"@id":"_:b1","@type":"dfc-b:QuantitativeValue"},{"@id":"http://myplatform.com/realStock","@type":"dfc-b:RealStock","dfc-b:availabilityDate":"availabilityDate","dfc-b:constitutes":"http://myplatform.com/physicalProduct","dfc-b:hasQuantity":"_:b1","dfc-b:identifies":"http://myplatform.com/productBatch","dfc-b:isStoredIn":{"@id":"http://myplatform.com/physicalPlace"}}]}`;
 
 test('RealStock:import', async () => {
     const importedAll = await connector.import(json);

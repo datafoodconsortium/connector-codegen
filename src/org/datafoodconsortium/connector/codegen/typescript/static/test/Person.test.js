@@ -12,12 +12,12 @@ const address2 = connector.createAddress({
     semanticId: "http://myplatform.com/address/address2"
 });
 
-const enterprise = connector.createEnterprise({
-    semanticId: "http://myplatform.com/address/enterprise1"
+const organization = connector.createOrganization({
+    semanticId: "http://myplatform.com/address/organization1"
 });
 
-const enterprise2 = connector.createEnterprise({
-    semanticId: "http://myplatform.com/address/enterprise2"
+const organization2 = connector.createOrganization({
+    semanticId: "http://myplatform.com/address/organization2"
 });
 
 const person = connector.createPerson({
@@ -25,10 +25,10 @@ const person = connector.createPerson({
     firstName: "John",
     lastName: "Smith",
     localizations: [address],
-    organizations: [enterprise]
+    organizations: [organization]
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@id":"http://myplatform.com/person1","@type":"dfc-b:Person","dfc-b:affiliates":"http://myplatform.com/address/enterprise1","dfc-b:familyName":"Smith","dfc-b:firstName":"John","dfc-b:hasAddress":"http://myplatform.com/address/address1"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@id":"http://myplatform.com/person1","@type":"dfc-b:Person","dfc-b:affiliates":"http://myplatform.com/address/organization1","dfc-b:familyName":"Smith","dfc-b:firstName":"John","dfc-b:hasAddress":"http://myplatform.com/address/address1"}`;
 
 test('Person:import', async () => {
     const imported = await connector.import(json);
@@ -63,7 +63,7 @@ test('Person:getLocalizations', async () => {
 test('Person:getAffiliatedOrganizations', async () => {
     const organizations = await person.getAffiliatedOrganizations();
     expect.strictEqual(organizations.length, 1);
-    expect.strictEqual(organizations[0].equals(enterprise), true);
+    expect.strictEqual(organizations[0].equals(organization), true);
 });
 
 test('Person:setFirstName', () => {
@@ -85,11 +85,11 @@ test('Person:addLocalization', async () => {
 });
 
 test('Person:affiliatedTo', async () => {
-    person.affiliateTo(enterprise2);
+    person.affiliateTo(organization2);
     const organizations = await person.getAffiliatedOrganizations();
     expect.strictEqual(organizations.length, 2);
-    expect.strictEqual(organizations[0].equals(enterprise), true);
-    expect.strictEqual(organizations[1].equals(enterprise2), true);
+    expect.strictEqual(organizations[0].equals(organization), true);
+    expect.strictEqual(organizations[1].equals(organization2), true);
 });
 
 /*
@@ -101,8 +101,8 @@ test('Person:removeLocalization', async () => {
 });
 
 test('Person:leaveAaffiliatedOrganization', async () => {
-    person.leaveAaffiliatedOrganization(enterprise);
+    person.leaveAaffiliatedOrganization(organization);
     const organizations = await person.affiliatedOrganizations();
     expect.strictEqual(organizations.length, 1);
-    expect.strictEqual(organizations[0].equals(enterprise2), true);
+    expect.strictEqual(organizations[0].equals(organization2), true);
 });*/
