@@ -57,7 +57,7 @@ Properties:
 
 ## [1.4.0] - 2026-05-21
 
-Generated from [UML model 3.4.0](https://github.com/datafoodconsortium/data-model-uml/releases/tag/v3.4.0) using the [Connector codegen 1.2.0](https://github.com/datafoodconsortium/connector-codegen/releases/tag/v1.2.0).
+Generated from [UML model 3.5.0](https://github.com/datafoodconsortium/data-model-uml/releases/tag/v3.5.0) using the [Connector codegen 1.3.0](https://github.com/datafoodconsortium/connector-codegen/releases/tag/v1.3.0).
 
 To avoid name conflict with newer major versions, this version has been published as a new package https://rubygems.org/gems/datafoodconsortium-connector-v1.
 
@@ -86,6 +86,7 @@ Accessors and mutators:
 - Add `DefinedProduct:nutrientCharacteristics` setter.
 - Add `DefinedProduct:allergenCharacteristics` setter.
 - Add `DefinedProduct:claims` setter.
+- Add `Enterprise:affiliates` accessors and mutators (affiliates).
 - Add `Enterprise:technicalProducts` setter and remover.
 - Add `Enterprise:catalogItems` setter and remover.
 - Add `Enterprise:customerCategories` setter and remover.
@@ -98,10 +99,15 @@ Accessors and mutators:
 New objects:
 - Add `OpeningHoursSpecification`.
 
+Tests:
+- Add test for `Catalog`.
+- Add test for `LocalizedProduct`.
+
 ### Fixed
 
 - Fix `Agent:localizations` setter.
 - Fix `Agent:phoneNumbers` setter.
+- Fix `LocalizedProduct:theoreticalStocks` wrong type (now `ITheoreticalStock`).
 
 ### Changed
 

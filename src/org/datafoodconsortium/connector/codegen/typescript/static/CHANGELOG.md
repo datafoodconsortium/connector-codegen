@@ -61,7 +61,7 @@ Properties:
 
 ## [1.0.0-beta.1] 2026-05-21
 
-Generated from [UML model 3.4.0](https://github.com/datafoodconsortium/data-model-uml/releases/tag/v3.4.0) using the [Connector codegen 1.2.0](https://github.com/datafoodconsortium/connector-codegen/releases/tag/v1.2.0).
+Generated from [UML model 3.5.0](https://github.com/datafoodconsortium/data-model-uml/releases/tag/v3.5.0) using the [Connector codegen 1.3.0](https://github.com/datafoodconsortium/connector-codegen/releases/tag/v1.3.0).
 
 **This version contains breaking changes introduced by the ontology, see below.**
 
@@ -86,7 +86,8 @@ Accessors and mutators:
 - Add `DefinedProduct:physicalCharacteristics` setter.
 - Add `DefinedProduct:nutrientCharacteristics` setter.
 - Add `DefinedProduct:allergenCharacteristics` setter.
-- Add `DefinedProduct:claims` setter.
+- Add `DefinedProduct:claims` setter.;
+- Add `Enterprise:affiliates` accessors and mutators (affiliates).
 - Add `Enterprise:technicalProducts` setter and remover.
 - Add `Enterprise:catalogItems` setter and remover.
 - Add `Enterprise:customerCategories` setter and remover.

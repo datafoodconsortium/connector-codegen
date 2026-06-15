@@ -27,7 +27,10 @@ RSpec.describe DataFoodConsortium::Connector::Organization do
       catalogItems: [
         DataFoodConsortium::Connector::CatalogItem.new("https://myplatform.com/ci")
       ],
-      localizations: []
+      localizations: [],
+      affiliates: [
+        DataFoodConsortium::ConnectorV1::Person.new("https://myplatform.com/p1")
+      ]
     )
     result = exported_json(subject)
     expect(result).to include(
@@ -40,6 +43,7 @@ RSpec.describe DataFoodConsortium::Connector::Organization do
         "dfc-b:manages" => "https://myplatform.com/ci",
         "dfc-b:name" => "name",
         "dfc-b:supplies" => "https://myplatform.com/sp",
+        "dfc-b:affiliates" => "https://myplatform.com/p1",
       }
     )
   end

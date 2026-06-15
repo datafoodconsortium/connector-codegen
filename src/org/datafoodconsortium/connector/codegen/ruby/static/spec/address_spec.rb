@@ -18,17 +18,23 @@ RSpec.describe DataFoodConsortium::Connector::Address do
       street: "street",
       postalCode: "postalCode",
       city: "city",
-      country: "country"
+      latitude: 1.234,
+	    longitude: 2.345,
+      country: "country",
+	    region: "region",
     )
     result = exported_json(subject)
     expect(result).to include(
       {
         "@id" => "https://myplatform.com/a",
         "@type" => "dfc-b:Address",
-        "dfc-b:hasCity" => "city",
-        "dfc-b:hasCountry" => "country",
-        "dfc-b:hasPostalCode" => "postalCode",
         "dfc-b:hasStreet" => "street",
+        "dfc-b:hasPostalCode" => "postalCode",
+        "dfc-b:hasCity" => "city",
+        "dfc-b:latitude" => 1.234,
+        "dfc-b:longitude" => 2.345,
+        "dfc-b:hasCountry" => "country",
+        "dfc-b:region" => "region",
       }
     )
   end
