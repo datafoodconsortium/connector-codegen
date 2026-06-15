@@ -202,6 +202,7 @@ export interface EnterpriseCreateParams {
     technicalProducts?: ITechnicalProduct[];
     mainContact?: IPerson;
     logo?: string;
+    affiliates?: IPerson[];
 }
 
 export interface LocalizedProductCreateParams {

@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - None
 
-## [1.0.0-beta.1] 2026-05-21
+## [1.0.0-beta.2] 2026-06-15
 
 Generated from [UML model 3.4.0](https://github.com/datafoodconsortium/data-model-uml/releases/tag/v3.4.0) using the [Connector codegen 1.2.0](https://github.com/datafoodconsortium/connector-codegen/releases/tag/v1.2.0).
 
@@ -36,7 +36,8 @@ Accessors and mutators:
 - Add `DefinedProduct:physicalCharacteristics` setter.
 - Add `DefinedProduct:nutrientCharacteristics` setter.
 - Add `DefinedProduct:allergenCharacteristics` setter.
-- Add `DefinedProduct:claims` setter.
+- Add `DefinedProduct:claims` setter.;
+- Add `Enterprise:affiliates` accessors and mutators (affiliates).
 - Add `Enterprise:technicalProducts` setter and remover.
 - Add `Enterprise:catalogItems` setter and remover.
 - Add `Enterprise:customerCategories` setter and remover.
@@ -262,8 +263,8 @@ See the SUPPORTED.md file [comparison from main to next](https://github.com/data
 
 - Initial release.
 
-[unreleased]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-beta.1...HEAD
-[1.0.0-beta.1]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.12...v1.0.0-beta.1
+[unreleased]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-beta.2...HEAD
+[1.0.0-beta.2]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.12...v1.0.0-beta.2
 [1.0.0-alpha.12]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.11...v1.0.0-alpha.12
 [1.0.0-alpha.11]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.10...v1.0.0-alpha.11
 [1.0.0-alpha.10]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.9...v1.0.0-alpha.10
