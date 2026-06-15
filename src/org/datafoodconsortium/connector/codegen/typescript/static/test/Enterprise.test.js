@@ -9,57 +9,20 @@ const address = connector.createAddress({
     city: "Briouze"
 });
 
-const address2 = connector.createAddress({
-    semanticId: "http://myplatform.com/address2",
-});
-
-const customerCategory = connector.createCustomerCategory({
-    semanticId: "http://myplatform.com/customerCategory1"
-});
-
-const customerCategory2 = connector.createCustomerCategory({
-    semanticId: "http://myplatform.com/customerCategory2"
-});
-
-const suppliedProduct = connector.createSuppliedProduct({
-    semanticId: "http://myplatform.com/suppliedProduct1"
-});
-
-const technicalProduct = connector.createTechnicalProduct({
-    semanticId: "http://myplatform.com/technicalProduct"
-});
-
-const technicalProduct2 = connector.createTechnicalProduct({
-    semanticId: "http://myplatform.com/technicalProduct2"
-});
-
-const mainContact = connector.createPerson({
-    semanticId: "http://myplatform.com/mainContact"
-});
-
-const mainContact2 = connector.createPerson({
-    semanticId: "http://myplatform.com/mainContact2"
-});
-
-const suppliedProduct2 = connector.createSuppliedProduct({
-    semanticId: "http://myplatform.com/suppliedProduct2"
-});
-
-const catalog = connector.createCatalog({
-    semanticId: "http://myplatform.com/catalog1"
-});
-
-const catalog2 = connector.createCatalog({
-    semanticId: "http://myplatform.com/catalog2"
-});
-
-const catalogItem = connector.createCatalogItem({
-    semanticId: "http://myplatform.com/catalogItem1"
-});
-
-const catalogItem2 = connector.createCatalogItem({
-    semanticId: "http://myplatform.com/catalogItem2"
-});
+const address2 = connector.createAddress({ semanticId: "http://myplatform.com/address2" });
+const customerCategory = connector.createCustomerCategory({ semanticId: "http://myplatform.com/customerCategory1" });
+const customerCategory2 = connector.createCustomerCategory({ semanticId: "http://myplatform.com/customerCategory2" });
+const suppliedProduct = connector.createSuppliedProduct({ semanticId: "http://myplatform.com/suppliedProduct1" });
+const technicalProduct = connector.createTechnicalProduct({ semanticId: "http://myplatform.com/technicalProduct" });
+const technicalProduct2 = connector.createTechnicalProduct({ semanticId: "http://myplatform.com/technicalProduct2" });
+const mainContact = connector.createPerson({ semanticId: "http://myplatform.com/mainContact" });
+const mainContact2 = connector.createPerson({ semanticId: "http://myplatform.com/mainContact2" });
+const affiliate1 = connector.createPerson({ semanticId: "http://myplatform.com/affiliate1" })
+const suppliedProduct2 = connector.createSuppliedProduct({ semanticId: "http://myplatform.com/suppliedProduct2" });
+const catalog = connector.createCatalog({ semanticId: "http://myplatform.com/catalog1" });
+const catalog2 = connector.createCatalog({ semanticId: "http://myplatform.com/catalog2" });
+const catalogItem = connector.createCatalogItem({ semanticId: "http://myplatform.com/catalogItem1" });
+const catalogItem2 = connector.createCatalogItem({ semanticId: "http://myplatform.com/catalogItem2" });
 
 const enterprise = connector.createEnterprise({
     semanticId: "http://myplatform.com/enterprise1",
@@ -73,10 +36,11 @@ const enterprise = connector.createEnterprise({
     suppliedProducts: [suppliedProduct],
     technicalProducts: [technicalProduct],
     mainContact,
-    logo: "logo"
+    logo: "logo",
+    affiliates: [affiliate1],
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@id":"http://myplatform.com/enterprise1","@type":"dfc-b:Enterprise","dfc-b:VATnumber":"vatNumber","dfc-b:defines":"http://myplatform.com/customerCategory1","dfc-b:hasAddress":"http://myplatform.com/address1","dfc-b:hasDescription":"description","dfc-b:hasMainContact":"http://myplatform.com/mainContact","dfc-b:logo":"logo","dfc-b:maintains":"http://myplatform.com/catalog1","dfc-b:manages":"http://myplatform.com/catalogItem1","dfc-b:name":"name","dfc-b:proposes":"http://myplatform.com/technicalProduct","dfc-b:supplies":"http://myplatform.com/suppliedProduct1"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@id":"http://myplatform.com/enterprise1","@type":"dfc-b:Enterprise","dfc-b:VATnumber":"vatNumber","dfc-b:affiliates":"http://myplatform.com/affiliate1","dfc-b:defines":"http://myplatform.com/customerCategory1","dfc-b:hasAddress":"http://myplatform.com/address1","dfc-b:hasDescription":"description","dfc-b:hasMainContact":"http://myplatform.com/mainContact","dfc-b:logo":"logo","dfc-b:maintains":"http://myplatform.com/catalog1","dfc-b:manages":"http://myplatform.com/catalogItem1","dfc-b:name":"name","dfc-b:proposes":"http://myplatform.com/technicalProduct","dfc-b:supplies":"http://myplatform.com/suppliedProduct1"}`;
 
 test('Enterprise:import', async () => {
     const imported = await connector.import(json);
