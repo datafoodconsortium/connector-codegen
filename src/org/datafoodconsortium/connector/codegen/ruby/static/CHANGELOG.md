@@ -7,11 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.0.0] - 2026-06-10
+## [2.0.0] - 2026-06-15
 
 This version has been generated using:
 
-- [Connector code generator v1.2.0 branch](https://github.com/datafoodconsortium/connector-codegen/tree/v1.2.0).
+- [Connector code generator v2 branch](https://github.com/datafoodconsortium/connector-codegen/tree/v2).
 - [UML data model PR 29](https://github.com/datafoodconsortium/data-model-uml/pull/29).
 
 **This version contains breaking changes introduced by the ontology, see below.**

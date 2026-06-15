@@ -9,11 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - None
 
-## [2.0.0-beta.1] - 2026-06-12
+## [2.0.0-beta.2] - 2026-06-15
 
 Ontology v2 update.
 
-Generated from [UML model 4.0.0](https://github.com/datafoodconsortium/data-model-uml/releases/tag/v4.0.0) using the [Connector codegen 1.3.0](https://github.com/datafoodconsortium/connector-codegen/releases/tag/v1.3.0).
+This version has been generated using:
+
+- [Connector code generator v2 branch](https://github.com/datafoodconsortium/connector-codegen/tree/v2).
+- [UML data model PR 29](https://github.com/datafoodconsortium/data-model-uml/pull/29).
 
 **This version contains breaking changes introduced by the ontology, see below.**
 
@@ -309,8 +312,8 @@ See the SUPPORTED.md file [comparison from main to next](https://github.com/data
 
 - Initial release.
 
-[unreleased]: https://github.com/datafoodconsortium/connector-typescript/compare/v2.0.0-beta.1...HEAD
-[2.0.0-beta.1]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-beta.1...v2.0.0-beta.1
+[unreleased]: https://github.com/datafoodconsortium/connector-typescript/compare/v2.0.0-beta.2...HEAD
+[2.0.0-beta.2]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-beta.1...v2.0.0-beta.2
 [1.0.0-beta.1]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.12...v1.0.0-beta.1
 [1.0.0-alpha.12]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.11...v1.0.0-alpha.12
 [1.0.0-alpha.11]: https://github.com/datafoodconsortium/connector-typescript/compare/v1.0.0-alpha.10...v1.0.0-alpha.11
