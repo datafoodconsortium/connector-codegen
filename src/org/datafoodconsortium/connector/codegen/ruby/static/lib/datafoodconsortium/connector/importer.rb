@@ -100,9 +100,9 @@ module DataFoodConsortium
         return unless object.uri?
 
         id = object.value.sub(
-          "http://static.datafoodconsortium.org/data/measures.rdf#", "dfc-m:"
+          "http://w3id.org/dfc/taxonomies/v2.0.0/measures.rdf#", "dfc-m:"
         ).sub(
-          "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/measures.rdf#",
+          "http://w3id.org/dfc/taxonomies/measures.rdf#",
           "dfc-m:"
         )
         SKOSParser.concepts[id]
