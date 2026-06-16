@@ -14,9 +14,6 @@ RSpec.describe DataFoodConsortium::Connector::DeliveryStep do
 
   it "contains all fields when exported" do
     route = DataFoodConsortium::Connector::Route.new("https://myplatform.com/route")
-    order = DataFoodConsortium::Connector::Order.new("https://myplatform.com/order")
-    saleSession = DataFoodConsortium::Connector::SaleSession.new("https://myplatform.com/saleSession")
-    deliveredPlace = DataFoodConsortium::Connector::PhysicalPlace.new("https://myplatform.com/deliveredPlace")
     subject = DataFoodConsortium::Connector::DeliveryStep.new(
       "https://myplatform.com/subject",
       name: "name", 

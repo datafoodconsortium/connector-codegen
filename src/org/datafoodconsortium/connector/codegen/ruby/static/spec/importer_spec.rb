@@ -34,7 +34,7 @@ RSpec.describe DataFoodConsortium::Connector::Importer do
       }
     JSON
   end
-  let(:product_data_with_context_v1_8) do
+  let(:product_data_with_context_v2) do
     <<~JSON
       {
         "@context": {
@@ -116,8 +116,8 @@ RSpec.describe DataFoodConsortium::Connector::Importer do
     expect(result.totalTheoreticalStock).to eq 3
   end
 
-  it "imports an object with included DFC v1.8 context" do
-    result = connector.import(product_data_with_context_v1_8)
+  it "imports an object with included DFC v2 context" do
+    result = connector.import(product_data_with_context_v2)
 
     expect(result).to be_a DataFoodConsortium::Connector::SuppliedProduct
     expect(result.semanticType).to eq "dfc-b:SuppliedProduct"
