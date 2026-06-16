@@ -31,10 +31,8 @@ module DataFoodConsortium
         URL_NORMALISED
       )
 
-      # This is the old URL that's not online anymore.
-      # Keep it for compatiblity with all versions before 1.8.
       alias_preloaded(
-        "http://static.datafoodconsortium.org/ontologies/context.json",
+        "https://cdn.jsdelivr.net/gh/datafoodconsortium/ontology/context/context_2.0.0.json",
         URL_NORMALISED
       )
 
