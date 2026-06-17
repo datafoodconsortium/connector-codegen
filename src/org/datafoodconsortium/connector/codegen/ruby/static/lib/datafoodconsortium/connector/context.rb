@@ -25,12 +25,6 @@ module DataFoodConsortium
         URL_NORMALISED
       )
 
-      # This was the file the DFC website refers to in a link header.
-      alias_preloaded(
-        "http://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld",
-        URL_NORMALISED
-      )
-
       alias_preloaded(
         "https://cdn.jsdelivr.net/gh/datafoodconsortium/ontology/context/context_2.0.0.json",
         URL_NORMALISED
