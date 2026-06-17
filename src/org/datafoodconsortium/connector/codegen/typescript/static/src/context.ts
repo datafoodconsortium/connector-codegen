@@ -1,14 +1,14 @@
 export default {
   "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
   "skos": "http://www.w3.org/2004/02/skos/core#",
-  "dfc": "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_FullModel.owl#",
+  "dfc": "http://w3id.org/dfc/ontology/DFC_FullModel.owl#",
   "dc": "http://purl.org/dc/elements/1.1/#",
-  "dfc-b": "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#",
-  "dfc-t": "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_TechnicalOntology.owl#",
-  "dfc-m": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/measures.rdf#",
-  "dfc-pt": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/productTypes.rdf#",
-  "dfc-f": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/facets.rdf#",
-  "dfc-v": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/vocabulary.rdf#",
+  "dfc-b": "http://w3id.org/dfc/ontology/v2.0.0/src/DFC_BusinessOntology.owl#",
+  "dfc-t": "http://w3id.org/dfc/ontology/v2.0.0/src/DFC_TechnicalOntology.owl#",
+  "dfc-m": "http://w3id.org/dfc/taxonomies/v2.0.0/measures.rdf#",
+  "dfc-pt": "http://w3id.org/dfc/taxonomies/v2.0.0/productTypes.rdf#",
+  "dfc-f": "http://w3id.org/dfc/taxonomies/v2.0.0/facets.rdf#",
+  "dfc-v": "http://w3id.org/dfc/taxonomies/v2.0.0/vocabulary.rdf#",
   "ontosec": "http://www.semanticweb.org/ontologies/2008/11/OntologySecurity.owl#",
   "dfc-b:DFC_BusinessOntology_ObjectProperty": {
     "@type": "@id"
@@ -38,6 +38,9 @@ export default {
     "@type": "@id"
   },
   "dfc-b:certificateOf": {
+    "@type": "@id"
+  },
+  "dfc-b:certifies": {
     "@type": "@id"
   },
   "dfc-b:characteristicOf": {
@@ -86,6 +89,9 @@ export default {
     "@type": "@id"
   },
   "dfc-b:deliveredAt": {
+    "@type": "@id"
+  },
+  "dfc-b:delivery": {
     "@type": "@id"
   },
   "dfc-b:endsAt": {
@@ -139,6 +145,9 @@ export default {
   "dfc-b:hasFulfilmentStatus": {
     "@type": "@id"
   },
+  "dfc-b:hasGeoJsonFeature": {
+    "@type": "@id"
+  },
   "dfc-b:hasGeographicalOrigin": {
     "@type": "@id"
   },
@@ -155,6 +164,9 @@ export default {
     "@type": "@id"
   },
   "dfc-b:hasMainContact": {
+    "@type": "@id"
+  },
+  "dfc-b:hasMember": {
     "@type": "@id"
   },
   "dfc-b:hasNatureOrigin": {
@@ -205,7 +217,10 @@ export default {
   "dfc-b:hasPrice": {
     "@type": "@id"
   },
-  "dfc-b:hasProcess": {
+  "dfc-b:hasProductOption": {
+    "@type": "@id"
+  },
+  "dfc-b:hasProductOptionValue": {
     "@type": "@id"
   },
   "dfc-b:hasQuantity": {
@@ -214,13 +229,25 @@ export default {
   "dfc-b:hasReference": {
     "@type": "@id"
   },
+  "dfc-b:hasReferenceProductOption": {
+    "@type": "@id"
+  },
+  "dfc-b:hasReferenceProductOptionValue": {
+    "@type": "@id"
+  },
   "dfc-b:hasSocialMedia": {
     "@type": "@id"
   },
   "dfc-b:hasStatus": {
     "@type": "@id"
   },
+  "dfc-b:hasStep": {
+    "@type": "@id"
+  },
   "dfc-b:hasTemperature": {
+    "@type": "@id"
+  },
+  "dfc-b:hasTemplateSaleSession": {
     "@type": "@id"
   },
   "dfc-b:hasTransformationType": {
@@ -233,6 +260,9 @@ export default {
     "@type": "@id"
   },
   "dfc-b:hasVariant": {
+    "@type": "@id"
+  },
+  "dfc-b:hasVariantCaracteristic": {
     "@type": "@id"
   },
   "dfc-b:holds": {
@@ -262,10 +292,16 @@ export default {
   "dfc-b:isAvailableDuring": {
     "@type": "@id"
   },
+  "dfc-b:isCertifiedBy": {
+    "@type": "@id"
+  },
   "dfc-b:isFulfilledBy": {
     "@type": "@id"
   },
   "dfc-b:isIngredientOf": {
+    "@type": "@id"
+  },
+  "dfc-b:isMemberOf": {
     "@type": "@id"
   },
   "dfc-b:isOpenDuring": {
@@ -277,7 +313,13 @@ export default {
   "dfc-b:isShippedIn": {
     "@type": "@id"
   },
+  "dfc-b:isStepOf": {
+    "@type": "@id"
+  },
   "dfc-b:isTemperatureOf": {
+    "@type": "@id"
+  },
+  "dfc-b:isTemplateSaleSessionOf": {
     "@type": "@id"
   },
   "dfc-b:isVariantOf": {
@@ -362,6 +404,9 @@ export default {
     "@type": "@id"
   },
   "dfc-b:physicalCharacteristicOf": {
+    "@type": "@id"
+  },
+  "dfc-b:pickUp": {
     "@type": "@id"
   },
   "dfc-b:pickedUpAt": {
@@ -470,6 +515,12 @@ export default {
     "@type": "@id"
   },
   "dfc-b:typeOf": {
+    "@type": "@id"
+  },
+  "dfc-b:useVehicle": {
+    "@type": "@id"
+  },
+  "dfc-b:usedInRoute": {
     "@type": "@id"
   },
   "dfc-b:uses": {

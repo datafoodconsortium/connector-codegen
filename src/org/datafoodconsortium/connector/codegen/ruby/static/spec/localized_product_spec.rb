@@ -1,6 +1,6 @@
-RSpec.describe DataFoodConsortium::ConnectorV1::LocalizedProduct do
+RSpec.describe DataFoodConsortium::Connector::LocalizedProduct do
   it "can be empty when exported" do
-    subject = DataFoodConsortium::ConnectorV1::LocalizedProduct.new(
+    subject = DataFoodConsortium::Connector::LocalizedProduct.new(
       "https://myplatform.com/subject"
     )
     result = exported_json(subject)
@@ -13,13 +13,13 @@ RSpec.describe DataFoodConsortium::ConnectorV1::LocalizedProduct do
   end
 
   it "contains all fields when exported" do
-    quantity = DataFoodConsortium::ConnectorV1::QuantitativeValue.new()
-    theoreticalStock = DataFoodConsortium::ConnectorV1::TheoreticalStock.new("https://myplatform.com/theoreticalStock")
-    suppliedProduct = DataFoodConsortium::ConnectorV1::SuppliedProduct.new("https://myplatform.com/suppliedProduct")
-    physicalProduct = DataFoodConsortium::ConnectorV1::PhysicalProduct.new("https://myplatform.com/physicalProduct")
-    plannedLocalProductionFlow = DataFoodConsortium::ConnectorV1::PlannedLocalProductionFlow.new("https://myplatform.com/plannedLocalProductionFlow")
-    plannedLocalConsumptionFlow = DataFoodConsortium::ConnectorV1::PlannedLocalConsumptionFlow.new("https://myplatform.com/plannedLocalConsumptionFlow")
-    subject = DataFoodConsortium::ConnectorV1::LocalizedProduct.new(
+    quantity = DataFoodConsortium::Connector::QuantitativeValue.new()
+    theoreticalStock = DataFoodConsortium::Connector::TheoreticalStock.new("https://myplatform.com/theoreticalStock")
+    suppliedProduct = DataFoodConsortium::Connector::SuppliedProduct.new("https://myplatform.com/suppliedProduct")
+    physicalProduct = DataFoodConsortium::Connector::PhysicalProduct.new("https://myplatform.com/physicalProduct")
+    plannedLocalProductionFlow = DataFoodConsortium::Connector::PlannedLocalProductionFlow.new("https://myplatform.com/plannedLocalProductionFlow")
+    plannedLocalConsumptionFlow = DataFoodConsortium::Connector::PlannedLocalConsumptionFlow.new("https://myplatform.com/plannedLocalConsumptionFlow")
+    subject = DataFoodConsortium::Connector::LocalizedProduct.new(
       "https://myplatform.com/subject",
       name: "name",
       description: "description",

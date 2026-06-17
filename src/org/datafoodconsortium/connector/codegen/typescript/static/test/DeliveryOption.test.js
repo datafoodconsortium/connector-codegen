@@ -24,7 +24,7 @@ const deliveryOption = connector.createDeliveryOption({
     endDate: new Date(2026, 5, 19).toDateString(),
 });
 
-const json = '{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@graph":[{"@id":"_:b1","@type":"dfc-b:QuantitativeValue"},{"@id":"http://myplatform.com/deliveryOption","@type":"dfc-b:DeliveryOption","dfc-b:accessibilityInfo":"accessibilityInformation","dfc-b:deliveredAt":"http://myplatform.com/physicalPlace","dfc-b:deliveryConstraint":"deliveryConstraint","dfc-b:description":"description","dfc-b:endDate":"Fri Jun 19 2026","dfc-b:fee":"123","dfc-b:hasQuantity":"_:b1","dfc-b:name":"name","dfc-b:optionOf":"http://myplatform.com/saleSession","dfc-b:selectedBy":"http://myplatform.com/order","dfc-b:startDate":"Thu Jun 18 2026"}]}';
+const json = '{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@graph":[{"@id":"_:b1","@type":"dfc-b:QuantitativeValue"},{"@id":"http://myplatform.com/deliveryOption","@type":"dfc-b:DeliveryOption","dfc-b:accessibilityInfo":"accessibilityInformation","dfc-b:deliveredAt":"http://myplatform.com/physicalPlace","dfc-b:deliveryConstraint":"deliveryConstraint","dfc-b:description":"description","dfc-b:endDate":"Fri Jun 19 2026","dfc-b:fee":"123","dfc-b:hasQuantity":"_:b1","dfc-b:name":"name","dfc-b:optionOf":"http://myplatform.com/saleSession","dfc-b:selectedBy":"http://myplatform.com/order","dfc-b:startDate":"Thu Jun 18 2026"}]}';
 
 test('DeliveryOption:import', async () => {
     const imported = await connector.import(json);

@@ -3,12 +3,12 @@
 require_relative "skos_parser"
 
 module DataFoodConsortium
-  module ConnectorV1
+  module Connector
     class Importer
       def self.type_map
         unless @type_map
           @type_map = {}
-          DataFoodConsortium::ConnectorV1.semantic_types.each do |type|
+          DataFoodConsortium::Connector.semantic_types.each do |type|
             register_type(type)
           end
         end
@@ -100,9 +100,9 @@ module DataFoodConsortium
         return unless object.uri?
 
         id = object.value.sub(
-          "http://static.datafoodconsortium.org/data/measures.rdf#", "dfc-m:"
+          "http://w3id.org/dfc/taxonomies/v2.0.0/measures.rdf#", "dfc-m:"
         ).sub(
-          "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/measures.rdf#",
+          "http://w3id.org/dfc/taxonomies/measures.rdf#",
           "dfc-m:"
         )
         SKOSParser.concepts[id]

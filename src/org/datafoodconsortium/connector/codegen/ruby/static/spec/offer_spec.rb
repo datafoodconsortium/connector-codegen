@@ -1,10 +1,10 @@
-RSpec.describe DataFoodConsortium::ConnectorV1::Offer do
+RSpec.describe DataFoodConsortium::Connector::Offer do
   it "has a type" do
     expect(described_class::SEMANTIC_TYPE).to eq "dfc-b:Offer"
   end
 
   it "can be empty when exported" do
-    subject = DataFoodConsortium::ConnectorV1::Offer.new(
+    subject = DataFoodConsortium::Connector::Offer.new(
       "https://myplatform.com/o"
     )
     result = exported_json(subject)
@@ -15,11 +15,11 @@ RSpec.describe DataFoodConsortium::ConnectorV1::Offer do
   end
 
   it "contains all fields when exported" do
-    ci = DataFoodConsortium::ConnectorV1::CatalogItem.new("https://myplatform.com/ci")
-    cc = DataFoodConsortium::ConnectorV1::CustomerCategory.new("https://myplatform.com/cc")
-    subject = DataFoodConsortium::ConnectorV1::Offer.new(
+    ci = DataFoodConsortium::Connector::CatalogItem.new("https://myplatform.com/ci")
+    cc = DataFoodConsortium::Connector::CustomerCategory.new("https://myplatform.com/cc")
+    subject = DataFoodConsortium::Connector::Offer.new(
       "https://myplatform.com/o",
-      price: DataFoodConsortium::ConnectorV1::Price.new(
+      price: DataFoodConsortium::Connector::Price.new(
         value: 12.78,
         vatRate: 5.22,
         unit: connector.MEASURES.EURO

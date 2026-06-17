@@ -11,7 +11,7 @@ const openingHoursSpecification = connector.createOpeningHoursSpecification({
     closes: "closes",
 });
 
-const json = '{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@id":"http://myplatform.com/openingHoursSpecification","@type":"https://schema.org/OpeningHoursSpecification","https://schema.org/closes":"closes","https://schema.org/dayOfWeek":"dayOfWeek","https://schema.org/opens":"opens"}';
+const json = '{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@id":"http://myplatform.com/openingHoursSpecification","@type":"https://schema.org/OpeningHoursSpecification","https://schema.org/closes":"closes","https://schema.org/dayOfWeek":"dayOfWeek","https://schema.org/opens":"opens"}';
 
 test('OpeningHoursSpecification:import', async () => {
     const imported = await connector.import(json);

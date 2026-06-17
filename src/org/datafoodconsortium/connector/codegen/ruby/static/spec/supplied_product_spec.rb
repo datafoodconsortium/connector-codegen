@@ -1,6 +1,6 @@
-RSpec.describe DataFoodConsortium::ConnectorV1::SuppliedProduct do
+RSpec.describe DataFoodConsortium::Connector::SuppliedProduct do
   it "can be empty when exported" do
-    sp = DataFoodConsortium::ConnectorV1::SuppliedProduct.new("https://myplatform.com/sp")
+    sp = DataFoodConsortium::Connector::SuppliedProduct.new("https://myplatform.com/sp")
     actual = exported_json(sp)
     expect(actual).to include(
       "@id" => "https://myplatform.com/sp",
@@ -9,12 +9,12 @@ RSpec.describe DataFoodConsortium::ConnectorV1::SuppliedProduct do
   end
 
   it "contains all fields when exported" do
-    quantity = DataFoodConsortium::ConnectorV1::QuantitativeValue.new(
+    quantity = DataFoodConsortium::Connector::QuantitativeValue.new(
       unit: connector.MEASURES.KILOGRAM,
       value: 1.2
     )
 
-    sp = DataFoodConsortium::ConnectorV1::SuppliedProduct.new(
+    sp = DataFoodConsortium::Connector::SuppliedProduct.new(
       "https://myplatform.com/sp",
       name: "name",
       description: "description",
@@ -32,14 +32,14 @@ RSpec.describe DataFoodConsortium::ConnectorV1::SuppliedProduct do
       ],
       allergenCharacteristics: [],
       nutrientCharacteristics: [
-        DataFoodConsortium::ConnectorV1::NutrientCharacteristic.new(
+        DataFoodConsortium::Connector::NutrientCharacteristic.new(
           nutrientDimension: connector.MEASURES.CALCIUM,
           unit: connector.MEASURES.GRAM,
           value: 8.47
         )
       ],
       physicalCharacteristics: [
-        DataFoodConsortium::ConnectorV1::PhysicalCharacteristic.new(
+        DataFoodConsortium::Connector::PhysicalCharacteristic.new(
           physicalDimension: connector.MEASURES.WEIGHT,
           unit: connector.MEASURES.KILOGRAM,
           value: 3.25

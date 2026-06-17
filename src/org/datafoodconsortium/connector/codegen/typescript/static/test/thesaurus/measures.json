@@ -1,6 +1,6 @@
 {
   "@context": {
-    "dfc-m": "https://github.com/datafoodconsortium/taxonomies/releases/latest/download/measures.rdf#",
+    "dfc-m": "http://w3id.org/dfc/taxonomies/v2.0.0/measures.rdf#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "rdf": "http://www.w3.org/2000/01/rdf-schema#"
   },

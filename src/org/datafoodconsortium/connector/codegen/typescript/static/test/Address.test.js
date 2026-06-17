@@ -18,7 +18,7 @@ const address = connector.createAddress({
     region: "region"
 });
 
-const json = '{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@id":"http://myplatform.com/address/address1","@type":"dfc-b:Address","dfc-b:hasCity":"Brussels","dfc-b:hasCountry":"http://publications.europa.eu/resource/authority/country/FRA","dfc-b:hasPostalCode":"00001","dfc-b:hasStreet":"1, place or Europe","dfc-b:latitude":"0.123","dfc-b:longitude":"3.456","dfc-b:region":"region"}';
+const json = '{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@id":"http://myplatform.com/address/address1","@type":"dfc-b:Address","dfc-b:hasCity":"Brussels","dfc-b:hasCountry":"http://publications.europa.eu/resource/authority/country/FRA","dfc-b:hasPostalCode":"00001","dfc-b:hasStreet":"1, place or Europe","dfc-b:latitude":"0.123","dfc-b:longitude":"3.456","dfc-b:region":"region"}';
 
 test('Address:import', async () => {
     const imported = await connector.import(json);

@@ -10,7 +10,7 @@ let socialMedia = connector.createSocialMedia({
     url: "url",
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@id":"http://myplatform.com/socialMedia","@type":"dfc-b:SocialMedia","dfc-b:URL":"url","dfc-b:name":"name"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@id":"http://myplatform.com/socialMedia","@type":"dfc-b:SocialMedia","dfc-b:URL":"url","dfc-b:name":"name"}`;
 
 test('SocialMedia:import', async () => {
     const importedAll = await connector.import(json);

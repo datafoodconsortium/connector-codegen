@@ -20,7 +20,7 @@ const saleSession = connector.createSaleSession({
     offers: [offer]
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@id":"http://myplatform.com/saleSession1","@type":"dfc-b:SaleSession","dfc-b:beginDate":"beginDate","dfc-b:endDate":"endDate","dfc-b:lists":"http://myplatform.com/offer1","dfc-b:quantity":"5"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@id":"http://myplatform.com/saleSession1","@type":"dfc-b:SaleSession","dfc-b:beginDate":"beginDate","dfc-b:endDate":"endDate","dfc-b:lists":"http://myplatform.com/offer1","dfc-b:quantity":"5"}`;
 
 test('SaleSession:import', async () => {
     const importedAll = await connector.import(json);

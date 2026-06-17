@@ -1,5 +1,5 @@
 import context from "./context.js";
-const preloadUrl = "https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld";
+const preloadUrl = "https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld";
 
 export class ConnectorImporterJsonldStreamDocumentLoader {
 

@@ -10,7 +10,7 @@ const customerCategory = connector.createCustomerCategory({
     description: "description"
 })
 
-const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@id":"http://myplatform.com/customerCategory1","@type":"dfc-b:CustomerCategory","dfc-b:description":"description","dfc-b:name":"name"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@id":"http://myplatform.com/customerCategory1","@type":"dfc-b:CustomerCategory","dfc-b:description":"description","dfc-b:name":"name"}`;
 
 test('CustomerCategory:import', async () => {
     const imported = await connector.import(json);

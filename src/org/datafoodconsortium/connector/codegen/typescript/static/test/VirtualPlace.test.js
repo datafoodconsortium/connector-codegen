@@ -14,7 +14,7 @@ let virtualPlace = connector.createVirtualPlace({
     urls: ["url"],
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@id":"http://myplatform.com/virtualPlace","@type":"dfc-b:VirtualPlace","dfc-b:URL":"url","dfc-b:description":"description","dfc-b:hosts":"http://myplatform.com/saleSession","dfc-b:name":"name"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@id":"http://myplatform.com/virtualPlace","@type":"dfc-b:VirtualPlace","dfc-b:URL":"url","dfc-b:description":"description","dfc-b:hosts":"http://myplatform.com/saleSession","dfc-b:name":"name"}`;
 
 test('VirtualPlace:import', async () => {
     const importedAll = await connector.import(json);

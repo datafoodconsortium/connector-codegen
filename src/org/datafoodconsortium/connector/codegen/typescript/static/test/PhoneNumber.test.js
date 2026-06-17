@@ -10,7 +10,7 @@ let phoneNumber = connector.createPhoneNumber({
     phoneNumber: "0123456789"
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@id":"http://myplatform.com/phoneNumber","@type":"dfc-b:PhoneNumber","dfc-b:countryCode":"33","dfc-b:phoneNumber":"0123456789"}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@id":"http://myplatform.com/phoneNumber","@type":"dfc-b:PhoneNumber","dfc-b:countryCode":"33","dfc-b:phoneNumber":"0123456789"}`;
 
 test('PhoneNumber:import', async () => {
     const importedAll = await connector.import(json);

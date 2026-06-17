@@ -5,7 +5,7 @@ import { DatasetCore } from '@rdfjs/types';
 
 // Static
 import IConnector from "./IConnector.js";
-import IConnectorFactory, { IConnectorFactoryAddressCreateParams, IConnectorFactoryAllergenCharacteristicCreateParams, IConnectorFactoryCatalogCreateParams, IConnectorFactoryCatalogItemCreateParams, IConnectorFactoryCustomerCategoryCreateParams, IConnectorFactoryDeliveryOptionCreateParams, IConnectorFactoryEnterpriseCreateParams, IConnectorFactoryLocalizedProductCreateParams, IConnectorFactoryNutrientCharacteristicCreateParams, IConnectorFactoryOfferCreateParams, IConnectorFactoryOpeningHoursSpecificationCreateParams, IConnectorFactoryOrderCreateParams, IConnectorFactoryOrderLineCreateParams, IConnectorFactoryPaymentMethodCreateParams, IConnectorFactoryPersonCreateParams, IConnectorFactoryPhoneNumberCreateParams, IConnectorFactoryPhysicalCharacteristicCreateParams, IConnectorFactoryPhysicalPlaceCreateParams, IConnectorFactoryPhysicalProductCreateParams, IConnectorFactoryPickupOptionCreateParams, IConnectorFactoryPlannedConsumptionFlowCreateParams, IConnectorFactoryPlannedLocalConsumptionFlowCreateParams, IConnectorFactoryPlannedLocalProductionFlowCreateParams, IConnectorFactoryPlannedLocalTransformationCreateParams, IConnectorFactoryPlannedProductionFlowCreateParams, IConnectorFactoryPlannedTransformationCreateParams, IConnectorFactoryPriceCreateParams, IConnectorFactoryProductBatchCreateParams, IConnectorFactoryQuantityCreateParams, IConnectorFactoryRealizedConsumptionFlowCreateParams, IConnectorFactoryRealizedProductionFlowCreateParams, IConnectorFactoryRealizedTransformationCreateParams, IConnectorFactoryRealStockCreateParams, IConnectorFactorySaleSessionCreateParams, IConnectorFactorySocialMediaCreateParams, IConnectorFactorySuppliedProductCreateParams, IConnectorFactoryTechnicalProductCreateParams, IConnectorFactoryTheoreticalStockCreateParams, IConnectorFactoryVirtualPlaceCreateParams } from "./IConnectorFactory.js";
+import IConnectorFactory, { IConnectorFactoryAddressCreateParams, IConnectorFactoryAllergenCharacteristicCreateParams, IConnectorFactoryCatalogCreateParams, IConnectorFactoryCatalogItemCreateParams, IConnectorFactoryCustomerCategoryCreateParams, IConnectorFactoryDeliveryOptionCreateParams, IConnectorFactoryOrganizationCreateParams, IConnectorFactoryLocalizedProductCreateParams, IConnectorFactoryNutrientCharacteristicCreateParams, IConnectorFactoryOfferCreateParams, IConnectorFactoryOpeningHoursSpecificationCreateParams, IConnectorFactoryOrderCreateParams, IConnectorFactoryOrderLineCreateParams, IConnectorFactoryPaymentMethodCreateParams, IConnectorFactoryPersonCreateParams, IConnectorFactoryPhoneNumberCreateParams, IConnectorFactoryPhysicalCharacteristicCreateParams, IConnectorFactoryPhysicalPlaceCreateParams, IConnectorFactoryPhysicalProductCreateParams, IConnectorFactoryPickupOptionCreateParams, IConnectorFactoryPlannedConsumptionFlowCreateParams, IConnectorFactoryPlannedLocalConsumptionFlowCreateParams, IConnectorFactoryPlannedLocalProductionFlowCreateParams, IConnectorFactoryPlannedLocalTransformationCreateParams, IConnectorFactoryPlannedProductionFlowCreateParams, IConnectorFactoryPlannedTransformationCreateParams, IConnectorFactoryPriceCreateParams, IConnectorFactoryProductBatchCreateParams, IConnectorFactoryQuantityCreateParams, IConnectorFactoryRealizedConsumptionFlowCreateParams, IConnectorFactoryRealizedProductionFlowCreateParams, IConnectorFactoryRealizedTransformationCreateParams, IConnectorFactoryRealStockCreateParams, IConnectorFactorySaleSessionCreateParams, IConnectorFactorySocialMediaCreateParams, IConnectorFactorySuppliedProductCreateParams, IConnectorFactoryTechnicalProductCreateParams, IConnectorFactoryTheoreticalStockCreateParams, IConnectorFactoryVirtualPlaceCreateParams, IConnectorFactoryCertificationCreateParams, IConnectorFactoryDeliveryStepCreateParams, IConnectorFactoryPickUpStepCreateParams, IConnectorFactoryRouteCreateParams, IConnectorFactoryTemplateSaleSessionCreateParams, IConnectorFactoryProductOptionCreateParams, IConnectorFactoryProductOptionValueCreateParams, IConnectorFactoryVariantCreateParams, IConnectorFactoryVariantCharacteristicCreateParams } from "./IConnectorFactory.js";
 
 // Generated Classes
 import Address from "./Address.js";
@@ -13,8 +13,8 @@ import AllergenCharacteristic from "./AllergenCharacteristic.js";
 import Catalog from "./Catalog.js";
 import CatalogItem from "./CatalogItem.js";
 import CustomerCategory from "./CustomerCategory.js";
+import Organization from "./Organization.js";
 import DeliveryOption from "./DeliveryOption.js";
-import Enterprise from "./Enterprise.js";
 import NutrientCharacteristic from "./NutrientCharacteristic.js";
 import Offer from "./Offer.js";
 import Order from "./Order.js";
@@ -22,6 +22,7 @@ import OrderLine from "./OrderLine.js";
 import Person from "./Person.js";
 import PhysicalCharacteristic from "./PhysicalCharacteristic.js";
 import Price from "./Price.js";
+import QuantitativeValue from "./QuantitativeValue.js";
 import SaleSession from "./SaleSession.js";
 import SKOSConcept from "./SKOSConcept.js";
 import SuppliedProduct from "./SuppliedProduct.js";
@@ -37,7 +38,6 @@ import PlannedLocalConsumptionFlow from "./PlannedLocalConsumptionFlow.js";
 import PlannedLocalProductionFlow from "./PlannedLocalProductionFlow.js";
 import PlannedLocalTransformation from "./PlannedLocalTransformation.js";
 import ProductBatch from "./ProductBatch.js";
-import QuantitativeValue from "./QuantitativeValue.js";
 import RealizedConsumptionFlow from "./RealizedConsumptionFlow.js";
 import RealizedProductionFlow from "./RealizedProductionFlow.js";
 import RealizedTransformation from "./RealizedTransformation.js";
@@ -55,7 +55,7 @@ import IAllergenCharacteristic from "./IAllergenCharacteristic.js";
 import ICatalog from "./ICatalog.js";
 import ICatalogItem from "./ICatalogItem.js";
 import ICustomerCategory from "./ICustomerCategory.js";
-import IEnterprise from "./IEnterprise.js";
+import IOrganization from "./IOrganization.js";
 import IPrice from "./IPrice.js";
 import ISuppliedProduct from "./ISuppliedProduct.js";
 import INutrientCharacteristic from "./INutrientCharacteristic.js";
@@ -92,6 +92,24 @@ import IRealizedTransformation from "./IRealizedTransformation.js";
 import ISocialMedia from "./ISocialMedia.js";
 import IVirtualPlace from "./IVirtualPlace.js";
 import OpeningHoursSpecification from "./OpeningHoursSpecification.js";
+import ICertification from "./ICertification.js";
+import Certification from "./Certification.js";
+import IDeliveryStep from "./IDeliveryStep.js";
+import DeliveryStep from "./DeliveryStep.js";
+import IPickUpStep from "./IPickUpStep.js";
+import PickupStep from "./PickupStep.js";
+import IRoute from "./IRoute.js";
+import Route from "./Route.js";
+import ITemplateSaleSession from "./ITemplateSaleSession.js";
+import TemplateSaleSession from "./TemplateSaleSession.js";
+import IProductOption from "./IProductOption.js";
+import ProductOption from "./ProductOption.js";
+import IProductOptionValue from "./IProductOptionValue.js";
+import ProductOptionValue from "./ProductOptionValue.js";
+import IVariant from "./IVariant.js";
+import Variant from "./Variant.js";
+import IVariantCharacteristic from "./IVariantCharacteristic.js";
+import VariantCharacteristic from "./VariantCharacteristic.js";
 
 export default class ConnectorFactory implements IConnectorFactory {
 
@@ -123,6 +141,10 @@ export default class ConnectorFactory implements IConnectorFactory {
         return new CatalogItem({ connector: this.connector, ...parameters });
     }
 
+    public createCertification(parameters: IConnectorFactoryCertificationCreateParams): ICertification {
+        return new Certification({ connector: this.connector, ...parameters });
+    }
+
     public createCustomerCategory(parameters: IConnectorFactoryCustomerCategoryCreateParams): ICustomerCategory {
         return new CustomerCategory({ connector: this.connector, ...parameters });
     }
@@ -131,8 +153,8 @@ export default class ConnectorFactory implements IConnectorFactory {
         return new DeliveryOption({ connector: this.connector, ...parameters });
     }
 
-    public createEnterprise(parameters: IConnectorFactoryEnterpriseCreateParams): IEnterprise {
-        return new Enterprise({ connector: this.connector, ...parameters });
+    public createDeliveryStep(parameters: IConnectorFactoryDeliveryStepCreateParams): IDeliveryStep {
+        return new DeliveryStep({ connector: this.connector, ...parameters });
     }
 
     public createLocalizedProduct(parameters: IConnectorFactoryLocalizedProductCreateParams): ILocalizedProduct {
@@ -157,6 +179,10 @@ export default class ConnectorFactory implements IConnectorFactory {
 
     public createOrderLine(parameters: IConnectorFactoryOrderLineCreateParams): IOrderLine {
         return new OrderLine({ connector: this.connector, ...parameters });
+    }
+
+    public createOrganization(parameters: IConnectorFactoryOrganizationCreateParams): IOrganization {
+        return new Organization({ connector: this.connector, ...parameters });
     }
 
     public createPaymentMethod(parameters: IConnectorFactoryPaymentMethodCreateParams): IPaymentMethod {
@@ -185,6 +211,10 @@ export default class ConnectorFactory implements IConnectorFactory {
 
     public createPickupOption(parameters: IConnectorFactoryPickupOptionCreateParams): IPickupOption {
         return new PickupOption({ connector: this.connector, ...parameters });
+    }
+
+    public createPickUpStep(parameters: IConnectorFactoryPickUpStepCreateParams): IPickUpStep {
+        return new PickupStep({ connector: this.connector, ...parameters });
     }
 
     public createPlannedConsumptionFlow(parameters: IConnectorFactoryPlannedConsumptionFlowCreateParams): IPlannedConsumptionFlow {
@@ -219,6 +249,14 @@ export default class ConnectorFactory implements IConnectorFactory {
         return new ProductBatch({ connector: this.connector, ...parameters });
     }
 
+    public createProductOption(parameters: IConnectorFactoryProductOptionCreateParams): IProductOption {
+        return new ProductOption({ connector: this.connector, ...parameters });
+    }
+
+    public createProductOptionValue(parameters: IConnectorFactoryProductOptionValueCreateParams): IProductOptionValue {
+        return new ProductOptionValue({ connector: this.connector, ...parameters });
+    }
+
     public createQuantity(parameters: IConnectorFactoryQuantityCreateParams): IQuantity {
         return new QuantitativeValue({ connector: this.connector, ...parameters });
     }
@@ -239,6 +277,10 @@ export default class ConnectorFactory implements IConnectorFactory {
         return new RealStock({ connector: this.connector, ...parameters });
     }
 
+    public createRoute(parameters: IConnectorFactoryRouteCreateParams): IRoute {
+        return new Route({ connector: this.connector, ...parameters });
+    }
+
     public createSaleSession(parameters: IConnectorFactorySaleSessionCreateParams): ISaleSession {
         return new SaleSession({ connector: this.connector, ...parameters });
     }
@@ -255,8 +297,20 @@ export default class ConnectorFactory implements IConnectorFactory {
         return new TechnicalProduct({ connector: this.connector, ...parameters });
     }
 
+    public createTemplateSaleSession(parameters: IConnectorFactoryTemplateSaleSessionCreateParams): ITemplateSaleSession {
+        return new TemplateSaleSession({ connector: this.connector, ...parameters });
+    }
+
     public createTheoreticalStock(parameters: IConnectorFactoryTheoreticalStockCreateParams): ITheoreticalStock {
         return new TheoreticalStock({ connector: this.connector, ...parameters });
+    }
+
+    public createVariant(parameters: IConnectorFactoryVariantCreateParams): IVariant {
+        return new Variant({ connector: this.connector, ...parameters });
+    }
+
+    public createVariantCharacteristic(parameters: IConnectorFactoryVariantCharacteristicCreateParams): IVariantCharacteristic {
+        return new VariantCharacteristic({ connector: this.connector, ...parameters });
     }
 
     public createVirtualPlace(parameters: IConnectorFactoryVirtualPlaceCreateParams): IVirtualPlace {
@@ -265,7 +319,7 @@ export default class ConnectorFactory implements IConnectorFactory {
 
     public createFromType(type: string): Semanticable | undefined {
         let result: Semanticable | undefined = undefined;
-        const prefix: string = "https://github.com/datafoodconsortium/ontology/releases/latest/download/DFC_BusinessOntology.owl#";
+        const prefix: string = "http://w3id.org/dfc/ontology/v2.0.0/src/DFC_BusinessOntology.owl#";
         switch (type) {
             case prefix + "Address":
                 result = this.createAddress({ semanticId: "" });
@@ -319,6 +373,11 @@ export default class ConnectorFactory implements IConnectorFactory {
                 result = this.createCatalogItem({ semanticId: "" });
                 break;
 
+            // There is a typo in the ontology, see https://github.com/datafoodconsortium/ontology/issues/217.
+            case prefix + "Certfication":
+                result = this.createCertification({ semanticId: "" });
+                break;
+
             case prefix + "CustomerCategory":
                 result = this.createCustomerCategory({ semanticId: "" });
                 break;
@@ -327,8 +386,8 @@ export default class ConnectorFactory implements IConnectorFactory {
                 result = this.createDeliveryOption({ semanticId: "" });
                 break;
 
-            case prefix + "Enterprise":
-                result = this.createEnterprise({ semanticId: "" });
+            case prefix + "DeliveryStep":
+                result = this.createDeliveryStep({ semanticId: "" });
                 break;
 
             case prefix + "LocalizedProduct":
@@ -353,6 +412,10 @@ export default class ConnectorFactory implements IConnectorFactory {
 
             case prefix + "OrderLine":
                 result = this.createOrderLine({ semanticId: "" });
+                break;
+            
+            case prefix + "Organization":
+                result = this.createOrganization({ semanticId: "" });
                 break;
 
             case prefix + "PaymentMethod":
@@ -383,6 +446,10 @@ export default class ConnectorFactory implements IConnectorFactory {
                 result = this.createPickupOption({ semanticId: "" });
                 break;
 
+            case prefix + "PickUpStep":
+                result = this.createPickUpStep({ semanticId: "" });
+                break;
+
             case prefix + "Price":
                 result = this.createPrice({});
                 break;
@@ -391,12 +458,24 @@ export default class ConnectorFactory implements IConnectorFactory {
                 result = this.createProductBatch({ semanticId: "" });
                 break;
 
+            case prefix + "ProductOption":
+                result = this.createProductOption({ semanticId: "" });
+                break;
+
+            case prefix + "ProductOptionValue":
+                result = this.createProductOptionValue({ semanticId: "" });
+                break;
+
             case prefix + "QuantitativeValue":
                 result = this.createQuantity({});
                 break;
 
             case prefix + "RealStock":
                 result = this.createRealStock({ semanticId: "" });
+                break;
+
+            case prefix + "Route":
+                result = this.createRoute({ semanticId: "" });
                 break;
 
             case prefix + "SaleSession":
@@ -415,12 +494,33 @@ export default class ConnectorFactory implements IConnectorFactory {
                 result = this.createTechnicalProduct({ semanticId: "" });
                 break;
 
+            case prefix + "TemplateSaleSession":
+                result = this.createTemplateSaleSession({ semanticId: "" });
+                break;
+
             case prefix + "TheoreticalStock":
                 result = this.createTheoreticalStock({ semanticId: "" });
                 break;
 
+            case prefix + "Variant":
+                result = this.createVariant({ semanticId: "" });
+                break;
+
+            // There is a typo in the ontology, see https://github.com/datafoodconsortium/ontology/issues/215.
+            case prefix + "VariantCaracteristic":
+                result = this.createVariantCharacteristic({ semanticId: "" });
+                break;
+
             case prefix + "VirtualPlace":
                 result = this.createVirtualPlace({ semanticId: "" });
+                break;
+
+            case "http://www.w3.org/2002/07/owl#Ontology":
+                result = undefined;
+                break;
+
+            case "http://www.w3.org/2002/07/owl#Class":
+                result = undefined;
                 break;
 
             case "http://www.w3.org/2004/02/skos/core#Concept":

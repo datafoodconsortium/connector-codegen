@@ -38,7 +38,7 @@ let physicalProduct = connector.createPhysicalProduct({
     realizedProductionFlows: [realizedProductionFlow],
 });
 
-const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_1.16.0.jsonld","@graph":[{"@id":"_:b1","@type":"dfc-b:QuantitativeValue","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1.2"},{"@id":"http://myplatform.com/tomato","@type":"dfc-b:PhysicalProduct","dfc-b:constituedBy":"http://myplatform.com/realStock","dfc-b:consumedBy":"http://myplatform.com/realizedConsumptionFlow","dfc-b:description":"description","dfc-b:hasQuantity":"_:b1","dfc-b:image":["http://myplatform.com/image1","http://myplatform.com/image2"],"dfc-b:name":"name","dfc-b:producedBy":"http://myplatform.com/realizedProductionFlow","dfc-b:represents":"http://myplatform.com/localizedProduct","dfc-b:tracedBy":"http://myplatform.com/productBatch"}]}`;
+const json = `{"@context":"https://www.datafoodconsortium.org/wp-content/plugins/wordpress-context-jsonld/context_2.0.0.jsonld","@graph":[{"@id":"_:b1","@type":"dfc-b:QuantitativeValue","dfc-b:hasUnit":"dfc-m:Kilogram","dfc-b:value":"1.2"},{"@id":"http://myplatform.com/tomato","@type":"dfc-b:PhysicalProduct","dfc-b:constituedBy":"http://myplatform.com/realStock","dfc-b:consumedBy":"http://myplatform.com/realizedConsumptionFlow","dfc-b:description":"description","dfc-b:hasQuantity":"_:b1","dfc-b:image":["http://myplatform.com/image1","http://myplatform.com/image2"],"dfc-b:name":"name","dfc-b:producedBy":"http://myplatform.com/realizedProductionFlow","dfc-b:represents":"http://myplatform.com/localizedProduct","dfc-b:tracedBy":"http://myplatform.com/productBatch"}]}`;
 
 test('PhysicalProduct:import', async () => {
     const importedAll = await connector.import(json);

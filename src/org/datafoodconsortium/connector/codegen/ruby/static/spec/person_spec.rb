@@ -1,6 +1,6 @@
-RSpec.describe DataFoodConsortium::ConnectorV1::Person do
+RSpec.describe DataFoodConsortium::Connector::Person do
   it "can be empty when exported" do
-    p = DataFoodConsortium::ConnectorV1::Person.new("https://myplatform.com/p")
+    p = DataFoodConsortium::Connector::Person.new("https://myplatform.com/p")
     actual = exported_json(p)
     expected = {
       "@id" => "https://myplatform.com/p",
@@ -10,15 +10,15 @@ RSpec.describe DataFoodConsortium::ConnectorV1::Person do
   end
 
   it "contains all fields when exported" do
-    p = DataFoodConsortium::ConnectorV1::Person.new(
+    p = DataFoodConsortium::Connector::Person.new(
       "https://myplatform.com/p",
       firstName: "firstName",
       lastName: "lastName",
       affiliatedOrganizations: [
-        DataFoodConsortium::ConnectorV1::Enterprise.new("https://myplatform.com/e")
+        DataFoodConsortium::Connector::Organization.new("https://myplatform.com/e")
       ],
       localizations: [
-        DataFoodConsortium::ConnectorV1::Address.new("https://myplatform.com/a")
+        DataFoodConsortium::Connector::Address.new("https://myplatform.com/a")
       ]
     )
     actual = exported_json(p)
