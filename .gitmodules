@@ -1,0 +1,3 @@
+[submodule "data-model-uml"]
+	path = data-model-uml
+	url = git@github.com:datafoodconsortium/data-model-uml.git

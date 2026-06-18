@@ -28,6 +28,9 @@ To generate Ruby and TypeScript version based on the UML model version 3.4.0.
   - `getOperationsToImplementOrDeclare`.
 
 ### Changed
+- Add `data-model-uml` as a Git submodule (see [Issue
+  #30](https://github.com/datafoodconsortium/connector-codegen/issues/30))
+
 TypeScript:
 - Ensure the entry point, `src/index.ts`, is always regenerated on fresh builds.
 

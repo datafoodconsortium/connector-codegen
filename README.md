@@ -18,7 +18,7 @@ You should install the Eclipse Modeling Tool, an Eclipse IDE version configured 
 
 Once you installed the required plugins, you will need to import this project into your Eclipse workspace. Clone this repo then click on `File > Open project from file system` and select the folder you just cloned.
 
-In order to generate code, you will need the UML model itself. Clone the repository and import it in your Eclipse installation like you did before.
+Since v1.2.0 of `connector-codegen`, the [UML model](https://github.com/datafoodconsortium/data-model-uml) is included as a Git [submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) and will appear as a subdirectory symlink when you clone `connector-codegen`. See below for more details on [data model versioning](#data-model-versioning).
 
 Finally, to launch the generation you will need a launch configuration. To create a new one in Eclipse, click on `Run > Run configurations...` and add a new Acceleo configuration. Like on the following picture:
 - select the "connector-codegen" project;
@@ -26,11 +26,11 @@ Finally, to launch the generation you will need a launch configuration. To creat
 - provide the UML model;
 - and a folder in which to generate.
 
-<img src="./img/config.jpg" width="500px" />
+![Run > Run Configuration > Acceleo](./img/config.png)
 
 In the "Properties Files" tab, pass the `default.properties` file like on the following picture. The content of this file is detailed in the "Properties" section below.
 
-<img src="./img/properties.jpg" width="300px" />
+![Run > Run Configuration > Properties Files](./img/properties.png)
 
 The configuration is now ready, click on "Apply" and "Run".
 
@@ -227,3 +227,67 @@ In order to generate, this file MUST be loaded in the launch configuration or pa
 | `stereotype<StereotypeName>_<property>` | In the generator we need to get data associated to certain properties of stereotypes like the name of the mapping property for instance. This property points to the name of the corresponding property in the UML model. Ex: `stereotypeSemantic_map = map`. |
 
 [model specifications]: https://datafoodconsortium.gitbook.io/dfc-standard-documentation/connector/model-specifications
+
+## Data Model Versioning
+
+Since v1.2.0 of `connector-codegen`, the [UML model](https://github.com/datafoodconsortium/data-model-uml) is included as a Git [submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) and will appear as a subdirectory symlink when you clone `connector-codegen`. To ensure you have the correct version of the model, you can simply run the following from the root directory of the `connector-codegen` repository:
+
+```sh
+git submodule update
+```
+
+This can be helpful when switching between branches or previous versions, and
+will ensure that every commit of the connector is pegged to one specific commit
+from the data model.
+
+When new versions of the model are available, the connector be updated by changing to the `data-model-uml/` subdirectory and pulling the changes from the model's remote repository. When you change back to the connector's root directory, git will start tracking the commit hash for the model repository as it would a file change. The new version can then be staged and committed. The workflow may look something like this from the terminal:
+
+```sh
+$ cd ~/connector-codegen/
+$ git checkout -b feature/update-model-version
+Switched to a new branch 'feature/update-model-version'
+$ git fetch -v
+POST git-upload-pack (155 bytes)
+From https://github.com/datafoodconsortium/connector-codegen
+ = [up to date]      dev                           -> origin/dev
+ = [up to date]      main                          -> origin/main
+$ cd data-model-uml/
+$ git fetch -v
+From github.com:datafoodconsortium/data-model-uml
+ = [up to date]      next       -> origin/next
+ = [up to date]      main       -> origin/main
+$ git checkout next 
+Switched to branch 'next'
+Your branch is behind 'origin/next' by 3 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+$ git pull
+Updating 732bc8e..846b850
+Fast-forward
+ CHANGELOG.md |   4 ++
+ common.uml   |  64 ++++++++++++++++++++++
+ product.uml  | 410 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ sale.uml     | 498 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 976 insertions(+)
+$ git status
+On branch next
+Your branch is up to date with 'origin/next'.
+
+nothing to commit, working tree clean
+$ cd ..
+$ git status
+On branch feature/update-model-version
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   data-model-uml (new commits)
+$ git diff main data-model-uml/
+diff --git a/data-model-uml b/data-model-uml
+new file mode 160000
+index 0000000..846b850
+--- /dev/null
++++ b/data-model-uml
+@@ -0,0 +1 @@
++Subproject commit 846b85073ad63e12f073f27f6cac13dfe19850b7
+$ git add data-model-uml/
+$ git commit -m "Update to next version of data model UML"
+```
